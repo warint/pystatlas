@@ -20,18 +20,17 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Statlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/statlas/", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "Statlas", "url": "https://warint.github.io/statlas/"}}</script>
 <meta property="og:title" content="Statlas — The Python gallery of statistical graphics">
 <meta property="og:description" content="The Python gallery of statistical graphics">
-<meta name="theme-color" content="#fbfbfd" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=bdbdb8fb">
 </head>
 <body>
 <header class="nav">
   <div class="nav-inner">
-    <a class="brand" href="index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="url(#lg)"/><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A84FF"/><stop offset="1" stop-color="#5E5CE6"/></linearGradient></defs><rect x="7" y="17" width="4" height="8" rx="2" fill="#fff" opacity=".75"/><rect x="14" y="11" width="4" height="14" rx="2" fill="#fff"/><rect x="21" y="7" width="4" height="18" rx="2" fill="#fff" opacity=".9"/></svg><span>Statlas</span></a>
+    <a class="brand" href="index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" fill="#E3120B"/><rect x="7" y="17" width="4" height="9" fill="#fff"/><rect x="14" y="11" width="4" height="15" fill="#fff"/><rect x="21" y="6" width="4" height="20" fill="#fff"/></svg><span>Statlas</span></a>
     <nav class="nav-links">
       <a href="index.html#gallery" class="on">Gallery</a>
       <a href="style.html" class="">Style</a>
@@ -44,7 +43,7 @@
 <main>
 <section class="hero"><div class="wrap">
   <p class="eyebrow">48 statistical charts · 10 families · 100% Python</p>
-  <h1>Statistical graphics.<br><span class="grad">Beautifully Pythonic.</span></h1>
+  <h1>Statistical graphics.<br><span class="h-accent">Beautifully Pythonic.</span></h1>
   <p class="lede">A curated atlas of statistical charts for Python — regression models, Likert scales, survival curves, diagnostics and more. Pick a chart, copy the code, done.</p>
   <p class="byline">By <a href="https://www.warin.ca">Thierry Warin</a></p>
   <div class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -60,222 +59,222 @@
   <a class="more" href="distributions/index.html">5 charts →</a></div>
   <div class="grid"><a class="card" href="distributions/histogram-density/" data-cat="distributions" data-k="histogram with density histogram, kernel density and fitted normal curve, with shape statistics. ggplot2::geom_histogram() + geom_density() distributions histogram kde normality skewness shapiro-wilk matplotlib numpy scipy scikit-learn">
   <div class="card-img"><img src="distributions/histogram-density/thumb.webp" alt="Histogram with density" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Histogram with density</h3><p>Histogram, kernel density and fitted normal curve, with shape statistics.</p><span class="card-r">ggplot2::geom_histogram() + geom_density()</span></div>
+  <div class="card-body"><span class="kicker">Distributions</span><h3>Histogram with density</h3><p>Histogram, kernel density and fitted normal curve, with shape statistics.</p><span class="card-r">ggplot2::geom_histogram() + geom_density()</span></div>
 </a>
 <a class="card" href="distributions/raincloud/" data-cat="distributions" data-k="raincloud plot half violin, box plot and raw points per group, drawn horizontally. ggdist::stat_halfeye() / ggrain::geom_rain() distributions raincloud violin box plot kruskal-wallis distribution matplotlib numpy scipy scikit-learn">
   <div class="card-img"><img src="distributions/raincloud/thumb.webp" alt="Raincloud plot" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Raincloud plot</h3><p>Half violin, box plot and raw points per group, drawn horizontally.</p><span class="card-r">ggdist::stat_halfeye() / ggrain::geom_rain()</span></div>
+  <div class="card-body"><span class="kicker">Distributions</span><h3>Raincloud plot</h3><p>Half violin, box plot and raw points per group, drawn horizontally.</p><span class="card-r">ggdist::stat_halfeye() / ggrain::geom_rain()</span></div>
 </a>
 <a class="card" href="distributions/ridgeline/" data-cat="distributions" data-k="ridgeline plot overlapping density curves to compare one distribution across many groups. ggridges::geom_density_ridges() distributions ridgeline joy plot kde seasonality friedman matplotlib numpy statsmodels scipy">
   <div class="card-img"><img src="distributions/ridgeline/thumb.webp" alt="Ridgeline plot" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Ridgeline plot</h3><p>Overlapping density curves to compare one distribution across many groups.</p><span class="card-r">ggridges::geom_density_ridges()</span></div>
+  <div class="card-body"><span class="kicker">Distributions</span><h3>Ridgeline plot</h3><p>Overlapping density curves to compare one distribution across many groups.</p><span class="card-r">ggridges::geom_density_ridges()</span></div>
 </a>
 <a class="card" href="distributions/ecdf-comparison/" data-cat="distributions" data-k="ecdf comparison empirical cumulative distributions of two groups, with the kolmogorov–smirnov gap. ggplot2::stat_ecdf() distributions ecdf kolmogorov-smirnov cumulative distribution two-sample test matplotlib numpy scipy scikit-learn">
   <div class="card-img"><img src="distributions/ecdf-comparison/thumb.webp" alt="ECDF comparison" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>ECDF comparison</h3><p>Empirical cumulative distributions of two groups, with the Kolmogorov–Smirnov gap.</p><span class="card-r">ggplot2::stat_ecdf()</span></div>
+  <div class="card-body"><span class="kicker">Distributions</span><h3>ECDF comparison</h3><p>Empirical cumulative distributions of two groups, with the Kolmogorov–Smirnov gap.</p><span class="card-r">ggplot2::stat_ecdf()</span></div>
 </a>
 <a class="card" href="distributions/qq-plot/" data-cat="distributions" data-k="q–q plot with confidence band normal quantile–quantile plots with a 95% envelope, for a raw and a logged variable. qqplotr::stat_qq_band() distributions q-q plot normality confidence band log transform shapiro-wilk matplotlib numpy statsmodels scipy">
   <div class="card-img"><img src="distributions/qq-plot/thumb.webp" alt="Q–Q plot with confidence band" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Q–Q plot with confidence band</h3><p>Normal quantile–quantile plots with a 95% envelope, for a raw and a logged variable.</p><span class="card-r">qqplotr::stat_qq_band()</span></div>
+  <div class="card-body"><span class="kicker">Distributions</span><h3>Q–Q plot with confidence band</h3><p>Normal quantile–quantile plots with a 95% envelope, for a raw and a logged variable.</p><span class="card-r">qqplotr::stat_qq_band()</span></div>
 </a></div>
 </section><section class="cat" data-cat="group-comparisons" id="group-comparisons">
   <div class="cat-head"><div><h2>Group comparisons</h2><p>Compare groups with the test, effect size and p-values on the chart — the ggstatsplot way.</p></div>
   <a class="more" href="group-comparisons/index.html">5 charts →</a></div>
   <div class="grid"><a class="card" href="group-comparisons/between-groups-violin/" data-cat="group-comparisons" data-k="between-groups comparison violin + box + points with welch&#x27;s anova, effect size and pairwise tests. ggstatsplot::ggbetweenstats() group comparisons anova welch games-howell effect size violin matplotlib numpy pandas scipy scikit-learn statsmodels">
   <div class="card-img"><img src="group-comparisons/between-groups-violin/thumb.webp" alt="Between-groups comparison" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Between-groups comparison</h3><p>Violin + box + points with Welch&#x27;s ANOVA, effect size and pairwise tests.</p><span class="card-r">ggstatsplot::ggbetweenstats()</span></div>
+  <div class="card-body"><span class="kicker">Group comparisons</span><h3>Between-groups comparison</h3><p>Violin + box + points with Welch&#x27;s ANOVA, effect size and pairwise tests.</p><span class="card-r">ggstatsplot::ggbetweenstats()</span></div>
 </a>
 <a class="card" href="group-comparisons/within-subjects/" data-cat="group-comparisons" data-k="within-subjects comparison repeated measures with one line per subject, means, rm-anova and paired tests. ggstatsplot::ggwithinstats() group comparisons repeated measures paired t-test rm-anova effect size spaghetti plot matplotlib numpy pandas scipy statsmodels">
   <div class="card-img"><img src="group-comparisons/within-subjects/thumb.webp" alt="Within-subjects comparison" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Within-subjects comparison</h3><p>Repeated measures with one line per subject, means, rm-ANOVA and paired tests.</p><span class="card-r">ggstatsplot::ggwithinstats()</span></div>
+  <div class="card-body"><span class="kicker">Group comparisons</span><h3>Within-subjects comparison</h3><p>Repeated measures with one line per subject, means, rm-ANOVA and paired tests.</p><span class="card-r">ggstatsplot::ggwithinstats()</span></div>
 </a>
 <a class="card" href="group-comparisons/estimation-plot/" data-cat="group-comparisons" data-k="estimation plot raw data of two groups plus the mean difference and its bootstrap 95% ci. dabestr::dabest() + plot() group comparisons estimation bootstrap effect size mean difference confidence interval matplotlib numpy pandas seaborn scipy">
   <div class="card-img"><img src="group-comparisons/estimation-plot/thumb.webp" alt="Estimation plot" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Estimation plot</h3><p>Raw data of two groups plus the mean difference and its bootstrap 95% CI.</p><span class="card-r">dabestr::dabest() + plot()</span></div>
+  <div class="card-body"><span class="kicker">Group comparisons</span><h3>Estimation plot</h3><p>Raw data of two groups plus the mean difference and its bootstrap 95% CI.</p><span class="card-r">dabestr::dabest() + plot()</span></div>
 </a>
 <a class="card" href="group-comparisons/means-with-ci/" data-cat="group-comparisons" data-k="interaction plot group means with 95% confidence intervals for two factors, with a two-way anova. ggpubr::ggline(add = &quot;mean_ci&quot;) / ggstats group comparisons two-way anova interaction means confidence interval factorial matplotlib numpy pandas statsmodels scipy scikit-learn">
   <div class="card-img"><img src="group-comparisons/means-with-ci/thumb.webp" alt="Interaction plot" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Interaction plot</h3><p>Group means with 95% confidence intervals for two factors, with a two-way ANOVA.</p><span class="card-r">ggpubr::ggline(add = &quot;mean_ci&quot;) / ggstats</span></div>
+  <div class="card-body"><span class="kicker">Group comparisons</span><h3>Interaction plot</h3><p>Group means with 95% confidence intervals for two factors, with a two-way ANOVA.</p><span class="card-r">ggpubr::ggline(add = &quot;mean_ci&quot;) / ggstats</span></div>
 </a>
 <a class="card" href="group-comparisons/tukey-hsd/" data-cat="group-comparisons" data-k="tukey hsd intervals simultaneous 95% confidence intervals for every pairwise difference in means. tukeyhsd() + plot() group comparisons tukey hsd post hoc multiple comparisons anova confidence interval matplotlib numpy pandas statsmodels scipy">
   <div class="card-img"><img src="group-comparisons/tukey-hsd/thumb.webp" alt="Tukey HSD intervals" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Tukey HSD intervals</h3><p>Simultaneous 95% confidence intervals for every pairwise difference in means.</p><span class="card-r">TukeyHSD() + plot()</span></div>
+  <div class="card-body"><span class="kicker">Group comparisons</span><h3>Tukey HSD intervals</h3><p>Simultaneous 95% confidence intervals for every pairwise difference in means.</p><span class="card-r">TukeyHSD() + plot()</span></div>
 </a></div>
 </section><section class="cat" data-cat="proportions-surveys" id="proportions-surveys">
   <div class="cat-head"><div><h2>Proportions &amp; surveys</h2><p>Proportions, cross-tabs and Likert scales, in the spirit of ggstats::gglikert and stat_prop.</p></div>
   <a class="more" href="proportions-surveys/index.html">5 charts →</a></div>
   <div class="grid"><a class="card" href="proportions-surveys/likert-diverging/" data-cat="proportions-surveys" data-k="diverging likert chart five-point likert items as diverging stacked bars centred on the neutral answer. ggstats::gglikert() proportions &amp; surveys likert survey diverging bar friedman test matplotlib numpy pandas scipy">
   <div class="card-img"><img src="proportions-surveys/likert-diverging/thumb.webp" alt="Diverging Likert chart" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Diverging Likert chart</h3><p>Five-point Likert items as diverging stacked bars centred on the neutral answer.</p><span class="card-r">ggstats::gglikert()</span></div>
+  <div class="card-body"><span class="kicker">Proportions &amp; surveys</span><h3>Diverging Likert chart</h3><p>Five-point Likert items as diverging stacked bars centred on the neutral answer.</p><span class="card-r">ggstats::gglikert()</span></div>
 </a>
 <a class="card" href="proportions-surveys/stacked-proportions/" data-cat="proportions-surveys" data-k="stacked proportions by group 100% stacked bars with percentage labels, n per bar, chi-squared test and cramér&#x27;s v. ggstatsplot::ggbarstats() proportions &amp; surveys proportions chi-squared cramér&#x27;s v stacked bar survey matplotlib numpy pandas statsmodels scipy">
   <div class="card-img"><img src="proportions-surveys/stacked-proportions/thumb.webp" alt="Stacked proportions by group" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Stacked proportions by group</h3><p>100% stacked bars with percentage labels, n per bar, chi-squared test and Cramér&#x27;s V.</p><span class="card-r">ggstatsplot::ggbarstats()</span></div>
+  <div class="card-body"><span class="kicker">Proportions &amp; surveys</span><h3>Stacked proportions by group</h3><p>100% stacked bars with percentage labels, n per bar, chi-squared test and Cramér&#x27;s V.</p><span class="card-r">ggstatsplot::ggbarstats()</span></div>
 </a>
 <a class="card" href="proportions-surveys/mosaic-plot/" data-cat="proportions-surveys" data-k="mosaic plot with pearson residuals tile areas proportional to cell counts, shaded by pearson residuals from independence. vcd::mosaic(shade = true) proportions &amp; surveys mosaic contingency table chi-squared pearson residuals matplotlib numpy pandas statsmodels scipy">
   <div class="card-img"><img src="proportions-surveys/mosaic-plot/thumb.webp" alt="Mosaic plot with Pearson residuals" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Mosaic plot with Pearson residuals</h3><p>Tile areas proportional to cell counts, shaded by Pearson residuals from independence.</p><span class="card-r">vcd::mosaic(shade = TRUE)</span></div>
+  <div class="card-body"><span class="kicker">Proportions &amp; surveys</span><h3>Mosaic plot with Pearson residuals</h3><p>Tile areas proportional to cell counts, shaded by Pearson residuals from independence.</p><span class="card-r">vcd::mosaic(shade = TRUE)</span></div>
 </a>
 <a class="card" href="proportions-surveys/proportions-with-ci/" data-cat="proportions-surveys" data-k="proportions with confidence intervals a sorted dot plot of group proportions with wilson 95% confidence intervals. ggstats::stat_prop() + geom_errorbar() proportions &amp; surveys proportion wilson interval confidence interval dot plot chi-squared matplotlib numpy pandas statsmodels scipy">
   <div class="card-img"><img src="proportions-surveys/proportions-with-ci/thumb.webp" alt="Proportions with confidence intervals" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Proportions with confidence intervals</h3><p>A sorted dot plot of group proportions with Wilson 95% confidence intervals.</p><span class="card-r">ggstats::stat_prop() + geom_errorbar()</span></div>
+  <div class="card-body"><span class="kicker">Proportions &amp; surveys</span><h3>Proportions with confidence intervals</h3><p>A sorted dot plot of group proportions with Wilson 95% confidence intervals.</p><span class="card-r">ggstats::stat_prop() + geom_errorbar()</span></div>
 </a>
 <a class="card" href="proportions-surveys/crosstab-residuals/" data-cat="proportions-surveys" data-k="cross-table with standardized residuals a contingency table as a heatmap, coloured by standardized residuals from independence. ggstats::ggtable() / stat_cross() proportions &amp; surveys contingency table chi-squared standardized residuals heatmap cross-tab matplotlib numpy pandas statsmodels scipy">
   <div class="card-img"><img src="proportions-surveys/crosstab-residuals/thumb.webp" alt="Cross-table with standardized residuals" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Cross-table with standardized residuals</h3><p>A contingency table as a heatmap, coloured by standardized residuals from independence.</p><span class="card-r">ggstats::ggtable() / stat_cross()</span></div>
+  <div class="card-body"><span class="kicker">Proportions &amp; surveys</span><h3>Cross-table with standardized residuals</h3><p>A contingency table as a heatmap, coloured by standardized residuals from independence.</p><span class="card-r">ggstats::ggtable() / stat_cross()</span></div>
 </a></div>
 </section><section class="cat" data-cat="correlation" id="correlation">
   <div class="cat-head"><div><h2>Correlation &amp; association</h2><p>Correlation matrices, scatterplots with statistics and pairwise relationships.</p></div>
   <a class="more" href="correlation/index.html">4 charts →</a></div>
   <div class="grid"><a class="card" href="correlation/correlation-matrix/" data-cat="correlation" data-k="correlation matrix lower-triangle pearson correlation heatmap; non-significant cells (holm) are crossed out. ggstatsplot::ggcorrmat() correlation &amp; association correlation pearson heatmap holm multiple testing matplotlib numpy statsmodels scipy">
   <div class="card-img"><img src="correlation/correlation-matrix/thumb.webp" alt="Correlation matrix" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Correlation matrix</h3><p>Lower-triangle Pearson correlation heatmap; non-significant cells (Holm) are crossed out.</p><span class="card-r">ggstatsplot::ggcorrmat()</span></div>
+  <div class="card-body"><span class="kicker">Correlation &amp; association</span><h3>Correlation matrix</h3><p>Lower-triangle Pearson correlation heatmap; non-significant cells (Holm) are crossed out.</p><span class="card-r">ggstatsplot::ggcorrmat()</span></div>
 </a>
 <a class="card" href="correlation/scatter-with-stats/" data-cat="correlation" data-k="scatterplot with statistics scatter, ols line with 95% band and marginal histograms, with pearson&#x27;s r in the subtitle. ggstatsplot::ggscatterstats() correlation &amp; association correlation pearson scatterplot regression line marginal histogram matplotlib numpy statsmodels scipy scikit-learn">
   <div class="card-img"><img src="correlation/scatter-with-stats/thumb.webp" alt="Scatterplot with statistics" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Scatterplot with statistics</h3><p>Scatter, OLS line with 95% band and marginal histograms, with Pearson&#x27;s r in the subtitle.</p><span class="card-r">ggstatsplot::ggscatterstats()</span></div>
+  <div class="card-body"><span class="kicker">Correlation &amp; association</span><h3>Scatterplot with statistics</h3><p>Scatter, OLS line with 95% band and marginal histograms, with Pearson&#x27;s r in the subtitle.</p><span class="card-r">ggstatsplot::ggscatterstats()</span></div>
 </a>
 <a class="card" href="correlation/pairs-plot/" data-cat="correlation" data-k="pairs plot with correlations scatter matrix with group kdes on the diagonal and correlation coefficients above it. ggally::ggpairs() correlation &amp; association pairs plot scatter matrix correlation kde simpson&#x27;s paradox matplotlib numpy scipy scikit-learn">
   <div class="card-img"><img src="correlation/pairs-plot/thumb.webp" alt="Pairs plot with correlations" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Pairs plot with correlations</h3><p>Scatter matrix with group KDEs on the diagonal and correlation coefficients above it.</p><span class="card-r">GGally::ggpairs()</span></div>
+  <div class="card-body"><span class="kicker">Correlation &amp; association</span><h3>Pairs plot with correlations</h3><p>Scatter matrix with group KDEs on the diagonal and correlation coefficients above it.</p><span class="card-r">GGally::ggpairs()</span></div>
 </a>
 <a class="card" href="correlation/correlogram-bubble/" data-cat="correlation" data-k="correlogram with clustering corrplot-style circles sized and coloured by r, ordered by hierarchical clustering. corrplot::corrplot(order = &quot;hclust&quot;, addrect = 3) correlation &amp; association correlation correlogram hierarchical clustering heatmap corrplot matplotlib numpy scipy scikit-learn">
   <div class="card-img"><img src="correlation/correlogram-bubble/thumb.webp" alt="Correlogram with clustering" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Correlogram with clustering</h3><p>Corrplot-style circles sized and coloured by r, ordered by hierarchical clustering.</p><span class="card-r">corrplot::corrplot(order = &quot;hclust&quot;, addrect = 3)</span></div>
+  <div class="card-body"><span class="kicker">Correlation &amp; association</span><h3>Correlogram with clustering</h3><p>Corrplot-style circles sized and coloured by r, ordered by hierarchical clustering.</p><span class="card-r">corrplot::corrplot(order = &quot;hclust&quot;, addrect = 3)</span></div>
 </a></div>
 </section><section class="cat" data-cat="regression-models" id="regression-models">
   <div class="cat-head"><div><h2>Regression models</h2><p>Coefficient plots, odds ratios, model comparison and marginal effects — ggcoef_model for Python.</p></div>
   <a class="more" href="regression-models/index.html">6 charts →</a></div>
   <div class="grid"><a class="card" href="regression-models/coefficient-plot/" data-cat="regression-models" data-k="coefficient plot regression estimates with 95% confidence intervals, one row per term. ggstats::ggcoef_model() regression models regression ols confidence interval dot-and-whisker matplotlib numpy statsmodels">
   <div class="card-img"><img src="regression-models/coefficient-plot/thumb.webp" alt="Coefficient plot" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Coefficient plot</h3><p>Regression estimates with 95% confidence intervals, one row per term.</p><span class="card-r">ggstats::ggcoef_model()</span></div>
+  <div class="card-body"><span class="kicker">Regression models</span><h3>Coefficient plot</h3><p>Regression estimates with 95% confidence intervals, one row per term.</p><span class="card-r">ggstats::ggcoef_model()</span></div>
 </a>
 <a class="card" href="regression-models/odds-ratio-forest/" data-cat="regression-models" data-k="odds-ratio forest plot logistic regression odds ratios on a log scale, with a table of or [95% ci] alongside. ggstats::ggcoef_model(exponentiate = true) regression models logistic regression odds ratio forest plot confidence interval glm matplotlib numpy statsmodels">
   <div class="card-img"><img src="regression-models/odds-ratio-forest/thumb.webp" alt="Odds-ratio forest plot" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Odds-ratio forest plot</h3><p>Logistic regression odds ratios on a log scale, with a table of OR [95% CI] alongside.</p><span class="card-r">ggstats::ggcoef_model(exponentiate = TRUE)</span></div>
+  <div class="card-body"><span class="kicker">Regression models</span><h3>Odds-ratio forest plot</h3><p>Logistic regression odds ratios on a log scale, with a table of OR [95% CI] alongside.</p><span class="card-r">ggstats::ggcoef_model(exponentiate = TRUE)</span></div>
 </a>
 <a class="card" href="regression-models/compare-models/" data-cat="regression-models" data-k="comparing nested models coefficients of three nested regressions side by side, to see how estimates shift. ggstats::ggcoef_compare() regression models regression model comparison nested models confidence interval ols matplotlib numpy statsmodels scikit-learn">
   <div class="card-img"><img src="regression-models/compare-models/thumb.webp" alt="Comparing nested models" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Comparing nested models</h3><p>Coefficients of three nested regressions side by side, to see how estimates shift.</p><span class="card-r">ggstats::ggcoef_compare()</span></div>
+  <div class="card-body"><span class="kicker">Regression models</span><h3>Comparing nested models</h3><p>Coefficients of three nested regressions side by side, to see how estimates shift.</p><span class="card-r">ggstats::ggcoef_compare()</span></div>
 </a>
 <a class="card" href="regression-models/predicted-probabilities/" data-cat="regression-models" data-k="predicted probabilities model-based probability curves with 95% ci ribbons across a predictor, by group. ggeffects::ggpredict() / marginaleffects::plot_predictions() regression models logistic regression predicted probability marginal effects confidence band glm matplotlib numpy pandas statsmodels">
   <div class="card-img"><img src="regression-models/predicted-probabilities/thumb.webp" alt="Predicted probabilities" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Predicted probabilities</h3><p>Model-based probability curves with 95% CI ribbons across a predictor, by group.</p><span class="card-r">ggeffects::ggpredict() / marginaleffects::plot_predictions()</span></div>
+  <div class="card-body"><span class="kicker">Regression models</span><h3>Predicted probabilities</h3><p>Model-based probability curves with 95% CI ribbons across a predictor, by group.</p><span class="card-r">ggeffects::ggpredict() / marginaleffects::plot_predictions()</span></div>
 </a>
 <a class="card" href="regression-models/interaction-effects/" data-cat="regression-models" data-k="interaction effects simple slopes at mean ± 1 sd and a johnson–neyman plot for two continuous predictors. interactions::interact_plot() / interactions::johnson_neyman() regression models interaction moderation simple slopes johnson-neyman marginal effect matplotlib numpy pandas statsmodels scipy scikit-learn">
   <div class="card-img"><img src="regression-models/interaction-effects/thumb.webp" alt="Interaction effects" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Interaction effects</h3><p>Simple slopes at mean ± 1 SD and a Johnson–Neyman plot for two continuous predictors.</p><span class="card-r">interactions::interact_plot() / interactions::johnson_neyman()</span></div>
+  <div class="card-body"><span class="kicker">Regression models</span><h3>Interaction effects</h3><p>Simple slopes at mean ± 1 SD and a Johnson–Neyman plot for two continuous predictors.</p><span class="card-r">interactions::interact_plot() / interactions::johnson_neyman()</span></div>
 </a>
 <a class="card" href="regression-models/quantile-regression/" data-cat="regression-models" data-k="quantile regression process how a slope changes across the conditional distribution, against the single ols estimate. quantreg::plot(summary(rq(tau = 1:19 / 20))) regression models quantile regression heteroscedasticity ols confidence interval engel curve matplotlib numpy statsmodels">
   <div class="card-img"><img src="regression-models/quantile-regression/thumb.webp" alt="Quantile regression process" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Quantile regression process</h3><p>How a slope changes across the conditional distribution, against the single OLS estimate.</p><span class="card-r">quantreg::plot(summary(rq(tau = 1:19 / 20)))</span></div>
+  <div class="card-body"><span class="kicker">Regression models</span><h3>Quantile regression process</h3><p>How a slope changes across the conditional distribution, against the single OLS estimate.</p><span class="card-r">quantreg::plot(summary(rq(tau = 1:19 / 20)))</span></div>
 </a></div>
 </section><section class="cat" data-cat="model-diagnostics" id="model-diagnostics">
   <div class="cat-head"><div><h2>Model diagnostics</h2><p>Residuals, leverage, calibration and ROC curves: check before you trust a model.</p></div>
   <a class="more" href="model-diagnostics/index.html">5 charts →</a></div>
   <div class="grid"><a class="card" href="model-diagnostics/residual-diagnostics/" data-cat="model-diagnostics" data-k="residual diagnostics the classic 2 × 2 panel for a linear model — linearity, normality, variance, leverage. plot(lm) / performance::check_model() model diagnostics residuals q-q plot cook&#x27;s distance leverage heteroscedasticity matplotlib numpy statsmodels scipy">
   <div class="card-img"><img src="model-diagnostics/residual-diagnostics/thumb.webp" alt="Residual diagnostics" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Residual diagnostics</h3><p>The classic 2 × 2 panel for a linear model — linearity, normality, variance, leverage.</p><span class="card-r">plot(lm) / performance::check_model()</span></div>
+  <div class="card-body"><span class="kicker">Model diagnostics</span><h3>Residual diagnostics</h3><p>The classic 2 × 2 panel for a linear model — linearity, normality, variance, leverage.</p><span class="card-r">plot(lm) / performance::check_model()</span></div>
 </a>
 <a class="card" href="model-diagnostics/influence-plot/" data-cat="model-diagnostics" data-k="influence plot studentized residuals vs leverage, with bubbles sized by cook&#x27;s distance. car::influenceplot() model diagnostics influence cook&#x27;s distance leverage outliers studentized residuals matplotlib numpy statsmodels scipy">
   <div class="card-img"><img src="model-diagnostics/influence-plot/thumb.webp" alt="Influence plot" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Influence plot</h3><p>Studentized residuals vs leverage, with bubbles sized by Cook&#x27;s distance.</p><span class="card-r">car::influencePlot()</span></div>
+  <div class="card-body"><span class="kicker">Model diagnostics</span><h3>Influence plot</h3><p>Studentized residuals vs leverage, with bubbles sized by Cook&#x27;s distance.</p><span class="card-r">car::influencePlot()</span></div>
 </a>
 <a class="card" href="model-diagnostics/roc-curve/" data-cat="model-diagnostics" data-k="roc curves three classifiers compared by roc curve, auc with bootstrap 95% ci and youden point. proc::ggroc() / proc::ci.auc() model diagnostics roc auc classification bootstrap youden index matplotlib numpy statsmodels scikit-learn">
   <div class="card-img"><img src="model-diagnostics/roc-curve/thumb.webp" alt="ROC curves" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>ROC curves</h3><p>Three classifiers compared by ROC curve, AUC with bootstrap 95% CI and Youden point.</p><span class="card-r">pROC::ggroc() / pROC::ci.auc()</span></div>
+  <div class="card-body"><span class="kicker">Model diagnostics</span><h3>ROC curves</h3><p>Three classifiers compared by ROC curve, AUC with bootstrap 95% CI and Youden point.</p><span class="card-r">pROC::ggroc() / pROC::ci.auc()</span></div>
 </a>
 <a class="card" href="model-diagnostics/calibration-plot/" data-cat="model-diagnostics" data-k="calibration plot predicted vs observed risk per decile, with wilson cis, prediction histograms and brier score. rms::calibrate() / probably::cal_plot_breaks() model diagnostics calibration reliability diagram brier score classification probability matplotlib numpy pandas statsmodels scikit-learn">
   <div class="card-img"><img src="model-diagnostics/calibration-plot/thumb.webp" alt="Calibration plot" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Calibration plot</h3><p>Predicted vs observed risk per decile, with Wilson CIs, prediction histograms and Brier score.</p><span class="card-r">rms::calibrate() / probably::cal_plot_breaks()</span></div>
+  <div class="card-body"><span class="kicker">Model diagnostics</span><h3>Calibration plot</h3><p>Predicted vs observed risk per decile, with Wilson CIs, prediction histograms and Brier score.</p><span class="card-r">rms::calibrate() / probably::cal_plot_breaks()</span></div>
 </a>
 <a class="card" href="model-diagnostics/partial-regression/" data-cat="model-diagnostics" data-k="added-variable plots one partial-regression panel per predictor; each fitted slope equals its coefficient. car::avplots() model diagnostics partial regression added-variable frisch-waugh-lovell influence multiple regression matplotlib numpy statsmodels">
   <div class="card-img"><img src="model-diagnostics/partial-regression/thumb.webp" alt="Added-variable plots" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Added-variable plots</h3><p>One partial-regression panel per predictor; each fitted slope equals its coefficient.</p><span class="card-r">car::avPlots()</span></div>
+  <div class="card-body"><span class="kicker">Model diagnostics</span><h3>Added-variable plots</h3><p>One partial-regression panel per predictor; each fitted slope equals its coefficient.</p><span class="card-r">car::avPlots()</span></div>
 </a></div>
 </section><section class="cat" data-cat="survival" id="survival">
   <div class="cat-head"><div><h2>Survival analysis</h2><p>Kaplan–Meier curves with risk tables, cumulative hazards and Cox model hazard ratios.</p></div>
   <a class="more" href="survival/index.html">4 charts →</a></div>
   <div class="grid"><a class="card" href="survival/kaplan-meier/" data-cat="survival" data-k="kaplan–meier curves survival curves with confidence bands, censoring marks, log-rank test and risk table. survminer::ggsurvplot(risk.table = true) survival analysis kaplan-meier log-rank survival censoring risk table matplotlib numpy lifelines">
   <div class="card-img"><img src="survival/kaplan-meier/thumb.webp" alt="Kaplan–Meier curves" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Kaplan–Meier curves</h3><p>Survival curves with confidence bands, censoring marks, log-rank test and risk table.</p><span class="card-r">survminer::ggsurvplot(risk.table = TRUE)</span></div>
+  <div class="card-body"><span class="kicker">Survival analysis</span><h3>Kaplan–Meier curves</h3><p>Survival curves with confidence bands, censoring marks, log-rank test and risk table.</p><span class="card-r">survminer::ggsurvplot(risk.table = TRUE)</span></div>
 </a>
 <a class="card" href="survival/cox-hazard-ratios/" data-cat="survival" data-k="cox hazard ratios forest plot of a cox proportional hazards model with hr, 95% ci and p-values. survminer::ggforest() survival analysis cox model hazard ratio forest plot proportional hazards survival matplotlib numpy lifelines">
   <div class="card-img"><img src="survival/cox-hazard-ratios/thumb.webp" alt="Cox hazard ratios" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Cox hazard ratios</h3><p>Forest plot of a Cox proportional hazards model with HR, 95% CI and p-values.</p><span class="card-r">survminer::ggforest()</span></div>
+  <div class="card-body"><span class="kicker">Survival analysis</span><h3>Cox hazard ratios</h3><p>Forest plot of a Cox proportional hazards model with HR, 95% CI and p-values.</p><span class="card-r">survminer::ggforest()</span></div>
 </a>
 <a class="card" href="survival/cumulative-hazard/" data-cat="survival" data-k="cumulative hazard nelson–aalen cumulative hazard curves with 95% bands for three tumour grades. survminer::ggsurvplot(fun = &quot;cumhaz&quot;) survival analysis nelson-aalen cumulative hazard survival log-rank matplotlib lifelines">
   <div class="card-img"><img src="survival/cumulative-hazard/thumb.webp" alt="Cumulative hazard" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Cumulative hazard</h3><p>Nelson–Aalen cumulative hazard curves with 95% bands for three tumour grades.</p><span class="card-r">survminer::ggsurvplot(fun = &quot;cumhaz&quot;)</span></div>
+  <div class="card-body"><span class="kicker">Survival analysis</span><h3>Cumulative hazard</h3><p>Nelson–Aalen cumulative hazard curves with 95% bands for three tumour grades.</p><span class="card-r">survminer::ggsurvplot(fun = &quot;cumhaz&quot;)</span></div>
 </a>
 <a class="card" href="survival/adjusted-survival/" data-cat="survival" data-k="adjusted survival curves cox model–predicted survival for several ages, other covariates held at their mean. survminer::ggadjustedcurves() survival analysis cox model adjusted survival prediction survival covariates matplotlib numpy pandas lifelines">
   <div class="card-img"><img src="survival/adjusted-survival/thumb.webp" alt="Adjusted survival curves" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Adjusted survival curves</h3><p>Cox model–predicted survival for several ages, other covariates held at their mean.</p><span class="card-r">survminer::ggadjustedcurves()</span></div>
+  <div class="card-body"><span class="kicker">Survival analysis</span><h3>Adjusted survival curves</h3><p>Cox model–predicted survival for several ages, other covariates held at their mean.</p><span class="card-r">survminer::ggadjustedcurves()</span></div>
 </a></div>
 </section><section class="cat" data-cat="time-series" id="time-series">
   <div class="cat-head"><div><h2>Time series</h2><p>Decomposition, autocorrelation, forecasts with prediction intervals and change over time.</p></div>
   <a class="more" href="time-series/index.html">4 charts →</a></div>
   <div class="grid"><a class="card" href="time-series/stl-decomposition/" data-cat="time-series" data-k="stl decomposition a series split into trend, seasonal and remainder components in stacked panels. feasts::stl() + autoplot() time series stl decomposition seasonality trend time series matplotlib numpy statsmodels">
   <div class="card-img"><img src="time-series/stl-decomposition/thumb.webp" alt="STL decomposition" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>STL decomposition</h3><p>A series split into trend, seasonal and remainder components in stacked panels.</p><span class="card-r">feasts::STL() + autoplot()</span></div>
+  <div class="card-body"><span class="kicker">Time series</span><h3>STL decomposition</h3><p>A series split into trend, seasonal and remainder components in stacked panels.</p><span class="card-r">feasts::STL() + autoplot()</span></div>
 </a>
 <a class="card" href="time-series/acf-pacf/" data-cat="time-series" data-k="acf and pacf autocorrelation and partial autocorrelation lollipops with 95% significance bands. forecast::ggtsdisplay() time series autocorrelation acf pacf ljung-box time series matplotlib numpy statsmodels">
   <div class="card-img"><img src="time-series/acf-pacf/thumb.webp" alt="ACF and PACF" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>ACF and PACF</h3><p>Autocorrelation and partial autocorrelation lollipops with 95% significance bands.</p><span class="card-r">forecast::ggtsdisplay()</span></div>
+  <div class="card-body"><span class="kicker">Time series</span><h3>ACF and PACF</h3><p>Autocorrelation and partial autocorrelation lollipops with 95% significance bands.</p><span class="card-r">forecast::ggtsdisplay()</span></div>
 </a>
 <a class="card" href="time-series/arima-forecast/" data-cat="time-series" data-k="sarima forecast seasonal arima forecast with 80% and 95% prediction intervals against held-out data. forecast::autoplot(forecast()) time series arima sarima forecast prediction interval rmse matplotlib numpy statsmodels">
   <div class="card-img"><img src="time-series/arima-forecast/thumb.webp" alt="SARIMA forecast" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>SARIMA forecast</h3><p>Seasonal ARIMA forecast with 80% and 95% prediction intervals against held-out data.</p><span class="card-r">forecast::autoplot(forecast())</span></div>
+  <div class="card-body"><span class="kicker">Time series</span><h3>SARIMA forecast</h3><p>Seasonal ARIMA forecast with 80% and 95% prediction intervals against held-out data.</p><span class="card-r">forecast::autoplot(forecast())</span></div>
 </a>
 <a class="card" href="time-series/seasonal-subseries/" data-cat="time-series" data-k="seasonal subseries plot each calendar month&#x27;s values across the years, with the monthly mean as a reference. feasts::gg_subseries() time series seasonality subseries month plot anova time series matplotlib numpy statsmodels scipy">
   <div class="card-img"><img src="time-series/seasonal-subseries/thumb.webp" alt="Seasonal subseries plot" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Seasonal subseries plot</h3><p>Each calendar month&#x27;s values across the years, with the monthly mean as a reference.</p><span class="card-r">feasts::gg_subseries()</span></div>
+  <div class="card-body"><span class="kicker">Time series</span><h3>Seasonal subseries plot</h3><p>Each calendar month&#x27;s values across the years, with the monthly mean as a reference.</p><span class="card-r">feasts::gg_subseries()</span></div>
 </a></div>
 </section><section class="cat" data-cat="multivariate" id="multivariate">
   <div class="cat-head"><div><h2>Multivariate &amp; clustering</h2><p>PCA biplots, scree plots, clustering and heatmaps for high-dimensional data.</p></div>
   <a class="more" href="multivariate/index.html">4 charts →</a></div>
   <div class="grid"><a class="card" href="multivariate/pca-biplot/" data-cat="multivariate" data-k="pca biplot observations and variable loadings on the first two principal components. factoextra::fviz_pca_biplot() multivariate &amp; clustering pca biplot loadings dimension reduction ellipse matplotlib numpy scipy scikit-learn">
   <div class="card-img"><img src="multivariate/pca-biplot/thumb.webp" alt="PCA biplot" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>PCA biplot</h3><p>Observations and variable loadings on the first two principal components.</p><span class="card-r">factoextra::fviz_pca_biplot()</span></div>
+  <div class="card-body"><span class="kicker">Multivariate &amp; clustering</span><h3>PCA biplot</h3><p>Observations and variable loadings on the first two principal components.</p><span class="card-r">factoextra::fviz_pca_biplot()</span></div>
 </a>
 <a class="card" href="multivariate/scree-plot/" data-cat="multivariate" data-k="scree plot variance explained per component, cumulative share and a parallel-analysis cut-off. factoextra::fviz_eig() multivariate &amp; clustering pca scree plot eigenvalues parallel analysis kaiser matplotlib numpy scikit-learn">
   <div class="card-img"><img src="multivariate/scree-plot/thumb.webp" alt="Scree plot" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Scree plot</h3><p>Variance explained per component, cumulative share and a parallel-analysis cut-off.</p><span class="card-r">factoextra::fviz_eig()</span></div>
+  <div class="card-body"><span class="kicker">Multivariate &amp; clustering</span><h3>Scree plot</h3><p>Variance explained per component, cumulative share and a parallel-analysis cut-off.</p><span class="card-r">factoextra::fviz_eig()</span></div>
 </a>
 <a class="card" href="multivariate/silhouette-clusters/" data-cat="multivariate" data-k="silhouette plot for k-means k-means clusters in pca space next to the per-observation silhouette widths. factoextra::fviz_silhouette() multivariate &amp; clustering clustering k-means silhouette pca cluster validation matplotlib numpy scikit-learn">
   <div class="card-img"><img src="multivariate/silhouette-clusters/thumb.webp" alt="Silhouette plot for k-means" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Silhouette plot for k-means</h3><p>k-means clusters in PCA space next to the per-observation silhouette widths.</p><span class="card-r">factoextra::fviz_silhouette()</span></div>
+  <div class="card-body"><span class="kicker">Multivariate &amp; clustering</span><h3>Silhouette plot for k-means</h3><p>k-means clusters in PCA space next to the per-observation silhouette widths.</p><span class="card-r">factoextra::fviz_silhouette()</span></div>
 </a>
 <a class="card" href="multivariate/clustered-heatmap/" data-cat="multivariate" data-k="clustered heatmap z-scored heatmap with row and column dendrograms and a group colour bar. pheatmap::pheatmap() / complexheatmap::heatmap() multivariate &amp; clustering heatmap hierarchical clustering dendrogram z-score clustermap matplotlib numpy pandas seaborn scipy scikit-learn">
   <div class="card-img"><img src="multivariate/clustered-heatmap/thumb.webp" alt="Clustered heatmap" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Clustered heatmap</h3><p>Z-scored heatmap with row and column dendrograms and a group colour bar.</p><span class="card-r">pheatmap::pheatmap() / ComplexHeatmap::Heatmap()</span></div>
+  <div class="card-body"><span class="kicker">Multivariate &amp; clustering</span><h3>Clustered heatmap</h3><p>Z-scored heatmap with row and column dendrograms and a group colour bar.</p><span class="card-r">pheatmap::pheatmap() / ComplexHeatmap::Heatmap()</span></div>
 </a></div>
 </section><section class="cat" data-cat="inference-uncertainty" id="inference-uncertainty">
   <div class="cat-head"><div><h2>Inference &amp; uncertainty</h2><p>Bootstrap, confidence intervals, power, agreement and meta-analysis forest plots.</p></div>
   <a class="more" href="inference-uncertainty/index.html">6 charts →</a></div>
   <div class="grid"><a class="card" href="inference-uncertainty/bootstrap-distribution/" data-cat="inference-uncertainty" data-k="bootstrap distribution resampled correlation with percentile and bca 95% confidence intervals. boot::boot() + boot::boot.ci() inference &amp; uncertainty bootstrap bca percentile interval correlation resampling matplotlib numpy statsmodels scipy">
   <div class="card-img"><img src="inference-uncertainty/bootstrap-distribution/thumb.webp" alt="Bootstrap distribution" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Bootstrap distribution</h3><p>Resampled correlation with percentile and BCa 95% confidence intervals.</p><span class="card-r">boot::boot() + boot::boot.ci()</span></div>
+  <div class="card-body"><span class="kicker">Inference &amp; uncertainty</span><h3>Bootstrap distribution</h3><p>Resampled correlation with percentile and BCa 95% confidence intervals.</p><span class="card-r">boot::boot() + boot::boot.ci()</span></div>
 </a>
 <a class="card" href="inference-uncertainty/confidence-intervals/" data-cat="inference-uncertainty" data-k="what a 95% confidence interval means 100 simulated 95% cis for a mean; the ones that miss the true value are in red. teaching classic (e.g. teachingdemos::ci.examp()) inference &amp; uncertainty confidence interval coverage simulation t-interval teaching matplotlib numpy scipy">
   <div class="card-img"><img src="inference-uncertainty/confidence-intervals/thumb.webp" alt="What a 95% confidence interval means" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>What a 95% confidence interval means</h3><p>100 simulated 95% CIs for a mean; the ones that miss the true value are in red.</p><span class="card-r">teaching classic (e.g. TeachingDemos::ci.examp())</span></div>
+  <div class="card-body"><span class="kicker">Inference &amp; uncertainty</span><h3>What a 95% confidence interval means</h3><p>100 simulated 95% CIs for a mean; the ones that miss the true value are in red.</p><span class="card-r">teaching classic (e.g. TeachingDemos::ci.examp())</span></div>
 </a>
 <a class="card" href="inference-uncertainty/power-curve/" data-cat="inference-uncertainty" data-k="power curve power of a two-sample t-test against sample size for small, medium and large effects. pwr::pwr.t.test() + plot() inference &amp; uncertainty power analysis sample size t-test cohen&#x27;s d study design matplotlib numpy statsmodels">
   <div class="card-img"><img src="inference-uncertainty/power-curve/thumb.webp" alt="Power curve" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Power curve</h3><p>Power of a two-sample t-test against sample size for small, medium and large effects.</p><span class="card-r">pwr::pwr.t.test() + plot()</span></div>
+  <div class="card-body"><span class="kicker">Inference &amp; uncertainty</span><h3>Power curve</h3><p>Power of a two-sample t-test against sample size for small, medium and large effects.</p><span class="card-r">pwr::pwr.t.test() + plot()</span></div>
 </a>
 <a class="card" href="inference-uncertainty/bland-altman/" data-cat="inference-uncertainty" data-k="bland–altman plot agreement between two measurement methods, with bias and 95% limits of agreement. blandaltmanleh::bland.altman.plot() / blandr::blandr.draw() inference &amp; uncertainty agreement bland-altman limits of agreement method comparison bias matplotlib numpy statsmodels scipy">
   <div class="card-img"><img src="inference-uncertainty/bland-altman/thumb.webp" alt="Bland–Altman plot" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Bland–Altman plot</h3><p>Agreement between two measurement methods, with bias and 95% limits of agreement.</p><span class="card-r">BlandAltmanLeh::bland.altman.plot() / blandr::blandr.draw()</span></div>
+  <div class="card-body"><span class="kicker">Inference &amp; uncertainty</span><h3>Bland–Altman plot</h3><p>Agreement between two measurement methods, with bias and 95% limits of agreement.</p><span class="card-r">BlandAltmanLeh::bland.altman.plot() / blandr::blandr.draw()</span></div>
 </a>
 <a class="card" href="inference-uncertainty/meta-analysis-forest/" data-cat="inference-uncertainty" data-k="meta-analysis forest plot study risk ratios with cis, random-effects pooled diamond and heterogeneity statistics. meta::forest() / metafor::forest() inference &amp; uncertainty meta-analysis forest plot random effects heterogeneity risk ratio matplotlib numpy pandas scipy statsmodels">
   <div class="card-img"><img src="inference-uncertainty/meta-analysis-forest/thumb.webp" alt="Meta-analysis forest plot" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Meta-analysis forest plot</h3><p>Study risk ratios with CIs, random-effects pooled diamond and heterogeneity statistics.</p><span class="card-r">meta::forest() / metafor::forest()</span></div>
+  <div class="card-body"><span class="kicker">Inference &amp; uncertainty</span><h3>Meta-analysis forest plot</h3><p>Study risk ratios with CIs, random-effects pooled diamond and heterogeneity statistics.</p><span class="card-r">meta::forest() / metafor::forest()</span></div>
 </a>
 <a class="card" href="inference-uncertainty/funnel-plot/" data-cat="inference-uncertainty" data-k="funnel plot study effects against their standard error, with a pseudo 95% funnel and egger&#x27;s test. metafor::funnel() + metafor::regtest() inference &amp; uncertainty meta-analysis funnel plot publication bias egger test small-study effects matplotlib numpy statsmodels scipy">
   <div class="card-img"><img src="inference-uncertainty/funnel-plot/thumb.webp" alt="Funnel plot" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Funnel plot</h3><p>Study effects against their standard error, with a pseudo 95% funnel and Egger&#x27;s test.</p><span class="card-r">metafor::funnel() + metafor::regtest()</span></div>
+  <div class="card-body"><span class="kicker">Inference &amp; uncertainty</span><h3>Funnel plot</h3><p>Study effects against their standard error, with a pseudo 95% funnel and Egger&#x27;s test.</p><span class="card-r">metafor::funnel() + metafor::regtest()</span></div>
 </a></div>
 </section>
 </section>
@@ -304,6 +303,6 @@
     <div class="foot-links"><a href="https://github.com/warint/statlas">GitHub</a><a href="style.html">Plot style</a><a href="https://github.com/warint/statlas/blob/main/CONTRIBUTING.md">Contribute</a><span>MIT License</span></div>
   </div>
 </footer>
-<script src="assets/app.js"></script>
+<script src="assets/app.js?v=bdbdb8fb"></script>
 </body>
 </html>

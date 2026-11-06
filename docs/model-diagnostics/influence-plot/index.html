@@ -20,18 +20,17 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Influence plot \u2014 Statlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/statlas/model-diagnostics/influence-plot/", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "Statlas", "url": "https://warint.github.io/statlas/"}}</script>
 <meta property="og:title" content="Influence plot · Statlas">
 <meta property="og:description" content="Studentized residuals vs leverage, with bubbles sized by Cook&#x27;s distance.">
-<meta name="theme-color" content="#fbfbfd" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../assets/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css?v=bdbdb8fb">
 </head>
 <body>
 <header class="nav">
   <div class="nav-inner">
-    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="url(#lg)"/><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A84FF"/><stop offset="1" stop-color="#5E5CE6"/></linearGradient></defs><rect x="7" y="17" width="4" height="8" rx="2" fill="#fff" opacity=".75"/><rect x="14" y="11" width="4" height="14" rx="2" fill="#fff"/><rect x="21" y="7" width="4" height="18" rx="2" fill="#fff" opacity=".9"/></svg><span>Statlas</span></a>
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" fill="#E3120B"/><rect x="7" y="17" width="4" height="9" fill="#fff"/><rect x="14" y="11" width="4" height="15" fill="#fff"/><rect x="21" y="6" width="4" height="20" fill="#fff"/></svg><span>Statlas</span></a>
     <nav class="nav-links">
       <a href="../../index.html#gallery" class="on">Gallery</a>
       <a href="../../style.html" class="">Style</a>
@@ -150,15 +149,15 @@ Bonferroni outlier test, as <code>car::outlierTest()</code> does.</p></div>
   <div class="pager"><a href="../../model-diagnostics/residual-diagnostics/"><small>Previous</small>Residual diagnostics</a><a class="next" href="../../model-diagnostics/roc-curve/"><small>Next</small>ROC curves</a></div>
   <h2 class="rel-h">More in Model diagnostics</h2><div class="grid"><a class="card" href="../../model-diagnostics/residual-diagnostics/" data-cat="model-diagnostics" data-k="residual diagnostics the classic 2 × 2 panel for a linear model — linearity, normality, variance, leverage. plot(lm) / performance::check_model() model diagnostics residuals q-q plot cook&#x27;s distance leverage heteroscedasticity matplotlib numpy statsmodels scipy">
   <div class="card-img"><img src="../../model-diagnostics/residual-diagnostics/thumb.webp" alt="Residual diagnostics" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Residual diagnostics</h3><p>The classic 2 × 2 panel for a linear model — linearity, normality, variance, leverage.</p><span class="card-r">plot(lm) / performance::check_model()</span></div>
+  <div class="card-body"><span class="kicker">Model diagnostics</span><h3>Residual diagnostics</h3><p>The classic 2 × 2 panel for a linear model — linearity, normality, variance, leverage.</p><span class="card-r">plot(lm) / performance::check_model()</span></div>
 </a>
 <a class="card" href="../../model-diagnostics/roc-curve/" data-cat="model-diagnostics" data-k="roc curves three classifiers compared by roc curve, auc with bootstrap 95% ci and youden point. proc::ggroc() / proc::ci.auc() model diagnostics roc auc classification bootstrap youden index matplotlib numpy statsmodels scikit-learn">
   <div class="card-img"><img src="../../model-diagnostics/roc-curve/thumb.webp" alt="ROC curves" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>ROC curves</h3><p>Three classifiers compared by ROC curve, AUC with bootstrap 95% CI and Youden point.</p><span class="card-r">pROC::ggroc() / pROC::ci.auc()</span></div>
+  <div class="card-body"><span class="kicker">Model diagnostics</span><h3>ROC curves</h3><p>Three classifiers compared by ROC curve, AUC with bootstrap 95% CI and Youden point.</p><span class="card-r">pROC::ggroc() / pROC::ci.auc()</span></div>
 </a>
 <a class="card" href="../../model-diagnostics/calibration-plot/" data-cat="model-diagnostics" data-k="calibration plot predicted vs observed risk per decile, with wilson cis, prediction histograms and brier score. rms::calibrate() / probably::cal_plot_breaks() model diagnostics calibration reliability diagram brier score classification probability matplotlib numpy pandas statsmodels scikit-learn">
   <div class="card-img"><img src="../../model-diagnostics/calibration-plot/thumb.webp" alt="Calibration plot" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>Calibration plot</h3><p>Predicted vs observed risk per decile, with Wilson CIs, prediction histograms and Brier score.</p><span class="card-r">rms::calibrate() / probably::cal_plot_breaks()</span></div>
+  <div class="card-body"><span class="kicker">Model diagnostics</span><h3>Calibration plot</h3><p>Predicted vs observed risk per decile, with Wilson CIs, prediction histograms and Brier score.</p><span class="card-r">rms::calibrate() / probably::cal_plot_breaks()</span></div>
 </a></div>
 </article>
 </main>
@@ -168,6 +167,6 @@ Bonferroni outlier test, as <code>car::outlierTest()</code> does.</p></div>
     <div class="foot-links"><a href="https://github.com/warint/statlas">GitHub</a><a href="../../style.html">Plot style</a><a href="https://github.com/warint/statlas/blob/main/CONTRIBUTING.md">Contribute</a><span>MIT License</span></div>
   </div>
 </footer>
-<script src="../../assets/app.js"></script>
+<script src="../../assets/app.js?v=bdbdb8fb"></script>
 </body>
 </html>

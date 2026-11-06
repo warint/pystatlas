@@ -45,6 +45,8 @@ DOCS = ROOT / "docs"
 SITE_SRC = ROOT / "site_src"
 STYLE = ROOT / "statlas.mplstyle"
 CONFIG = yaml.safe_load((ROOT / "statlas.yaml").read_text())
+import hashlib
+ASSET_V = hashlib.md5(b"".join(f.read_bytes() for f in sorted((ROOT / "site_src").iterdir()))).hexdigest()[:8]
 
 LIB_NAMES = {
     "numpy": "NumPy", "pandas": "pandas", "matplotlib": "Matplotlib",
@@ -219,13 +221,12 @@ def page(title: str, body: str, depth: int, description: str = "", active: str =
 {scholar}
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{desc}">
-<meta name="theme-color" content="#fbfbfd" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="{base}assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{base}assets/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{base}assets/style.css?v={ASSET_V}">
 </head>
 <body>
 <header class="nav">
@@ -249,13 +250,13 @@ def page(title: str, body: str, depth: int, description: str = "", active: str =
     <div class="foot-links"><a href="{CONFIG['repo_url']}">GitHub</a><a href="{base}style.html">Plot style</a><a href="{CONFIG['repo_url']}/blob/main/CONTRIBUTING.md">Contribute</a><span>MIT License</span></div>
   </div>
 </footer>
-<script src="{base}assets/app.js"></script>
+<script src="{base}assets/app.js?v={ASSET_V}"></script>
 </body>
 </html>
 """
 
 
-LOGO = """<svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="url(#lg)"/><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A84FF"/><stop offset="1" stop-color="#5E5CE6"/></linearGradient></defs><rect x="7" y="17" width="4" height="8" rx="2" fill="#fff" opacity=".75"/><rect x="14" y="11" width="4" height="14" rx="2" fill="#fff"/><rect x="21" y="7" width="4" height="18" rx="2" fill="#fff" opacity=".9"/></svg>"""
+LOGO = """<svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" fill="#E3120B"/><rect x="7" y="17" width="4" height="9" fill="#fff"/><rect x="14" y="11" width="4" height="15" fill="#fff"/><rect x="21" y="6" width="4" height="20" fill="#fff"/></svg>"""
 GITHUB_ICON = """<svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>"""
 
 
@@ -264,7 +265,7 @@ def card(ex: Example, base: str) -> str:
     r = f'<span class="card-r">{esc(ex.r)}</span>' if ex.r else ""
     return f"""<a class="card" href="{base}{ex.url}" data-cat="{ex.category.slug}" data-k="{esc(keywords)}">
   <div class="card-img"><img src="{base}{ex.url}thumb.webp" alt="{esc(ex.title)}" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><h3>{esc(ex.title)}</h3><p>{esc(ex.summary)}</p>{r}</div>
+  <div class="card-body"><span class="kicker">{esc(ex.category.title)}</span><h3>{esc(ex.title)}</h3><p>{esc(ex.summary)}</p>{r}</div>
 </a>"""
 
 
@@ -351,7 +352,7 @@ def build_site(cats: list[Category]) -> None:
         f'<span>{esc(c.title)}</span><em>{len(c.examples)}</em></a>' for c in cats if c.examples)
     body = f"""<section class="hero"><div class="wrap">
   <p class="eyebrow">{n} statistical charts · {len(cats)} families · 100% Python</p>
-  <h1>Statistical graphics.<br><span class="grad">Beautifully Pythonic.</span></h1>
+  <h1>Statistical graphics.<br><span class="h-accent">Beautifully Pythonic.</span></h1>
   <p class="lede">{esc(CONFIG['lede'])}</p>
   <p class="byline">By <a href="{CONFIG['author_url']}">{esc(CONFIG['author'])}</a></p>
   <div class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
