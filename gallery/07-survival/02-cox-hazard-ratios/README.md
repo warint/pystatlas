@@ -79,4 +79,8 @@ ax.text(0, 1.02, f"Cox PH · n = {len(df)}, {df.arrest.sum()} events · concorda
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/survival/cox-hazard-ratios/) · [← Survival analysis](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/survival/cox-hazard-ratios/) · [← Survival analysis](../README.md)
+
+**Cite:** Warin, T. (2026). Cox hazard ratios. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/survival/cox-hazard-ratios/

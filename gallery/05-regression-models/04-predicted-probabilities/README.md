@@ -62,4 +62,8 @@ ax.text(0, 1.02, f"Logistic regression · n = {int(model.nobs)} · TUCE held at 
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/regression-models/predicted-probabilities/) · [← Regression models](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/regression-models/predicted-probabilities/) · [← Regression models](../README.md)
+
+**Cite:** Warin, T. (2026). Predicted probabilities. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/regression-models/predicted-probabilities/

@@ -74,4 +74,8 @@ ax.text(0, 1.02, f"Pearson correlations · n = {len(df)} (50 states + DC) · "
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/correlation/correlation-matrix/) · [← Correlation & association](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/correlation/correlation-matrix/) · [← Correlation & association](../README.md)
+
+**Cite:** Warin, T. (2026). Correlation matrix. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/correlation/correlation-matrix/

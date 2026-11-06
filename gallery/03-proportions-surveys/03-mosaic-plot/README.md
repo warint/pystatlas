@@ -78,4 +78,8 @@ ax.text(0, 1.02, f"Pearson χ²({dof}) = {chi2:.0f}, p < .001 · n = {obs.sum():
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/proportions-surveys/mosaic-plot/) · [← Proportions & surveys](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/proportions-surveys/mosaic-plot/) · [← Proportions & surveys](../README.md)
+
+**Cite:** Warin, T. (2026). Mosaic plot with Pearson residuals. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/proportions-surveys/mosaic-plot/

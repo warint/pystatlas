@@ -77,4 +77,8 @@ ax.text(0, 1.02, f"n = {len(answers)} respondents (simulated) · Friedman χ²({
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/proportions-surveys/likert-diverging/) · [← Proportions & surveys](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/proportions-surveys/likert-diverging/) · [← Proportions & surveys](../README.md)
+
+**Cite:** Warin, T. (2026). Diverging Likert chart. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/proportions-surveys/likert-diverging/

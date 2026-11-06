@@ -8,7 +8,8 @@
 48 charts · 10 families · copy‑paste Python code · inspired by the R Graph Gallery, <code>ggstats</code> and <code>ggstatsplot</code>.</p>
 
 <p align="center">
-  <a href="https://warint.github.io/statlas/"><b>Browse the gallery →</b></a>
+  <a href="https://warint.github.io/statlas/"><b>Browse the gallery →</b></a><br>
+  Created by <a href="https://www.warin.ca"><b>Thierry Warin</b></a> · <a href="https://www.warin.ca">www.warin.ca</a>
 </p>
 
 ---
@@ -63,10 +64,32 @@ python build.py            # renders new/changed charts, READMEs and docs/
 
 The website in `docs/` is served by GitHub Pages.
 
+## How to cite
+
+If Statlas helped your research, teaching or work, please cite it:
+
+> Warin, T. (2026). *Statlas: The Python Gallery of Statistical Graphics*. https://warint.github.io/statlas/
+
+```bibtex
+@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/statlas/}},
+  note         = {Source code: https://github.com/warint/statlas}
+}
+```
+
+GitHub's **"Cite this repository"** button (right sidebar) gives APA and BibTeX from [`CITATION.cff`](CITATION.cff).
+
+## Author
+
+**Thierry Warin** — [www.warin.ca](https://www.warin.ca)
+
 ## Contributing
 
 New charts are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-MIT
+MIT © [Thierry Warin](https://www.warin.ca)

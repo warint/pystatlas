@@ -68,4 +68,8 @@ g.figure.text(0.02, 1.01, f"Ward linkage on z-scores · n = {len(Z)} wines × {Z
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/multivariate/clustered-heatmap/) · [← Multivariate & clustering](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/multivariate/clustered-heatmap/) · [← Multivariate & clustering](../README.md)
+
+**Cite:** Warin, T. (2026). Clustered heatmap. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/multivariate/clustered-heatmap/

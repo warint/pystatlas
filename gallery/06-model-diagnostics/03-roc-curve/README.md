@@ -77,4 +77,8 @@ ax.text(0, 1.02, f"Test set n = {len(y_te):,} ({y_te.mean():.0%} positive) · do
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/model-diagnostics/roc-curve/) · [← Model diagnostics](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/model-diagnostics/roc-curve/) · [← Model diagnostics](../README.md)
+
+**Cite:** Warin, T. (2026). ROC curves. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/model-diagnostics/roc-curve/

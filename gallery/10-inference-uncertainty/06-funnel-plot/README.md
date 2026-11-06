@@ -76,4 +76,8 @@ ax.text(0, 1.02, f"Egger's test: intercept = {b0:.2f}, t({egger.df_resid:.0f}) =
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/inference-uncertainty/funnel-plot/) · [← Inference & uncertainty](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/inference-uncertainty/funnel-plot/) · [← Inference & uncertainty](../README.md)
+
+**Cite:** Warin, T. (2026). Funnel plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/inference-uncertainty/funnel-plot/

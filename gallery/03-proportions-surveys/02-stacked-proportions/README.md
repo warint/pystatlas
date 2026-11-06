@@ -64,4 +64,8 @@ ax.text(0, 1.105, f"Pearson χ²({dof}) = {chi2:.1f}, p = {p:.3f}, Cramér's V =
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/proportions-surveys/stacked-proportions/) · [← Proportions & surveys](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/proportions-surveys/stacked-proportions/) · [← Proportions & surveys](../README.md)
+
+**Cite:** Warin, T. (2026). Stacked proportions by group. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/proportions-surveys/stacked-proportions/

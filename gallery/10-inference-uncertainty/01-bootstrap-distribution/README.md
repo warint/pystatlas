@@ -70,4 +70,8 @@ ax.text(0, 1.02, f"Paired bootstrap, B = 9,999 · n = {len(x)} states · bias = 
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/inference-uncertainty/bootstrap-distribution/) · [← Inference & uncertainty](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/inference-uncertainty/bootstrap-distribution/) · [← Inference & uncertainty](../README.md)
+
+**Cite:** Warin, T. (2026). Bootstrap distribution. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/inference-uncertainty/bootstrap-distribution/

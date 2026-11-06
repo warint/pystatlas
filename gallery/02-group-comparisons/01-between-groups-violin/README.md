@@ -76,4 +76,8 @@ ax.text(0, 1.02, f"Welch's F({res.df_num:.0f}, {res.df_denom:.1f}) = {res.statis
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/group-comparisons/between-groups-violin/) · [← Group comparisons](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/group-comparisons/between-groups-violin/) · [← Group comparisons](../README.md)
+
+**Cite:** Warin, T. (2026). Between-groups comparison. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/group-comparisons/between-groups-violin/

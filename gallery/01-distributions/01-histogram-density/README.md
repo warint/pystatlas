@@ -62,4 +62,8 @@ ax.text(0, 1.02, f"n = {len(x)} · skewness = {skew:.2f} · excess kurtosis = {k
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/distributions/histogram-density/) · [← Distributions](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/distributions/histogram-density/) · [← Distributions](../README.md)
+
+**Cite:** Warin, T. (2026). Histogram with density. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/distributions/histogram-density/

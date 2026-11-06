@@ -84,4 +84,8 @@ ax.text(0, 1.02, f"Pooled RR = {mid:.2f} [{lo:.2f}, {hi:.2f}] · Q({res.df_resid
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/inference-uncertainty/meta-analysis-forest/) · [← Inference & uncertainty](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/inference-uncertainty/meta-analysis-forest/) · [← Inference & uncertainty](../README.md)
+
+**Cite:** Warin, T. (2026). Meta-analysis forest plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/inference-uncertainty/meta-analysis-forest/

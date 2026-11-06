@@ -76,4 +76,8 @@ fig.text(0.01, 1.02, f"OLS violent crime per 100k ~ 5 predictors · n = {int(ful
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/model-diagnostics/partial-regression/) · [← Model diagnostics](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/model-diagnostics/partial-regression/) · [← Model diagnostics](../README.md)
+
+**Cite:** Warin, T. (2026). Added-variable plots. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/model-diagnostics/partial-regression/

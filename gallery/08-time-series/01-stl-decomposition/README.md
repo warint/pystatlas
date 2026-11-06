@@ -63,4 +63,8 @@ axes[0].text(0, 1.04, f"STL, period = 12 months, robust · monthly means, ppm ·
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/time-series/stl-decomposition/) · [← Time series](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/time-series/stl-decomposition/) · [← Time series](../README.md)
+
+**Cite:** Warin, T. (2026). STL decomposition. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/time-series/stl-decomposition/

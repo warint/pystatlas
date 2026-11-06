@@ -74,4 +74,8 @@ fig.text(0.01, 1.02, f"Engel data · n = {len(df)} · income slope at τ = .10: 
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/regression-models/quantile-regression/) · [← Regression models](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/regression-models/quantile-regression/) · [← Regression models](../README.md)
+
+**Cite:** Warin, T. (2026). Quantile regression process. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/regression-models/quantile-regression/

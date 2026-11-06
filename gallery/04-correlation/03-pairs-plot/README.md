@@ -80,4 +80,8 @@ fig.text(0.01, 0.945, f"Pearson r, overall (bold) and within species · n = {len
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/correlation/pairs-plot/) · [← Correlation & association](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/correlation/pairs-plot/) · [← Correlation & association](../README.md)
+
+**Cite:** Warin, T. (2026). Pairs plot with correlations. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/correlation/pairs-plot/

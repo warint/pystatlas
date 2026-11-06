@@ -66,4 +66,8 @@ ax.text(0, 1.02, "Two-sample t-test, two-sided α = .05, equal groups · n for 8
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/inference-uncertainty/power-curve/) · [← Inference & uncertainty](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/inference-uncertainty/power-curve/) · [← Inference & uncertainty](../README.md)
+
+**Cite:** Warin, T. (2026). Power curve. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/inference-uncertainty/power-curve/

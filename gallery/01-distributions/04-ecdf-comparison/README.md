@@ -63,4 +63,8 @@ ax.text(0, 1.02, f"Two-sample Kolmogorov–Smirnov D = {ks.statistic:.3f}, p = {
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/distributions/ecdf-comparison/) · [← Distributions](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/distributions/ecdf-comparison/) · [← Distributions](../README.md)
+
+**Cite:** Warin, T. (2026). ECDF comparison. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/distributions/ecdf-comparison/

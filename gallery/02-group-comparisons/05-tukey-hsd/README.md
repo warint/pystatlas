@@ -65,4 +65,8 @@ ax.text(0, 1.015, f"One-way ANOVA F({k - 1}, {n - k}) = {F:.2f}, p = {p:.3f}, η
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/group-comparisons/tukey-hsd/) · [← Group comparisons](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/group-comparisons/tukey-hsd/) · [← Group comparisons](../README.md)
+
+**Cite:** Warin, T. (2026). Tukey HSD intervals. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/group-comparisons/tukey-hsd/

@@ -68,4 +68,8 @@ ax_top.text(0, 1.06, f"Pearson r = {res.statistic:.2f}, 95% CI [{ci.low:.2f}, {c
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/correlation/scatter-with-stats/) · [← Correlation & association](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/correlation/scatter-with-stats/) · [← Correlation & association](../README.md)
+
+**Cite:** Warin, T. (2026). Scatterplot with statistics. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/correlation/scatter-with-stats/

@@ -85,6 +85,16 @@
     });
   });
 
+  // Copy a citation
+  document.querySelectorAll("[data-copy-text]").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      try { await navigator.clipboard.writeText(btn.dataset.copyText); } catch (e) {}
+      const old = btn.textContent;
+      btn.textContent = "Copied ✓"; btn.classList.add("done");
+      setTimeout(() => { btn.textContent = old; btn.classList.remove("done"); }, 1600);
+    });
+  });
+
   // Lightbox for the main figure
   const fig = document.querySelector(".figure a");
   if (fig) {

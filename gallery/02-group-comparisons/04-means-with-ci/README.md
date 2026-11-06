@@ -75,4 +75,8 @@ ax.text(0, 1.02, stat["BMI × sex"], transform=ax.transAxes, fontsize=9.5, color
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/group-comparisons/means-with-ci/) · [← Group comparisons](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/group-comparisons/means-with-ci/) · [← Group comparisons](../README.md)
+
+**Cite:** Warin, T. (2026). Interaction plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/group-comparisons/means-with-ci/

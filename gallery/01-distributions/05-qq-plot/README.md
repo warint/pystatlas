@@ -65,4 +65,8 @@ fig.suptitle("Taking logs brings household income much closer to normal",
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/distributions/qq-plot/) · [← Distributions](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/distributions/qq-plot/) · [← Distributions](../README.md)
+
+**Cite:** Warin, T. (2026). Q–Q plot with confidence band. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/distributions/qq-plot/

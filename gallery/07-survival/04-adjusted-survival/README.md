@@ -64,4 +64,8 @@ ax.text(0, 1.02, f"Cox PH, other covariates at their mean  ·  HR per 10 years o
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/survival/adjusted-survival/) · [← Survival analysis](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/survival/adjusted-survival/) · [← Survival analysis](../README.md)
+
+**Cite:** Warin, T. (2026). Adjusted survival curves. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/survival/adjusted-survival/

@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use Statlas, please cite it as below."
+title: "Statlas: The Python Gallery of Statistical Graphics"
+abstract: "A curated, open-source atlas of statistical charts for Python — regression models, Likert scales, survival curves, diagnostics, meta-analysis and more — with self-contained, copy-paste code."
+type: software
+authors:
+  - family-names: Warin
+    given-names: Thierry
+    website: "https://www.warin.ca"
+repository-code: "https://github.com/warint/statlas"
+url: "https://warint.github.io/statlas/"
+license: MIT
+version: "1.0.0"
+date-released: "2026-11-06"
+keywords:
+  - python
+  - statistics
+  - data visualization
+  - statistical graphics
+  - matplotlib
+  - statsmodels

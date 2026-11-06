@@ -188,8 +188,26 @@ def highlight_py(code: str) -> str:
     return highlight(code, PythonLexer(), FORMATTER)
 
 
-def page(title: str, body: str, depth: int, description: str = "", active: str = "") -> str:
+def page(title: str, body: str, depth: int, description: str = "", active: str = "",
+         cite_title: str = "", url: str = "") -> str:
     base = "../" * depth
+    cite_title = cite_title or "Statlas: The Python Gallery of Statistical Graphics"
+    scholar = f"""<meta name="author" content="{esc(CONFIG['author'])}">
+<link rel="author" href="{CONFIG['author_url']}">
+<meta name="citation_title" content="{esc(cite_title)}">
+<meta name="citation_author" content="Warin, Thierry">
+<meta name="citation_publication_date" content="{CONFIG['year']}">
+<meta name="citation_online_date" content="{CONFIG['year']}/11/06">
+<meta name="citation_publisher" content="{esc(CONFIG['author'])}">
+<meta name="citation_public_url" content="{CONFIG['site_url']}{url}">
+<meta name="DC.creator" content="Warin, Thierry">
+<meta name="DC.title" content="{esc(cite_title)}">
+<meta name="DC.date" content="{CONFIG['year']}">
+<link rel="canonical" href="{CONFIG['site_url']}{url}">
+<script type="application/ld+json">{json.dumps({"@context": "https://schema.org", "@type": "CreativeWork", "name": cite_title,
+  "url": CONFIG['site_url'] + url, "datePublished": str(CONFIG['year']), "license": "https://opensource.org/licenses/MIT",
+  "author": {"@type": "Person", "name": CONFIG['author'], "url": CONFIG['author_url']},
+  "isPartOf": {"@type": "WebSite", "name": "Statlas", "url": CONFIG['site_url']}})}</script>"""
     desc = esc(description or CONFIG["tagline"])
     return f"""<!doctype html>
 <html lang="en">
@@ -198,6 +216,7 @@ def page(title: str, body: str, depth: int, description: str = "", active: str =
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(title)}</title>
 <meta name="description" content="{desc}">
+{scholar}
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{desc}">
 <meta name="theme-color" content="#fbfbfd" media="(prefers-color-scheme: light)">
@@ -216,6 +235,7 @@ def page(title: str, body: str, depth: int, description: str = "", active: str =
       <a href="{base}index.html#gallery" class="{'on' if active == 'gallery' else ''}">Gallery</a>
       <a href="{base}style.html" class="{'on' if active == 'style' else ''}">Style</a>
       <a href="{base}about.html" class="{'on' if active == 'about' else ''}">About</a>
+      <a href="{base}about.html#cite">Cite</a>
       <a href="{CONFIG['repo_url']}" class="gh" aria-label="GitHub">{GITHUB_ICON}</a>
     </nav>
   </div>
@@ -225,7 +245,7 @@ def page(title: str, body: str, depth: int, description: str = "", active: str =
 </main>
 <footer class="foot">
   <div class="wrap foot-inner">
-    <div><strong>{esc(CONFIG['name'])}</strong> · {esc(CONFIG['tagline'])}</div>
+    <div><strong>{esc(CONFIG['name'])}</strong> · {esc(CONFIG['tagline'])}<br>Created by <a href="{CONFIG['author_url']}">{esc(CONFIG['author'])}</a> · <a href="{CONFIG['author_url']}">www.warin.ca</a> · <a href="{base}about.html#cite">How to cite</a></div>
     <div class="foot-links"><a href="{CONFIG['repo_url']}">GitHub</a><a href="{base}style.html">Plot style</a><a href="{CONFIG['repo_url']}/blob/main/CONTRIBUTING.md">Contribute</a><span>MIT License</span></div>
   </div>
 </footer>
@@ -246,6 +266,34 @@ def card(ex: Example, base: str) -> str:
   <div class="card-img"><img src="{base}{ex.url}thumb.webp" alt="{esc(ex.title)}" loading="lazy" width="720" height="450"></div>
   <div class="card-body"><h3>{esc(ex.title)}</h3><p>{esc(ex.summary)}</p>{r}</div>
 </a>"""
+
+
+# --------------------------------------------------------------------------- citation
+def cite_text(ex: "Example | None" = None) -> str:
+    a, y, site = CONFIG["author"], CONFIG["year"], CONFIG["site_url"]
+    base = f"Warin, T. ({y}). Statlas: The Python Gallery of Statistical Graphics."
+    if ex:
+        return f"Warin, T. ({y}). {ex.title}. In Statlas: The Python Gallery of Statistical Graphics. {site}{ex.url}"
+    return f"{base} {site}"
+
+
+def bibtex() -> str:
+    return f"""@misc{{warin{CONFIG['year']}statlas,
+  author       = {{Warin, Thierry}},
+  title        = {{Statlas: The Python Gallery of Statistical Graphics}},
+  year         = {{{CONFIG['year']}}},
+  howpublished = {{\\url{{{CONFIG['site_url']}}}}},
+  note         = {{Source code: {CONFIG['repo_url']}}}
+}}"""
+
+
+def cite_block(ex: "Example | None" = None) -> str:
+    return f"""<section class="cite" id="cite">
+  <div class="cite-head"><h2>How to cite</h2>
+  <p>{esc(CONFIG['name'])} is created and maintained by <a href="{CONFIG['author_url']}">{esc(CONFIG['author'])}</a>. If it helped your work, please cite it.</p></div>
+  <div class="cite-box"><p class="cite-ref">{esc(cite_text(ex))}</p><button class="btn ghost" data-copy-text="{esc(cite_text(ex))}">Copy</button></div>
+  <div class="cite-box"><pre class="cite-bib">{esc(bibtex())}</pre><button class="btn ghost" data-copy-text="{esc(bibtex())}">Copy BibTeX</button></div>
+</section>"""
 
 
 # --------------------------------------------------------------------------- site
@@ -305,6 +353,7 @@ def build_site(cats: list[Category]) -> None:
   <p class="eyebrow">{n} statistical charts · {len(cats)} families · 100% Python</p>
   <h1>Statistical graphics.<br><span class="grad">Beautifully Pythonic.</span></h1>
   <p class="lede">{esc(CONFIG['lede'])}</p>
+  <p class="byline">By <a href="{CONFIG['author_url']}">{esc(CONFIG['author'])}</a></p>
   <div class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
     <input id="q" type="search" placeholder="Search charts, methods or R functions — try “likert”" autocomplete="off" spellcheck="false">
     <kbd>/</kbd></div>
@@ -314,12 +363,19 @@ def build_site(cats: list[Category]) -> None:
   <div class="chips" role="tablist">{chips}</div>
   <p class="empty" hidden>No chart matches your search. Try “regression”, “proportion” or an R function name.</p>
   {''.join(sections)}
-</section>"""
+</section>
+<div class="wrap">{cite_block()}</div>"""
     (DOCS / "index.html").write_text(page(f"{CONFIG['name']} — {CONFIG['tagline']}", body, 0, active="gallery"))
 
     # ---- style page & about page
     (DOCS / "style.html").write_text(page(f"Plot style · {CONFIG['name']}", style_page(), 0, active="style"))
     (DOCS / "about.html").write_text(page(f"About · {CONFIG['name']}", about_page(cats), 0, active="about"))
+
+    # ---- sitemap + robots (search-engine indexing)
+    urls = ["", "about.html", "style.html"] + [f"{c.slug}/" for c in cats] + [e.url for e in all_ex]
+    (DOCS / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        + "".join(f"  <url><loc>{CONFIG['site_url']}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
+    (DOCS / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {CONFIG['site_url']}sitemap.xml\n")
 
     # ---- search index (handy for tooling)
     index = [{"title": e.title, "summary": e.summary, "r": e.r, "category": e.category.title,
@@ -370,7 +426,8 @@ def example_page(ex: Example, prev_ex: Example | None, next_ex: Example | None) 
     lines = ex.code.count("\n")
     body = f"""<article class="wrap ex">
   <div class="crumbs"><a href="{base}index.html">Gallery</a><span>/</span><a href="{base}{c.slug}/index.html">{esc(c.title)}</a></div>
-  <header class="ex-head"><h1>{esc(ex.title)}</h1><p class="lede">{esc(ex.summary)}</p></header>
+  <header class="ex-head"><h1>{esc(ex.title)}</h1><p class="lede">{esc(ex.summary)}</p>
+  <p class="byline">By <a href="{CONFIG['author_url']}">{esc(CONFIG['author'])}</a> · part of <a href="{base}index.html">Statlas</a></p></header>
   <figure class="figure"><a href="plot.png" target="_blank" rel="noopener"><img src="plot.png" alt="{esc(ex.title)}"></a></figure>
   <div class="ex-cols">
     <div class="prose">{inline_md(ex.description)}</div>
@@ -388,10 +445,12 @@ def example_page(ex: Example, prev_ex: Example | None, next_ex: Example | None) 
     <pre class="code"><code>{highlight_py(ex.code)}</code></pre>
   </section>
   <p class="hint">Figures use the optional <a href="{base}style.html">Statlas style</a>: add <code>plt.style.use("statlas.mplstyle")</code> to match the look exactly.</p>
+  {cite_block(ex)}
   {nav}
   {f'<h2 class="rel-h">More in {esc(c.title)}</h2><div class="grid">{rel}</div>' if rel else ''}
 </article>"""
-    return page(f"{ex.title} · {CONFIG['name']}", body, 2, ex.summary, "gallery")
+    return page(f"{ex.title} · {CONFIG['name']}", body, 2, ex.summary, "gallery",
+                cite_title=f"{ex.title} — Statlas: The Python Gallery of Statistical Graphics", url=ex.url)
 
 
 def style_page() -> str:
@@ -427,6 +486,9 @@ def about_page(cats: list[Category]) -> str:
 </ul>
 <h2>Families</h2>
 <table class="tbl"><thead><tr><th>Family</th><th>Charts</th><th>What you'll find</th></tr></thead><tbody>{rows}</tbody></table>
+<h2>Author</h2>
+<p>{esc(CONFIG['name'])} is created and maintained by <strong><a href="{CONFIG['author_url']}">{esc(CONFIG['author'])}</a></strong>. More of his work on data science, statistics and AI: <a href="{CONFIG['author_url']}">www.warin.ca</a>.</p>
+{cite_block()}
 <h2>Contribute</h2>
 <p>Add a folder with a <code>plot.py</code>, run <code>python build.py</code>, open a pull request. See <a href="{CONFIG['repo_url']}/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
 </section>"""
@@ -453,7 +515,11 @@ f"""# {ex.title}
 {ex.code.rstrip()}
 ```
 
-[View on the Statlas website →]({site}{ex.url}) · [← {c.title}](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →]({site}{ex.url}) · [← {c.title}](../README.md)
+
+**Cite:** {cite_text(ex)}
 """)
         table = "\n".join(
             f"| [<img src=\"{e.folder.name}/plot.png\" width=\"260\">]({e.folder.name}/) | **[{e.title}]({e.folder.name}/)**<br>{e.summary}" + (f"<br>`{e.r}`" if e.r else "") + " |"

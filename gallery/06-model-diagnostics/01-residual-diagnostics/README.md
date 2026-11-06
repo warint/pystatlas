@@ -106,4 +106,8 @@ fig.text(0.01, 1.02, f"OLS violent crime ~ 5 predictors · n = {int(model.nobs)}
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/model-diagnostics/residual-diagnostics/) · [← Model diagnostics](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/model-diagnostics/residual-diagnostics/) · [← Model diagnostics](../README.md)
+
+**Cite:** Warin, T. (2026). Residual diagnostics. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/model-diagnostics/residual-diagnostics/

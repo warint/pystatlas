@@ -67,4 +67,8 @@ ax.text(0, 1.02, f"Test set n = {len(y_te):,} · base rate = {y_te.mean():.0%} �
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/model-diagnostics/calibration-plot/) · [← Model diagnostics](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/model-diagnostics/calibration-plot/) · [← Model diagnostics](../README.md)
+
+**Cite:** Warin, T. (2026). Calibration plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/model-diagnostics/calibration-plot/

@@ -65,4 +65,8 @@ ax.text(0, 1.02, f"Kruskal–Wallis H(2) = {H:.1f}, p = {p:.1e}, ε² = {eps2:.2
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/distributions/raincloud/) · [← Distributions](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/distributions/raincloud/) · [← Distributions](../README.md)
+
+**Cite:** Warin, T. (2026). Raincloud plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/distributions/raincloud/

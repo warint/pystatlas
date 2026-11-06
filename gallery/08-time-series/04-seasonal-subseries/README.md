@@ -71,4 +71,8 @@ ax.text(0, 1.02, f"Niño 1+2 SST, monthly · one-way ANOVA F(11, {values.size - 
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/time-series/seasonal-subseries/) · [← Time series](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/time-series/seasonal-subseries/) · [← Time series](../README.md)
+
+**Cite:** Warin, T. (2026). Seasonal subseries plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/time-series/seasonal-subseries/

@@ -85,4 +85,8 @@ ax.text(0, 1.02, f"Mean difference {delta:.1f} mmHg, BCa bootstrap 95% CI [{lo:.
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/group-comparisons/estimation-plot/) · [← Group comparisons](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/group-comparisons/estimation-plot/) · [← Group comparisons](../README.md)
+
+**Cite:** Warin, T. (2026). Estimation plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/group-comparisons/estimation-plot/

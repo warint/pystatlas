@@ -65,4 +65,8 @@ ax.text(0, 1.02, f"Friedman χ²({len(months) - 1}) = {chi2:.0f}, p = {p:.1e}, K
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/distributions/ridgeline/) · [← Distributions](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/distributions/ridgeline/) · [← Distributions](../README.md)
+
+**Cite:** Warin, T. (2026). Ridgeline plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/distributions/ridgeline/

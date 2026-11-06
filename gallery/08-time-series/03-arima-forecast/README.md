@@ -62,4 +62,8 @@ ax.text(0, 1.02, f"SARIMA(1,1,1)(0,1,1)₁₂ · AIC = {fit.aic:.0f} · out-of-s
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/time-series/arima-forecast/) · [← Time series](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/time-series/arima-forecast/) · [← Time series](../README.md)
+
+**Cite:** Warin, T. (2026). SARIMA forecast. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/time-series/arima-forecast/

@@ -79,4 +79,8 @@ ax.text(0, 1.02, f"Pearson r · n = {len(df)} wines · complete-linkage clusteri
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/correlation/correlogram-bubble/) · [← Correlation & association](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/correlation/correlogram-bubble/) · [← Correlation & association](../README.md)
+
+**Cite:** Warin, T. (2026). Correlogram with clustering. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/correlation/correlogram-bubble/

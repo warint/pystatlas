@@ -80,4 +80,8 @@ ax.text(0, 1.02, f"OLS murder rate ~ 5 predictors · n = {n} · {flag.sum()} obs
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/model-diagnostics/influence-plot/) · [← Model diagnostics](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/model-diagnostics/influence-plot/) · [← Model diagnostics](../README.md)
+
+**Cite:** Warin, T. (2026). Influence plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/model-diagnostics/influence-plot/

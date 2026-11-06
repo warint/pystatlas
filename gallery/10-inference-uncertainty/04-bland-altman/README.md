@@ -66,4 +66,8 @@ ax.text(0, 1.02, f"n = {n} · bias {bias:.1f} [95% CI {bias - ci_bias:.1f}, {bia
 plt.show()
 ```
 
-[View on the Statlas website →](https://warint.github.io/statlas/inference-uncertainty/bland-altman/) · [← Inference & uncertainty](../README.md)
+---
+
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/inference-uncertainty/bland-altman/) · [← Inference & uncertainty](../README.md)
+
+**Cite:** Warin, T. (2026). Bland–Altman plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/inference-uncertainty/bland-altman/

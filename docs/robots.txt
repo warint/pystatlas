@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://warint.github.io/statlas/sitemap.xml
