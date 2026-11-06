@@ -77,6 +77,6 @@ plt.show()
 
 ---
 
-**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/group-comparisons/means-with-ci/) · [← Group comparisons](../README.md)
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/group-comparisons/means-with-ci/) · [← Group comparisons](../README.md)
 
-**Cite:** Warin, T. (2026). Interaction plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/group-comparisons/means-with-ci/
+**Cite:** Warin, T. (2026). Interaction plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/group-comparisons/means-with-ci/

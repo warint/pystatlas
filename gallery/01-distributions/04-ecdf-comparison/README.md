@@ -65,6 +65,6 @@ plt.show()
 
 ---
 
-**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/distributions/ecdf-comparison/) · [← Distributions](../README.md)
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/distributions/ecdf-comparison/) · [← Distributions](../README.md)
 
-**Cite:** Warin, T. (2026). ECDF comparison. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/distributions/ecdf-comparison/
+**Cite:** Warin, T. (2026). ECDF comparison. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/distributions/ecdf-comparison/

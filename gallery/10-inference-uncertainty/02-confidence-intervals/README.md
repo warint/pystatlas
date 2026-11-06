@@ -55,6 +55,6 @@ plt.show()
 
 ---
 
-**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/inference-uncertainty/confidence-intervals/) · [← Inference & uncertainty](../README.md)
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/inference-uncertainty/confidence-intervals/) · [← Inference & uncertainty](../README.md)
 
-**Cite:** Warin, T. (2026). What a 95% confidence interval means. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/inference-uncertainty/confidence-intervals/
+**Cite:** Warin, T. (2026). What a 95% confidence interval means. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/inference-uncertainty/confidence-intervals/

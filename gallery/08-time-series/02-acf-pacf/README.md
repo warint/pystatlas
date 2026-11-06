@@ -67,6 +67,6 @@ plt.show()
 
 ---
 
-**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/time-series/acf-pacf/) · [← Time series](../README.md)
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/time-series/acf-pacf/) · [← Time series](../README.md)
 
-**Cite:** Warin, T. (2026). ACF and PACF. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/time-series/acf-pacf/
+**Cite:** Warin, T. (2026). ACF and PACF. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/time-series/acf-pacf/

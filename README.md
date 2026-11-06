@@ -8,8 +8,8 @@
 48 charts · 10 families · copy‑paste Python code · inspired by the R Graph Gallery, <code>ggstats</code> and <code>ggstatsplot</code>.</p>
 
 <p align="center">
-  <a href="https://warint.github.io/statlas/"><b>Browse the gallery →</b></a><br>
-  <a href="https://warint.github.io/statlas/">English</a> · <a href="https://warint.github.io/statlas/fr/">Français</a> · <a href="https://warint.github.io/statlas/ja/">日本語</a> · <a href="https://warint.github.io/statlas/zh/">中文</a><br>
+  <a href="https://warint.github.io/pystatlas/"><b>Browse the gallery →</b></a><br>
+  <a href="https://warint.github.io/pystatlas/">English</a> · <a href="https://warint.github.io/pystatlas/fr/">Français</a> · <a href="https://warint.github.io/pystatlas/ja/">日本語</a> · <a href="https://warint.github.io/pystatlas/zh/">中文</a><br>
   Created by <a href="https://www.warin.ca"><b>Thierry Warin</b></a> · <a href="https://www.warin.ca">www.warin.ca</a>
 </p>
 
@@ -30,7 +30,7 @@ gallery/
       README.md           browsable on GitHub
 ```
 
-Browse the folders right here on GitHub, or visit the [website](https://warint.github.io/statlas/).
+Browse the folders right here on GitHub, or visit the [website](https://warint.github.io/pystatlas/).
 
 ## Families
 
@@ -70,15 +70,15 @@ The website in `docs/` is served by GitHub Pages.
 
 If Statlas helped your research, teaching or work, please cite it:
 
-> Warin, T. (2026). *Statlas: The Python Gallery of Statistical Graphics*. https://warint.github.io/statlas/
+> Warin, T. (2026). *Statlas: The Python Gallery of Statistical Graphics*. https://warint.github.io/pystatlas/
 
 ```bibtex
 @misc{warin2026statlas,
   author       = {Warin, Thierry},
   title        = {Statlas: The Python Gallery of Statistical Graphics},
   year         = {2026},
-  howpublished = {\url{https://warint.github.io/statlas/}},
-  note         = {Source code: https://github.com/warint/statlas}
+  howpublished = {\url{https://warint.github.io/pystatlas/}},
+  note         = {Source code: https://github.com/warint/pystatlas}
 }
 ```
 

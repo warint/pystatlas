@@ -7,8 +7,8 @@ authors:
   - family-names: Warin
     given-names: Thierry
     website: "https://www.warin.ca"
-repository-code: "https://github.com/warint/statlas"
-url: "https://warint.github.io/statlas/"
+repository-code: "https://github.com/warint/pystatlas"
+url: "https://warint.github.io/pystatlas/"
 license: MIT
 version: "1.0.0"
 date-released: "2026-11-06"

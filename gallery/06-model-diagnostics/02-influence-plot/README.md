@@ -82,6 +82,6 @@ plt.show()
 
 ---
 
-**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/model-diagnostics/influence-plot/) · [← Model diagnostics](../README.md)
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/model-diagnostics/influence-plot/) · [← Model diagnostics](../README.md)
 
-**Cite:** Warin, T. (2026). Influence plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/model-diagnostics/influence-plot/
+**Cite:** Warin, T. (2026). Influence plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/model-diagnostics/influence-plot/

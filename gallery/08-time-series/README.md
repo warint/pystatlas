@@ -9,4 +9,4 @@ Decomposition, autocorrelation, forecasts with prediction intervals and change o
 | [<img src="03-arima-forecast/plot.png" width="260">](03-arima-forecast/) | **[SARIMA forecast](03-arima-forecast/)**<br>Seasonal ARIMA forecast with 80% and 95% prediction intervals against held-out data.<br>`forecast::autoplot(forecast())` |
 | [<img src="04-seasonal-subseries/plot.png" width="260">](04-seasonal-subseries/) | **[Seasonal subseries plot](04-seasonal-subseries/)**<br>Each calendar month's values across the years, with the monthly mean as a reference.<br>`feasts::gg_subseries()` |
 
-[← All families](../../README.md) · [Browse on the website](https://warint.github.io/statlas/time-series/)
+[← All families](../../README.md) · [Browse on the website](https://warint.github.io/pystatlas/time-series/)

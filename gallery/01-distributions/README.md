@@ -10,4 +10,4 @@ See the shape of your data: histograms, densities, ridgelines, ECDFs and Q–Q p
 | [<img src="04-ecdf-comparison/plot.png" width="260">](04-ecdf-comparison/) | **[ECDF comparison](04-ecdf-comparison/)**<br>Empirical cumulative distributions of two groups, with the Kolmogorov–Smirnov gap.<br>`ggplot2::stat_ecdf()` |
 | [<img src="05-qq-plot/plot.png" width="260">](05-qq-plot/) | **[Q–Q plot with confidence band](05-qq-plot/)**<br>Normal quantile–quantile plots with a 95% envelope, for a raw and a logged variable.<br>`qqplotr::stat_qq_band()` |
 
-[← All families](../../README.md) · [Browse on the website](https://warint.github.io/statlas/distributions/)
+[← All families](../../README.md) · [Browse on the website](https://warint.github.io/pystatlas/distributions/)

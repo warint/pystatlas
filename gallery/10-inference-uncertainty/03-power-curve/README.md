@@ -68,6 +68,6 @@ plt.show()
 
 ---
 
-**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/inference-uncertainty/power-curve/) · [← Inference & uncertainty](../README.md)
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/inference-uncertainty/power-curve/) · [← Inference & uncertainty](../README.md)
 
-**Cite:** Warin, T. (2026). Power curve. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/inference-uncertainty/power-curve/
+**Cite:** Warin, T. (2026). Power curve. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/inference-uncertainty/power-curve/

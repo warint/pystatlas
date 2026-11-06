@@ -77,6 +77,6 @@ plt.show()
 
 ---
 
-**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/survival/kaplan-meier/) · [← Survival analysis](../README.md)
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/survival/kaplan-meier/) · [← Survival analysis](../README.md)
 
-**Cite:** Warin, T. (2026). Kaplan–Meier curves. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/survival/kaplan-meier/
+**Cite:** Warin, T. (2026). Kaplan–Meier curves. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/survival/kaplan-meier/

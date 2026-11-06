@@ -11,4 +11,4 @@ Coefficient plots, odds ratios, model comparison and marginal effects — ggcoef
 | [<img src="05-interaction-effects/plot.png" width="260">](05-interaction-effects/) | **[Interaction effects](05-interaction-effects/)**<br>Simple slopes at mean ± 1 SD and a Johnson–Neyman plot for two continuous predictors.<br>`interactions::interact_plot() / interactions::johnson_neyman()` |
 | [<img src="06-quantile-regression/plot.png" width="260">](06-quantile-regression/) | **[Quantile regression process](06-quantile-regression/)**<br>How a slope changes across the conditional distribution, against the single OLS estimate.<br>`quantreg::plot(summary(rq(tau = 1:19 / 20)))` |
 
-[← All families](../../README.md) · [Browse on the website](https://warint.github.io/statlas/regression-models/)
+[← All families](../../README.md) · [Browse on the website](https://warint.github.io/pystatlas/regression-models/)

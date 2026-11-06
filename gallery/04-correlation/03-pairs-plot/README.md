@@ -82,6 +82,6 @@ plt.show()
 
 ---
 
-**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/correlation/pairs-plot/) · [← Correlation & association](../README.md)
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/correlation/pairs-plot/) · [← Correlation & association](../README.md)
 
-**Cite:** Warin, T. (2026). Pairs plot with correlations. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/correlation/pairs-plot/
+**Cite:** Warin, T. (2026). Pairs plot with correlations. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/correlation/pairs-plot/

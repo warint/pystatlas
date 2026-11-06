@@ -83,6 +83,6 @@ plt.show()
 
 ---
 
-**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/regression-models/odds-ratio-forest/) · [← Regression models](../README.md)
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/regression-models/odds-ratio-forest/) · [← Regression models](../README.md)
 
-**Cite:** Warin, T. (2026). Odds-ratio forest plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/regression-models/odds-ratio-forest/
+**Cite:** Warin, T. (2026). Odds-ratio forest plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/regression-models/odds-ratio-forest/

@@ -56,6 +56,6 @@ plt.show()
 
 ---
 
-**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/survival/cumulative-hazard/) · [← Survival analysis](../README.md)
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/survival/cumulative-hazard/) · [← Survival analysis](../README.md)
 
-**Cite:** Warin, T. (2026). Cumulative hazard. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/survival/cumulative-hazard/
+**Cite:** Warin, T. (2026). Cumulative hazard. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/survival/cumulative-hazard/

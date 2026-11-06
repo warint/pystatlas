@@ -9,4 +9,4 @@ Correlation matrices, scatterplots with statistics and pairwise relationships.
 | [<img src="03-pairs-plot/plot.png" width="260">](03-pairs-plot/) | **[Pairs plot with correlations](03-pairs-plot/)**<br>Scatter matrix with group KDEs on the diagonal and correlation coefficients above it.<br>`GGally::ggpairs()` |
 | [<img src="04-correlogram-bubble/plot.png" width="260">](04-correlogram-bubble/) | **[Correlogram with clustering](04-correlogram-bubble/)**<br>Corrplot-style circles sized and coloured by r, ordered by hierarchical clustering.<br>`corrplot::corrplot(order = "hclust", addrect = 3)` |
 
-[← All families](../../README.md) · [Browse on the website](https://warint.github.io/statlas/correlation/)
+[← All families](../../README.md) · [Browse on the website](https://warint.github.io/pystatlas/correlation/)

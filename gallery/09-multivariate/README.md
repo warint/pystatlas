@@ -9,4 +9,4 @@ PCA biplots, scree plots, clustering and heatmaps for high-dimensional data.
 | [<img src="03-silhouette-clusters/plot.png" width="260">](03-silhouette-clusters/) | **[Silhouette plot for k-means](03-silhouette-clusters/)**<br>k-means clusters in PCA space next to the per-observation silhouette widths.<br>`factoextra::fviz_silhouette()` |
 | [<img src="04-clustered-heatmap/plot.png" width="260">](04-clustered-heatmap/) | **[Clustered heatmap](04-clustered-heatmap/)**<br>Z-scored heatmap with row and column dendrograms and a group colour bar.<br>`pheatmap::pheatmap() / ComplexHeatmap::Heatmap()` |
 
-[← All families](../../README.md) · [Browse on the website](https://warint.github.io/statlas/multivariate/)
+[← All families](../../README.md) · [Browse on the website](https://warint.github.io/pystatlas/multivariate/)

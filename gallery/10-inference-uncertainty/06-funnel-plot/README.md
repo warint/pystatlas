@@ -78,6 +78,6 @@ plt.show()
 
 ---
 
-**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/inference-uncertainty/funnel-plot/) · [← Inference & uncertainty](../README.md)
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/inference-uncertainty/funnel-plot/) · [← Inference & uncertainty](../README.md)
 
-**Cite:** Warin, T. (2026). Funnel plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/inference-uncertainty/funnel-plot/
+**Cite:** Warin, T. (2026). Funnel plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/inference-uncertainty/funnel-plot/

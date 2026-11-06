@@ -10,4 +10,4 @@ Compare groups with the test, effect size and p-values on the chart — the ggst
 | [<img src="04-means-with-ci/plot.png" width="260">](04-means-with-ci/) | **[Interaction plot](04-means-with-ci/)**<br>Group means with 95% confidence intervals for two factors, with a two-way ANOVA.<br>`ggpubr::ggline(add = "mean_ci") / ggstats` |
 | [<img src="05-tukey-hsd/plot.png" width="260">](05-tukey-hsd/) | **[Tukey HSD intervals](05-tukey-hsd/)**<br>Simultaneous 95% confidence intervals for every pairwise difference in means.<br>`TukeyHSD() + plot()` |
 
-[← All families](../../README.md) · [Browse on the website](https://warint.github.io/statlas/group-comparisons/)
+[← All families](../../README.md) · [Browse on the website](https://warint.github.io/pystatlas/group-comparisons/)

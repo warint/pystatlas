@@ -1,8 +1,8 @@
 name: Statlas
 tagline: The Python gallery of statistical graphics
 lede: "A curated atlas of statistical charts for Python — regression models, Likert scales, survival curves, diagnostics and more. Pick a chart, copy the code, done."
-repo_url: https://github.com/warint/statlas
-site_url: https://warint.github.io/statlas/
+repo_url: https://github.com/warint/pystatlas
+site_url: https://warint.github.io/pystatlas/
 author: Thierry Warin
 author_url: https://www.warin.ca
 year: 2026

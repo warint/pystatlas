@@ -79,6 +79,6 @@ plt.show()
 
 ---
 
-**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/model-diagnostics/roc-curve/) · [← Model diagnostics](../README.md)
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/model-diagnostics/roc-curve/) · [← Model diagnostics](../README.md)
 
-**Cite:** Warin, T. (2026). ROC curves. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/model-diagnostics/roc-curve/
+**Cite:** Warin, T. (2026). ROC curves. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/model-diagnostics/roc-curve/

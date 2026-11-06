@@ -78,6 +78,6 @@ plt.show()
 
 ---
 
-**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/multivariate/pca-biplot/) · [← Multivariate & clustering](../README.md)
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/multivariate/pca-biplot/) · [← Multivariate & clustering](../README.md)
 
-**Cite:** Warin, T. (2026). PCA biplot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/multivariate/pca-biplot/
+**Cite:** Warin, T. (2026). PCA biplot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/multivariate/pca-biplot/

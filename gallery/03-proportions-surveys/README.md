@@ -10,4 +10,4 @@ Proportions, cross-tabs and Likert scales, in the spirit of ggstats::gglikert an
 | [<img src="04-proportions-with-ci/plot.png" width="260">](04-proportions-with-ci/) | **[Proportions with confidence intervals](04-proportions-with-ci/)**<br>A sorted dot plot of group proportions with Wilson 95% confidence intervals.<br>`ggstats::stat_prop() + geom_errorbar()` |
 | [<img src="05-crosstab-residuals/plot.png" width="260">](05-crosstab-residuals/) | **[Cross-table with standardized residuals](05-crosstab-residuals/)**<br>A contingency table as a heatmap, coloured by standardized residuals from independence.<br>`ggstats::ggtable() / stat_cross()` |
 
-[← All families](../../README.md) · [Browse on the website](https://warint.github.io/statlas/proportions-surveys/)
+[← All families](../../README.md) · [Browse on the website](https://warint.github.io/pystatlas/proportions-surveys/)

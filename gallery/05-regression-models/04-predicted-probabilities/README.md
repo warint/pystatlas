@@ -64,6 +64,6 @@ plt.show()
 
 ---
 
-**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/regression-models/predicted-probabilities/) · [← Regression models](../README.md)
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/regression-models/predicted-probabilities/) · [← Regression models](../README.md)
 
-**Cite:** Warin, T. (2026). Predicted probabilities. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/regression-models/predicted-probabilities/
+**Cite:** Warin, T. (2026). Predicted probabilities. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/regression-models/predicted-probabilities/

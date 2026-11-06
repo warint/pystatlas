@@ -10,4 +10,4 @@ Residuals, leverage, calibration and ROC curves: check before you trust a model.
 | [<img src="04-calibration-plot/plot.png" width="260">](04-calibration-plot/) | **[Calibration plot](04-calibration-plot/)**<br>Predicted vs observed risk per decile, with Wilson CIs, prediction histograms and Brier score.<br>`rms::calibrate() / probably::cal_plot_breaks()` |
 | [<img src="05-partial-regression/plot.png" width="260">](05-partial-regression/) | **[Added-variable plots](05-partial-regression/)**<br>One partial-regression panel per predictor; each fitted slope equals its coefficient.<br>`car::avPlots()` |
 
-[← All families](../../README.md) · [Browse on the website](https://warint.github.io/statlas/model-diagnostics/)
+[← All families](../../README.md) · [Browse on the website](https://warint.github.io/pystatlas/model-diagnostics/)

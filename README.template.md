@@ -61,15 +61,15 @@ The website in `docs/` is served by GitHub Pages.
 
 If Statlas helped your research, teaching or work, please cite it:
 
-> Warin, T. (2026). *Statlas: The Python Gallery of Statistical Graphics*. https://warint.github.io/statlas/
+> Warin, T. (2026). *Statlas: The Python Gallery of Statistical Graphics*. https://warint.github.io/pystatlas/
 
 ```bibtex
 @misc{warin2026statlas,
   author       = {Warin, Thierry},
   title        = {Statlas: The Python Gallery of Statistical Graphics},
   year         = {2026},
-  howpublished = {\url{https://warint.github.io/statlas/}},
-  note         = {Source code: https://github.com/warint/statlas}
+  howpublished = {\url{https://warint.github.io/pystatlas/}},
+  note         = {Source code: https://github.com/warint/pystatlas}
 }
 ```
 

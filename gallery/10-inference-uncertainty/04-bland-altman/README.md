@@ -68,6 +68,6 @@ plt.show()
 
 ---
 
-**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/inference-uncertainty/bland-altman/) · [← Inference & uncertainty](../README.md)
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/inference-uncertainty/bland-altman/) · [← Inference & uncertainty](../README.md)
 
-**Cite:** Warin, T. (2026). Bland–Altman plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/inference-uncertainty/bland-altman/
+**Cite:** Warin, T. (2026). Bland–Altman plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/inference-uncertainty/bland-altman/

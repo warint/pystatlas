@@ -64,6 +64,6 @@ plt.show()
 
 ---
 
-**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/statlas/time-series/arima-forecast/) · [← Time series](../README.md)
+**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/time-series/arima-forecast/) · [← Time series](../README.md)
 
-**Cite:** Warin, T. (2026). SARIMA forecast. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/time-series/arima-forecast/
+**Cite:** Warin, T. (2026). SARIMA forecast. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/time-series/arima-forecast/
