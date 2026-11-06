@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raincloud plot · Statlas</title>
+<meta name="description" content="Half violin, box plot and raw points per group, drawn horizontally.">
+<meta property="og:title" content="Raincloud plot · Statlas">
+<meta property="og:description" content="Half violin, box plot and raw points per group, drawn horizontally.">
+<meta name="theme-color" content="#fbfbfd" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="url(#lg)"/><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A84FF"/><stop offset="1" stop-color="#5E5CE6"/></linearGradient></defs><rect x="7" y="17" width="4" height="8" rx="2" fill="#fff" opacity=".75"/><rect x="14" y="11" width="4" height="14" rx="2" fill="#fff"/><rect x="21" y="7" width="4" height="18" rx="2" fill="#fff" opacity=".9"/></svg><span>Statlas</span></a>
+    <nav class="nav-links">
+      <a href="../../index.html#gallery" class="on">Gallery</a>
+      <a href="../../style.html" class="">Style</a>
+      <a href="../../about.html" class="">About</a>
+      <a href="https://github.com/warint/statlas" class="gh" aria-label="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </nav>
+  </div>
+</header>
+<main>
+<article class="wrap ex">
+  <div class="crumbs"><a href="../../index.html">Gallery</a><span>/</span><a href="../../distributions/index.html">Distributions</a></div>
+  <header class="ex-head"><h1>Raincloud plot</h1><p class="lede">Half violin, box plot and raw points per group, drawn horizontally.</p></header>
+  <figure class="figure"><a href="plot.png" target="_blank" rel="noopener"><img src="plot.png" alt="Raincloud plot"></a></figure>
+  <div class="ex-cols">
+    <div class="prose"><p>A raincloud plot stacks three views of the same data: a half violin (the
+&quot;cloud&quot;) shows the density, a slim box plot gives the median and quartiles,
+and the jittered points underneath (the &quot;rain&quot;) show every single
+observation. Nothing is hidden, so bimodality, outliers and small samples are
+all visible.</p><p>Data are the iris flowers bundled with <strong>scikit-learn</strong>: sepal length for three
+species. The densities come from <code>scipy.stats.gaussian_kde</code>, and the subtitle
+reports a Kruskal–Wallis test (<code>scipy.stats.kruskal</code>) with ε² as effect size.</p></div>
+    <aside class="meta"><div class="meta-row"><span>R equivalent</span><code>ggdist::stat_halfeye() / ggrain::geom_rain()</code></div><div class="meta-row"><span>Libraries</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>SciPy</i><i>scikit-learn</i></div></div><div class="meta-row"><span>Topics</span><div class="pills"><i>raincloud</i><i>violin</i><i>box plot</i><i>Kruskal-Wallis</i><i>distribution</i></div></div></aside>
+  </div>
+  <section class="code-card" id="code">
+    <div class="code-bar">
+      <div class="dots"><i></i><i></i><i></i></div><span class="fname">raincloud.py · 45 lines</span>
+      <div class="code-actions">
+        <a class="btn ghost" href="raincloud.py" download>Download</a>
+        <a class="btn ghost" href="https://github.com/warint/statlas/tree/main/gallery/01-distributions/02-raincloud">GitHub</a>
+        <button class="btn copy" data-copy>Copy code</button>
+      </div>
+    </div>
+    <pre class="code"><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_iris</span>
+
+<span class="c1"># Data: sepal length of three iris species</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">(</span><span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">species</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">))))</span>
+<span class="n">groups</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"setosa"</span><span class="p">,</span> <span class="s2">"versicolor"</span><span class="p">,</span> <span class="s2">"virginica"</span><span class="p">]</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">species</span> <span class="o">==</span> <span class="n">g</span><span class="p">,</span> <span class="s2">"sepal length (cm)"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">]</span>
+<span class="n">palette</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"#007AFF"</span><span class="p">,</span> <span class="s2">"#FF9500"</span><span class="p">,</span> <span class="s2">"#34C759"</span><span class="p">]</span>
+
+<span class="c1"># Kruskal–Wallis test + epsilon squared</span>
+<span class="n">H</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">kruskal</span><span class="p">(</span><span class="o">*</span><span class="n">data</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">eps2</span> <span class="o">=</span> <span class="n">H</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">))</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">palette</span><span class="p">)):</span>
+    <span class="c1"># Cloud: half violin above the baseline, scaled to a fixed height</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>  <span class="c1"># trim the cloud near the data</span>
+    <span class="n">dens</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">gaussian_kde</span><span class="p">(</span><span class="n">d</span><span class="p">)(</span><span class="n">grid</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mf">0.55</span> <span class="o">*</span> <span class="n">dens</span> <span class="o">/</span> <span class="n">dens</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mf">0.55</span> <span class="o">*</span> <span class="n">dens</span> <span class="o">/</span> <span class="n">dens</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.4</span><span class="p">)</span>
+    <span class="c1"># Box: median and quartiles just under the cloud</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">positions</span><span class="o">=</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">],</span> <span class="n">widths</span><span class="o">=</span><span class="mf">0.09</span><span class="p">,</span> <span class="n">vert</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">showfliers</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+               <span class="n">patch_artist</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">boxprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s2">"white"</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"#3A3A3C"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+               <span class="n">medianprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">2.2</span><span class="p">),</span> <span class="n">whiskerprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">"#3A3A3C"</span><span class="p">),</span>
+               <span class="n">capprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+    <span class="c1"># Rain: jittered raw points below the box</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mf">0.3</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">0.08</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)),</span>
+               <span class="n">s</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.55</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">groups</span><span class="p">)),</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"I. </span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="se">\n</span><span class="s2">median </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> · n = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+                                   <span class="k">for</span> <span class="n">g</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">groups</span><span class="p">,</span> <span class="n">data</span><span class="p">)])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">8.2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">"x"</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">"y"</span><span class="p">,</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Sepal length (cm)"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Virginica irises have the longest sepals"</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Kruskal–Wallis H(2) = </span><span class="si">{</span><span class="n">H</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">, p = </span><span class="si">{</span><span class="n">p</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2">, ε² = </span><span class="si">{</span><span class="n">eps2</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> · "</span>
+        <span class="s2">"cloud = density, box = quartiles, rain = flowers"</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+        <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre>
+  </section>
+  <p class="hint">Figures use the optional <a href="../../style.html">Statlas style</a>: add <code>plt.style.use("statlas.mplstyle")</code> to match the look exactly.</p>
+  <div class="pager"><a href="../../distributions/histogram-density/"><small>Previous</small>Histogram with density</a><a class="next" href="../../distributions/ridgeline/"><small>Next</small>Ridgeline plot</a></div>
+  <h2 class="rel-h">More in Distributions</h2><div class="grid"><a class="card" href="../../distributions/histogram-density/" data-cat="distributions" data-k="histogram with density histogram, kernel density and fitted normal curve, with shape statistics. ggplot2::geom_histogram() + geom_density() distributions histogram kde normality skewness shapiro-wilk matplotlib numpy scipy scikit-learn">
+  <div class="card-img"><img src="../../distributions/histogram-density/thumb.webp" alt="Histogram with density" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><h3>Histogram with density</h3><p>Histogram, kernel density and fitted normal curve, with shape statistics.</p><span class="card-r">ggplot2::geom_histogram() + geom_density()</span></div>
+</a>
+<a class="card" href="../../distributions/ridgeline/" data-cat="distributions" data-k="ridgeline plot overlapping density curves to compare one distribution across many groups. ggridges::geom_density_ridges() distributions ridgeline joy plot kde seasonality friedman matplotlib numpy statsmodels scipy">
+  <div class="card-img"><img src="../../distributions/ridgeline/thumb.webp" alt="Ridgeline plot" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><h3>Ridgeline plot</h3><p>Overlapping density curves to compare one distribution across many groups.</p><span class="card-r">ggridges::geom_density_ridges()</span></div>
+</a>
+<a class="card" href="../../distributions/ecdf-comparison/" data-cat="distributions" data-k="ecdf comparison empirical cumulative distributions of two groups, with the kolmogorov–smirnov gap. ggplot2::stat_ecdf() distributions ecdf kolmogorov-smirnov cumulative distribution two-sample test matplotlib numpy scipy scikit-learn">
+  <div class="card-img"><img src="../../distributions/ecdf-comparison/thumb.webp" alt="ECDF comparison" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><h3>ECDF comparison</h3><p>Empirical cumulative distributions of two groups, with the Kolmogorov–Smirnov gap.</p><span class="card-r">ggplot2::stat_ecdf()</span></div>
+</a></div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div><strong>Statlas</strong> · The Python gallery of statistical graphics</div>
+    <div class="foot-links"><a href="https://github.com/warint/statlas">GitHub</a><a href="../../style.html">Plot style</a><a href="https://github.com/warint/statlas/blob/main/CONTRIBUTING.md">Contribute</a><span>MIT License</span></div>
+  </div>
+</footer>
+<script src="../../assets/app.js"></script>
+</body>
+</html>

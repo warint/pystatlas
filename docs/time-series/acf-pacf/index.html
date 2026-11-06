@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACF and PACF · Statlas</title>
+<meta name="description" content="Autocorrelation and partial autocorrelation lollipops with 95% significance bands.">
+<meta property="og:title" content="ACF and PACF · Statlas">
+<meta property="og:description" content="Autocorrelation and partial autocorrelation lollipops with 95% significance bands.">
+<meta name="theme-color" content="#fbfbfd" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="url(#lg)"/><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A84FF"/><stop offset="1" stop-color="#5E5CE6"/></linearGradient></defs><rect x="7" y="17" width="4" height="8" rx="2" fill="#fff" opacity=".75"/><rect x="14" y="11" width="4" height="14" rx="2" fill="#fff"/><rect x="21" y="7" width="4" height="18" rx="2" fill="#fff" opacity=".9"/></svg><span>Statlas</span></a>
+    <nav class="nav-links">
+      <a href="../../index.html#gallery" class="on">Gallery</a>
+      <a href="../../style.html" class="">Style</a>
+      <a href="../../about.html" class="">About</a>
+      <a href="https://github.com/warint/statlas" class="gh" aria-label="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </nav>
+  </div>
+</header>
+<main>
+<article class="wrap ex">
+  <div class="crumbs"><a href="../../index.html">Gallery</a><span>/</span><a href="../../time-series/index.html">Time series</a></div>
+  <header class="ex-head"><h1>ACF and PACF</h1><p class="lede">Autocorrelation and partial autocorrelation lollipops with 95% significance bands.</p></header>
+  <figure class="figure"><a href="plot.png" target="_blank" rel="noopener"><img src="plot.png" alt="ACF and PACF"></a></figure>
+  <div class="ex-cols">
+    <div class="prose"><p>The autocorrelation function (ACF) measures how strongly a series correlates
+with itself k steps earlier; the partial autocorrelation (PACF) does the same
+after removing the effect of the shorter lags in between. Stems that leave the
+grey band (±1.96/√n) are larger than white noise would produce. Together the two
+panels suggest a model: here the ACF oscillates with the <strong>11-year solar cycle</strong>,
+while the PACF cuts off after a few lags — the signature of an autoregressive process.</p><p>Data are the yearly Wolf sunspot numbers 1700–2008 bundled with <strong>statsmodels</strong>
+(<code>sm.datasets.sunspots</code>). Correlations come from <code>statsmodels.tsa.stattools.acf</code>
+and <code>pacf</code>, and the subtitle reports a Ljung–Box test of no autocorrelation.</p></div>
+    <aside class="meta"><div class="meta-row"><span>R equivalent</span><code>forecast::ggtsdisplay()</code></div><div class="meta-row"><span>Libraries</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>statsmodels</i></div></div><div class="meta-row"><span>Topics</span><div class="pills"><i>autocorrelation</i><i>ACF</i><i>PACF</i><i>Ljung-Box</i><i>time series</i></div></div></aside>
+  </div>
+  <section class="code-card" id="code">
+    <div class="code-bar">
+      <div class="dots"><i></i><i></i><i></i></div><span class="fname">acf-pacf.py · 44 lines</span>
+      <div class="code-actions">
+        <a class="btn ghost" href="acf-pacf.py" download>Download</a>
+        <a class="btn ghost" href="https://github.com/warint/statlas/tree/main/gallery/08-time-series/02-acf-pacf">GitHub</a>
+        <button class="btn copy" data-copy>Copy code</button>
+      </div>
+    </div>
+    <pre class="code"><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.stats.diagnostic</span><span class="w"> </span><span class="kn">import</span> <span class="n">acorr_ljungbox</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.tsa.stattools</span><span class="w"> </span><span class="kn">import</span> <span class="n">acf</span><span class="p">,</span> <span class="n">pacf</span>
+
+<span class="c1"># Data: yearly sunspot numbers</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">sunspots</span><span class="o">.</span><span class="n">load_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">YEAR</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))[</span><span class="s2">"SUNACTIVITY"</span><span class="p">]</span>
+<span class="n">n</span><span class="p">,</span> <span class="n">nlags</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="mi">30</span>
+<span class="n">band</span> <span class="o">=</span> <span class="mf">1.96</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">lb</span> <span class="o">=</span> <span class="n">acorr_ljungbox</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">])</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">))</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_gridspec</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">height_ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">])</span>
+<span class="n">ax_ts</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:])</span>
+<span class="n">axes</span> <span class="o">=</span> <span class="p">[</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])]</span>
+
+<span class="c1"># Top: the series itself</span>
+<span class="n">ax_ts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#1D1D1F"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span>
+<span class="n">ax_ts</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#007AFF"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax_ts</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">"Sunspot number"</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+
+<span class="c1"># Bottom: ACF and PACF as lollipops with the white-noise band</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">acf</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">nlags</span><span class="o">=</span><span class="n">nlags</span><span class="p">)[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">pacf</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">nlags</span><span class="o">=</span><span class="n">nlags</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"ywm"</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]]</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="p">[</span><span class="s2">"ACF"</span><span class="p">,</span> <span class="s2">"PACF"</span><span class="p">]):</span>
+    <span class="n">lags</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nlags</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">sig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">band</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="s2">"#007AFF"</span><span class="p">,</span> <span class="s2">"#AEAEB2"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhspan</span><span class="p">(</span><span class="o">-</span><span class="n">band</span><span class="p">,</span> <span class="n">band</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#E5E5EA"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#8E8E93"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">lags</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.6</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">lags</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">28</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"white"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">"Lag (years)"</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nlags</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nlags</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s2">"−1"</span><span class="p">,</span> <span class="s2">"−0.5"</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"0.5"</span><span class="p">,</span> <span class="s2">"1"</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">lag</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">22</span><span class="p">):</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">lag</span><span class="si">}</span><span class="s2"> y"</span><span class="p">,</span> <span class="p">(</span><span class="n">lag</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">lag</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s2">"offset points"</span><span class="p">,</span>
+                     <span class="n">ha</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#007AFF"</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">"semibold"</span><span class="p">)</span>
+
+<span class="n">ax_ts</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Sunspots follow an 11-year cycle — an autoregressive signature"</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
+<span class="n">ax_ts</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.04</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Yearly Wolf numbers 1700–2008, n = </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> · Ljung–Box Q(10) = </span><span class="si">{</span><span class="n">lb</span><span class="o">.</span><span class="n">lb_stat</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">, "</span>
+           <span class="sa">f</span><span class="s2">"p &lt; .001 · grey band = ±1.96/√n"</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax_ts</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre>
+  </section>
+  <p class="hint">Figures use the optional <a href="../../style.html">Statlas style</a>: add <code>plt.style.use("statlas.mplstyle")</code> to match the look exactly.</p>
+  <div class="pager"><a href="../../time-series/stl-decomposition/"><small>Previous</small>STL decomposition</a><a class="next" href="../../time-series/arima-forecast/"><small>Next</small>SARIMA forecast</a></div>
+  <h2 class="rel-h">More in Time series</h2><div class="grid"><a class="card" href="../../time-series/stl-decomposition/" data-cat="time-series" data-k="stl decomposition a series split into trend, seasonal and remainder components in stacked panels. feasts::stl() + autoplot() time series stl decomposition seasonality trend time series matplotlib numpy statsmodels">
+  <div class="card-img"><img src="../../time-series/stl-decomposition/thumb.webp" alt="STL decomposition" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><h3>STL decomposition</h3><p>A series split into trend, seasonal and remainder components in stacked panels.</p><span class="card-r">feasts::STL() + autoplot()</span></div>
+</a>
+<a class="card" href="../../time-series/arima-forecast/" data-cat="time-series" data-k="sarima forecast seasonal arima forecast with 80% and 95% prediction intervals against held-out data. forecast::autoplot(forecast()) time series arima sarima forecast prediction interval rmse matplotlib numpy statsmodels">
+  <div class="card-img"><img src="../../time-series/arima-forecast/thumb.webp" alt="SARIMA forecast" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><h3>SARIMA forecast</h3><p>Seasonal ARIMA forecast with 80% and 95% prediction intervals against held-out data.</p><span class="card-r">forecast::autoplot(forecast())</span></div>
+</a>
+<a class="card" href="../../time-series/seasonal-subseries/" data-cat="time-series" data-k="seasonal subseries plot each calendar month&#x27;s values across the years, with the monthly mean as a reference. feasts::gg_subseries() time series seasonality subseries month plot anova time series matplotlib numpy statsmodels scipy">
+  <div class="card-img"><img src="../../time-series/seasonal-subseries/thumb.webp" alt="Seasonal subseries plot" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><h3>Seasonal subseries plot</h3><p>Each calendar month&#x27;s values across the years, with the monthly mean as a reference.</p><span class="card-r">feasts::gg_subseries()</span></div>
+</a></div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div><strong>Statlas</strong> · The Python gallery of statistical graphics</div>
+    <div class="foot-links"><a href="https://github.com/warint/statlas">GitHub</a><a href="../../style.html">Plot style</a><a href="https://github.com/warint/statlas/blob/main/CONTRIBUTING.md">Contribute</a><span>MIT License</span></div>
+  </div>
+</footer>
+<script src="../../assets/app.js"></script>
+</body>
+</html>

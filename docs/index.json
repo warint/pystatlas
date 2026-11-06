@@ -1,0 +1,669 @@
+[
+ {
+  "title": "Histogram with density",
+  "summary": "Histogram, kernel density and fitted normal curve, with shape statistics.",
+  "r": "ggplot2::geom_histogram() + geom_density()",
+  "category": "Distributions",
+  "tags": [
+   "histogram",
+   "KDE",
+   "normality",
+   "skewness",
+   "Shapiro-Wilk"
+  ],
+  "url": "distributions/histogram-density/"
+ },
+ {
+  "title": "Raincloud plot",
+  "summary": "Half violin, box plot and raw points per group, drawn horizontally.",
+  "r": "ggdist::stat_halfeye() / ggrain::geom_rain()",
+  "category": "Distributions",
+  "tags": [
+   "raincloud",
+   "violin",
+   "box plot",
+   "Kruskal-Wallis",
+   "distribution"
+  ],
+  "url": "distributions/raincloud/"
+ },
+ {
+  "title": "Ridgeline plot",
+  "summary": "Overlapping density curves to compare one distribution across many groups.",
+  "r": "ggridges::geom_density_ridges()",
+  "category": "Distributions",
+  "tags": [
+   "ridgeline",
+   "joy plot",
+   "KDE",
+   "seasonality",
+   "Friedman"
+  ],
+  "url": "distributions/ridgeline/"
+ },
+ {
+  "title": "ECDF comparison",
+  "summary": "Empirical cumulative distributions of two groups, with the Kolmogorov\u2013Smirnov gap.",
+  "r": "ggplot2::stat_ecdf()",
+  "category": "Distributions",
+  "tags": [
+   "ECDF",
+   "Kolmogorov-Smirnov",
+   "cumulative distribution",
+   "two-sample test"
+  ],
+  "url": "distributions/ecdf-comparison/"
+ },
+ {
+  "title": "Q\u2013Q plot with confidence band",
+  "summary": "Normal quantile\u2013quantile plots with a 95% envelope, for a raw and a logged variable.",
+  "r": "qqplotr::stat_qq_band()",
+  "category": "Distributions",
+  "tags": [
+   "Q-Q plot",
+   "normality",
+   "confidence band",
+   "log transform",
+   "Shapiro-Wilk"
+  ],
+  "url": "distributions/qq-plot/"
+ },
+ {
+  "title": "Between-groups comparison",
+  "summary": "Violin + box + points with Welch's ANOVA, effect size and pairwise tests.",
+  "r": "ggstatsplot::ggbetweenstats()",
+  "category": "Group comparisons",
+  "tags": [
+   "ANOVA",
+   "Welch",
+   "Games-Howell",
+   "effect size",
+   "violin"
+  ],
+  "url": "group-comparisons/between-groups-violin/"
+ },
+ {
+  "title": "Within-subjects comparison",
+  "summary": "Repeated measures with one line per subject, means, rm-ANOVA and paired tests.",
+  "r": "ggstatsplot::ggwithinstats()",
+  "category": "Group comparisons",
+  "tags": [
+   "repeated measures",
+   "paired t-test",
+   "rm-ANOVA",
+   "effect size",
+   "spaghetti plot"
+  ],
+  "url": "group-comparisons/within-subjects/"
+ },
+ {
+  "title": "Estimation plot",
+  "summary": "Raw data of two groups plus the mean difference and its bootstrap 95% CI.",
+  "r": "dabestr::dabest() + plot()",
+  "category": "Group comparisons",
+  "tags": [
+   "estimation",
+   "bootstrap",
+   "effect size",
+   "mean difference",
+   "confidence interval"
+  ],
+  "url": "group-comparisons/estimation-plot/"
+ },
+ {
+  "title": "Interaction plot",
+  "summary": "Group means with 95% confidence intervals for two factors, with a two-way ANOVA.",
+  "r": "ggpubr::ggline(add = \"mean_ci\") / ggstats",
+  "category": "Group comparisons",
+  "tags": [
+   "two-way ANOVA",
+   "interaction",
+   "means",
+   "confidence interval",
+   "factorial"
+  ],
+  "url": "group-comparisons/means-with-ci/"
+ },
+ {
+  "title": "Tukey HSD intervals",
+  "summary": "Simultaneous 95% confidence intervals for every pairwise difference in means.",
+  "r": "TukeyHSD() + plot()",
+  "category": "Group comparisons",
+  "tags": [
+   "Tukey HSD",
+   "post hoc",
+   "multiple comparisons",
+   "ANOVA",
+   "confidence interval"
+  ],
+  "url": "group-comparisons/tukey-hsd/"
+ },
+ {
+  "title": "Diverging Likert chart",
+  "summary": "Five-point Likert items as diverging stacked bars centred on the neutral answer.",
+  "r": "ggstats::gglikert()",
+  "category": "Proportions & surveys",
+  "tags": [
+   "Likert",
+   "survey",
+   "diverging bar",
+   "Friedman test"
+  ],
+  "url": "proportions-surveys/likert-diverging/"
+ },
+ {
+  "title": "Stacked proportions by group",
+  "summary": "100% stacked bars with percentage labels, n per bar, chi-squared test and Cram\u00e9r's V.",
+  "r": "ggstatsplot::ggbarstats()",
+  "category": "Proportions & surveys",
+  "tags": [
+   "proportions",
+   "chi-squared",
+   "Cram\u00e9r's V",
+   "stacked bar",
+   "survey"
+  ],
+  "url": "proportions-surveys/stacked-proportions/"
+ },
+ {
+  "title": "Mosaic plot with Pearson residuals",
+  "summary": "Tile areas proportional to cell counts, shaded by Pearson residuals from independence.",
+  "r": "vcd::mosaic(shade = TRUE)",
+  "category": "Proportions & surveys",
+  "tags": [
+   "mosaic",
+   "contingency table",
+   "chi-squared",
+   "Pearson residuals"
+  ],
+  "url": "proportions-surveys/mosaic-plot/"
+ },
+ {
+  "title": "Proportions with confidence intervals",
+  "summary": "A sorted dot plot of group proportions with Wilson 95% confidence intervals.",
+  "r": "ggstats::stat_prop() + geom_errorbar()",
+  "category": "Proportions & surveys",
+  "tags": [
+   "proportion",
+   "Wilson interval",
+   "confidence interval",
+   "dot plot",
+   "chi-squared"
+  ],
+  "url": "proportions-surveys/proportions-with-ci/"
+ },
+ {
+  "title": "Cross-table with standardized residuals",
+  "summary": "A contingency table as a heatmap, coloured by standardized residuals from independence.",
+  "r": "ggstats::ggtable() / stat_cross()",
+  "category": "Proportions & surveys",
+  "tags": [
+   "contingency table",
+   "chi-squared",
+   "standardized residuals",
+   "heatmap",
+   "cross-tab"
+  ],
+  "url": "proportions-surveys/crosstab-residuals/"
+ },
+ {
+  "title": "Correlation matrix",
+  "summary": "Lower-triangle Pearson correlation heatmap; non-significant cells (Holm) are crossed out.",
+  "r": "ggstatsplot::ggcorrmat()",
+  "category": "Correlation & association",
+  "tags": [
+   "correlation",
+   "Pearson",
+   "heatmap",
+   "Holm",
+   "multiple testing"
+  ],
+  "url": "correlation/correlation-matrix/"
+ },
+ {
+  "title": "Scatterplot with statistics",
+  "summary": "Scatter, OLS line with 95% band and marginal histograms, with Pearson's r in the subtitle.",
+  "r": "ggstatsplot::ggscatterstats()",
+  "category": "Correlation & association",
+  "tags": [
+   "correlation",
+   "Pearson",
+   "scatterplot",
+   "regression line",
+   "marginal histogram"
+  ],
+  "url": "correlation/scatter-with-stats/"
+ },
+ {
+  "title": "Pairs plot with correlations",
+  "summary": "Scatter matrix with group KDEs on the diagonal and correlation coefficients above it.",
+  "r": "GGally::ggpairs()",
+  "category": "Correlation & association",
+  "tags": [
+   "pairs plot",
+   "scatter matrix",
+   "correlation",
+   "KDE",
+   "Simpson's paradox"
+  ],
+  "url": "correlation/pairs-plot/"
+ },
+ {
+  "title": "Correlogram with clustering",
+  "summary": "Corrplot-style circles sized and coloured by r, ordered by hierarchical clustering.",
+  "r": "corrplot::corrplot(order = \"hclust\", addrect = 3)",
+  "category": "Correlation & association",
+  "tags": [
+   "correlation",
+   "correlogram",
+   "hierarchical clustering",
+   "heatmap",
+   "corrplot"
+  ],
+  "url": "correlation/correlogram-bubble/"
+ },
+ {
+  "title": "Coefficient plot",
+  "summary": "Regression estimates with 95% confidence intervals, one row per term.",
+  "r": "ggstats::ggcoef_model()",
+  "category": "Regression models",
+  "tags": [
+   "regression",
+   "OLS",
+   "confidence interval",
+   "dot-and-whisker"
+  ],
+  "url": "regression-models/coefficient-plot/"
+ },
+ {
+  "title": "Odds-ratio forest plot",
+  "summary": "Logistic regression odds ratios on a log scale, with a table of OR [95% CI] alongside.",
+  "r": "ggstats::ggcoef_model(exponentiate = TRUE)",
+  "category": "Regression models",
+  "tags": [
+   "logistic regression",
+   "odds ratio",
+   "forest plot",
+   "confidence interval",
+   "GLM"
+  ],
+  "url": "regression-models/odds-ratio-forest/"
+ },
+ {
+  "title": "Comparing nested models",
+  "summary": "Coefficients of three nested regressions side by side, to see how estimates shift.",
+  "r": "ggstats::ggcoef_compare()",
+  "category": "Regression models",
+  "tags": [
+   "regression",
+   "model comparison",
+   "nested models",
+   "confidence interval",
+   "OLS"
+  ],
+  "url": "regression-models/compare-models/"
+ },
+ {
+  "title": "Predicted probabilities",
+  "summary": "Model-based probability curves with 95% CI ribbons across a predictor, by group.",
+  "r": "ggeffects::ggpredict() / marginaleffects::plot_predictions()",
+  "category": "Regression models",
+  "tags": [
+   "logistic regression",
+   "predicted probability",
+   "marginal effects",
+   "confidence band",
+   "GLM"
+  ],
+  "url": "regression-models/predicted-probabilities/"
+ },
+ {
+  "title": "Interaction effects",
+  "summary": "Simple slopes at mean \u00b1 1 SD and a Johnson\u2013Neyman plot for two continuous predictors.",
+  "r": "interactions::interact_plot() / interactions::johnson_neyman()",
+  "category": "Regression models",
+  "tags": [
+   "interaction",
+   "moderation",
+   "simple slopes",
+   "Johnson-Neyman",
+   "marginal effect"
+  ],
+  "url": "regression-models/interaction-effects/"
+ },
+ {
+  "title": "Quantile regression process",
+  "summary": "How a slope changes across the conditional distribution, against the single OLS estimate.",
+  "r": "quantreg::plot(summary(rq(tau = 1:19 / 20)))",
+  "category": "Regression models",
+  "tags": [
+   "quantile regression",
+   "heteroscedasticity",
+   "OLS",
+   "confidence interval",
+   "Engel curve"
+  ],
+  "url": "regression-models/quantile-regression/"
+ },
+ {
+  "title": "Residual diagnostics",
+  "summary": "The classic 2 \u00d7 2 panel for a linear model \u2014 linearity, normality, variance, leverage.",
+  "r": "plot(lm) / performance::check_model()",
+  "category": "Model diagnostics",
+  "tags": [
+   "residuals",
+   "Q-Q plot",
+   "Cook's distance",
+   "leverage",
+   "heteroscedasticity"
+  ],
+  "url": "model-diagnostics/residual-diagnostics/"
+ },
+ {
+  "title": "Influence plot",
+  "summary": "Studentized residuals vs leverage, with bubbles sized by Cook's distance.",
+  "r": "car::influencePlot()",
+  "category": "Model diagnostics",
+  "tags": [
+   "influence",
+   "Cook's distance",
+   "leverage",
+   "outliers",
+   "studentized residuals"
+  ],
+  "url": "model-diagnostics/influence-plot/"
+ },
+ {
+  "title": "ROC curves",
+  "summary": "Three classifiers compared by ROC curve, AUC with bootstrap 95% CI and Youden point.",
+  "r": "pROC::ggroc() / pROC::ci.auc()",
+  "category": "Model diagnostics",
+  "tags": [
+   "ROC",
+   "AUC",
+   "classification",
+   "bootstrap",
+   "Youden index"
+  ],
+  "url": "model-diagnostics/roc-curve/"
+ },
+ {
+  "title": "Calibration plot",
+  "summary": "Predicted vs observed risk per decile, with Wilson CIs, prediction histograms and Brier score.",
+  "r": "rms::calibrate() / probably::cal_plot_breaks()",
+  "category": "Model diagnostics",
+  "tags": [
+   "calibration",
+   "reliability diagram",
+   "Brier score",
+   "classification",
+   "probability"
+  ],
+  "url": "model-diagnostics/calibration-plot/"
+ },
+ {
+  "title": "Added-variable plots",
+  "summary": "One partial-regression panel per predictor; each fitted slope equals its coefficient.",
+  "r": "car::avPlots()",
+  "category": "Model diagnostics",
+  "tags": [
+   "partial regression",
+   "added-variable",
+   "Frisch-Waugh-Lovell",
+   "influence",
+   "multiple regression"
+  ],
+  "url": "model-diagnostics/partial-regression/"
+ },
+ {
+  "title": "Kaplan\u2013Meier curves",
+  "summary": "Survival curves with confidence bands, censoring marks, log-rank test and risk table.",
+  "r": "survminer::ggsurvplot(risk.table = TRUE)",
+  "category": "Survival analysis",
+  "tags": [
+   "Kaplan-Meier",
+   "log-rank",
+   "survival",
+   "censoring",
+   "risk table"
+  ],
+  "url": "survival/kaplan-meier/"
+ },
+ {
+  "title": "Cox hazard ratios",
+  "summary": "Forest plot of a Cox proportional hazards model with HR, 95% CI and p-values.",
+  "r": "survminer::ggforest()",
+  "category": "Survival analysis",
+  "tags": [
+   "Cox model",
+   "hazard ratio",
+   "forest plot",
+   "proportional hazards",
+   "survival"
+  ],
+  "url": "survival/cox-hazard-ratios/"
+ },
+ {
+  "title": "Cumulative hazard",
+  "summary": "Nelson\u2013Aalen cumulative hazard curves with 95% bands for three tumour grades.",
+  "r": "survminer::ggsurvplot(fun = \"cumhaz\")",
+  "category": "Survival analysis",
+  "tags": [
+   "Nelson-Aalen",
+   "cumulative hazard",
+   "survival",
+   "log-rank"
+  ],
+  "url": "survival/cumulative-hazard/"
+ },
+ {
+  "title": "Adjusted survival curves",
+  "summary": "Cox model\u2013predicted survival for several ages, other covariates held at their mean.",
+  "r": "survminer::ggadjustedcurves()",
+  "category": "Survival analysis",
+  "tags": [
+   "Cox model",
+   "adjusted survival",
+   "prediction",
+   "survival",
+   "covariates"
+  ],
+  "url": "survival/adjusted-survival/"
+ },
+ {
+  "title": "STL decomposition",
+  "summary": "A series split into trend, seasonal and remainder components in stacked panels.",
+  "r": "feasts::STL() + autoplot()",
+  "category": "Time series",
+  "tags": [
+   "STL",
+   "decomposition",
+   "seasonality",
+   "trend",
+   "time series"
+  ],
+  "url": "time-series/stl-decomposition/"
+ },
+ {
+  "title": "ACF and PACF",
+  "summary": "Autocorrelation and partial autocorrelation lollipops with 95% significance bands.",
+  "r": "forecast::ggtsdisplay()",
+  "category": "Time series",
+  "tags": [
+   "autocorrelation",
+   "ACF",
+   "PACF",
+   "Ljung-Box",
+   "time series"
+  ],
+  "url": "time-series/acf-pacf/"
+ },
+ {
+  "title": "SARIMA forecast",
+  "summary": "Seasonal ARIMA forecast with 80% and 95% prediction intervals against held-out data.",
+  "r": "forecast::autoplot(forecast())",
+  "category": "Time series",
+  "tags": [
+   "ARIMA",
+   "SARIMA",
+   "forecast",
+   "prediction interval",
+   "RMSE"
+  ],
+  "url": "time-series/arima-forecast/"
+ },
+ {
+  "title": "Seasonal subseries plot",
+  "summary": "Each calendar month's values across the years, with the monthly mean as a reference.",
+  "r": "feasts::gg_subseries()",
+  "category": "Time series",
+  "tags": [
+   "seasonality",
+   "subseries",
+   "month plot",
+   "ANOVA",
+   "time series"
+  ],
+  "url": "time-series/seasonal-subseries/"
+ },
+ {
+  "title": "PCA biplot",
+  "summary": "Observations and variable loadings on the first two principal components.",
+  "r": "factoextra::fviz_pca_biplot()",
+  "category": "Multivariate & clustering",
+  "tags": [
+   "PCA",
+   "biplot",
+   "loadings",
+   "dimension reduction",
+   "ellipse"
+  ],
+  "url": "multivariate/pca-biplot/"
+ },
+ {
+  "title": "Scree plot",
+  "summary": "Variance explained per component, cumulative share and a parallel-analysis cut-off.",
+  "r": "factoextra::fviz_eig()",
+  "category": "Multivariate & clustering",
+  "tags": [
+   "PCA",
+   "scree plot",
+   "eigenvalues",
+   "parallel analysis",
+   "Kaiser"
+  ],
+  "url": "multivariate/scree-plot/"
+ },
+ {
+  "title": "Silhouette plot for k-means",
+  "summary": "k-means clusters in PCA space next to the per-observation silhouette widths.",
+  "r": "factoextra::fviz_silhouette()",
+  "category": "Multivariate & clustering",
+  "tags": [
+   "clustering",
+   "k-means",
+   "silhouette",
+   "PCA",
+   "cluster validation"
+  ],
+  "url": "multivariate/silhouette-clusters/"
+ },
+ {
+  "title": "Clustered heatmap",
+  "summary": "Z-scored heatmap with row and column dendrograms and a group colour bar.",
+  "r": "pheatmap::pheatmap() / ComplexHeatmap::Heatmap()",
+  "category": "Multivariate & clustering",
+  "tags": [
+   "heatmap",
+   "hierarchical clustering",
+   "dendrogram",
+   "z-score",
+   "clustermap"
+  ],
+  "url": "multivariate/clustered-heatmap/"
+ },
+ {
+  "title": "Bootstrap distribution",
+  "summary": "Resampled correlation with percentile and BCa 95% confidence intervals.",
+  "r": "boot::boot() + boot::boot.ci()",
+  "category": "Inference & uncertainty",
+  "tags": [
+   "bootstrap",
+   "BCa",
+   "percentile interval",
+   "correlation",
+   "resampling"
+  ],
+  "url": "inference-uncertainty/bootstrap-distribution/"
+ },
+ {
+  "title": "What a 95% confidence interval means",
+  "summary": "100 simulated 95% CIs for a mean; the ones that miss the true value are in red.",
+  "r": "teaching classic (e.g. TeachingDemos::ci.examp())",
+  "category": "Inference & uncertainty",
+  "tags": [
+   "confidence interval",
+   "coverage",
+   "simulation",
+   "t-interval",
+   "teaching"
+  ],
+  "url": "inference-uncertainty/confidence-intervals/"
+ },
+ {
+  "title": "Power curve",
+  "summary": "Power of a two-sample t-test against sample size for small, medium and large effects.",
+  "r": "pwr::pwr.t.test() + plot()",
+  "category": "Inference & uncertainty",
+  "tags": [
+   "power analysis",
+   "sample size",
+   "t-test",
+   "Cohen's d",
+   "study design"
+  ],
+  "url": "inference-uncertainty/power-curve/"
+ },
+ {
+  "title": "Bland\u2013Altman plot",
+  "summary": "Agreement between two measurement methods, with bias and 95% limits of agreement.",
+  "r": "BlandAltmanLeh::bland.altman.plot() / blandr::blandr.draw()",
+  "category": "Inference & uncertainty",
+  "tags": [
+   "agreement",
+   "Bland-Altman",
+   "limits of agreement",
+   "method comparison",
+   "bias"
+  ],
+  "url": "inference-uncertainty/bland-altman/"
+ },
+ {
+  "title": "Meta-analysis forest plot",
+  "summary": "Study risk ratios with CIs, random-effects pooled diamond and heterogeneity statistics.",
+  "r": "meta::forest() / metafor::forest()",
+  "category": "Inference & uncertainty",
+  "tags": [
+   "meta-analysis",
+   "forest plot",
+   "random effects",
+   "heterogeneity",
+   "risk ratio"
+  ],
+  "url": "inference-uncertainty/meta-analysis-forest/"
+ },
+ {
+  "title": "Funnel plot",
+  "summary": "Study effects against their standard error, with a pseudo 95% funnel and Egger's test.",
+  "r": "metafor::funnel() + metafor::regtest()",
+  "category": "Inference & uncertainty",
+  "tags": [
+   "meta-analysis",
+   "funnel plot",
+   "publication bias",
+   "Egger test",
+   "small-study effects"
+  ],
+  "url": "inference-uncertainty/funnel-plot/"
+ }
+]
