@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-message: "If you use Statlas, please cite it as below."
-title: "Statlas: The Python Gallery of Statistical Graphics"
+message: "If you use PyStatlas, please cite it as below."
+title: "PyStatlas: The Python Gallery of Statistical Graphics"
 abstract: "A curated, open-source atlas of statistical charts for Python — regression models, Likert scales, survival curves, diagnostics, meta-analysis and more — with self-contained, copy-paste code."
 type: software
 authors:

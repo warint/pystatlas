@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="site_src/favicon.svg" width="72" alt="Statlas logo">
+  <img src="site_src/favicon.svg" width="72" alt="PyStatlas logo">
 </p>
 
-<h1 align="center">Statlas</h1>
+<h1 align="center">PyStatlas</h1>
 
 <p align="center"><b>The Python gallery of statistical graphics.</b><br>
 {{N}} charts · {{K}} families · copy‑paste Python code · inspired by the R Graph Gallery, <code>ggstats</code> and <code>ggstatsplot</code>.</p>
@@ -15,7 +15,7 @@
 
 ---
 
-Statlas is a curated atlas of **statistical** charts for Python: coefficient plots, odds‑ratio forests, Likert scales, Kaplan–Meier curves with risk tables, regression diagnostics, Bland–Altman, meta‑analysis forests and more. Each chart is a single, self‑contained script built on **NumPy, pandas, Matplotlib, seaborn, SciPy, statsmodels, scikit‑learn and lifelines** — no downloads, no hidden helpers.
+PyStatlas is a curated atlas of **statistical** charts for Python: coefficient plots, odds‑ratio forests, Likert scales, Kaplan–Meier curves with risk tables, regression diagnostics, Bland–Altman, meta‑analysis forests and more. Each chart is a single, self‑contained script built on **NumPy, pandas, Matplotlib, seaborn, SciPy, statsmodels, scikit‑learn and lifelines** — no downloads, no hidden helpers.
 
 ## The repository *is* the gallery
 
@@ -59,14 +59,14 @@ The website in `docs/` is served by GitHub Pages.
 
 ## How to cite
 
-If Statlas helped your research, teaching or work, please cite it:
+If PyStatlas helped your research, teaching or work, please cite it:
 
-> Warin, T. (2026). *Statlas: The Python Gallery of Statistical Graphics*. https://warint.github.io/pystatlas/
+> Warin, T. (2026). *PyStatlas: The Python Gallery of Statistical Graphics*. https://warint.github.io/pystatlas/
 
 ```bibtex
 @misc{warin2026statlas,
   author       = {Warin, Thierry},
-  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  title        = {PyStatlas: The Python Gallery of Statistical Graphics},
   year         = {2026},
   howpublished = {\url{https://warint.github.io/pystatlas/}},
   note         = {Source code: https://github.com/warint/pystatlas}

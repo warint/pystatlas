@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>信頼区間付きの割合 · Statlas</title>
+<title>信頼区間付きの割合 · PyStatlas</title>
 <meta name="description" content="群ごとの割合をウィルソンの 95% 信頼区間とともに、並べ替えたドットプロットで示します。">
 <meta name="author" content="Thierry Warin">
 <link rel="author" href="https://www.warin.ca">
-<meta name="citation_title" content="Proportions with confidence intervals — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="citation_title" content="Proportions with confidence intervals — PyStatlas: The Python Gallery of Statistical Graphics">
 <meta name="citation_author" content="Warin, Thierry">
 <meta name="citation_publication_date" content="2026">
 <meta name="citation_online_date" content="2026/11/06">
@@ -15,7 +15,7 @@
 <meta name="citation_language" content="ja">
 <meta name="citation_public_url" content="https://warint.github.io/pystatlas/ja/proportions-surveys/proportions-with-ci/">
 <meta name="DC.creator" content="Warin, Thierry">
-<meta name="DC.title" content="Proportions with confidence intervals — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="DC.title" content="Proportions with confidence intervals — PyStatlas: The Python Gallery of Statistical Graphics">
 <meta name="DC.date" content="2026">
 <link rel="canonical" href="https://warint.github.io/pystatlas/ja/proportions-surveys/proportions-with-ci/">
 <link rel="alternate" hreflang="en" href="https://warint.github.io/pystatlas/proportions-surveys/proportions-with-ci/">
@@ -23,8 +23,8 @@
 <link rel="alternate" hreflang="ja" href="https://warint.github.io/pystatlas/ja/proportions-surveys/proportions-with-ci/">
 <link rel="alternate" hreflang="zh-Hans" href="https://warint.github.io/pystatlas/zh/proportions-surveys/proportions-with-ci/">
 <link rel="alternate" hreflang="x-default" href="https://warint.github.io/pystatlas/proportions-surveys/proportions-with-ci/">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Proportions with confidence intervals — Statlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/pystatlas/ja/proportions-surveys/proportions-with-ci/", "inLanguage": "ja", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "Statlas", "url": "https://warint.github.io/pystatlas/"}}</script>
-<meta property="og:title" content="信頼区間付きの割合 · Statlas">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Proportions with confidence intervals — PyStatlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/pystatlas/ja/proportions-surveys/proportions-with-ci/", "inLanguage": "ja", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "PyStatlas", "url": "https://warint.github.io/pystatlas/"}}</script>
+<meta property="og:title" content="信頼区間付きの割合 · PyStatlas">
 <meta property="og:description" content="群ごとの割合をウィルソンの 95% 信頼区間とともに、並べ替えたドットプロットで示します。">
 <meta property="og:locale" content="ja">
 <meta name="theme-color" content="#ffffff">
@@ -32,12 +32,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../../assets/style.css?v=e9d8945b">
+<link rel="stylesheet" href="../../../assets/style.css?v=9698cc97">
 </head>
 <body>
 <header class="nav">
   <div class="nav-inner">
-    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>Statlas</span></a>
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>PyStatlas</span></a>
     <nav class="nav-links">
       <a href="../../index.html#gallery" class="on">ギャラリー</a>
       <a href="../../style.html" class="">スタイル</a>
@@ -52,7 +52,7 @@
 <article class="wrap ex">
   <div class="crumbs"><a href="../../index.html">ギャラリー</a><span>/</span><a href="../../proportions-surveys/index.html">割合と調査データ</a></div>
   <header class="ex-head"><h1>信頼区間付きの割合</h1><p class="lede">群ごとの割合をウィルソンの 95% 信頼区間とともに、並べ替えたドットプロットで示します。</p>
-  <p class="byline">著者： <a href="https://www.warin.ca">Thierry Warin</a> · 収録： <a href="../../index.html">Statlas</a></p></header>
+  <p class="byline">著者： <a href="https://www.warin.ca">Thierry Warin</a> · 収録： <a href="../../index.html">PyStatlas</a></p></header>
   <figure class="figure"><a href="../../../proportions-surveys/proportions-with-ci/plot.png" target="_blank" rel="noopener"><img src="../../../proportions-surveys/proportions-with-ci/plot.png" alt="信頼区間付きの割合"></a></figure>
   <div class="ex-cols">
     <div class="prose"><p>「各群のうちどれだけの割合が…？」という問いには、棒グラフよりも、群ごとの点と信頼区間のほうが適しています。目は位置を比較でき、区間の幅からどの群が小さいかがすぐにわかります。教科書的なワルド区間ではなく <strong>ウィルソンのスコア区間</strong> を用いているのは、小さな群や 0 または 1 に近い割合でも 95% の被覆率を保てるためです。破線は全体の割合です。</p><p>データは <strong>statsmodels</strong> に同梱されている 1974年の <em>Redbook</em> 誌による既婚女性の調査（<code>sm.datasets.fair</code>）で、回答者の職業別に、婚外関係があったと回答した人の割合を示しています。区間は <code>statsmodels.stats.proportion.proportion_confint(method=&quot;wilson&quot;)</code> で求め、サブタイトルではすべての割合が等しいかどうかを <code>scipy.stats.chi2_contingency</code> で検定しています。</p><p class="note">コードおよび図中のテキストは英語です。</p></div>
@@ -115,20 +115,20 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre>
   </section>
-  <p class="hint">図にはオプションの <a href="../../style.html">Statlas スタイル</a> を使用しています。同じ見た目にするには <code>plt.style.use("statlas.mplstyle")</code> を追加してください。</p>
+  <p class="hint">図にはオプションの <a href="../../style.html">PyStatlas スタイル</a> を使用しています。同じ見た目にするには <code>plt.style.use("statlas.mplstyle")</code> を追加してください。</p>
   <section class="cite" id="cite">
   <div class="cite-head"><h2>引用方法</h2>
-  <p>Statlas は <a href="https://www.warin.ca">Thierry Warin</a> が作成・運営しています。研究や業務に役立った場合は、ぜひ引用してください。</p></div>
-  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). Proportions with confidence intervals. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/proportions-surveys/proportions-with-ci/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). Proportions with confidence intervals. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/proportions-surveys/proportions-with-ci/">コピー</button></div>
+  <p>PyStatlas は <a href="https://www.warin.ca">Thierry Warin</a> が作成・運営しています。研究や業務に役立った場合は、ぜひ引用してください。</p></div>
+  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). Proportions with confidence intervals. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/proportions-surveys/proportions-with-ci/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). Proportions with confidence intervals. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/proportions-surveys/proportions-with-ci/">コピー</button></div>
   <div class="cite-box"><pre class="cite-bib">@misc{warin2026statlas,
   author       = {Warin, Thierry},
-  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  title        = {PyStatlas: The Python Gallery of Statistical Graphics},
   year         = {2026},
   howpublished = {\url{https://warint.github.io/pystatlas/}},
   note         = {Source code: https://github.com/warint/pystatlas}
 }</pre><button class="btn ghost" data-copy-text="@misc{warin2026statlas,
   author       = {Warin, Thierry},
-  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  title        = {PyStatlas: The Python Gallery of Statistical Graphics},
   year         = {2026},
   howpublished = {\url{https://warint.github.io/pystatlas/}},
   note         = {Source code: https://github.com/warint/pystatlas}
@@ -151,11 +151,11 @@
 </main>
 <footer class="foot">
   <div class="wrap foot-inner">
-    <div><strong>Statlas</strong> · 統計グラフのための Python ギャラリー<br>制作： <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">引用方法</a></div>
+    <div><strong>PyStatlas</strong> · 統計グラフのための Python ギャラリー<br>制作： <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">引用方法</a></div>
     <div class="foot-links"><a href="https://github.com/warint/pystatlas">GitHub</a><a href="../../style.html">プロットスタイル</a><a href="https://github.com/warint/pystatlas/blob/main/CONTRIBUTING.md">貢献する</a><span>MIT ライセンス</span></div>
   </div>
   <div class="wrap foot-langs"><a href="../../../proportions-surveys/proportions-with-ci/" hreflang="en" lang="en">English</a><a href="../../../fr/proportions-surveys/proportions-with-ci/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/proportions-surveys/proportions-with-ci/" hreflang="ja" lang="ja" class=on aria-current=true>日本語</a><a href="../../../zh/proportions-surveys/proportions-with-ci/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div>
 </footer>
-<script src="../../../assets/app.js?v=e9d8945b"></script>
+<script src="../../../assets/app.js?v=9698cc97"></script>
 </body>
 </html>

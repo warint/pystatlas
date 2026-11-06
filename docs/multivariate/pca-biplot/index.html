@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PCA biplot · Statlas</title>
+<title>PCA biplot · PyStatlas</title>
 <meta name="description" content="Observations and variable loadings on the first two principal components.">
 <meta name="author" content="Thierry Warin">
 <link rel="author" href="https://www.warin.ca">
-<meta name="citation_title" content="PCA biplot — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="citation_title" content="PCA biplot — PyStatlas: The Python Gallery of Statistical Graphics">
 <meta name="citation_author" content="Warin, Thierry">
 <meta name="citation_publication_date" content="2026">
 <meta name="citation_online_date" content="2026/11/06">
@@ -15,7 +15,7 @@
 <meta name="citation_language" content="en">
 <meta name="citation_public_url" content="https://warint.github.io/pystatlas/multivariate/pca-biplot/">
 <meta name="DC.creator" content="Warin, Thierry">
-<meta name="DC.title" content="PCA biplot — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="DC.title" content="PCA biplot — PyStatlas: The Python Gallery of Statistical Graphics">
 <meta name="DC.date" content="2026">
 <link rel="canonical" href="https://warint.github.io/pystatlas/multivariate/pca-biplot/">
 <link rel="alternate" hreflang="en" href="https://warint.github.io/pystatlas/multivariate/pca-biplot/">
@@ -23,8 +23,8 @@
 <link rel="alternate" hreflang="ja" href="https://warint.github.io/pystatlas/ja/multivariate/pca-biplot/">
 <link rel="alternate" hreflang="zh-Hans" href="https://warint.github.io/pystatlas/zh/multivariate/pca-biplot/">
 <link rel="alternate" hreflang="x-default" href="https://warint.github.io/pystatlas/multivariate/pca-biplot/">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "PCA biplot — Statlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/pystatlas/multivariate/pca-biplot/", "inLanguage": "en", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "Statlas", "url": "https://warint.github.io/pystatlas/"}}</script>
-<meta property="og:title" content="PCA biplot · Statlas">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "PCA biplot — PyStatlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/pystatlas/multivariate/pca-biplot/", "inLanguage": "en", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "PyStatlas", "url": "https://warint.github.io/pystatlas/"}}</script>
+<meta property="og:title" content="PCA biplot · PyStatlas">
 <meta property="og:description" content="Observations and variable loadings on the first two principal components.">
 <meta property="og:locale" content="en">
 <meta name="theme-color" content="#ffffff">
@@ -32,12 +32,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../assets/style.css?v=e9d8945b">
+<link rel="stylesheet" href="../../assets/style.css?v=9698cc97">
 </head>
 <body>
 <header class="nav">
   <div class="nav-inner">
-    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>Statlas</span></a>
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>PyStatlas</span></a>
     <nav class="nav-links">
       <a href="../../index.html#gallery" class="on">Gallery</a>
       <a href="../../style.html" class="">Style</a>
@@ -52,7 +52,7 @@
 <article class="wrap ex">
   <div class="crumbs"><a href="../../index.html">Gallery</a><span>/</span><a href="../../multivariate/index.html">Multivariate &amp; clustering</a></div>
   <header class="ex-head"><h1>PCA biplot</h1><p class="lede">Observations and variable loadings on the first two principal components.</p>
-  <p class="byline">By <a href="https://www.warin.ca">Thierry Warin</a> · part of <a href="../../index.html">Statlas</a></p></header>
+  <p class="byline">By <a href="https://www.warin.ca">Thierry Warin</a> · part of <a href="../../index.html">PyStatlas</a></p></header>
   <figure class="figure"><a href="../../multivariate/pca-biplot/plot.png" target="_blank" rel="noopener"><img src="../../multivariate/pca-biplot/plot.png" alt="PCA biplot"></a></figure>
   <div class="ex-cols">
     <div class="prose"><p>A biplot overlays two things on the same principal-component plane: the
@@ -131,20 +131,20 @@ printed on each axis.</p></div>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre>
   </section>
-  <p class="hint">Figures use the optional <a href="../../style.html">Statlas style</a>: add <code>plt.style.use("statlas.mplstyle")</code> to match the look exactly.</p>
+  <p class="hint">Figures use the optional <a href="../../style.html">PyStatlas style</a>: add <code>plt.style.use("statlas.mplstyle")</code> to match the look exactly.</p>
   <section class="cite" id="cite">
   <div class="cite-head"><h2>How to cite</h2>
-  <p>Statlas is created and maintained by <a href="https://www.warin.ca">Thierry Warin</a>. If it helped your work, please cite it.</p></div>
-  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). PCA biplot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/multivariate/pca-biplot/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). PCA biplot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/multivariate/pca-biplot/">Copy</button></div>
+  <p>PyStatlas is created and maintained by <a href="https://www.warin.ca">Thierry Warin</a>. If it helped your work, please cite it.</p></div>
+  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). PCA biplot. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/multivariate/pca-biplot/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). PCA biplot. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/multivariate/pca-biplot/">Copy</button></div>
   <div class="cite-box"><pre class="cite-bib">@misc{warin2026statlas,
   author       = {Warin, Thierry},
-  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  title        = {PyStatlas: The Python Gallery of Statistical Graphics},
   year         = {2026},
   howpublished = {\url{https://warint.github.io/pystatlas/}},
   note         = {Source code: https://github.com/warint/pystatlas}
 }</pre><button class="btn ghost" data-copy-text="@misc{warin2026statlas,
   author       = {Warin, Thierry},
-  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  title        = {PyStatlas: The Python Gallery of Statistical Graphics},
   year         = {2026},
   howpublished = {\url{https://warint.github.io/pystatlas/}},
   note         = {Source code: https://github.com/warint/pystatlas}
@@ -167,11 +167,11 @@ printed on each axis.</p></div>
 </main>
 <footer class="foot">
   <div class="wrap foot-inner">
-    <div><strong>Statlas</strong> · The Python gallery of statistical graphics<br>Created by <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">How to cite</a></div>
+    <div><strong>PyStatlas</strong> · The Python gallery of statistical graphics<br>Created by <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">How to cite</a></div>
     <div class="foot-links"><a href="https://github.com/warint/pystatlas">GitHub</a><a href="../../style.html">Plot style</a><a href="https://github.com/warint/pystatlas/blob/main/CONTRIBUTING.md">Contribute</a><span>MIT License</span></div>
   </div>
   <div class="wrap foot-langs"><a href="../../multivariate/pca-biplot/" hreflang="en" lang="en" class=on aria-current=true>English</a><a href="../../fr/multivariate/pca-biplot/" hreflang="fr" lang="fr">Français</a><a href="../../ja/multivariate/pca-biplot/" hreflang="ja" lang="ja">日本語</a><a href="../../zh/multivariate/pca-biplot/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div>
 </footer>
-<script src="../../assets/app.js?v=e9d8945b"></script>
+<script src="../../assets/app.js?v=9698cc97"></script>
 </body>
 </html>

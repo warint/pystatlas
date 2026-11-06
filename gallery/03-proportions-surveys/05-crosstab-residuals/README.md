@@ -80,6 +80,6 @@ plt.show()
 
 ---
 
-**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/proportions-surveys/crosstab-residuals/) · [← Proportions & surveys](../README.md)
+**PyStatlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/proportions-surveys/crosstab-residuals/) · [← Proportions & surveys](../README.md)
 
-**Cite:** Warin, T. (2026). Cross-table with standardized residuals. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/proportions-surveys/crosstab-residuals/
+**Cite:** Warin, T. (2026). Cross-table with standardized residuals. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/proportions-surveys/crosstab-residuals/

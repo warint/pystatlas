@@ -27,7 +27,7 @@ ui:
   copied: コピーしました ✓
   copy_bibtex: BibTeX をコピー
   hint: "図にはオプションの {style_link} を使用しています。同じ見た目にするには {code} を追加してください。"
-  style_link: Statlas スタイル
+  style_link: PyStatlas スタイル
   code_note: コードおよび図中のテキストは英語です。
   previous: 前へ
   next: 次へ
@@ -39,7 +39,7 @@ ui:
   contribute: 貢献する
   license: MIT ライセンス
   style_title: プロットスタイル
-  style_h1: Statlas スタイル
+  style_h1: PyStatlas スタイル
   style_lede: "小さな Matplotlib スタイルシートひとつで、すべてのグラフに落ち着いた統一感を与えます。明快な配色、余計な装飾のない画面、たっぷりとした余白。Matplotlib、seaborn、pandas のプロット機能で利用できます。"
   step1_h: ダウンロード
   step1_p: "{file} をプロジェクトに保存します。"

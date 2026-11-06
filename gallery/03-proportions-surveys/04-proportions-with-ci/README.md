@@ -71,6 +71,6 @@ plt.show()
 
 ---
 
-**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/proportions-surveys/proportions-with-ci/) · [← Proportions & surveys](../README.md)
+**PyStatlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/proportions-surveys/proportions-with-ci/) · [← Proportions & surveys](../README.md)
 
-**Cite:** Warin, T. (2026). Proportions with confidence intervals. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/proportions-surveys/proportions-with-ci/
+**Cite:** Warin, T. (2026). Proportions with confidence intervals. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/proportions-surveys/proportions-with-ci/

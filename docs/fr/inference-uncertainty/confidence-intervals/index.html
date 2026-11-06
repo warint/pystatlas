@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ce que signifie un intervalle de confiance à 95 % · Statlas</title>
+<title>Ce que signifie un intervalle de confiance à 95 % · PyStatlas</title>
 <meta name="description" content="100 IC à 95 % simulés pour une moyenne ; ceux qui manquent la vraie valeur sont en rouge.">
 <meta name="author" content="Thierry Warin">
 <link rel="author" href="https://www.warin.ca">
-<meta name="citation_title" content="What a 95% confidence interval means — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="citation_title" content="What a 95% confidence interval means — PyStatlas: The Python Gallery of Statistical Graphics">
 <meta name="citation_author" content="Warin, Thierry">
 <meta name="citation_publication_date" content="2026">
 <meta name="citation_online_date" content="2026/11/06">
@@ -15,7 +15,7 @@
 <meta name="citation_language" content="fr">
 <meta name="citation_public_url" content="https://warint.github.io/pystatlas/fr/inference-uncertainty/confidence-intervals/">
 <meta name="DC.creator" content="Warin, Thierry">
-<meta name="DC.title" content="What a 95% confidence interval means — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="DC.title" content="What a 95% confidence interval means — PyStatlas: The Python Gallery of Statistical Graphics">
 <meta name="DC.date" content="2026">
 <link rel="canonical" href="https://warint.github.io/pystatlas/fr/inference-uncertainty/confidence-intervals/">
 <link rel="alternate" hreflang="en" href="https://warint.github.io/pystatlas/inference-uncertainty/confidence-intervals/">
@@ -23,8 +23,8 @@
 <link rel="alternate" hreflang="ja" href="https://warint.github.io/pystatlas/ja/inference-uncertainty/confidence-intervals/">
 <link rel="alternate" hreflang="zh-Hans" href="https://warint.github.io/pystatlas/zh/inference-uncertainty/confidence-intervals/">
 <link rel="alternate" hreflang="x-default" href="https://warint.github.io/pystatlas/inference-uncertainty/confidence-intervals/">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "What a 95% confidence interval means — Statlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/pystatlas/fr/inference-uncertainty/confidence-intervals/", "inLanguage": "fr", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "Statlas", "url": "https://warint.github.io/pystatlas/"}}</script>
-<meta property="og:title" content="Ce que signifie un intervalle de confiance à 95 % · Statlas">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "What a 95% confidence interval means — PyStatlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/pystatlas/fr/inference-uncertainty/confidence-intervals/", "inLanguage": "fr", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "PyStatlas", "url": "https://warint.github.io/pystatlas/"}}</script>
+<meta property="og:title" content="Ce que signifie un intervalle de confiance à 95 % · PyStatlas">
 <meta property="og:description" content="100 IC à 95 % simulés pour une moyenne ; ceux qui manquent la vraie valeur sont en rouge.">
 <meta property="og:locale" content="fr">
 <meta name="theme-color" content="#ffffff">
@@ -32,12 +32,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../../assets/style.css?v=e9d8945b">
+<link rel="stylesheet" href="../../../assets/style.css?v=9698cc97">
 </head>
 <body>
 <header class="nav">
   <div class="nav-inner">
-    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>Statlas</span></a>
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>PyStatlas</span></a>
     <nav class="nav-links">
       <a href="../../index.html#gallery" class="on">Galerie</a>
       <a href="../../style.html" class="">Style</a>
@@ -52,7 +52,7 @@
 <article class="wrap ex">
   <div class="crumbs"><a href="../../index.html">Galerie</a><span>/</span><a href="../../inference-uncertainty/index.html">Inférence et incertitude</a></div>
   <header class="ex-head"><h1>Ce que signifie un intervalle de confiance à 95 %</h1><p class="lede">100 IC à 95 % simulés pour une moyenne ; ceux qui manquent la vraie valeur sont en rouge.</p>
-  <p class="byline">Par <a href="https://www.warin.ca">Thierry Warin</a> · fait partie de <a href="../../index.html">Statlas</a></p></header>
+  <p class="byline">Par <a href="https://www.warin.ca">Thierry Warin</a> · fait partie de <a href="../../index.html">PyStatlas</a></p></header>
   <figure class="figure"><a href="../../../inference-uncertainty/confidence-intervals/plot.png" target="_blank" rel="noopener"><img src="../../../inference-uncertainty/confidence-intervals/plot.png" alt="Ce que signifie un intervalle de confiance à 95 %"></a></figure>
   <div class="ex-cols">
     <div class="prose"><p>« 95 % de confiance » est une propriété de la <em>procédure</em>, et non d&#x27;un intervalle particulier. Ici, la même étude — un échantillon de 25 individus tirés d&#x27;une population de moyenne connue égale à 100 — est répétée 100 fois, et chaque ligne horizontale est l&#x27;intervalle t à 95 % obtenu autour de la moyenne de l&#x27;échantillon. Environ 95 d&#x27;entre eux couvrent la vraie moyenne (ligne en tirets) ; les quelques intervalles qui la manquent sont tracés en rouge. Les largeurs varient aussi, car chaque échantillon estime son propre écart type.</p><p>Les données sont simulées avec <code>numpy</code> (graine fixe, population normale, μ = 100, σ = 15) et les intervalles utilisent <code>scipy.stats.t.interval</code>.</p><p class="note">Le code et le texte à l&#x27;intérieur des figures sont en anglais.</p></div>
@@ -102,20 +102,20 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre>
   </section>
-  <p class="hint">Les figures utilisent le <a href="../../style.html">style Statlas</a> (facultatif) : ajoutez <code>plt.style.use("statlas.mplstyle")</code> pour obtenir exactement le même rendu.</p>
+  <p class="hint">Les figures utilisent le <a href="../../style.html">style PyStatlas</a> (facultatif) : ajoutez <code>plt.style.use("statlas.mplstyle")</code> pour obtenir exactement le même rendu.</p>
   <section class="cite" id="cite">
   <div class="cite-head"><h2>Comment citer</h2>
-  <p>Statlas est créé et maintenu par <a href="https://www.warin.ca">Thierry Warin</a>. S'il vous a été utile dans vos travaux, merci de le citer.</p></div>
-  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). What a 95% confidence interval means. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/inference-uncertainty/confidence-intervals/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). What a 95% confidence interval means. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/inference-uncertainty/confidence-intervals/">Copier</button></div>
+  <p>PyStatlas est créé et maintenu par <a href="https://www.warin.ca">Thierry Warin</a>. S'il vous a été utile dans vos travaux, merci de le citer.</p></div>
+  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). What a 95% confidence interval means. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/inference-uncertainty/confidence-intervals/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). What a 95% confidence interval means. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/inference-uncertainty/confidence-intervals/">Copier</button></div>
   <div class="cite-box"><pre class="cite-bib">@misc{warin2026statlas,
   author       = {Warin, Thierry},
-  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  title        = {PyStatlas: The Python Gallery of Statistical Graphics},
   year         = {2026},
   howpublished = {\url{https://warint.github.io/pystatlas/}},
   note         = {Source code: https://github.com/warint/pystatlas}
 }</pre><button class="btn ghost" data-copy-text="@misc{warin2026statlas,
   author       = {Warin, Thierry},
-  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  title        = {PyStatlas: The Python Gallery of Statistical Graphics},
   year         = {2026},
   howpublished = {\url{https://warint.github.io/pystatlas/}},
   note         = {Source code: https://github.com/warint/pystatlas}
@@ -138,11 +138,11 @@
 </main>
 <footer class="foot">
   <div class="wrap foot-inner">
-    <div><strong>Statlas</strong> · La galerie Python des graphiques statistiques<br>Créé par <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">Comment citer</a></div>
+    <div><strong>PyStatlas</strong> · La galerie Python des graphiques statistiques<br>Créé par <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">Comment citer</a></div>
     <div class="foot-links"><a href="https://github.com/warint/pystatlas">GitHub</a><a href="../../style.html">Style des graphiques</a><a href="https://github.com/warint/pystatlas/blob/main/CONTRIBUTING.md">Contribuer</a><span>Licence MIT</span></div>
   </div>
   <div class="wrap foot-langs"><a href="../../../inference-uncertainty/confidence-intervals/" hreflang="en" lang="en">English</a><a href="../../../fr/inference-uncertainty/confidence-intervals/" hreflang="fr" lang="fr" class=on aria-current=true>Français</a><a href="../../../ja/inference-uncertainty/confidence-intervals/" hreflang="ja" lang="ja">日本語</a><a href="../../../zh/inference-uncertainty/confidence-intervals/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div>
 </footer>
-<script src="../../../assets/app.js?v=e9d8945b"></script>
+<script src="../../../assets/app.js?v=9698cc97"></script>
 </body>
 </html>

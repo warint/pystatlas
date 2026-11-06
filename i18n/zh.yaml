@@ -26,7 +26,7 @@ ui:
   copied: 已复制 ✓
   copy_bibtex: 复制 BibTeX
   hint: '图表使用了可选的 {style_link}：添加 {code} 即可完全还原其外观。'
-  style_link: Statlas 样式
+  style_link: PyStatlas 样式
   code_note: 代码及图中文字均为英文。
   previous: 上一个
   next: 下一个
@@ -38,7 +38,7 @@ ui:
   contribute: 参与贡献
   license: MIT 许可证
   style_title: 绘图样式
-  style_h1: Statlas 样式
+  style_h1: PyStatlas 样式
   style_lede: 一个小巧的 Matplotlib 样式表，让每张图表都呈现同样沉静的外观：色彩清晰、没有冗余装饰、留白充裕。它适用于 Matplotlib、seaborn 和 pandas 绘图。
   step1_h: 下载
   step1_p: '将 {file} 下载到你的项目中。'

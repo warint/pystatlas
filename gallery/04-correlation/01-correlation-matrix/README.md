@@ -76,6 +76,6 @@ plt.show()
 
 ---
 
-**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/correlation/correlation-matrix/) · [← Correlation & association](../README.md)
+**PyStatlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/correlation/correlation-matrix/) · [← Correlation & association](../README.md)
 
-**Cite:** Warin, T. (2026). Correlation matrix. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/correlation/correlation-matrix/
+**Cite:** Warin, T. (2026). Correlation matrix. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/correlation/correlation-matrix/

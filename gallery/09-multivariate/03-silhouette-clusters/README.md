@@ -80,6 +80,6 @@ plt.show()
 
 ---
 
-**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/multivariate/silhouette-clusters/) · [← Multivariate & clustering](../README.md)
+**PyStatlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/multivariate/silhouette-clusters/) · [← Multivariate & clustering](../README.md)
 
-**Cite:** Warin, T. (2026). Silhouette plot for k-means. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/multivariate/silhouette-clusters/
+**Cite:** Warin, T. (2026). Silhouette plot for k-means. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/multivariate/silhouette-clusters/

@@ -1,4 +1,4 @@
-# Contributing to Statlas
+# Contributing to PyStatlas
 
 Every chart is a folder. The folder tree **is** the website.
 

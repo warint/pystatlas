@@ -1,4 +1,4 @@
-# Statlas — a calm, Apple-inspired Matplotlib style
+# PyStatlas — a calm, Apple-inspired Matplotlib style
 # Usage: plt.style.use("statlas.mplstyle")
 
 figure.figsize      : 8, 5

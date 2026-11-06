@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>分位数回归过程 · Statlas</title>
+<title>分位数回归过程 · PyStatlas</title>
 <meta name="description" content="斜率如何随条件分布变化，并与单一的 OLS 估计相对照。">
 <meta name="author" content="Thierry Warin">
 <link rel="author" href="https://www.warin.ca">
-<meta name="citation_title" content="Quantile regression process — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="citation_title" content="Quantile regression process — PyStatlas: The Python Gallery of Statistical Graphics">
 <meta name="citation_author" content="Warin, Thierry">
 <meta name="citation_publication_date" content="2026">
 <meta name="citation_online_date" content="2026/11/06">
@@ -15,7 +15,7 @@
 <meta name="citation_language" content="zh">
 <meta name="citation_public_url" content="https://warint.github.io/pystatlas/zh/regression-models/quantile-regression/">
 <meta name="DC.creator" content="Warin, Thierry">
-<meta name="DC.title" content="Quantile regression process — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="DC.title" content="Quantile regression process — PyStatlas: The Python Gallery of Statistical Graphics">
 <meta name="DC.date" content="2026">
 <link rel="canonical" href="https://warint.github.io/pystatlas/zh/regression-models/quantile-regression/">
 <link rel="alternate" hreflang="en" href="https://warint.github.io/pystatlas/regression-models/quantile-regression/">
@@ -23,8 +23,8 @@
 <link rel="alternate" hreflang="ja" href="https://warint.github.io/pystatlas/ja/regression-models/quantile-regression/">
 <link rel="alternate" hreflang="zh-Hans" href="https://warint.github.io/pystatlas/zh/regression-models/quantile-regression/">
 <link rel="alternate" hreflang="x-default" href="https://warint.github.io/pystatlas/regression-models/quantile-regression/">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Quantile regression process — Statlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/pystatlas/zh/regression-models/quantile-regression/", "inLanguage": "zh-Hans", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "Statlas", "url": "https://warint.github.io/pystatlas/"}}</script>
-<meta property="og:title" content="分位数回归过程 · Statlas">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Quantile regression process — PyStatlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/pystatlas/zh/regression-models/quantile-regression/", "inLanguage": "zh-Hans", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "PyStatlas", "url": "https://warint.github.io/pystatlas/"}}</script>
+<meta property="og:title" content="分位数回归过程 · PyStatlas">
 <meta property="og:description" content="斜率如何随条件分布变化，并与单一的 OLS 估计相对照。">
 <meta property="og:locale" content="zh-Hans">
 <meta name="theme-color" content="#ffffff">
@@ -32,12 +32,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../../assets/style.css?v=e9d8945b">
+<link rel="stylesheet" href="../../../assets/style.css?v=9698cc97">
 </head>
 <body>
 <header class="nav">
   <div class="nav-inner">
-    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>Statlas</span></a>
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>PyStatlas</span></a>
     <nav class="nav-links">
       <a href="../../index.html#gallery" class="on">图库</a>
       <a href="../../style.html" class="">样式</a>
@@ -52,7 +52,7 @@
 <article class="wrap ex">
   <div class="crumbs"><a href="../../index.html">图库</a><span>/</span><a href="../../regression-models/index.html">回归模型</a></div>
   <header class="ex-head"><h1>分位数回归过程</h1><p class="lede">斜率如何随条件分布变化，并与单一的 OLS 估计相对照。</p>
-  <p class="byline">作者 <a href="https://www.warin.ca">Thierry Warin</a> · 隶属于 <a href="../../index.html">Statlas</a></p></header>
+  <p class="byline">作者 <a href="https://www.warin.ca">Thierry Warin</a> · 隶属于 <a href="../../index.html">PyStatlas</a></p></header>
   <figure class="figure"><a href="../../../regression-models/quantile-regression/plot.png" target="_blank" rel="noopener"><img src="../../../regression-models/quantile-regression/plot.png" alt="分位数回归过程"></a></figure>
   <div class="ex-cols">
     <div class="prose"><p>OLS 只估计一个斜率：对条件<strong>均值</strong>的效应。分位数回归则为每个条件分位数 τ 估计一个斜率，从而可以看出某个预测变量是在拉伸分布，而不仅仅是平移分布。深色线是 τ = 0.05 … 0.95 时的分位数回归系数及其 95% 置信带；橙色线和虚线分别是 OLS 估计及其 95% 置信区间，按构造为常数。左图展示数据以及若干条拟合的分位数回归线。</p><p>数据为 Engel（1857）对 235 个比利时工人家庭的家庭预算调查，由 <strong>statsmodels</strong> 自带（<code>sm.datasets.engel</code>）。模型用 <code>smf.quantreg().fit(q=τ)</code> 和 <code>smf.ols()</code> 拟合。</p><p class="note">代码及图中文字均为英文。</p></div>
@@ -121,20 +121,20 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre>
   </section>
-  <p class="hint">图表使用了可选的 <a href="../../style.html">Statlas 样式</a>：添加 <code>plt.style.use("statlas.mplstyle")</code> 即可完全还原其外观。</p>
+  <p class="hint">图表使用了可选的 <a href="../../style.html">PyStatlas 样式</a>：添加 <code>plt.style.use("statlas.mplstyle")</code> 即可完全还原其外观。</p>
   <section class="cite" id="cite">
   <div class="cite-head"><h2>如何引用</h2>
-  <p>Statlas 由 <a href="https://www.warin.ca">Thierry Warin</a> 创建并维护。如果它对你的工作有所帮助，敬请引用。</p></div>
-  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). Quantile regression process. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/regression-models/quantile-regression/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). Quantile regression process. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/regression-models/quantile-regression/">复制</button></div>
+  <p>PyStatlas 由 <a href="https://www.warin.ca">Thierry Warin</a> 创建并维护。如果它对你的工作有所帮助，敬请引用。</p></div>
+  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). Quantile regression process. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/regression-models/quantile-regression/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). Quantile regression process. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/regression-models/quantile-regression/">复制</button></div>
   <div class="cite-box"><pre class="cite-bib">@misc{warin2026statlas,
   author       = {Warin, Thierry},
-  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  title        = {PyStatlas: The Python Gallery of Statistical Graphics},
   year         = {2026},
   howpublished = {\url{https://warint.github.io/pystatlas/}},
   note         = {Source code: https://github.com/warint/pystatlas}
 }</pre><button class="btn ghost" data-copy-text="@misc{warin2026statlas,
   author       = {Warin, Thierry},
-  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  title        = {PyStatlas: The Python Gallery of Statistical Graphics},
   year         = {2026},
   howpublished = {\url{https://warint.github.io/pystatlas/}},
   note         = {Source code: https://github.com/warint/pystatlas}
@@ -157,11 +157,11 @@
 </main>
 <footer class="foot">
   <div class="wrap foot-inner">
-    <div><strong>Statlas</strong> · Python 统计图形库<br>创建者 <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">如何引用</a></div>
+    <div><strong>PyStatlas</strong> · Python 统计图形库<br>创建者 <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">如何引用</a></div>
     <div class="foot-links"><a href="https://github.com/warint/pystatlas">GitHub</a><a href="../../style.html">绘图样式</a><a href="https://github.com/warint/pystatlas/blob/main/CONTRIBUTING.md">参与贡献</a><span>MIT 许可证</span></div>
   </div>
   <div class="wrap foot-langs"><a href="../../../regression-models/quantile-regression/" hreflang="en" lang="en">English</a><a href="../../../fr/regression-models/quantile-regression/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/regression-models/quantile-regression/" hreflang="ja" lang="ja">日本語</a><a href="../../../zh/regression-models/quantile-regression/" hreflang="zh-Hans" lang="zh-Hans" class=on aria-current=true>中文</a></div>
 </footer>
-<script src="../../../assets/app.js?v=e9d8945b"></script>
+<script src="../../../assets/app.js?v=9698cc97"></script>
 </body>
 </html>

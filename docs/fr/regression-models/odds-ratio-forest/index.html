@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Graphique en forêt des rapports de cotes · Statlas</title>
+<title>Graphique en forêt des rapports de cotes · PyStatlas</title>
 <meta name="description" content="Rapports de cotes d&#x27;une régression logistique sur échelle logarithmique, accompagnés d&#x27;un tableau RC [IC à 95 %].">
 <meta name="author" content="Thierry Warin">
 <link rel="author" href="https://www.warin.ca">
-<meta name="citation_title" content="Odds-ratio forest plot — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="citation_title" content="Odds-ratio forest plot — PyStatlas: The Python Gallery of Statistical Graphics">
 <meta name="citation_author" content="Warin, Thierry">
 <meta name="citation_publication_date" content="2026">
 <meta name="citation_online_date" content="2026/11/06">
@@ -15,7 +15,7 @@
 <meta name="citation_language" content="fr">
 <meta name="citation_public_url" content="https://warint.github.io/pystatlas/fr/regression-models/odds-ratio-forest/">
 <meta name="DC.creator" content="Warin, Thierry">
-<meta name="DC.title" content="Odds-ratio forest plot — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="DC.title" content="Odds-ratio forest plot — PyStatlas: The Python Gallery of Statistical Graphics">
 <meta name="DC.date" content="2026">
 <link rel="canonical" href="https://warint.github.io/pystatlas/fr/regression-models/odds-ratio-forest/">
 <link rel="alternate" hreflang="en" href="https://warint.github.io/pystatlas/regression-models/odds-ratio-forest/">
@@ -23,8 +23,8 @@
 <link rel="alternate" hreflang="ja" href="https://warint.github.io/pystatlas/ja/regression-models/odds-ratio-forest/">
 <link rel="alternate" hreflang="zh-Hans" href="https://warint.github.io/pystatlas/zh/regression-models/odds-ratio-forest/">
 <link rel="alternate" hreflang="x-default" href="https://warint.github.io/pystatlas/regression-models/odds-ratio-forest/">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Odds-ratio forest plot — Statlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/pystatlas/fr/regression-models/odds-ratio-forest/", "inLanguage": "fr", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "Statlas", "url": "https://warint.github.io/pystatlas/"}}</script>
-<meta property="og:title" content="Graphique en forêt des rapports de cotes · Statlas">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Odds-ratio forest plot — PyStatlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/pystatlas/fr/regression-models/odds-ratio-forest/", "inLanguage": "fr", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "PyStatlas", "url": "https://warint.github.io/pystatlas/"}}</script>
+<meta property="og:title" content="Graphique en forêt des rapports de cotes · PyStatlas">
 <meta property="og:description" content="Rapports de cotes d&#x27;une régression logistique sur échelle logarithmique, accompagnés d&#x27;un tableau RC [IC à 95 %].">
 <meta property="og:locale" content="fr">
 <meta name="theme-color" content="#ffffff">
@@ -32,12 +32,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../../assets/style.css?v=e9d8945b">
+<link rel="stylesheet" href="../../../assets/style.css?v=9698cc97">
 </head>
 <body>
 <header class="nav">
   <div class="nav-inner">
-    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>Statlas</span></a>
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>PyStatlas</span></a>
     <nav class="nav-links">
       <a href="../../index.html#gallery" class="on">Galerie</a>
       <a href="../../style.html" class="">Style</a>
@@ -52,7 +52,7 @@
 <article class="wrap ex">
   <div class="crumbs"><a href="../../index.html">Galerie</a><span>/</span><a href="../../regression-models/index.html">Modèles de régression</a></div>
   <header class="ex-head"><h1>Graphique en forêt des rapports de cotes</h1><p class="lede">Rapports de cotes d&#x27;une régression logistique sur échelle logarithmique, accompagnés d&#x27;un tableau RC [IC à 95 %].</p>
-  <p class="byline">Par <a href="https://www.warin.ca">Thierry Warin</a> · fait partie de <a href="../../index.html">Statlas</a></p></header>
+  <p class="byline">Par <a href="https://www.warin.ca">Thierry Warin</a> · fait partie de <a href="../../index.html">PyStatlas</a></p></header>
   <figure class="figure"><a href="../../../regression-models/odds-ratio-forest/plot.png" target="_blank" rel="noopener"><img src="../../../regression-models/odds-ratio-forest/plot.png" alt="Graphique en forêt des rapports de cotes"></a></figure>
   <div class="ex-cols">
     <div class="prose"><p>Les coefficients logistiques sont des log-cotes ; une fois exponentiés, ils deviennent des <strong>rapports de cotes</strong>. Chaque point est la variation multiplicative de la cote de l&#x27;événement pour une variation d&#x27;une unité du prédicteur, le segment est son intervalle de confiance à 95 %, et la ligne en tirets à RC = 1 signifie « aucun effet ». Comme les rapports sont symétriques sur une échelle logarithmique (0,5 est aussi fort que 2), l&#x27;axe des x est logarithmique. La colonne de droite reprend les valeurs, comme le tableau d&#x27;un article.</p><p>Les données sont l&#x27;enquête <em>Redbook</em> de 1974 auprès de 6 366 femmes mariées, fournie avec <strong>statsmodels</strong> (<code>sm.datasets.fair</code>). La variable réponse indique si la répondante a déclaré au moins une relation extraconjugale ; le modèle est ajusté avec <code>smf.logit()</code> et les rapports de cotes sont les <code>np.exp()</code> de <code>params</code> et de <code>conf_int()</code>.</p><p class="note">Le code et le texte à l&#x27;intérieur des figures sont en anglais.</p></div>
@@ -128,20 +128,20 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre>
   </section>
-  <p class="hint">Les figures utilisent le <a href="../../style.html">style Statlas</a> (facultatif) : ajoutez <code>plt.style.use("statlas.mplstyle")</code> pour obtenir exactement le même rendu.</p>
+  <p class="hint">Les figures utilisent le <a href="../../style.html">style PyStatlas</a> (facultatif) : ajoutez <code>plt.style.use("statlas.mplstyle")</code> pour obtenir exactement le même rendu.</p>
   <section class="cite" id="cite">
   <div class="cite-head"><h2>Comment citer</h2>
-  <p>Statlas est créé et maintenu par <a href="https://www.warin.ca">Thierry Warin</a>. S'il vous a été utile dans vos travaux, merci de le citer.</p></div>
-  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). Odds-ratio forest plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/regression-models/odds-ratio-forest/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). Odds-ratio forest plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/regression-models/odds-ratio-forest/">Copier</button></div>
+  <p>PyStatlas est créé et maintenu par <a href="https://www.warin.ca">Thierry Warin</a>. S'il vous a été utile dans vos travaux, merci de le citer.</p></div>
+  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). Odds-ratio forest plot. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/regression-models/odds-ratio-forest/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). Odds-ratio forest plot. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/regression-models/odds-ratio-forest/">Copier</button></div>
   <div class="cite-box"><pre class="cite-bib">@misc{warin2026statlas,
   author       = {Warin, Thierry},
-  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  title        = {PyStatlas: The Python Gallery of Statistical Graphics},
   year         = {2026},
   howpublished = {\url{https://warint.github.io/pystatlas/}},
   note         = {Source code: https://github.com/warint/pystatlas}
 }</pre><button class="btn ghost" data-copy-text="@misc{warin2026statlas,
   author       = {Warin, Thierry},
-  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  title        = {PyStatlas: The Python Gallery of Statistical Graphics},
   year         = {2026},
   howpublished = {\url{https://warint.github.io/pystatlas/}},
   note         = {Source code: https://github.com/warint/pystatlas}
@@ -164,11 +164,11 @@
 </main>
 <footer class="foot">
   <div class="wrap foot-inner">
-    <div><strong>Statlas</strong> · La galerie Python des graphiques statistiques<br>Créé par <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">Comment citer</a></div>
+    <div><strong>PyStatlas</strong> · La galerie Python des graphiques statistiques<br>Créé par <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">Comment citer</a></div>
     <div class="foot-links"><a href="https://github.com/warint/pystatlas">GitHub</a><a href="../../style.html">Style des graphiques</a><a href="https://github.com/warint/pystatlas/blob/main/CONTRIBUTING.md">Contribuer</a><span>Licence MIT</span></div>
   </div>
   <div class="wrap foot-langs"><a href="../../../regression-models/odds-ratio-forest/" hreflang="en" lang="en">English</a><a href="../../../fr/regression-models/odds-ratio-forest/" hreflang="fr" lang="fr" class=on aria-current=true>Français</a><a href="../../../ja/regression-models/odds-ratio-forest/" hreflang="ja" lang="ja">日本語</a><a href="../../../zh/regression-models/odds-ratio-forest/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div>
 </footer>
-<script src="../../../assets/app.js?v=e9d8945b"></script>
+<script src="../../../assets/app.js?v=9698cc97"></script>
 </body>
 </html>

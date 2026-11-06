@@ -108,6 +108,6 @@ plt.show()
 
 ---
 
-**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/model-diagnostics/residual-diagnostics/) · [← Model diagnostics](../README.md)
+**PyStatlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/model-diagnostics/residual-diagnostics/) · [← Model diagnostics](../README.md)
 
-**Cite:** Warin, T. (2026). Residual diagnostics. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/model-diagnostics/residual-diagnostics/
+**Cite:** Warin, T. (2026). Residual diagnostics. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/model-diagnostics/residual-diagnostics/

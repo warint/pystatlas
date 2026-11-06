@@ -81,6 +81,6 @@ plt.show()
 
 ---
 
-**Statlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/correlation/correlogram-bubble/) · [← Correlation & association](../README.md)
+**PyStatlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/correlation/correlogram-bubble/) · [← Correlation & association](../README.md)
 
-**Cite:** Warin, T. (2026). Correlogram with clustering. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/correlation/correlogram-bubble/
+**Cite:** Warin, T. (2026). Correlogram with clustering. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/correlation/correlogram-bubble/

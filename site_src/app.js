@@ -1,4 +1,4 @@
-// Statlas — search, family filter, copy button, lightbox. No dependencies.
+// PyStatlas — search, family filter, copy button, lightbox. No dependencies.
 (function () {
   const q = document.getElementById("q");
   const chips = Array.from(document.querySelectorAll(".chip"));

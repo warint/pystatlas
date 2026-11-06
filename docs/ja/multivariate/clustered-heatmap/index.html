@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>クラスター化ヒートマップ · Statlas</title>
+<title>クラスター化ヒートマップ · PyStatlas</title>
 <meta name="description" content="行と列のデンドログラム、群のカラーバーを付けた Z スコアのヒートマップです。">
 <meta name="author" content="Thierry Warin">
 <link rel="author" href="https://www.warin.ca">
-<meta name="citation_title" content="Clustered heatmap — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="citation_title" content="Clustered heatmap — PyStatlas: The Python Gallery of Statistical Graphics">
 <meta name="citation_author" content="Warin, Thierry">
 <meta name="citation_publication_date" content="2026">
 <meta name="citation_online_date" content="2026/11/06">
@@ -15,7 +15,7 @@
 <meta name="citation_language" content="ja">
 <meta name="citation_public_url" content="https://warint.github.io/pystatlas/ja/multivariate/clustered-heatmap/">
 <meta name="DC.creator" content="Warin, Thierry">
-<meta name="DC.title" content="Clustered heatmap — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="DC.title" content="Clustered heatmap — PyStatlas: The Python Gallery of Statistical Graphics">
 <meta name="DC.date" content="2026">
 <link rel="canonical" href="https://warint.github.io/pystatlas/ja/multivariate/clustered-heatmap/">
 <link rel="alternate" hreflang="en" href="https://warint.github.io/pystatlas/multivariate/clustered-heatmap/">
@@ -23,8 +23,8 @@
 <link rel="alternate" hreflang="ja" href="https://warint.github.io/pystatlas/ja/multivariate/clustered-heatmap/">
 <link rel="alternate" hreflang="zh-Hans" href="https://warint.github.io/pystatlas/zh/multivariate/clustered-heatmap/">
 <link rel="alternate" hreflang="x-default" href="https://warint.github.io/pystatlas/multivariate/clustered-heatmap/">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Clustered heatmap — Statlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/pystatlas/ja/multivariate/clustered-heatmap/", "inLanguage": "ja", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "Statlas", "url": "https://warint.github.io/pystatlas/"}}</script>
-<meta property="og:title" content="クラスター化ヒートマップ · Statlas">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Clustered heatmap — PyStatlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/pystatlas/ja/multivariate/clustered-heatmap/", "inLanguage": "ja", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "PyStatlas", "url": "https://warint.github.io/pystatlas/"}}</script>
+<meta property="og:title" content="クラスター化ヒートマップ · PyStatlas">
 <meta property="og:description" content="行と列のデンドログラム、群のカラーバーを付けた Z スコアのヒートマップです。">
 <meta property="og:locale" content="ja">
 <meta name="theme-color" content="#ffffff">
@@ -32,12 +32,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../../assets/style.css?v=e9d8945b">
+<link rel="stylesheet" href="../../../assets/style.css?v=9698cc97">
 </head>
 <body>
 <header class="nav">
   <div class="nav-inner">
-    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>Statlas</span></a>
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>PyStatlas</span></a>
     <nav class="nav-links">
       <a href="../../index.html#gallery" class="on">ギャラリー</a>
       <a href="../../style.html" class="">スタイル</a>
@@ -52,7 +52,7 @@
 <article class="wrap ex">
   <div class="crumbs"><a href="../../index.html">ギャラリー</a><span>/</span><a href="../../multivariate/index.html">多変量解析とクラスタリング</a></div>
   <header class="ex-head"><h1>クラスター化ヒートマップ</h1><p class="lede">行と列のデンドログラム、群のカラーバーを付けた Z スコアのヒートマップです。</p>
-  <p class="byline">著者： <a href="https://www.warin.ca">Thierry Warin</a> · 収録： <a href="../../index.html">Statlas</a></p></header>
+  <p class="byline">著者： <a href="https://www.warin.ca">Thierry Warin</a> · 収録： <a href="../../index.html">PyStatlas</a></p></header>
   <figure class="figure"><a href="../../../multivariate/clustered-heatmap/plot.png" target="_blank" rel="noopener"><img src="../../../multivariate/clustered-heatmap/plot.png" alt="クラスター化ヒートマップ"></a></figure>
   <div class="ex-cols">
     <div class="prose"><p>各行が観測値、各列が変数、各セルがその z スコアです（変数の平均より低ければ青、高ければ赤）。行と列は <strong>階層的クラスタリング</strong>（ユークリッド距離に対するウォード法）によって並べ替えられ、デンドログラムが結合の履歴を示しています。左のカラーバーは各行の既知の群を示しているので、教師なしの樹形図がその群を再発見できているか、そしてどの変数が分割を左右しているかがひと目でわかります。</p><p>データは <strong>scikit-learn</strong> のワインデータセットに含まれる 178 本のワイン（3品種、13 種類の測定値）です。クラスタリングと描画は <code>seaborn.clustermap</code> で行い、<code>scipy.cluster.hierarchy</code> で行の樹形図を3つのクラスターに切断して、実際の品種に対する調整ランド指数を計算しています。</p><p class="note">コードおよび図中のテキストは英語です。</p></div>
@@ -115,20 +115,20 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre>
   </section>
-  <p class="hint">図にはオプションの <a href="../../style.html">Statlas スタイル</a> を使用しています。同じ見た目にするには <code>plt.style.use("statlas.mplstyle")</code> を追加してください。</p>
+  <p class="hint">図にはオプションの <a href="../../style.html">PyStatlas スタイル</a> を使用しています。同じ見た目にするには <code>plt.style.use("statlas.mplstyle")</code> を追加してください。</p>
   <section class="cite" id="cite">
   <div class="cite-head"><h2>引用方法</h2>
-  <p>Statlas は <a href="https://www.warin.ca">Thierry Warin</a> が作成・運営しています。研究や業務に役立った場合は、ぜひ引用してください。</p></div>
-  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). Clustered heatmap. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/multivariate/clustered-heatmap/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). Clustered heatmap. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/multivariate/clustered-heatmap/">コピー</button></div>
+  <p>PyStatlas は <a href="https://www.warin.ca">Thierry Warin</a> が作成・運営しています。研究や業務に役立った場合は、ぜひ引用してください。</p></div>
+  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). Clustered heatmap. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/multivariate/clustered-heatmap/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). Clustered heatmap. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/multivariate/clustered-heatmap/">コピー</button></div>
   <div class="cite-box"><pre class="cite-bib">@misc{warin2026statlas,
   author       = {Warin, Thierry},
-  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  title        = {PyStatlas: The Python Gallery of Statistical Graphics},
   year         = {2026},
   howpublished = {\url{https://warint.github.io/pystatlas/}},
   note         = {Source code: https://github.com/warint/pystatlas}
 }</pre><button class="btn ghost" data-copy-text="@misc{warin2026statlas,
   author       = {Warin, Thierry},
-  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  title        = {PyStatlas: The Python Gallery of Statistical Graphics},
   year         = {2026},
   howpublished = {\url{https://warint.github.io/pystatlas/}},
   note         = {Source code: https://github.com/warint/pystatlas}
@@ -151,11 +151,11 @@
 </main>
 <footer class="foot">
   <div class="wrap foot-inner">
-    <div><strong>Statlas</strong> · 統計グラフのための Python ギャラリー<br>制作： <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">引用方法</a></div>
+    <div><strong>PyStatlas</strong> · 統計グラフのための Python ギャラリー<br>制作： <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">引用方法</a></div>
     <div class="foot-links"><a href="https://github.com/warint/pystatlas">GitHub</a><a href="../../style.html">プロットスタイル</a><a href="https://github.com/warint/pystatlas/blob/main/CONTRIBUTING.md">貢献する</a><span>MIT ライセンス</span></div>
   </div>
   <div class="wrap foot-langs"><a href="../../../multivariate/clustered-heatmap/" hreflang="en" lang="en">English</a><a href="../../../fr/multivariate/clustered-heatmap/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/multivariate/clustered-heatmap/" hreflang="ja" lang="ja" class=on aria-current=true>日本語</a><a href="../../../zh/multivariate/clustered-heatmap/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div>
 </footer>
-<script src="../../../assets/app.js?v=e9d8945b"></script>
+<script src="../../../assets/app.js?v=9698cc97"></script>
 </body>
 </html>

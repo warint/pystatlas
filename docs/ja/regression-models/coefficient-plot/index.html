@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>係数プロット · Statlas</title>
+<title>係数プロット · PyStatlas</title>
 <meta name="description" content="回帰係数の推定値を 95% 信頼区間とともに、項ごとに1行で示します。">
 <meta name="author" content="Thierry Warin">
 <link rel="author" href="https://www.warin.ca">
-<meta name="citation_title" content="Coefficient plot — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="citation_title" content="Coefficient plot — PyStatlas: The Python Gallery of Statistical Graphics">
 <meta name="citation_author" content="Warin, Thierry">
 <meta name="citation_publication_date" content="2026">
 <meta name="citation_online_date" content="2026/11/06">
@@ -15,7 +15,7 @@
 <meta name="citation_language" content="ja">
 <meta name="citation_public_url" content="https://warint.github.io/pystatlas/ja/regression-models/coefficient-plot/">
 <meta name="DC.creator" content="Warin, Thierry">
-<meta name="DC.title" content="Coefficient plot — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="DC.title" content="Coefficient plot — PyStatlas: The Python Gallery of Statistical Graphics">
 <meta name="DC.date" content="2026">
 <link rel="canonical" href="https://warint.github.io/pystatlas/ja/regression-models/coefficient-plot/">
 <link rel="alternate" hreflang="en" href="https://warint.github.io/pystatlas/regression-models/coefficient-plot/">
@@ -23,8 +23,8 @@
 <link rel="alternate" hreflang="ja" href="https://warint.github.io/pystatlas/ja/regression-models/coefficient-plot/">
 <link rel="alternate" hreflang="zh-Hans" href="https://warint.github.io/pystatlas/zh/regression-models/coefficient-plot/">
 <link rel="alternate" hreflang="x-default" href="https://warint.github.io/pystatlas/regression-models/coefficient-plot/">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Coefficient plot — Statlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/pystatlas/ja/regression-models/coefficient-plot/", "inLanguage": "ja", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "Statlas", "url": "https://warint.github.io/pystatlas/"}}</script>
-<meta property="og:title" content="係数プロット · Statlas">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Coefficient plot — PyStatlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/pystatlas/ja/regression-models/coefficient-plot/", "inLanguage": "ja", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "PyStatlas", "url": "https://warint.github.io/pystatlas/"}}</script>
+<meta property="og:title" content="係数プロット · PyStatlas">
 <meta property="og:description" content="回帰係数の推定値を 95% 信頼区間とともに、項ごとに1行で示します。">
 <meta property="og:locale" content="ja">
 <meta name="theme-color" content="#ffffff">
@@ -32,12 +32,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../../assets/style.css?v=e9d8945b">
+<link rel="stylesheet" href="../../../assets/style.css?v=9698cc97">
 </head>
 <body>
 <header class="nav">
   <div class="nav-inner">
-    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>Statlas</span></a>
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>PyStatlas</span></a>
     <nav class="nav-links">
       <a href="../../index.html#gallery" class="on">ギャラリー</a>
       <a href="../../style.html" class="">スタイル</a>
@@ -52,7 +52,7 @@
 <article class="wrap ex">
   <div class="crumbs"><a href="../../index.html">ギャラリー</a><span>/</span><a href="../../regression-models/index.html">回帰モデル</a></div>
   <header class="ex-head"><h1>係数プロット</h1><p class="lede">回帰係数の推定値を 95% 信頼区間とともに、項ごとに1行で示します。</p>
-  <p class="byline">著者： <a href="https://www.warin.ca">Thierry Warin</a> · 収録： <a href="../../index.html">Statlas</a></p></header>
+  <p class="byline">著者： <a href="https://www.warin.ca">Thierry Warin</a> · 収録： <a href="../../index.html">PyStatlas</a></p></header>
   <figure class="figure"><a href="../../../regression-models/coefficient-plot/plot.png" target="_blank" rel="noopener"><img src="../../../regression-models/coefficient-plot/plot.png" alt="係数プロット"></a></figure>
   <div class="ex-cols">
     <div class="prose"><p>係数プロット（ドット・アンド・ウィスカープロットとも呼ばれます）は、回帰分析の表に代わるものです。各点が推定値、各線がその 95% 信頼区間で、破線はゼロを示します。区間がゼロをまたぐ項は灰色で描かれるため、有意な効果がひと目でわかります。</p><p>モデルは <strong>statsmodels</strong> の formula API を用いて、米国50州（＋DC）の凶悪犯罪率を説明しています。説明変数はあらかじめ標準化しているため、係数は直接比較できます。すなわち、説明変数が1標準偏差変化したときの人口 10 万人あたりの犯罪件数の変化です。</p><p class="note">コードおよび図中のテキストは英語です。</p></div>
@@ -114,20 +114,20 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre>
   </section>
-  <p class="hint">図にはオプションの <a href="../../style.html">Statlas スタイル</a> を使用しています。同じ見た目にするには <code>plt.style.use("statlas.mplstyle")</code> を追加してください。</p>
+  <p class="hint">図にはオプションの <a href="../../style.html">PyStatlas スタイル</a> を使用しています。同じ見た目にするには <code>plt.style.use("statlas.mplstyle")</code> を追加してください。</p>
   <section class="cite" id="cite">
   <div class="cite-head"><h2>引用方法</h2>
-  <p>Statlas は <a href="https://www.warin.ca">Thierry Warin</a> が作成・運営しています。研究や業務に役立った場合は、ぜひ引用してください。</p></div>
-  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). Coefficient plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/regression-models/coefficient-plot/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). Coefficient plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/regression-models/coefficient-plot/">コピー</button></div>
+  <p>PyStatlas は <a href="https://www.warin.ca">Thierry Warin</a> が作成・運営しています。研究や業務に役立った場合は、ぜひ引用してください。</p></div>
+  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). Coefficient plot. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/regression-models/coefficient-plot/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). Coefficient plot. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/regression-models/coefficient-plot/">コピー</button></div>
   <div class="cite-box"><pre class="cite-bib">@misc{warin2026statlas,
   author       = {Warin, Thierry},
-  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  title        = {PyStatlas: The Python Gallery of Statistical Graphics},
   year         = {2026},
   howpublished = {\url{https://warint.github.io/pystatlas/}},
   note         = {Source code: https://github.com/warint/pystatlas}
 }</pre><button class="btn ghost" data-copy-text="@misc{warin2026statlas,
   author       = {Warin, Thierry},
-  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  title        = {PyStatlas: The Python Gallery of Statistical Graphics},
   year         = {2026},
   howpublished = {\url{https://warint.github.io/pystatlas/}},
   note         = {Source code: https://github.com/warint/pystatlas}
@@ -150,11 +150,11 @@
 </main>
 <footer class="foot">
   <div class="wrap foot-inner">
-    <div><strong>Statlas</strong> · 統計グラフのための Python ギャラリー<br>制作： <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">引用方法</a></div>
+    <div><strong>PyStatlas</strong> · 統計グラフのための Python ギャラリー<br>制作： <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">引用方法</a></div>
     <div class="foot-links"><a href="https://github.com/warint/pystatlas">GitHub</a><a href="../../style.html">プロットスタイル</a><a href="https://github.com/warint/pystatlas/blob/main/CONTRIBUTING.md">貢献する</a><span>MIT ライセンス</span></div>
   </div>
   <div class="wrap foot-langs"><a href="../../../regression-models/coefficient-plot/" hreflang="en" lang="en">English</a><a href="../../../fr/regression-models/coefficient-plot/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/regression-models/coefficient-plot/" hreflang="ja" lang="ja" class=on aria-current=true>日本語</a><a href="../../../zh/regression-models/coefficient-plot/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div>
 </footer>
-<script src="../../../assets/app.js?v=e9d8945b"></script>
+<script src="../../../assets/app.js?v=9698cc97"></script>
 </body>
 </html>

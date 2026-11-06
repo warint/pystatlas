@@ -28,7 +28,7 @@ ui:
   copied: Copied ✓
   copy_bibtex: Copy BibTeX
   hint: 'Figures use the optional {style_link}: add {code} to match the look exactly.'
-  style_link: Statlas style
+  style_link: PyStatlas style
   code_note: The code and the text inside the figures are in English.
   previous: Previous
   next: Next
@@ -40,7 +40,7 @@ ui:
   contribute: Contribute
   license: MIT License
   style_title: Plot style
-  style_h1: The Statlas style
+  style_h1: The PyStatlas style
   style_lede: 'One small Matplotlib style sheet gives every chart the same calm look: clear colours, no
     chart junk, generous whitespace. It works with Matplotlib, seaborn and pandas plotting.'
   step1_h: Download
