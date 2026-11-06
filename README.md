@@ -9,6 +9,7 @@
 
 <p align="center">
   <a href="https://warint.github.io/statlas/"><b>Browse the gallery →</b></a><br>
+  <a href="https://warint.github.io/statlas/">English</a> · <a href="https://warint.github.io/statlas/fr/">Français</a> · <a href="https://warint.github.io/statlas/ja/">日本語</a> · <a href="https://warint.github.io/statlas/zh/">中文</a><br>
   Created by <a href="https://www.warin.ca"><b>Thierry Warin</b></a> · <a href="https://www.warin.ca">www.warin.ca</a>
 </p>
 
@@ -19,6 +20,7 @@ Statlas is a curated atlas of **statistical** charts for Python: coefficient plo
 ## The repository *is* the gallery
 
 ```
+i18n/                     website translations (en, fr, ja, zh)
 gallery/
   <NN-family>/
     _category.yaml        family title + summary

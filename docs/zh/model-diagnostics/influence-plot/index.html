@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh-Hans" data-copied="已复制 ✓">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>影响图 · Statlas</title>
+<meta name="description" content="学生化残差对杠杆值，气泡大小由 Cook 距离决定。">
+<meta name="author" content="Thierry Warin">
+<link rel="author" href="https://www.warin.ca">
+<meta name="citation_title" content="Influence plot — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="citation_author" content="Warin, Thierry">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_online_date" content="2026/11/06">
+<meta name="citation_publisher" content="Thierry Warin">
+<meta name="citation_language" content="zh">
+<meta name="citation_public_url" content="https://warint.github.io/statlas/zh/model-diagnostics/influence-plot/">
+<meta name="DC.creator" content="Warin, Thierry">
+<meta name="DC.title" content="Influence plot — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="DC.date" content="2026">
+<link rel="canonical" href="https://warint.github.io/statlas/zh/model-diagnostics/influence-plot/">
+<link rel="alternate" hreflang="en" href="https://warint.github.io/statlas/model-diagnostics/influence-plot/">
+<link rel="alternate" hreflang="fr" href="https://warint.github.io/statlas/fr/model-diagnostics/influence-plot/">
+<link rel="alternate" hreflang="ja" href="https://warint.github.io/statlas/ja/model-diagnostics/influence-plot/">
+<link rel="alternate" hreflang="zh-Hans" href="https://warint.github.io/statlas/zh/model-diagnostics/influence-plot/">
+<link rel="alternate" hreflang="x-default" href="https://warint.github.io/statlas/model-diagnostics/influence-plot/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Influence plot — Statlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/statlas/zh/model-diagnostics/influence-plot/", "inLanguage": "zh-Hans", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "Statlas", "url": "https://warint.github.io/statlas/"}}</script>
+<meta property="og:title" content="影响图 · Statlas">
+<meta property="og:description" content="学生化残差对杠杆值，气泡大小由 Cook 距离决定。">
+<meta property="og:locale" content="zh-Hans">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/style.css?v=e9d8945b">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>Statlas</span></a>
+    <nav class="nav-links">
+      <a href="../../index.html#gallery" class="on">图库</a>
+      <a href="../../style.html" class="">样式</a>
+      <a href="../../about.html" class="">关于</a>
+      <a href="../../about.html#cite" class="hide-sm">引用</a>
+      <details class="lang"><summary aria-label="Language"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span>中文</span></summary><div class="lang-menu"><a href="../../../model-diagnostics/influence-plot/" hreflang="en" lang="en">English</a><a href="../../../fr/model-diagnostics/influence-plot/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/model-diagnostics/influence-plot/" hreflang="ja" lang="ja">日本語</a><a href="../../../zh/model-diagnostics/influence-plot/" hreflang="zh-Hans" lang="zh-Hans" class=on aria-current=true>中文</a></div></details>
+      <a href="https://github.com/warint/statlas" class="gh" aria-label="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </nav>
+  </div>
+</header>
+<main>
+<article class="wrap ex">
+  <div class="crumbs"><a href="../../index.html">图库</a><span>/</span><a href="../../model-diagnostics/index.html">模型诊断</a></div>
+  <header class="ex-head"><h1>影响图</h1><p class="lede">学生化残差对杠杆值，气泡大小由 Cook 距离决定。</p>
+  <p class="byline">作者 <a href="https://www.warin.ca">Thierry Warin</a> · 隶属于 <a href="../../index.html">Statlas</a></p></header>
+  <figure class="figure"><a href="../../../model-diagnostics/influence-plot/plot.png" target="_blank" rel="noopener"><img src="../../../model-diagnostics/influence-plot/plot.png" alt="影响图"></a></figure>
+  <div class="ex-cols">
+    <div class="prose"><p>当一个观测值既在预测变量上不寻常（高杠杆值，x 轴），又拟合不佳（学生化残差大，y 轴）时，它就是<strong>强影响点</strong>。气泡面积随综合二者的 Cook 距离增大（∝ √D，使极端值依然清晰可读）。虚线标出常用的经验阈值——杠杆值 2p/n 和 3p/n、学生化残差 ±2——Cook&#x27;s D 超过 4/n 的观测值会被标注名称并着色。</p><p>模型使用 <strong>statsmodels</strong> OLS 解释美国 50 个州 + 哥伦比亚特区的谋杀率（<code>sm.datasets.statecrime</code>）。学生化（删除）残差、帽子值和 Cook 距离均来自 <code>model.get_influence()</code>；副标题像 <code>car::outlierTest()</code> 一样，用 Bonferroni 离群值检验来检查最大残差。</p><p class="note">代码及图中文字均为英文。</p></div>
+    <aside class="meta"><div class="meta-row"><span>R 中的对应函数</span><code>car::influencePlot()</code></div><div class="meta-row"><span>依赖库</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>statsmodels</i><i>SciPy</i></div></div><div class="meta-row"><span>主题</span><div class="pills"><i>influence</i><i>Cook&#x27;s distance</i><i>leverage</i><i>outliers</i><i>studentized residuals</i></div></div></aside>
+  </div>
+  <section class="code-card" id="code">
+    <div class="code-bar">
+      <span class="fname">influence-plot.py · 58 行</span>
+      <div class="code-actions">
+        <a class="btn ghost" href="../../../model-diagnostics/influence-plot/influence-plot.py" download>下载</a>
+        <a class="btn ghost" href="https://github.com/warint/statlas/tree/main/gallery/06-model-diagnostics/02-influence-plot">GitHub</a>
+        <button class="btn copy" data-copy>复制代码</button>
+      </div>
+    </div>
+    <pre class="code"><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.formula.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">smf</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">statecrime</span><span class="o">.</span><span class="n">load_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">"murder ~ poverty + single + urban + hs_grad + white"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">infl</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_influence</span><span class="p">()</span>
+<span class="n">rstud</span><span class="p">,</span> <span class="n">lev</span><span class="p">,</span> <span class="n">cook</span> <span class="o">=</span> <span class="n">infl</span><span class="o">.</span><span class="n">resid_studentized_external</span><span class="p">,</span> <span class="n">infl</span><span class="o">.</span><span class="n">hat_matrix_diag</span><span class="p">,</span> <span class="n">infl</span><span class="o">.</span><span class="n">cooks_distance</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">nobs</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">df_model</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">flag</span> <span class="o">=</span> <span class="n">cook</span> <span class="o">&gt;</span> <span class="mi">4</span> <span class="o">/</span> <span class="n">n</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">8.5</span><span class="p">,</span> <span class="mf">5.6</span><span class="p">))</span>
+
+<span class="c1"># Rule-of-thumb thresholds</span>
+<span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">p</span> <span class="o">/</span> <span class="n">n</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">p</span> <span class="o">/</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#AEAEB2"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="sa">f</span><span class="s2">" </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">h</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="si">}</span><span class="s2">p/n"</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis_transform</span><span class="p">(),</span>
+            <span class="n">fontsize</span><span class="o">=</span><span class="mf">8.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#8E8E93"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"top"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#AEAEB2"</span> <span class="k">if</span> <span class="n">r</span> <span class="k">else</span> <span class="s2">"#C7C7CC"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"--"</span> <span class="k">if</span> <span class="n">r</span> <span class="k">else</span> <span class="s2">"-"</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Bubbles: area proportional to √Cook's D (keeps extreme points readable)</span>
+<span class="n">area</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="mi">20</span> <span class="o">+</span> <span class="mi">700</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="n">size</span> <span class="o">=</span> <span class="n">area</span><span class="p">(</span><span class="n">cook</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">lev</span><span class="p">[</span><span class="o">~</span><span class="n">flag</span><span class="p">],</span> <span class="n">rstud</span><span class="p">[</span><span class="o">~</span><span class="n">flag</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="n">size</span><span class="p">[</span><span class="o">~</span><span class="n">flag</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#007AFF"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span>
+           <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"#007AFF"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">lev</span><span class="p">[</span><span class="n">flag</span><span class="p">],</span> <span class="n">rstud</span><span class="p">[</span><span class="n">flag</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="n">size</span><span class="p">[</span><span class="n">flag</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#FF3B30"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span>
+           <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"#FF3B30"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="n">flag</span><span class="p">):</span>
+    <span class="n">right</span> <span class="o">=</span> <span class="n">lev</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span>                          <span class="c1"># far-right points: label on the left</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">D = </span><span class="si">{</span><span class="n">cook</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="p">(</span><span class="n">lev</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">rstud</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
+                <span class="n">xytext</span><span class="o">=</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">right</span> <span class="k">else</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">6</span><span class="p">),</span> <span class="mi">0</span><span class="p">),</span>
+                <span class="n">textcoords</span><span class="o">=</span><span class="s2">"offset points"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"right"</span> <span class="k">if</span> <span class="n">right</span> <span class="k">else</span> <span class="s2">"left"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span>
+                <span class="n">fontsize</span><span class="o">=</span><span class="mf">8.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#3A3A3C"</span><span class="p">,</span> <span class="n">linespacing</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span>
+
+<span class="c1"># Bubble-size key</span>
+<span class="k">for</span> <span class="n">d</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">((</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.455</span><span class="p">,</span> <span class="mf">0.50</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.61</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">0.86</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="n">area</span><span class="p">(</span><span class="n">d</span><span class="p">),</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"none"</span><span class="p">,</span>
+               <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"#8E8E93"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">0.77</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">d</span><span class="si">:</span><span class="s2">g</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">8.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.53</span><span class="p">,</span> <span class="mf">0.97</span><span class="p">,</span> <span class="s2">"Cook's D"</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"top"</span><span class="p">,</span>
+        <span class="n">fontsize</span><span class="o">=</span><span class="mf">8.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">rstud</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">rstud</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">lev</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">*</span> <span class="mf">1.15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Leverage (hat value)"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Studentized residual"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"DC and Hawaii combine high leverage with large residuals"</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
+
+<span class="c1"># Bonferroni outlier test on the largest |studentized residual|</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">rstud</span><span class="p">))</span>
+<span class="n">p_bonf</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">rstud</span><span class="p">[</span><span class="n">k</span><span class="p">]),</span> <span class="n">model</span><span class="o">.</span><span class="n">df_resid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"OLS murder rate ~ 5 predictors · n = </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> · </span><span class="si">{</span><span class="n">flag</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> obs. with Cook's D &gt; 4/n · "</span>
+        <span class="sa">f</span><span class="s2">"largest |t*| = </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">rstud</span><span class="p">[</span><span class="n">k</span><span class="p">])</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">}</span><span class="s2">), Bonferroni p = </span><span class="si">{</span><span class="n">p_bonf</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre>
+  </section>
+  <p class="hint">图表使用了可选的 <a href="../../style.html">Statlas 样式</a>：添加 <code>plt.style.use("statlas.mplstyle")</code> 即可完全还原其外观。</p>
+  <section class="cite" id="cite">
+  <div class="cite-head"><h2>如何引用</h2>
+  <p>Statlas 由 <a href="https://www.warin.ca">Thierry Warin</a> 创建并维护。如果它对你的工作有所帮助，敬请引用。</p></div>
+  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). Influence plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/model-diagnostics/influence-plot/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). Influence plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/model-diagnostics/influence-plot/">复制</button></div>
+  <div class="cite-box"><pre class="cite-bib">@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/statlas/}},
+  note         = {Source code: https://github.com/warint/statlas}
+}</pre><button class="btn ghost" data-copy-text="@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/statlas/}},
+  note         = {Source code: https://github.com/warint/statlas}
+}">复制 BibTeX</button></div>
+</section>
+  <div class="pager"><a href="../../model-diagnostics/residual-diagnostics/"><small>上一个</small>残差诊断</a><a class="next" href="../../model-diagnostics/roc-curve/"><small>下一个</small>ROC 曲线</a></div>
+  <h2 class="rel-h">更多模型诊断图表</h2><div class="grid"><a class="card" href="../../model-diagnostics/residual-diagnostics/" data-cat="model-diagnostics" data-k="残差诊断 线性模型经典的 2 × 2 诊断图——线性、正态性、方差与杠杆值。 residual diagnostics the classic 2 × 2 panel for a linear model — linearity, normality, variance, leverage. plot(lm) / performance::check_model() 模型诊断 model diagnostics residuals q-q plot cook&#x27;s distance leverage heteroscedasticity matplotlib numpy statsmodels scipy">
+  <div class="card-img"><img src="../../../model-diagnostics/residual-diagnostics/thumb.webp" alt="残差诊断" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">模型诊断</span><h3>残差诊断</h3><p>线性模型经典的 2 × 2 诊断图——线性、正态性、方差与杠杆值。</p><span class="card-r">plot(lm) / performance::check_model()</span></div>
+</a>
+<a class="card" href="../../model-diagnostics/roc-curve/" data-cat="model-diagnostics" data-k="roc 曲线 以 roc 曲线、auc 及其自助法 95% 置信区间和 youden 点比较三个分类器。 roc curves three classifiers compared by roc curve, auc with bootstrap 95% ci and youden point. proc::ggroc() / proc::ci.auc() 模型诊断 model diagnostics roc auc classification bootstrap youden index matplotlib numpy statsmodels scikit-learn">
+  <div class="card-img"><img src="../../../model-diagnostics/roc-curve/thumb.webp" alt="ROC 曲线" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">模型诊断</span><h3>ROC 曲线</h3><p>以 ROC 曲线、AUC 及其自助法 95% 置信区间和 Youden 点比较三个分类器。</p><span class="card-r">pROC::ggroc() / pROC::ci.auc()</span></div>
+</a>
+<a class="card" href="../../model-diagnostics/calibration-plot/" data-cat="model-diagnostics" data-k="校准图 按十分位分组的预测风险与观测风险，附 wilson 置信区间、预测值直方图和 brier 分数。 calibration plot predicted vs observed risk per decile, with wilson cis, prediction histograms and brier score. rms::calibrate() / probably::cal_plot_breaks() 模型诊断 model diagnostics calibration reliability diagram brier score classification probability matplotlib numpy pandas statsmodels scikit-learn">
+  <div class="card-img"><img src="../../../model-diagnostics/calibration-plot/thumb.webp" alt="校准图" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">模型诊断</span><h3>校准图</h3><p>按十分位分组的预测风险与观测风险，附 Wilson 置信区间、预测值直方图和 Brier 分数。</p><span class="card-r">rms::calibrate() / probably::cal_plot_breaks()</span></div>
+</a></div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div><strong>Statlas</strong> · Python 统计图形库<br>创建者 <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">如何引用</a></div>
+    <div class="foot-links"><a href="https://github.com/warint/statlas">GitHub</a><a href="../../style.html">绘图样式</a><a href="https://github.com/warint/statlas/blob/main/CONTRIBUTING.md">参与贡献</a><span>MIT 许可证</span></div>
+  </div>
+  <div class="wrap foot-langs"><a href="../../../model-diagnostics/influence-plot/" hreflang="en" lang="en">English</a><a href="../../../fr/model-diagnostics/influence-plot/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/model-diagnostics/influence-plot/" hreflang="ja" lang="ja">日本語</a><a href="../../../zh/model-diagnostics/influence-plot/" hreflang="zh-Hans" lang="zh-Hans" class=on aria-current=true>中文</a></div>
+</footer>
+<script src="../../../assets/app.js?v=e9d8945b"></script>
+</body>
+</html>

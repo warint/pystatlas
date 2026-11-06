@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="fr" data-copied="Copié ✓">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prévision SARIMA · Statlas</title>
+<meta name="description" content="Prévision ARIMA saisonnière avec intervalles de prédiction à 80 % et 95 %, confrontée à des données réservées.">
+<meta name="author" content="Thierry Warin">
+<link rel="author" href="https://www.warin.ca">
+<meta name="citation_title" content="SARIMA forecast — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="citation_author" content="Warin, Thierry">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_online_date" content="2026/11/06">
+<meta name="citation_publisher" content="Thierry Warin">
+<meta name="citation_language" content="fr">
+<meta name="citation_public_url" content="https://warint.github.io/statlas/fr/time-series/arima-forecast/">
+<meta name="DC.creator" content="Warin, Thierry">
+<meta name="DC.title" content="SARIMA forecast — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="DC.date" content="2026">
+<link rel="canonical" href="https://warint.github.io/statlas/fr/time-series/arima-forecast/">
+<link rel="alternate" hreflang="en" href="https://warint.github.io/statlas/time-series/arima-forecast/">
+<link rel="alternate" hreflang="fr" href="https://warint.github.io/statlas/fr/time-series/arima-forecast/">
+<link rel="alternate" hreflang="ja" href="https://warint.github.io/statlas/ja/time-series/arima-forecast/">
+<link rel="alternate" hreflang="zh-Hans" href="https://warint.github.io/statlas/zh/time-series/arima-forecast/">
+<link rel="alternate" hreflang="x-default" href="https://warint.github.io/statlas/time-series/arima-forecast/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "SARIMA forecast — Statlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/statlas/fr/time-series/arima-forecast/", "inLanguage": "fr", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "Statlas", "url": "https://warint.github.io/statlas/"}}</script>
+<meta property="og:title" content="Prévision SARIMA · Statlas">
+<meta property="og:description" content="Prévision ARIMA saisonnière avec intervalles de prédiction à 80 % et 95 %, confrontée à des données réservées.">
+<meta property="og:locale" content="fr">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/style.css?v=e9d8945b">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>Statlas</span></a>
+    <nav class="nav-links">
+      <a href="../../index.html#gallery" class="on">Galerie</a>
+      <a href="../../style.html" class="">Style</a>
+      <a href="../../about.html" class="">À propos</a>
+      <a href="../../about.html#cite" class="hide-sm">Citer</a>
+      <details class="lang"><summary aria-label="Language"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span>Français</span></summary><div class="lang-menu"><a href="../../../time-series/arima-forecast/" hreflang="en" lang="en">English</a><a href="../../../fr/time-series/arima-forecast/" hreflang="fr" lang="fr" class=on aria-current=true>Français</a><a href="../../../ja/time-series/arima-forecast/" hreflang="ja" lang="ja">日本語</a><a href="../../../zh/time-series/arima-forecast/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div></details>
+      <a href="https://github.com/warint/statlas" class="gh" aria-label="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </nav>
+  </div>
+</header>
+<main>
+<article class="wrap ex">
+  <div class="crumbs"><a href="../../index.html">Galerie</a><span>/</span><a href="../../time-series/index.html">Séries chronologiques</a></div>
+  <header class="ex-head"><h1>Prévision SARIMA</h1><p class="lede">Prévision ARIMA saisonnière avec intervalles de prédiction à 80 % et 95 %, confrontée à des données réservées.</p>
+  <p class="byline">Par <a href="https://www.warin.ca">Thierry Warin</a> · fait partie de <a href="../../index.html">Statlas</a></p></header>
+  <figure class="figure"><a href="../../../time-series/arima-forecast/plot.png" target="_blank" rel="noopener"><img src="../../../time-series/arima-forecast/plot.png" alt="Prévision SARIMA"></a></figure>
+  <div class="ex-cols">
+    <div class="prose"><p>Une prévision n&#x27;est honnête qu&#x27;accompagnée de son incertitude. L&#x27;éventail foncé est l&#x27;intervalle de prédiction à 80 %, l&#x27;éventail clair l&#x27;intervalle à 95 % ; tous deux s&#x27;élargissent à mesure que l&#x27;horizon s&#x27;éloigne. Les quatre dernières années ont été <strong>mises de côté</strong> lors de l&#x27;ajustement : les points montrent donc ce qui s&#x27;est réellement produit, et le sous-titre rapporte la RMSE hors échantillon ainsi que le nombre de ces mois tombés dans l&#x27;intervalle à 95 %.</p><p>Les données sont les mesures de CO₂ de Mauna Loa fournies avec <strong>statsmodels</strong> (<code>sm.datasets.co2</code>), agrégées en moyennes mensuelles. Le modèle est un ARIMA(1,1,1)(0,1,1)₁₂ saisonnier — la structure classique dite « airline » — ajusté avec <code>statsmodels.tsa.statespace.SARIMAX</code> ; les intervalles proviennent de <code>get_forecast().conf_int()</code>.</p><p class="note">Le code et le texte à l&#x27;intérieur des figures sont en anglais.</p></div>
+    <aside class="meta"><div class="meta-row"><span>Équivalent R</span><code>forecast::autoplot(forecast())</code></div><div class="meta-row"><span>Bibliothèques</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>statsmodels</i></div></div><div class="meta-row"><span>Thèmes</span><div class="pills"><i>ARIMA</i><i>SARIMA</i><i>forecast</i><i>prediction interval</i><i>RMSE</i></div></div></aside>
+  </div>
+  <section class="code-card" id="code">
+    <div class="code-bar">
+      <span class="fname">arima-forecast.py · 41 lignes</span>
+      <div class="code-actions">
+        <a class="btn ghost" href="../../../time-series/arima-forecast/arima-forecast.py" download>Télécharger</a>
+        <a class="btn ghost" href="https://github.com/warint/statlas/tree/main/gallery/08-time-series/03-arima-forecast">GitHub</a>
+        <button class="btn copy" data-copy>Copier le code</button>
+      </div>
+    </div>
+    <pre class="code"><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.tsa.statespace.sarimax</span><span class="w"> </span><span class="kn">import</span> <span class="n">SARIMAX</span>
+
+<span class="c1"># Data: monthly CO2; hold out the last 4 years</span>
+<span class="n">co2</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">co2</span><span class="o">.</span><span class="n">load_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">"co2"</span><span class="p">]</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s2">"MS"</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mi">48</span>
+<span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">co2</span><span class="p">[:</span><span class="o">-</span><span class="n">h</span><span class="p">],</span> <span class="n">co2</span><span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">:]</span>
+
+<span class="c1"># Fit a seasonal ARIMA and forecast the held-out horizon</span>
+<span class="n">fit</span> <span class="o">=</span> <span class="n">SARIMAX</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">seasonal_order</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">disp</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">fc</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">get_forecast</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">ci95</span><span class="p">,</span> <span class="n">ci80</span> <span class="o">=</span> <span class="n">fc</span><span class="o">.</span><span class="n">predicted_mean</span><span class="p">,</span> <span class="n">fc</span><span class="o">.</span><span class="n">conf_int</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">),</span> <span class="n">fc</span><span class="o">.</span><span class="n">conf_int</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.20</span><span class="p">)</span>
+
+<span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(((</span><span class="n">test</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="n">covered</span> <span class="o">=</span> <span class="p">((</span><span class="n">test</span> <span class="o">&gt;=</span> <span class="n">ci95</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">test</span> <span class="o">&lt;=</span> <span class="n">ci95</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">hist</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s2">"1991"</span><span class="p">:]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hist</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">hist</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#1D1D1F"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Observed (training)"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">mean</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ci95</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ci95</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#007AFF"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="s2">"95% prediction interval"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">mean</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ci80</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ci80</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#007AFF"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.28</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="s2">"80% prediction interval"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mean</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#007AFF"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Forecast"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#FF9500"</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"white"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+           <span class="n">label</span><span class="o">=</span><span class="s2">"Held-out actuals"</span><span class="p">)</span>
+
+<span class="c1"># Mark the forecast origin</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#AEAEB2"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"--"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">0.97</span><span class="p">,</span> <span class="s2">"  forecast origin"</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis_transform</span><span class="p">(),</span>
+        <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#8E8E93"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"top"</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">"CO₂ (ppm)"</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="n">hist</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">test</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">"upper left"</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"A seasonal ARIMA tracks CO₂ four years ahead, but runs slightly low"</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"SARIMA(1,1,1)(0,1,1)₁₂ · AIC = </span><span class="si">{</span><span class="n">fit</span><span class="o">.</span><span class="n">aic</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> · out-of-sample RMSE = </span><span class="si">{</span><span class="n">rmse</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> ppm "</span>
+        <span class="sa">f</span><span class="s2">"over </span><span class="si">{</span><span class="n">h</span><span class="si">}</span><span class="s2"> months · </span><span class="si">{</span><span class="n">covered</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">h</span><span class="si">}</span><span class="s2"> actuals inside the 95% PI"</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre>
+  </section>
+  <p class="hint">Les figures utilisent le <a href="../../style.html">style Statlas</a> (facultatif) : ajoutez <code>plt.style.use("statlas.mplstyle")</code> pour obtenir exactement le même rendu.</p>
+  <section class="cite" id="cite">
+  <div class="cite-head"><h2>Comment citer</h2>
+  <p>Statlas est créé et maintenu par <a href="https://www.warin.ca">Thierry Warin</a>. S'il vous a été utile dans vos travaux, merci de le citer.</p></div>
+  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). SARIMA forecast. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/time-series/arima-forecast/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). SARIMA forecast. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/time-series/arima-forecast/">Copier</button></div>
+  <div class="cite-box"><pre class="cite-bib">@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/statlas/}},
+  note         = {Source code: https://github.com/warint/statlas}
+}</pre><button class="btn ghost" data-copy-text="@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/statlas/}},
+  note         = {Source code: https://github.com/warint/statlas}
+}">Copier le BibTeX</button></div>
+</section>
+  <div class="pager"><a href="../../time-series/acf-pacf/"><small>Précédent</small>ACF et PACF</a><a class="next" href="../../time-series/seasonal-subseries/"><small>Suivant</small>Graphique des sous-séries saisonnières</a></div>
+  <h2 class="rel-h">Plus dans Séries chronologiques</h2><div class="grid"><a class="card" href="../../time-series/stl-decomposition/" data-cat="time-series" data-k="décomposition stl une série décomposée en tendance, composante saisonnière et résidu, dans des panneaux superposés. stl decomposition a series split into trend, seasonal and remainder components in stacked panels. feasts::stl() + autoplot() séries chronologiques time series stl decomposition seasonality trend time series matplotlib numpy statsmodels">
+  <div class="card-img"><img src="../../../time-series/stl-decomposition/thumb.webp" alt="Décomposition STL" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">Séries chronologiques</span><h3>Décomposition STL</h3><p>Une série décomposée en tendance, composante saisonnière et résidu, dans des panneaux superposés.</p><span class="card-r">feasts::STL() + autoplot()</span></div>
+</a>
+<a class="card" href="../../time-series/acf-pacf/" data-cat="time-series" data-k="acf et pacf autocorrélations et autocorrélations partielles en sucettes, avec bandes de significativité à 95 %. acf and pacf autocorrelation and partial autocorrelation lollipops with 95% significance bands. forecast::ggtsdisplay() séries chronologiques time series autocorrelation acf pacf ljung-box time series matplotlib numpy statsmodels">
+  <div class="card-img"><img src="../../../time-series/acf-pacf/thumb.webp" alt="ACF et PACF" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">Séries chronologiques</span><h3>ACF et PACF</h3><p>Autocorrélations et autocorrélations partielles en sucettes, avec bandes de significativité à 95 %.</p><span class="card-r">forecast::ggtsdisplay()</span></div>
+</a>
+<a class="card" href="../../time-series/seasonal-subseries/" data-cat="time-series" data-k="graphique des sous-séries saisonnières les valeurs de chaque mois de l&#x27;année au fil des ans, avec la moyenne mensuelle comme référence. seasonal subseries plot each calendar month&#x27;s values across the years, with the monthly mean as a reference. feasts::gg_subseries() séries chronologiques time series seasonality subseries month plot anova time series matplotlib numpy statsmodels scipy">
+  <div class="card-img"><img src="../../../time-series/seasonal-subseries/thumb.webp" alt="Graphique des sous-séries saisonnières" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">Séries chronologiques</span><h3>Graphique des sous-séries saisonnières</h3><p>Les valeurs de chaque mois de l&#x27;année au fil des ans, avec la moyenne mensuelle comme référence.</p><span class="card-r">feasts::gg_subseries()</span></div>
+</a></div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div><strong>Statlas</strong> · La galerie Python des graphiques statistiques<br>Créé par <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">Comment citer</a></div>
+    <div class="foot-links"><a href="https://github.com/warint/statlas">GitHub</a><a href="../../style.html">Style des graphiques</a><a href="https://github.com/warint/statlas/blob/main/CONTRIBUTING.md">Contribuer</a><span>Licence MIT</span></div>
+  </div>
+  <div class="wrap foot-langs"><a href="../../../time-series/arima-forecast/" hreflang="en" lang="en">English</a><a href="../../../fr/time-series/arima-forecast/" hreflang="fr" lang="fr" class=on aria-current=true>Français</a><a href="../../../ja/time-series/arima-forecast/" hreflang="ja" lang="ja">日本語</a><a href="../../../zh/time-series/arima-forecast/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div>
+</footer>
+<script src="../../../assets/app.js?v=e9d8945b"></script>
+</body>
+</html>

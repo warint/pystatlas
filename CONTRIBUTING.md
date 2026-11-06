@@ -61,3 +61,11 @@ plt.show()
   frameworks. One figure per script, ending with `plt.show()`. Typical size `figsize=(8, 5)`;
   multi-panel up to `(11, 7)`.
 - **No overlaps.** Look at the PNG: labels must not collide with each other or with data.
+
+## Translations
+
+The website is available in English, French, Japanese and Mandarin. Interface strings and
+chart titles/descriptions live in `i18n/<lang>.yaml`. After adding a chart, run
+`python build.py --export-i18n` to refresh `i18n/_source.yaml`, then add the new chart's
+`title`, `summary` and `description` under `examples:` in each language file (missing
+entries fall back to English).

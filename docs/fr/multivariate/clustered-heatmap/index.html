@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="fr" data-copied="Copié ✓">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carte de chaleur avec classification · Statlas</title>
+<meta name="description" content="Carte de chaleur des scores z avec dendrogrammes des lignes et des colonnes et barre de couleur par groupe.">
+<meta name="author" content="Thierry Warin">
+<link rel="author" href="https://www.warin.ca">
+<meta name="citation_title" content="Clustered heatmap — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="citation_author" content="Warin, Thierry">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_online_date" content="2026/11/06">
+<meta name="citation_publisher" content="Thierry Warin">
+<meta name="citation_language" content="fr">
+<meta name="citation_public_url" content="https://warint.github.io/statlas/fr/multivariate/clustered-heatmap/">
+<meta name="DC.creator" content="Warin, Thierry">
+<meta name="DC.title" content="Clustered heatmap — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="DC.date" content="2026">
+<link rel="canonical" href="https://warint.github.io/statlas/fr/multivariate/clustered-heatmap/">
+<link rel="alternate" hreflang="en" href="https://warint.github.io/statlas/multivariate/clustered-heatmap/">
+<link rel="alternate" hreflang="fr" href="https://warint.github.io/statlas/fr/multivariate/clustered-heatmap/">
+<link rel="alternate" hreflang="ja" href="https://warint.github.io/statlas/ja/multivariate/clustered-heatmap/">
+<link rel="alternate" hreflang="zh-Hans" href="https://warint.github.io/statlas/zh/multivariate/clustered-heatmap/">
+<link rel="alternate" hreflang="x-default" href="https://warint.github.io/statlas/multivariate/clustered-heatmap/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Clustered heatmap — Statlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/statlas/fr/multivariate/clustered-heatmap/", "inLanguage": "fr", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "Statlas", "url": "https://warint.github.io/statlas/"}}</script>
+<meta property="og:title" content="Carte de chaleur avec classification · Statlas">
+<meta property="og:description" content="Carte de chaleur des scores z avec dendrogrammes des lignes et des colonnes et barre de couleur par groupe.">
+<meta property="og:locale" content="fr">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/style.css?v=e9d8945b">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>Statlas</span></a>
+    <nav class="nav-links">
+      <a href="../../index.html#gallery" class="on">Galerie</a>
+      <a href="../../style.html" class="">Style</a>
+      <a href="../../about.html" class="">À propos</a>
+      <a href="../../about.html#cite" class="hide-sm">Citer</a>
+      <details class="lang"><summary aria-label="Language"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span>Français</span></summary><div class="lang-menu"><a href="../../../multivariate/clustered-heatmap/" hreflang="en" lang="en">English</a><a href="../../../fr/multivariate/clustered-heatmap/" hreflang="fr" lang="fr" class=on aria-current=true>Français</a><a href="../../../ja/multivariate/clustered-heatmap/" hreflang="ja" lang="ja">日本語</a><a href="../../../zh/multivariate/clustered-heatmap/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div></details>
+      <a href="https://github.com/warint/statlas" class="gh" aria-label="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </nav>
+  </div>
+</header>
+<main>
+<article class="wrap ex">
+  <div class="crumbs"><a href="../../index.html">Galerie</a><span>/</span><a href="../../multivariate/index.html">Multivarié et classification</a></div>
+  <header class="ex-head"><h1>Carte de chaleur avec classification</h1><p class="lede">Carte de chaleur des scores z avec dendrogrammes des lignes et des colonnes et barre de couleur par groupe.</p>
+  <p class="byline">Par <a href="https://www.warin.ca">Thierry Warin</a> · fait partie de <a href="../../index.html">Statlas</a></p></header>
+  <figure class="figure"><a href="../../../multivariate/clustered-heatmap/plot.png" target="_blank" rel="noopener"><img src="../../../multivariate/clustered-heatmap/plot.png" alt="Carte de chaleur avec classification"></a></figure>
+  <div class="ex-cols">
+    <div class="prose"><p>Chaque ligne est une observation, chaque colonne une variable, et chaque cellule son score z (bleu sous la moyenne de la variable, rouge au-dessus). Les lignes et les colonnes sont réordonnées par <strong>classification hiérarchique</strong> (méthode de Ward sur la distance euclidienne) et les dendrogrammes montrent l&#x27;historique des fusions. La barre de couleur à gauche indique le groupe connu de chaque ligne, ce qui permet de voir d&#x27;un coup d&#x27;œil si l&#x27;arbre non supervisé le retrouve — et quelles variables déterminent la séparation.</p><p>Les données sont les 178 vins du jeu de données wine de <strong>scikit-learn</strong> (trois cultivars, 13 mesures). <code>seaborn.clustermap</code> réalise la classification et le tracé ; <code>scipy.cluster.hierarchy</code> coupe l&#x27;arbre des lignes en trois classes afin de calculer l&#x27;indice de Rand ajusté par rapport aux vrais cultivars.</p><p class="note">Le code et le texte à l&#x27;intérieur des figures sont en anglais.</p></div>
+    <aside class="meta"><div class="meta-row"><span>Équivalent R</span><code>pheatmap::pheatmap() / ComplexHeatmap::Heatmap()</code></div><div class="meta-row"><span>Bibliothèques</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>pandas</i><i>seaborn</i><i>SciPy</i><i>scikit-learn</i></div></div><div class="meta-row"><span>Thèmes</span><div class="pills"><i>heatmap</i><i>hierarchical clustering</i><i>dendrogram</i><i>z-score</i><i>clustermap</i></div></div></aside>
+  </div>
+  <section class="code-card" id="code">
+    <div class="code-bar">
+      <span class="fname">clustered-heatmap.py · 46 lignes</span>
+      <div class="code-actions">
+        <a class="btn ghost" href="../../../multivariate/clustered-heatmap/clustered-heatmap.py" download>Télécharger</a>
+        <a class="btn ghost" href="https://github.com/warint/statlas/tree/main/gallery/09-multivariate/04-clustered-heatmap">GitHub</a>
+        <button class="btn copy" data-copy>Copier le code</button>
+      </div>
+    </div>
+    <pre class="code"><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">Patch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.cluster.hierarchy</span><span class="w"> </span><span class="kn">import</span> <span class="n">fcluster</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_wine</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">adjusted_rand_score</span>
+
+<span class="c1"># Data: wine measurements, z-scored per column; cultivar as row annotation</span>
+<span class="n">wine</span> <span class="o">=</span> <span class="n">load_wine</span><span class="p">(</span><span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="p">(</span><span class="n">wine</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">wine</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">wine</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">Z</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"_"</span><span class="p">,</span> <span class="s2">" "</span><span class="p">)</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"Od280/od315 of diluted wines"</span><span class="p">,</span> <span class="s2">"OD280/OD315"</span><span class="p">)</span>
+             <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">Z</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">"Barolo"</span><span class="p">,</span> <span class="s2">"Grignolino"</span><span class="p">,</span> <span class="s2">"Barbera"</span><span class="p">])</span>
+<span class="n">palette</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="p">[</span><span class="s2">"#007AFF"</span><span class="p">,</span> <span class="s2">"#FF9500"</span><span class="p">,</span> <span class="s2">"#34C759"</span><span class="p">]))</span>
+<span class="n">cultivar</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="n">wine</span><span class="o">.</span><span class="n">target</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">"Cultivar"</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">rc_context</span><span class="p">({</span><span class="s2">"figure.constrained_layout.use"</span><span class="p">:</span> <span class="kc">False</span><span class="p">}):</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"ward"</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">"euclidean"</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">"RdBu_r"</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                       <span class="n">vmin</span><span class="o">=-</span><span class="mi">3</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">row_colors</span><span class="o">=</span><span class="n">cultivar</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">palette</span><span class="p">),</span> <span class="n">yticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                       <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">8.5</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">dendrogram_ratio</span><span class="o">=</span><span class="p">(</span><span class="mf">0.14</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">),</span> <span class="n">colors_ratio</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span>
+                       <span class="n">cbar_pos</span><span class="o">=</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.83</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">0.11</span><span class="p">),</span>
+                       <span class="n">cbar_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">"z-score"</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span>
+                       <span class="n">tree_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">colors</span><span class="o">=</span><span class="s2">"#8E8E93"</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.8</span><span class="p">))</span>
+
+<span class="c1"># How well does the row tree, cut into three clusters, recover the cultivars?</span>
+<span class="n">ari</span> <span class="o">=</span> <span class="n">adjusted_rand_score</span><span class="p">(</span><span class="n">wine</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">fcluster</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">dendrogram_row</span><span class="o">.</span><span class="n">linkage</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"maxclust"</span><span class="p">))</span>
+
+<span class="n">g</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"right"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">ax_row_colors</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="s2">"Cultivar"</span><span class="p">],</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"right"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">ax_row_colors</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">ax_cbar</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelsize</span><span class="o">=</span><span class="mf">8.5</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">ax_cbar</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_size</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">ax_col_dendrogram</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="p">[</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">palette</span><span class="o">.</span><span class="n">items</span><span class="p">()],</span>
+                           <span class="n">loc</span><span class="o">=</span><span class="s2">"upper left"</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span>
+                           <span class="n">title</span><span class="o">=</span><span class="s2">"Cultivar"</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">handlelength</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">handleheight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">g</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">1.04</span><span class="p">,</span> <span class="s2">"Hierarchical clustering largely rediscovers the wine cultivars"</span><span class="p">,</span>
+              <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">"semibold"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#1D1D1F"</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Ward linkage on z-scores · n = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span><span class="si">}</span><span class="s2"> wines × </span><span class="si">{</span><span class="n">Z</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> "</span>
+              <span class="sa">f</span><span class="s2">"variables · 3-cluster cut vs cultivar: ARI = </span><span class="si">{</span><span class="n">ari</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+              <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre>
+  </section>
+  <p class="hint">Les figures utilisent le <a href="../../style.html">style Statlas</a> (facultatif) : ajoutez <code>plt.style.use("statlas.mplstyle")</code> pour obtenir exactement le même rendu.</p>
+  <section class="cite" id="cite">
+  <div class="cite-head"><h2>Comment citer</h2>
+  <p>Statlas est créé et maintenu par <a href="https://www.warin.ca">Thierry Warin</a>. S'il vous a été utile dans vos travaux, merci de le citer.</p></div>
+  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). Clustered heatmap. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/multivariate/clustered-heatmap/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). Clustered heatmap. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/multivariate/clustered-heatmap/">Copier</button></div>
+  <div class="cite-box"><pre class="cite-bib">@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/statlas/}},
+  note         = {Source code: https://github.com/warint/statlas}
+}</pre><button class="btn ghost" data-copy-text="@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/statlas/}},
+  note         = {Source code: https://github.com/warint/statlas}
+}">Copier le BibTeX</button></div>
+</section>
+  <div class="pager"><a href="../../multivariate/silhouette-clusters/"><small>Précédent</small>Graphique de silhouette pour les k-moyennes</a><span></span></div>
+  <h2 class="rel-h">Plus dans Multivarié et classification</h2><div class="grid"><a class="card" href="../../multivariate/pca-biplot/" data-cat="multivariate" data-k="biplot d&#x27;acp observations et contributions des variables sur les deux premières composantes principales. pca biplot observations and variable loadings on the first two principal components. factoextra::fviz_pca_biplot() multivarié et classification multivariate &amp; clustering pca biplot loadings dimension reduction ellipse matplotlib numpy scipy scikit-learn">
+  <div class="card-img"><img src="../../../multivariate/pca-biplot/thumb.webp" alt="Biplot d&#x27;ACP" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">Multivarié et classification</span><h3>Biplot d&#x27;ACP</h3><p>Observations et contributions des variables sur les deux premières composantes principales.</p><span class="card-r">factoextra::fviz_pca_biplot()</span></div>
+</a>
+<a class="card" href="../../multivariate/scree-plot/" data-cat="multivariate" data-k="diagramme des valeurs propres variance expliquée par composante, part cumulée et seuil de l&#x27;analyse parallèle. scree plot variance explained per component, cumulative share and a parallel-analysis cut-off. factoextra::fviz_eig() multivarié et classification multivariate &amp; clustering pca scree plot eigenvalues parallel analysis kaiser matplotlib numpy scikit-learn">
+  <div class="card-img"><img src="../../../multivariate/scree-plot/thumb.webp" alt="Diagramme des valeurs propres" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">Multivarié et classification</span><h3>Diagramme des valeurs propres</h3><p>Variance expliquée par composante, part cumulée et seuil de l&#x27;analyse parallèle.</p><span class="card-r">factoextra::fviz_eig()</span></div>
+</a>
+<a class="card" href="../../multivariate/silhouette-clusters/" data-cat="multivariate" data-k="graphique de silhouette pour les k-moyennes classes des k-moyennes dans l&#x27;espace de l&#x27;acp, à côté des largeurs de silhouette de chaque observation. silhouette plot for k-means k-means clusters in pca space next to the per-observation silhouette widths. factoextra::fviz_silhouette() multivarié et classification multivariate &amp; clustering clustering k-means silhouette pca cluster validation matplotlib numpy scikit-learn">
+  <div class="card-img"><img src="../../../multivariate/silhouette-clusters/thumb.webp" alt="Graphique de silhouette pour les k-moyennes" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">Multivarié et classification</span><h3>Graphique de silhouette pour les k-moyennes</h3><p>Classes des k-moyennes dans l&#x27;espace de l&#x27;ACP, à côté des largeurs de silhouette de chaque observation.</p><span class="card-r">factoextra::fviz_silhouette()</span></div>
+</a></div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div><strong>Statlas</strong> · La galerie Python des graphiques statistiques<br>Créé par <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">Comment citer</a></div>
+    <div class="foot-links"><a href="https://github.com/warint/statlas">GitHub</a><a href="../../style.html">Style des graphiques</a><a href="https://github.com/warint/statlas/blob/main/CONTRIBUTING.md">Contribuer</a><span>Licence MIT</span></div>
+  </div>
+  <div class="wrap foot-langs"><a href="../../../multivariate/clustered-heatmap/" hreflang="en" lang="en">English</a><a href="../../../fr/multivariate/clustered-heatmap/" hreflang="fr" lang="fr" class=on aria-current=true>Français</a><a href="../../../ja/multivariate/clustered-heatmap/" hreflang="ja" lang="ja">日本語</a><a href="../../../zh/multivariate/clustered-heatmap/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div>
+</footer>
+<script src="../../../assets/app.js?v=e9d8945b"></script>
+</body>
+</html>

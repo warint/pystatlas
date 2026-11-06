@@ -80,7 +80,7 @@
         ta.select(); document.execCommand("copy"); ta.remove();
       }
       const old = btn.textContent;
-      btn.textContent = "Copied ✓"; btn.classList.add("done");
+      btn.textContent = document.documentElement.dataset.copied || "Copied ✓"; btn.classList.add("done");
       setTimeout(() => { btn.textContent = old; btn.classList.remove("done"); }, 1600);
     });
   });
@@ -90,9 +90,14 @@
     btn.addEventListener("click", async () => {
       try { await navigator.clipboard.writeText(btn.dataset.copyText); } catch (e) {}
       const old = btn.textContent;
-      btn.textContent = "Copied ✓"; btn.classList.add("done");
+      btn.textContent = document.documentElement.dataset.copied || "Copied ✓"; btn.classList.add("done");
       setTimeout(() => { btn.textContent = old; btn.classList.remove("done"); }, 1600);
     });
+  });
+
+  // Close the language menu when clicking elsewhere
+  document.addEventListener("click", (e) => {
+    document.querySelectorAll("details.lang[open]").forEach((d) => { if (!d.contains(e.target)) d.removeAttribute("open"); });
   });
 
   // Lightbox for the main figure

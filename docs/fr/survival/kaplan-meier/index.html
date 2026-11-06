@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="fr" data-copied="Copié ✓">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Courbes de Kaplan–Meier · Statlas</title>
+<meta name="description" content="Courbes de survie avec bandes de confiance, marques de censure, test du log-rank et tableau des effectifs à risque.">
+<meta name="author" content="Thierry Warin">
+<link rel="author" href="https://www.warin.ca">
+<meta name="citation_title" content="Kaplan–Meier curves — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="citation_author" content="Warin, Thierry">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_online_date" content="2026/11/06">
+<meta name="citation_publisher" content="Thierry Warin">
+<meta name="citation_language" content="fr">
+<meta name="citation_public_url" content="https://warint.github.io/statlas/fr/survival/kaplan-meier/">
+<meta name="DC.creator" content="Warin, Thierry">
+<meta name="DC.title" content="Kaplan–Meier curves — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="DC.date" content="2026">
+<link rel="canonical" href="https://warint.github.io/statlas/fr/survival/kaplan-meier/">
+<link rel="alternate" hreflang="en" href="https://warint.github.io/statlas/survival/kaplan-meier/">
+<link rel="alternate" hreflang="fr" href="https://warint.github.io/statlas/fr/survival/kaplan-meier/">
+<link rel="alternate" hreflang="ja" href="https://warint.github.io/statlas/ja/survival/kaplan-meier/">
+<link rel="alternate" hreflang="zh-Hans" href="https://warint.github.io/statlas/zh/survival/kaplan-meier/">
+<link rel="alternate" hreflang="x-default" href="https://warint.github.io/statlas/survival/kaplan-meier/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Kaplan–Meier curves — Statlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/statlas/fr/survival/kaplan-meier/", "inLanguage": "fr", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "Statlas", "url": "https://warint.github.io/statlas/"}}</script>
+<meta property="og:title" content="Courbes de Kaplan–Meier · Statlas">
+<meta property="og:description" content="Courbes de survie avec bandes de confiance, marques de censure, test du log-rank et tableau des effectifs à risque.">
+<meta property="og:locale" content="fr">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/style.css?v=e9d8945b">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>Statlas</span></a>
+    <nav class="nav-links">
+      <a href="../../index.html#gallery" class="on">Galerie</a>
+      <a href="../../style.html" class="">Style</a>
+      <a href="../../about.html" class="">À propos</a>
+      <a href="../../about.html#cite" class="hide-sm">Citer</a>
+      <details class="lang"><summary aria-label="Language"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span>Français</span></summary><div class="lang-menu"><a href="../../../survival/kaplan-meier/" hreflang="en" lang="en">English</a><a href="../../../fr/survival/kaplan-meier/" hreflang="fr" lang="fr" class=on aria-current=true>Français</a><a href="../../../ja/survival/kaplan-meier/" hreflang="ja" lang="ja">日本語</a><a href="../../../zh/survival/kaplan-meier/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div></details>
+      <a href="https://github.com/warint/statlas" class="gh" aria-label="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </nav>
+  </div>
+</header>
+<main>
+<article class="wrap ex">
+  <div class="crumbs"><a href="../../index.html">Galerie</a><span>/</span><a href="../../survival/index.html">Analyse de survie</a></div>
+  <header class="ex-head"><h1>Courbes de Kaplan–Meier</h1><p class="lede">Courbes de survie avec bandes de confiance, marques de censure, test du log-rank et tableau des effectifs à risque.</p>
+  <p class="byline">Par <a href="https://www.warin.ca">Thierry Warin</a> · fait partie de <a href="../../index.html">Statlas</a></p></header>
+  <figure class="figure"><a href="../../../survival/kaplan-meier/plot.png" target="_blank" rel="noopener"><img src="../../../survival/kaplan-meier/plot.png" alt="Courbes de Kaplan–Meier"></a></figure>
+  <div class="ex-cols">
+    <div class="prose"><p>L&#x27;estimateur de Kaplan–Meier transforme des durées de suivi — certaines se terminant par un événement, d&#x27;autres censurées — en une courbe en escalier de la probabilité de survivre au-delà de chaque jour. Les bandes ombrées sont des intervalles de confiance ponctuels à 95 %, de petits traits marquent les patients censurés, et des lignes en tirets descendent depuis 50 % jusqu&#x27;à la <strong>médiane de survie</strong> de chaque groupe. Le tableau en dessous donne le nombre de patients encore à risque, ce qui indique la quantité de données sur laquelle repose la queue de chaque courbe.</p><p>Les données sont l&#x27;essai NCCTG sur le cancer du poumon avancé (<code>lifelines.datasets.load_lung</code>). Les courbes proviennent de <code>KaplanMeierFitter</code>, la comparaison de <code>logrank_test</code>.</p><p class="note">Le code et le texte à l&#x27;intérieur des figures sont en anglais.</p></div>
+    <aside class="meta"><div class="meta-row"><span>Équivalent R</span><code>survminer::ggsurvplot(risk.table = TRUE)</code></div><div class="meta-row"><span>Bibliothèques</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>lifelines</i></div></div><div class="meta-row"><span>Thèmes</span><div class="pills"><i>Kaplan-Meier</i><i>log-rank</i><i>survival</i><i>censoring</i><i>risk table</i></div></div></aside>
+  </div>
+  <section class="code-card" id="code">
+    <div class="code-bar">
+      <span class="fname">kaplan-meier.py · 55 lignes</span>
+      <div class="code-actions">
+        <a class="btn ghost" href="../../../survival/kaplan-meier/kaplan-meier.py" download>Télécharger</a>
+        <a class="btn ghost" href="https://github.com/warint/statlas/tree/main/gallery/07-survival/01-kaplan-meier">GitHub</a>
+        <button class="btn copy" data-copy>Copier le code</button>
+      </div>
+    </div>
+    <pre class="code"><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">lifelines</span><span class="w"> </span><span class="kn">import</span> <span class="n">KaplanMeierFitter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">lifelines.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_lung</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">lifelines.statistics</span><span class="w"> </span><span class="kn">import</span> <span class="n">logrank_test</span>
+
+<span class="c1"># Data: survival in days after diagnosis, by sex</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">load_lung</span><span class="p">()</span>
+<span class="n">groups</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"Male"</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">sex</span> <span class="o">==</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">"Female"</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">sex</span> <span class="o">==</span> <span class="mi">2</span><span class="p">]}</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"#007AFF"</span><span class="p">,</span> <span class="s2">"#FF9500"</span><span class="p">]</span>
+<span class="n">ticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1001</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">tab</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">6.2</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                              <span class="n">gridspec_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">height_ratios</span><span class="o">=</span><span class="p">[</span><span class="mf">4.2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+
+<span class="c1"># Kaplan–Meier fit per group: step curve, CI band, censoring ticks, median line</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">d</span><span class="p">),</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">groups</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">colors</span><span class="p">):</span>
+    <span class="n">km</span> <span class="o">=</span> <span class="n">KaplanMeierFitter</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">sf</span><span class="p">,</span> <span class="n">ci</span> <span class="o">=</span> <span class="n">km</span><span class="o">.</span><span class="n">survival_function_</span><span class="p">[</span><span class="n">name</span><span class="p">],</span> <span class="n">km</span><span class="o">.</span><span class="n">confidence_interval_</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">sf</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">sf</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s2">"post"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> (n = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">ci</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ci</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ci</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">step</span><span class="o">=</span><span class="s2">"post"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">cens</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">d</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"time"</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cens</span><span class="p">,</span> <span class="n">km</span><span class="o">.</span><span class="n">survival_function_at_times</span><span class="p">(</span><span class="n">cens</span><span class="p">),</span> <span class="s2">"|"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">mew</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span>
+    <span class="n">med</span> <span class="o">=</span> <span class="n">km</span><span class="o">.</span><span class="n">median_survival_time_</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">med</span><span class="p">,</span> <span class="n">med</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">med</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="sa">f</span><span class="s2">" </span><span class="si">{</span><span class="n">med</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> d"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">"semibold"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"left"</span><span class="p">)</span>
+    <span class="c1"># Number at risk under the plot</span>
+    <span class="n">at_risk</span> <span class="o">=</span> <span class="p">[(</span><span class="n">d</span><span class="o">.</span><span class="n">time</span> <span class="o">&gt;=</span> <span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">ticks</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ticks</span><span class="p">,</span> <span class="n">at_risk</span><span class="p">):</span>
+        <span class="n">tab</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="nb">list</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">name</span><span class="p">),</span> <span class="n">n</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#8E8E93"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">),</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">1020</span><span class="p">),</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">"Survival probability"</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">"Days since diagnosis"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelbottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">ticker</span><span class="o">.</span><span class="n">PercentFormatter</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">"upper right"</span><span class="p">)</span>
+
+<span class="c1"># Log-rank test</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="n">logrank_test</span><span class="p">(</span><span class="n">groups</span><span class="p">[</span><span class="s2">"Male"</span><span class="p">]</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">groups</span><span class="p">[</span><span class="s2">"Female"</span><span class="p">]</span><span class="o">.</span><span class="n">time</span><span class="p">,</span>
+                  <span class="n">groups</span><span class="p">[</span><span class="s2">"Male"</span><span class="p">]</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">groups</span><span class="p">[</span><span class="s2">"Female"</span><span class="p">]</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Women with advanced lung cancer survive longer than men"</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Log-rank χ²(1) = </span><span class="si">{</span><span class="n">lr</span><span class="o">.</span><span class="n">test_statistic</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, p = </span><span class="si">{</span><span class="n">lr</span><span class="o">.</span><span class="n">p_value</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">  ·  "</span>
+        <span class="sa">f</span><span class="s2">"Kaplan–Meier with 95% CI  ·  n = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> deaths"</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">)</span>
+
+<span class="c1"># Risk table styling</span>
+<span class="n">tab</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span> <span class="n">xticks</span><span class="o">=</span><span class="n">ticks</span><span class="p">)</span>
+<span class="n">tab</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelbottom</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">tab</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="nb">list</span><span class="p">(</span><span class="n">groups</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">lbl</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">tab</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">colors</span><span class="p">):</span>
+    <span class="n">lbl</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="n">tab</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">tab</span><span class="o">.</span><span class="n">spines</span><span class="p">[[</span><span class="s2">"left"</span><span class="p">,</span> <span class="s2">"bottom"</span><span class="p">]]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">tab</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Number at risk"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">"normal"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre>
+  </section>
+  <p class="hint">Les figures utilisent le <a href="../../style.html">style Statlas</a> (facultatif) : ajoutez <code>plt.style.use("statlas.mplstyle")</code> pour obtenir exactement le même rendu.</p>
+  <section class="cite" id="cite">
+  <div class="cite-head"><h2>Comment citer</h2>
+  <p>Statlas est créé et maintenu par <a href="https://www.warin.ca">Thierry Warin</a>. S'il vous a été utile dans vos travaux, merci de le citer.</p></div>
+  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). Kaplan–Meier curves. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/survival/kaplan-meier/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). Kaplan–Meier curves. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/survival/kaplan-meier/">Copier</button></div>
+  <div class="cite-box"><pre class="cite-bib">@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/statlas/}},
+  note         = {Source code: https://github.com/warint/statlas}
+}</pre><button class="btn ghost" data-copy-text="@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/statlas/}},
+  note         = {Source code: https://github.com/warint/statlas}
+}">Copier le BibTeX</button></div>
+</section>
+  <div class="pager"><span></span><a class="next" href="../../survival/cox-hazard-ratios/"><small>Suivant</small>Rapports de risques de Cox</a></div>
+  <h2 class="rel-h">Plus dans Analyse de survie</h2><div class="grid"><a class="card" href="../../survival/cox-hazard-ratios/" data-cat="survival" data-k="rapports de risques de cox graphique en forêt d&#x27;un modèle à risques proportionnels de cox avec rapports de risques (hr), ic à 95 % et valeurs p. cox hazard ratios forest plot of a cox proportional hazards model with hr, 95% ci and p-values. survminer::ggforest() analyse de survie survival analysis cox model hazard ratio forest plot proportional hazards survival matplotlib numpy lifelines">
+  <div class="card-img"><img src="../../../survival/cox-hazard-ratios/thumb.webp" alt="Rapports de risques de Cox" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">Analyse de survie</span><h3>Rapports de risques de Cox</h3><p>Graphique en forêt d&#x27;un modèle à risques proportionnels de Cox avec rapports de risques (HR), IC à 95 % et valeurs p.</p><span class="card-r">survminer::ggforest()</span></div>
+</a>
+<a class="card" href="../../survival/cumulative-hazard/" data-cat="survival" data-k="risque cumulé courbes de risque cumulé de nelson–aalen avec bandes à 95 % pour trois grades tumoraux. cumulative hazard nelson–aalen cumulative hazard curves with 95% bands for three tumour grades. survminer::ggsurvplot(fun = &quot;cumhaz&quot;) analyse de survie survival analysis nelson-aalen cumulative hazard survival log-rank matplotlib lifelines">
+  <div class="card-img"><img src="../../../survival/cumulative-hazard/thumb.webp" alt="Risque cumulé" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">Analyse de survie</span><h3>Risque cumulé</h3><p>Courbes de risque cumulé de Nelson–Aalen avec bandes à 95 % pour trois grades tumoraux.</p><span class="card-r">survminer::ggsurvplot(fun = &quot;cumhaz&quot;)</span></div>
+</a>
+<a class="card" href="../../survival/adjusted-survival/" data-cat="survival" data-k="courbes de survie ajustées survie prédite par un modèle de cox pour plusieurs âges, les autres covariables étant fixées à leur moyenne. adjusted survival curves cox model–predicted survival for several ages, other covariates held at their mean. survminer::ggadjustedcurves() analyse de survie survival analysis cox model adjusted survival prediction survival covariates matplotlib numpy pandas lifelines">
+  <div class="card-img"><img src="../../../survival/adjusted-survival/thumb.webp" alt="Courbes de survie ajustées" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">Analyse de survie</span><h3>Courbes de survie ajustées</h3><p>Survie prédite par un modèle de Cox pour plusieurs âges, les autres covariables étant fixées à leur moyenne.</p><span class="card-r">survminer::ggadjustedcurves()</span></div>
+</a></div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div><strong>Statlas</strong> · La galerie Python des graphiques statistiques<br>Créé par <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">Comment citer</a></div>
+    <div class="foot-links"><a href="https://github.com/warint/statlas">GitHub</a><a href="../../style.html">Style des graphiques</a><a href="https://github.com/warint/statlas/blob/main/CONTRIBUTING.md">Contribuer</a><span>Licence MIT</span></div>
+  </div>
+  <div class="wrap foot-langs"><a href="../../../survival/kaplan-meier/" hreflang="en" lang="en">English</a><a href="../../../fr/survival/kaplan-meier/" hreflang="fr" lang="fr" class=on aria-current=true>Français</a><a href="../../../ja/survival/kaplan-meier/" hreflang="ja" lang="ja">日本語</a><a href="../../../zh/survival/kaplan-meier/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div>
+</footer>
+<script src="../../../assets/app.js?v=e9d8945b"></script>
+</body>
+</html>

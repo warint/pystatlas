@@ -9,6 +9,7 @@
 
 <p align="center">
   <a href="{{SITE}}"><b>Browse the gallery →</b></a><br>
+  <a href="{{SITE}}">English</a> · <a href="{{SITE}}fr/">Français</a> · <a href="{{SITE}}ja/">日本語</a> · <a href="{{SITE}}zh/">中文</a><br>
   Created by <a href="https://www.warin.ca"><b>Thierry Warin</b></a> · <a href="https://www.warin.ca">www.warin.ca</a>
 </p>
 
@@ -19,6 +20,7 @@ Statlas is a curated atlas of **statistical** charts for Python: coefficient plo
 ## The repository *is* the gallery
 
 ```
+i18n/                     website translations (en, fr, ja, zh)
 gallery/
   <NN-family>/
     _category.yaml        family title + summary

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ja" data-copied="コピーしました ✓">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>密度曲線付きヒストグラム · Statlas</title>
+<meta name="description" content="ヒストグラム、カーネル密度、当てはめた正規曲線を、分布の形状を表す統計量とともに示します。">
+<meta name="author" content="Thierry Warin">
+<link rel="author" href="https://www.warin.ca">
+<meta name="citation_title" content="Histogram with density — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="citation_author" content="Warin, Thierry">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_online_date" content="2026/11/06">
+<meta name="citation_publisher" content="Thierry Warin">
+<meta name="citation_language" content="ja">
+<meta name="citation_public_url" content="https://warint.github.io/statlas/ja/distributions/histogram-density/">
+<meta name="DC.creator" content="Warin, Thierry">
+<meta name="DC.title" content="Histogram with density — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="DC.date" content="2026">
+<link rel="canonical" href="https://warint.github.io/statlas/ja/distributions/histogram-density/">
+<link rel="alternate" hreflang="en" href="https://warint.github.io/statlas/distributions/histogram-density/">
+<link rel="alternate" hreflang="fr" href="https://warint.github.io/statlas/fr/distributions/histogram-density/">
+<link rel="alternate" hreflang="ja" href="https://warint.github.io/statlas/ja/distributions/histogram-density/">
+<link rel="alternate" hreflang="zh-Hans" href="https://warint.github.io/statlas/zh/distributions/histogram-density/">
+<link rel="alternate" hreflang="x-default" href="https://warint.github.io/statlas/distributions/histogram-density/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Histogram with density — Statlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/statlas/ja/distributions/histogram-density/", "inLanguage": "ja", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "Statlas", "url": "https://warint.github.io/statlas/"}}</script>
+<meta property="og:title" content="密度曲線付きヒストグラム · Statlas">
+<meta property="og:description" content="ヒストグラム、カーネル密度、当てはめた正規曲線を、分布の形状を表す統計量とともに示します。">
+<meta property="og:locale" content="ja">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/style.css?v=e9d8945b">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>Statlas</span></a>
+    <nav class="nav-links">
+      <a href="../../index.html#gallery" class="on">ギャラリー</a>
+      <a href="../../style.html" class="">スタイル</a>
+      <a href="../../about.html" class="">概要</a>
+      <a href="../../about.html#cite" class="hide-sm">引用</a>
+      <details class="lang"><summary aria-label="Language"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span>日本語</span></summary><div class="lang-menu"><a href="../../../distributions/histogram-density/" hreflang="en" lang="en">English</a><a href="../../../fr/distributions/histogram-density/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/distributions/histogram-density/" hreflang="ja" lang="ja" class=on aria-current=true>日本語</a><a href="../../../zh/distributions/histogram-density/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div></details>
+      <a href="https://github.com/warint/statlas" class="gh" aria-label="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </nav>
+  </div>
+</header>
+<main>
+<article class="wrap ex">
+  <div class="crumbs"><a href="../../index.html">ギャラリー</a><span>/</span><a href="../../distributions/index.html">分布</a></div>
+  <header class="ex-head"><h1>密度曲線付きヒストグラム</h1><p class="lede">ヒストグラム、カーネル密度、当てはめた正規曲線を、分布の形状を表す統計量とともに示します。</p>
+  <p class="byline">著者： <a href="https://www.warin.ca">Thierry Warin</a> · 収録： <a href="../../index.html">Statlas</a></p></header>
+  <figure class="figure"><a href="../../../distributions/histogram-density/plot.png" target="_blank" rel="noopener"><img src="../../../distributions/histogram-density/plot.png" alt="密度曲線付きヒストグラム"></a></figure>
+  <div class="ex-cols">
+    <div class="prose"><p>連続変数を調べるときに最初に見るべきグラフです。棒は密度スケールで経験分布を表し、実線はカーネル密度推定（KDE）、破線は同じ平均と標準偏差をもつ正規分布です。2本の曲線が食い違う場合、データは正規分布に従っていません。ここでは右に長く伸びた裾が <strong>平均</strong> を <strong>中央値</strong> より大きく引き上げています。</p><p>データは <strong>scikit-learn</strong> に同梱されている乳がん生検 569 件の腫瘍面積の平均値です。<code>scipy.stats.gaussian_kde</code> で密度を描き、<code>scipy.stats.skew</code> / <code>kurtosis</code> で形状を記述し、<code>scipy.stats.shapiro</code> で正規性を検定しています。</p><p class="note">コードおよび図中のテキストは英語です。</p></div>
+    <aside class="meta"><div class="meta-row"><span>R での対応</span><code>ggplot2::geom_histogram() + geom_density()</code></div><div class="meta-row"><span>ライブラリ</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>SciPy</i><i>scikit-learn</i></div></div><div class="meta-row"><span>トピック</span><div class="pills"><i>histogram</i><i>KDE</i><i>normality</i><i>skewness</i><i>Shapiro-Wilk</i></div></div></aside>
+  </div>
+  <section class="code-card" id="code">
+    <div class="code-bar">
+      <span class="fname">histogram-density.py · 41 行</span>
+      <div class="code-actions">
+        <a class="btn ghost" href="../../../distributions/histogram-density/histogram-density.py" download>ダウンロード</a>
+        <a class="btn ghost" href="https://github.com/warint/statlas/tree/main/gallery/01-distributions/01-histogram-density">GitHub</a>
+        <button class="btn copy" data-copy>コードをコピー</button>
+      </div>
+    </div>
+    <pre class="code"><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_breast_cancer</span>
+
+<span class="c1"># Data: mean area of the cell nuclei (in pixels²) for each biopsy</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">load_breast_cancer</span><span class="p">(</span><span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">frame</span><span class="p">[</span><span class="s2">"mean area"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">median</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">x</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Shape statistics and normality test</span>
+<span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">skew</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">stats</span><span class="o">.</span><span class="n">kurtosis</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># kurtosis: excess, 0 for a normal</span>
+<span class="n">W</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">shapiro</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#007AFF"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"white"</span><span class="p">)</span>
+
+<span class="c1"># Kernel density estimate and the normal curve with the same mean / SD</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">*</span> <span class="mf">1.05</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">stats</span><span class="o">.</span><span class="n">gaussian_kde</span><span class="p">(</span><span class="n">x</span><span class="p">)(</span><span class="n">grid</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#007AFF"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">2.2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Kernel density"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">sd</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#8E8E93"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.6</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s2">"Normal fit (same mean, SD)"</span><span class="p">)</span>
+
+<span class="c1"># Mean and median markers</span>
+<span class="n">ymax</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">ha</span><span class="p">,</span> <span class="n">dx</span> <span class="ow">in</span> <span class="p">[(</span><span class="n">mean</span><span class="p">,</span> <span class="s2">"Mean"</span><span class="p">,</span> <span class="s2">"#FF9500"</span><span class="p">,</span> <span class="s2">"left"</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="n">median</span><span class="p">,</span> <span class="s2">"Median"</span><span class="p">,</span> <span class="s2">"#34C759"</span><span class="p">,</span> <span class="s2">"right"</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">)]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.6</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">*</span> <span class="mf">0.9</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span>
+                <span class="n">textcoords</span><span class="o">=</span><span class="s2">"offset points"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="n">ha</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"top"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span>
+                <span class="n">fontweight</span><span class="o">=</span><span class="s2">"semibold"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">grid</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Density"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Mean nucleus area (pixels²)"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">"upper right"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Tumour area is strongly right-skewed"</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"n = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="si">}</span><span class="s2"> · skewness = </span><span class="si">{</span><span class="n">skew</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> · excess kurtosis = </span><span class="si">{</span><span class="n">kurt</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> · "</span>
+        <span class="sa">f</span><span class="s2">"Shapiro–Wilk W = </span><span class="si">{</span><span class="n">W</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, p = </span><span class="si">{</span><span class="n">p</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+        <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre>
+  </section>
+  <p class="hint">図にはオプションの <a href="../../style.html">Statlas スタイル</a> を使用しています。同じ見た目にするには <code>plt.style.use("statlas.mplstyle")</code> を追加してください。</p>
+  <section class="cite" id="cite">
+  <div class="cite-head"><h2>引用方法</h2>
+  <p>Statlas は <a href="https://www.warin.ca">Thierry Warin</a> が作成・運営しています。研究や業務に役立った場合は、ぜひ引用してください。</p></div>
+  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). Histogram with density. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/distributions/histogram-density/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). Histogram with density. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/distributions/histogram-density/">コピー</button></div>
+  <div class="cite-box"><pre class="cite-bib">@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/statlas/}},
+  note         = {Source code: https://github.com/warint/statlas}
+}</pre><button class="btn ghost" data-copy-text="@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/statlas/}},
+  note         = {Source code: https://github.com/warint/statlas}
+}">BibTeX をコピー</button></div>
+</section>
+  <div class="pager"><span></span><a class="next" href="../../distributions/raincloud/"><small>次へ</small>レインクラウドプロット</a></div>
+  <h2 class="rel-h">分布のその他のグラフ</h2><div class="grid"><a class="card" href="../../distributions/raincloud/" data-cat="distributions" data-k="レインクラウドプロット 群ごとに半分のバイオリン、箱ひげ図、個々のデータ点を横向きに描きます。 raincloud plot half violin, box plot and raw points per group, drawn horizontally. ggdist::stat_halfeye() / ggrain::geom_rain() 分布 distributions raincloud violin box plot kruskal-wallis distribution matplotlib numpy scipy scikit-learn">
+  <div class="card-img"><img src="../../../distributions/raincloud/thumb.webp" alt="レインクラウドプロット" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">分布</span><h3>レインクラウドプロット</h3><p>群ごとに半分のバイオリン、箱ひげ図、個々のデータ点を横向きに描きます。</p><span class="card-r">ggdist::stat_halfeye() / ggrain::geom_rain()</span></div>
+</a>
+<a class="card" href="../../distributions/ridgeline/" data-cat="distributions" data-k="リッジラインプロット 重なり合う密度曲線で、多数の群にわたる分布を比較します。 ridgeline plot overlapping density curves to compare one distribution across many groups. ggridges::geom_density_ridges() 分布 distributions ridgeline joy plot kde seasonality friedman matplotlib numpy statsmodels scipy">
+  <div class="card-img"><img src="../../../distributions/ridgeline/thumb.webp" alt="リッジラインプロット" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">分布</span><h3>リッジラインプロット</h3><p>重なり合う密度曲線で、多数の群にわたる分布を比較します。</p><span class="card-r">ggridges::geom_density_ridges()</span></div>
+</a>
+<a class="card" href="../../distributions/ecdf-comparison/" data-cat="distributions" data-k="ecdf の比較 2群の経験累積分布関数を、コルモゴロフ・スミルノフ統計量の差とともに描きます。 ecdf comparison empirical cumulative distributions of two groups, with the kolmogorov–smirnov gap. ggplot2::stat_ecdf() 分布 distributions ecdf kolmogorov-smirnov cumulative distribution two-sample test matplotlib numpy scipy scikit-learn">
+  <div class="card-img"><img src="../../../distributions/ecdf-comparison/thumb.webp" alt="ECDF の比較" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">分布</span><h3>ECDF の比較</h3><p>2群の経験累積分布関数を、コルモゴロフ・スミルノフ統計量の差とともに描きます。</p><span class="card-r">ggplot2::stat_ecdf()</span></div>
+</a></div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div><strong>Statlas</strong> · 統計グラフのための Python ギャラリー<br>制作： <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">引用方法</a></div>
+    <div class="foot-links"><a href="https://github.com/warint/statlas">GitHub</a><a href="../../style.html">プロットスタイル</a><a href="https://github.com/warint/statlas/blob/main/CONTRIBUTING.md">貢献する</a><span>MIT ライセンス</span></div>
+  </div>
+  <div class="wrap foot-langs"><a href="../../../distributions/histogram-density/" hreflang="en" lang="en">English</a><a href="../../../fr/distributions/histogram-density/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/distributions/histogram-density/" hreflang="ja" lang="ja" class=on aria-current=true>日本語</a><a href="../../../zh/distributions/histogram-density/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div>
+</footer>
+<script src="../../../assets/app.js?v=e9d8945b"></script>
+</body>
+</html>

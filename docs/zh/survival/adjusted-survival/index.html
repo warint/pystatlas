@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-Hans" data-copied="已复制 ✓">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>调整后的生存曲线 · Statlas</title>
+<meta name="description" content="Cox 模型针对不同年龄预测的生存曲线，其他协变量固定在均值。">
+<meta name="author" content="Thierry Warin">
+<link rel="author" href="https://www.warin.ca">
+<meta name="citation_title" content="Adjusted survival curves — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="citation_author" content="Warin, Thierry">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_online_date" content="2026/11/06">
+<meta name="citation_publisher" content="Thierry Warin">
+<meta name="citation_language" content="zh">
+<meta name="citation_public_url" content="https://warint.github.io/statlas/zh/survival/adjusted-survival/">
+<meta name="DC.creator" content="Warin, Thierry">
+<meta name="DC.title" content="Adjusted survival curves — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="DC.date" content="2026">
+<link rel="canonical" href="https://warint.github.io/statlas/zh/survival/adjusted-survival/">
+<link rel="alternate" hreflang="en" href="https://warint.github.io/statlas/survival/adjusted-survival/">
+<link rel="alternate" hreflang="fr" href="https://warint.github.io/statlas/fr/survival/adjusted-survival/">
+<link rel="alternate" hreflang="ja" href="https://warint.github.io/statlas/ja/survival/adjusted-survival/">
+<link rel="alternate" hreflang="zh-Hans" href="https://warint.github.io/statlas/zh/survival/adjusted-survival/">
+<link rel="alternate" hreflang="x-default" href="https://warint.github.io/statlas/survival/adjusted-survival/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Adjusted survival curves — Statlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/statlas/zh/survival/adjusted-survival/", "inLanguage": "zh-Hans", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "Statlas", "url": "https://warint.github.io/statlas/"}}</script>
+<meta property="og:title" content="调整后的生存曲线 · Statlas">
+<meta property="og:description" content="Cox 模型针对不同年龄预测的生存曲线，其他协变量固定在均值。">
+<meta property="og:locale" content="zh-Hans">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/style.css?v=e9d8945b">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>Statlas</span></a>
+    <nav class="nav-links">
+      <a href="../../index.html#gallery" class="on">图库</a>
+      <a href="../../style.html" class="">样式</a>
+      <a href="../../about.html" class="">关于</a>
+      <a href="../../about.html#cite" class="hide-sm">引用</a>
+      <details class="lang"><summary aria-label="Language"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span>中文</span></summary><div class="lang-menu"><a href="../../../survival/adjusted-survival/" hreflang="en" lang="en">English</a><a href="../../../fr/survival/adjusted-survival/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/survival/adjusted-survival/" hreflang="ja" lang="ja">日本語</a><a href="../../../zh/survival/adjusted-survival/" hreflang="zh-Hans" lang="zh-Hans" class=on aria-current=true>中文</a></div></details>
+      <a href="https://github.com/warint/statlas" class="gh" aria-label="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </nav>
+  </div>
+</header>
+<main>
+<article class="wrap ex">
+  <div class="crumbs"><a href="../../index.html">图库</a><span>/</span><a href="../../survival/index.html">生存分析</a></div>
+  <header class="ex-head"><h1>调整后的生存曲线</h1><p class="lede">Cox 模型针对不同年龄预测的生存曲线，其他协变量固定在均值。</p>
+  <p class="byline">作者 <a href="https://www.warin.ca">Thierry Warin</a> · 隶属于 <a href="../../index.html">Statlas</a></p></header>
+  <figure class="figure"><a href="../../../survival/adjusted-survival/plot.png" target="_blank" rel="noopener"><img src="../../../survival/adjusted-survival/plot.png" alt="调整后的生存曲线"></a></figure>
+  <div class="ex-cols">
+    <div class="prose"><p>风险比难以直观感受，生存曲线则不然。这里使用拟合好的 Cox 比例风险模型，为仅在年龄上不同的假想个体<strong>预测</strong>完整的生存曲线，其他所有协变量都固定在样本均值。曲线之间的纵向差距，就是年龄效应换算成保持未被捕概率后的结果。</p><p>数据为 Rossi 再犯研究（<code>lifelines.datasets.load_rossi</code>）。模型用 <code>lifelines.CoxPHFitter</code> 基于全部七个协变量拟合，曲线来自 <code>predict_survival_function()</code>；整个样本观测到的 Kaplan–Meier 曲线以灰色绘制作为参照。</p><p class="note">代码及图中文字均为英文。</p></div>
+    <aside class="meta"><div class="meta-row"><span>R 中的对应函数</span><code>survminer::ggadjustedcurves()</code></div><div class="meta-row"><span>依赖库</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>pandas</i><i>lifelines</i></div></div><div class="meta-row"><span>主题</span><div class="pills"><i>Cox model</i><i>adjusted survival</i><i>prediction</i><i>survival</i><i>covariates</i></div></div></aside>
+  </div>
+  <section class="code-card" id="code">
+    <div class="code-bar">
+      <span class="fname">adjusted-survival.py · 43 行</span>
+      <div class="code-actions">
+        <a class="btn ghost" href="../../../survival/adjusted-survival/adjusted-survival.py" download>下载</a>
+        <a class="btn ghost" href="https://github.com/warint/statlas/tree/main/gallery/07-survival/04-adjusted-survival">GitHub</a>
+        <button class="btn copy" data-copy>复制代码</button>
+      </div>
+    </div>
+    <pre class="code"><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">lifelines</span><span class="w"> </span><span class="kn">import</span> <span class="n">CoxPHFitter</span><span class="p">,</span> <span class="n">KaplanMeierFitter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">lifelines.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_rossi</span>
+
+<span class="c1"># Data: weeks to re-arrest after release from prison</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">load_rossi</span><span class="p">()</span>
+<span class="n">cph</span> <span class="o">=</span> <span class="n">CoxPHFitter</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">duration_col</span><span class="o">=</span><span class="s2">"week"</span><span class="p">,</span> <span class="n">event_col</span><span class="o">=</span><span class="s2">"arrest"</span><span class="p">)</span>
+
+<span class="c1"># Hypothetical profiles: everything at the mean, age varies</span>
+<span class="n">ages</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
+<span class="n">profiles</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"week"</span><span class="p">,</span> <span class="s2">"arrest"</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">ages</span><span class="p">))</span>
+<span class="n">profiles</span><span class="p">[</span><span class="s2">"age"</span><span class="p">]</span> <span class="o">=</span> <span class="n">ages</span>
+<span class="n">surv</span> <span class="o">=</span> <span class="n">cph</span><span class="o">.</span><span class="n">predict_survival_function</span><span class="p">(</span><span class="n">profiles</span><span class="p">,</span> <span class="n">times</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">53</span><span class="p">))</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ages</span><span class="p">)))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Observed Kaplan–Meier curve of the whole sample, for reference</span>
+<span class="n">km</span> <span class="o">=</span> <span class="n">KaplanMeierFitter</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">week</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">arrest</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">km</span><span class="o">.</span><span class="n">survival_function_</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">km</span><span class="o">.</span><span class="n">survival_function_</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">where</span><span class="o">=</span><span class="s2">"post"</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">"#AEAEB2"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"Observed Kaplan–Meier, all </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2"> releasees"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">"lower left"</span><span class="p">)</span>
+
+<span class="c1"># Model-predicted curves, labelled at their end</span>
+<span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">surv</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">ages</span><span class="p">,</span> <span class="n">colors</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">surv</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s2">"post"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">2.2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">52.5</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="sa">f</span><span class="s2">"age </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2">  ·  </span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.0%</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span>
+            <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">"semibold"</span><span class="p">)</span>
+
+<span class="n">hr10</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">cph</span><span class="o">.</span><span class="n">params_</span><span class="p">[</span><span class="s2">"age"</span><span class="p">])</span>
+<span class="n">lo</span><span class="p">,</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">cph</span><span class="o">.</span><span class="n">confidence_intervals_</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"age"</span><span class="p">])</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">cph</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"age"</span><span class="p">,</span> <span class="s2">"p"</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">52</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">),</span> <span class="n">xticks</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span>
+       <span class="n">xlabel</span><span class="o">=</span><span class="s2">"Weeks since release"</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">"Predicted probability of no re-arrest"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">ticker</span><span class="o">.</span><span class="n">PercentFormatter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Younger releasees are re-arrested sooner, all else equal"</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Cox PH, other covariates at their mean  ·  HR per 10 years of age = "</span>
+        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">hr10</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> [</span><span class="si">{</span><span class="n">lo</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">hi</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">], p = </span><span class="si">{</span><span class="n">p</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">  ·  n = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre>
+  </section>
+  <p class="hint">图表使用了可选的 <a href="../../style.html">Statlas 样式</a>：添加 <code>plt.style.use("statlas.mplstyle")</code> 即可完全还原其外观。</p>
+  <section class="cite" id="cite">
+  <div class="cite-head"><h2>如何引用</h2>
+  <p>Statlas 由 <a href="https://www.warin.ca">Thierry Warin</a> 创建并维护。如果它对你的工作有所帮助，敬请引用。</p></div>
+  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). Adjusted survival curves. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/survival/adjusted-survival/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). Adjusted survival curves. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/survival/adjusted-survival/">复制</button></div>
+  <div class="cite-box"><pre class="cite-bib">@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/statlas/}},
+  note         = {Source code: https://github.com/warint/statlas}
+}</pre><button class="btn ghost" data-copy-text="@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/statlas/}},
+  note         = {Source code: https://github.com/warint/statlas}
+}">复制 BibTeX</button></div>
+</section>
+  <div class="pager"><a href="../../survival/cumulative-hazard/"><small>上一个</small>累积风险</a><span></span></div>
+  <h2 class="rel-h">更多生存分析图表</h2><div class="grid"><a class="card" href="../../survival/kaplan-meier/" data-cat="survival" data-k="kaplan–meier 生存曲线 带置信带、删失标记、log-rank 检验和风险表的生存曲线。 kaplan–meier curves survival curves with confidence bands, censoring marks, log-rank test and risk table. survminer::ggsurvplot(risk.table = true) 生存分析 survival analysis kaplan-meier log-rank survival censoring risk table matplotlib numpy lifelines">
+  <div class="card-img"><img src="../../../survival/kaplan-meier/thumb.webp" alt="Kaplan–Meier 生存曲线" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">生存分析</span><h3>Kaplan–Meier 生存曲线</h3><p>带置信带、删失标记、log-rank 检验和风险表的生存曲线。</p><span class="card-r">survminer::ggsurvplot(risk.table = TRUE)</span></div>
+</a>
+<a class="card" href="../../survival/cox-hazard-ratios/" data-cat="survival" data-k="cox 风险比 cox 比例风险模型的森林图，附 hr、95% 置信区间和 p 值。 cox hazard ratios forest plot of a cox proportional hazards model with hr, 95% ci and p-values. survminer::ggforest() 生存分析 survival analysis cox model hazard ratio forest plot proportional hazards survival matplotlib numpy lifelines">
+  <div class="card-img"><img src="../../../survival/cox-hazard-ratios/thumb.webp" alt="Cox 风险比" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">生存分析</span><h3>Cox 风险比</h3><p>Cox 比例风险模型的森林图，附 HR、95% 置信区间和 p 值。</p><span class="card-r">survminer::ggforest()</span></div>
+</a>
+<a class="card" href="../../survival/cumulative-hazard/" data-cat="survival" data-k="累积风险 三种肿瘤分级的 nelson–aalen 累积风险曲线，附 95% 置信带。 cumulative hazard nelson–aalen cumulative hazard curves with 95% bands for three tumour grades. survminer::ggsurvplot(fun = &quot;cumhaz&quot;) 生存分析 survival analysis nelson-aalen cumulative hazard survival log-rank matplotlib lifelines">
+  <div class="card-img"><img src="../../../survival/cumulative-hazard/thumb.webp" alt="累积风险" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">生存分析</span><h3>累积风险</h3><p>三种肿瘤分级的 Nelson–Aalen 累积风险曲线，附 95% 置信带。</p><span class="card-r">survminer::ggsurvplot(fun = &quot;cumhaz&quot;)</span></div>
+</a></div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div><strong>Statlas</strong> · Python 统计图形库<br>创建者 <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">如何引用</a></div>
+    <div class="foot-links"><a href="https://github.com/warint/statlas">GitHub</a><a href="../../style.html">绘图样式</a><a href="https://github.com/warint/statlas/blob/main/CONTRIBUTING.md">参与贡献</a><span>MIT 许可证</span></div>
+  </div>
+  <div class="wrap foot-langs"><a href="../../../survival/adjusted-survival/" hreflang="en" lang="en">English</a><a href="../../../fr/survival/adjusted-survival/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/survival/adjusted-survival/" hreflang="ja" lang="ja">日本語</a><a href="../../../zh/survival/adjusted-survival/" hreflang="zh-Hans" lang="zh-Hans" class=on aria-current=true>中文</a></div>
+</footer>
+<script src="../../../assets/app.js?v=e9d8945b"></script>
+</body>
+</html>

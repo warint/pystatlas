@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="fr" data-copied="Copié ✓">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Distribution bootstrap · Statlas</title>
+<meta name="description" content="Corrélation rééchantillonnée avec intervalles de confiance à 95 % par percentiles et BCa.">
+<meta name="author" content="Thierry Warin">
+<link rel="author" href="https://www.warin.ca">
+<meta name="citation_title" content="Bootstrap distribution — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="citation_author" content="Warin, Thierry">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_online_date" content="2026/11/06">
+<meta name="citation_publisher" content="Thierry Warin">
+<meta name="citation_language" content="fr">
+<meta name="citation_public_url" content="https://warint.github.io/statlas/fr/inference-uncertainty/bootstrap-distribution/">
+<meta name="DC.creator" content="Warin, Thierry">
+<meta name="DC.title" content="Bootstrap distribution — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="DC.date" content="2026">
+<link rel="canonical" href="https://warint.github.io/statlas/fr/inference-uncertainty/bootstrap-distribution/">
+<link rel="alternate" hreflang="en" href="https://warint.github.io/statlas/inference-uncertainty/bootstrap-distribution/">
+<link rel="alternate" hreflang="fr" href="https://warint.github.io/statlas/fr/inference-uncertainty/bootstrap-distribution/">
+<link rel="alternate" hreflang="ja" href="https://warint.github.io/statlas/ja/inference-uncertainty/bootstrap-distribution/">
+<link rel="alternate" hreflang="zh-Hans" href="https://warint.github.io/statlas/zh/inference-uncertainty/bootstrap-distribution/">
+<link rel="alternate" hreflang="x-default" href="https://warint.github.io/statlas/inference-uncertainty/bootstrap-distribution/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Bootstrap distribution — Statlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/statlas/fr/inference-uncertainty/bootstrap-distribution/", "inLanguage": "fr", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "Statlas", "url": "https://warint.github.io/statlas/"}}</script>
+<meta property="og:title" content="Distribution bootstrap · Statlas">
+<meta property="og:description" content="Corrélation rééchantillonnée avec intervalles de confiance à 95 % par percentiles et BCa.">
+<meta property="og:locale" content="fr">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/style.css?v=e9d8945b">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>Statlas</span></a>
+    <nav class="nav-links">
+      <a href="../../index.html#gallery" class="on">Galerie</a>
+      <a href="../../style.html" class="">Style</a>
+      <a href="../../about.html" class="">À propos</a>
+      <a href="../../about.html#cite" class="hide-sm">Citer</a>
+      <details class="lang"><summary aria-label="Language"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span>Français</span></summary><div class="lang-menu"><a href="../../../inference-uncertainty/bootstrap-distribution/" hreflang="en" lang="en">English</a><a href="../../../fr/inference-uncertainty/bootstrap-distribution/" hreflang="fr" lang="fr" class=on aria-current=true>Français</a><a href="../../../ja/inference-uncertainty/bootstrap-distribution/" hreflang="ja" lang="ja">日本語</a><a href="../../../zh/inference-uncertainty/bootstrap-distribution/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div></details>
+      <a href="https://github.com/warint/statlas" class="gh" aria-label="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </nav>
+  </div>
+</header>
+<main>
+<article class="wrap ex">
+  <div class="crumbs"><a href="../../index.html">Galerie</a><span>/</span><a href="../../inference-uncertainty/index.html">Inférence et incertitude</a></div>
+  <header class="ex-head"><h1>Distribution bootstrap</h1><p class="lede">Corrélation rééchantillonnée avec intervalles de confiance à 95 % par percentiles et BCa.</p>
+  <p class="byline">Par <a href="https://www.warin.ca">Thierry Warin</a> · fait partie de <a href="../../index.html">Statlas</a></p></header>
+  <figure class="figure"><a href="../../../inference-uncertainty/bootstrap-distribution/plot.png" target="_blank" rel="noopener"><img src="../../../inference-uncertainty/bootstrap-distribution/plot.png" alt="Distribution bootstrap"></a></figure>
+  <div class="ex-cols">
+    <div class="prose"><p>Le bootstrap réestime une statistique sur des milliers d&#x27;échantillons tirés avec remise dans les données ; la dispersion de ces estimations mesure son incertitude d&#x27;échantillonnage. L&#x27;histogramme est la distribution bootstrap d&#x27;une corrélation, la ligne orange la valeur observée dans l&#x27;échantillon complet. Deux intervalles à 95 % sont tracés au-dessus : l&#x27;intervalle simple <strong>par percentiles</strong> et l&#x27;intervalle <strong>BCa</strong> (corrigé du biais et accéléré), qui se déplace pour tenir compte du biais et de l&#x27;asymétrie visibles ici — la distribution est loin d&#x27;être symétrique.</p><p>Les données sont les 50 États américains + DC du jeu de données <code>statecrime</code> de <strong>statsmodels</strong> : la proportion de familles monoparentales en regard du taux de crimes violents. <code>scipy.stats.bootstrap</code> (apparié, 9 999 rééchantillonnages) fournit les deux intervalles.</p><p class="note">Le code et le texte à l&#x27;intérieur des figures sont en anglais.</p></div>
+    <aside class="meta"><div class="meta-row"><span>Équivalent R</span><code>boot::boot() + boot::boot.ci()</code></div><div class="meta-row"><span>Bibliothèques</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>statsmodels</i><i>SciPy</i></div></div><div class="meta-row"><span>Thèmes</span><div class="pills"><i>bootstrap</i><i>BCa</i><i>percentile interval</i><i>correlation</i><i>resampling</i></div></div></aside>
+  </div>
+  <section class="code-card" id="code">
+    <div class="code-bar">
+      <span class="fname">bootstrap-distribution.py · 48 lignes</span>
+      <div class="code-actions">
+        <a class="btn ghost" href="../../../inference-uncertainty/bootstrap-distribution/bootstrap-distribution.py" download>Télécharger</a>
+        <a class="btn ghost" href="https://github.com/warint/statlas/tree/main/gallery/10-inference-uncertainty/01-bootstrap-distribution">GitHub</a>
+        <button class="btn copy" data-copy>Copier le code</button>
+      </div>
+    </div>
+    <pre class="code"><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+
+<span class="c1"># Data: violent crime vs single-parent households, 51 states</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">statecrime</span><span class="o">.</span><span class="n">load_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"single"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="s2">"violent"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">r_obs</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Paired bootstrap of Pearson's r: percentile and BCa intervals from the same resamples</span>
+<span class="n">r</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">:</span> <span class="n">stats</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">boot</span> <span class="o">=</span> <span class="p">{</span><span class="n">m</span><span class="p">:</span> <span class="n">stats</span><span class="o">.</span><span class="n">bootstrap</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">r</span><span class="p">,</span> <span class="n">paired</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">vectorized</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_resamples</span><span class="o">=</span><span class="mi">9999</span><span class="p">,</span>
+                           <span class="n">method</span><span class="o">=</span><span class="n">m</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"percentile"</span><span class="p">,</span> <span class="s2">"BCa"</span><span class="p">]}</span>
+<span class="n">dist</span> <span class="o">=</span> <span class="n">boot</span><span class="p">[</span><span class="s2">"BCa"</span><span class="p">]</span><span class="o">.</span><span class="n">bootstrap_distribution</span>
+<span class="n">fisher</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arctanh</span><span class="p">(</span><span class="n">r_obs</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="mf">1.96</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">lo</span><span class="p">,</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">boot</span><span class="p">[</span><span class="s2">"BCa"</span><span class="p">]</span><span class="o">.</span><span class="n">confidence_interval</span>
+<span class="n">counts</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">bars</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#C7C7CC"</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"white"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">b</span><span class="p">,</span> <span class="n">left</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bars</span><span class="p">,</span> <span class="n">edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="k">if</span> <span class="n">lo</span> <span class="o">&lt;=</span> <span class="n">left</span> <span class="o">+</span> <span class="p">(</span><span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">edges</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">&lt;=</span> <span class="n">hi</span><span class="p">:</span>
+        <span class="n">b</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s2">"#007AFF"</span><span class="p">);</span> <span class="n">b</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+
+<span class="c1"># Intervals stacked above the histogram</span>
+<span class="n">top</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([(</span><span class="s2">"percentile"</span><span class="p">,</span> <span class="s2">"#8E8E93"</span><span class="p">,</span> <span class="s2">"Percentile"</span><span class="p">),</span>
+                                  <span class="p">(</span><span class="s2">"BCa"</span><span class="p">,</span> <span class="s2">"#007AFF"</span><span class="p">,</span> <span class="s2">"BCa"</span><span class="p">)]):</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">boot</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">confidence_interval</span>
+    <span class="n">yy</span> <span class="o">=</span> <span class="n">top</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.12</span> <span class="o">+</span> <span class="mf">0.12</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">],</span> <span class="p">[</span><span class="n">yy</span><span class="p">,</span> <span class="n">yy</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">solid_capstyle</span><span class="o">=</span><span class="s2">"butt"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">],</span> <span class="n">yy</span> <span class="o">-</span> <span class="n">top</span> <span class="o">*</span> <span class="mf">0.03</span><span class="p">,</span> <span class="n">yy</span> <span class="o">+</span> <span class="n">top</span> <span class="o">*</span> <span class="mf">0.03</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> 95% CI  [</span><span class="si">{</span><span class="n">a</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">b</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">]"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"right"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span>
+            <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">"semibold"</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">r_obs</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">top</span> <span class="o">*</span> <span class="mf">1.34</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#FF9500"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">r_obs</span><span class="p">,</span> <span class="n">top</span> <span class="o">*</span> <span class="mf">1.36</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"observed r = </span><span class="si">{</span><span class="n">r_obs</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"bottom"</span><span class="p">,</span>
+        <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#FF9500"</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">"semibold"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.15</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">top</span> <span class="o">*</span> <span class="mf">1.46</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Bootstrap estimate of Pearson's r"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Resamples"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Crime and single parenthood: a strong but skewed correlation"</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Paired bootstrap, B = 9,999 · n = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="si">}</span><span class="s2"> states · bias = "</span>
+        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">dist</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">r_obs</span><span class="si">:</span><span class="s2">+.3f</span><span class="si">}</span><span class="s2"> · Fisher-z 95% CI [</span><span class="si">{</span><span class="n">fisher</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">fisher</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">] for comparison"</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre>
+  </section>
+  <p class="hint">Les figures utilisent le <a href="../../style.html">style Statlas</a> (facultatif) : ajoutez <code>plt.style.use("statlas.mplstyle")</code> pour obtenir exactement le même rendu.</p>
+  <section class="cite" id="cite">
+  <div class="cite-head"><h2>Comment citer</h2>
+  <p>Statlas est créé et maintenu par <a href="https://www.warin.ca">Thierry Warin</a>. S'il vous a été utile dans vos travaux, merci de le citer.</p></div>
+  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). Bootstrap distribution. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/inference-uncertainty/bootstrap-distribution/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). Bootstrap distribution. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/inference-uncertainty/bootstrap-distribution/">Copier</button></div>
+  <div class="cite-box"><pre class="cite-bib">@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/statlas/}},
+  note         = {Source code: https://github.com/warint/statlas}
+}</pre><button class="btn ghost" data-copy-text="@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/statlas/}},
+  note         = {Source code: https://github.com/warint/statlas}
+}">Copier le BibTeX</button></div>
+</section>
+  <div class="pager"><span></span><a class="next" href="../../inference-uncertainty/confidence-intervals/"><small>Suivant</small>Ce que signifie un intervalle de confiance à 95 %</a></div>
+  <h2 class="rel-h">Plus dans Inférence et incertitude</h2><div class="grid"><a class="card" href="../../inference-uncertainty/confidence-intervals/" data-cat="inference-uncertainty" data-k="ce que signifie un intervalle de confiance à 95 % 100 ic à 95 % simulés pour une moyenne ; ceux qui manquent la vraie valeur sont en rouge. what a 95% confidence interval means 100 simulated 95% cis for a mean; the ones that miss the true value are in red. teaching classic (e.g. teachingdemos::ci.examp()) inférence et incertitude inference &amp; uncertainty confidence interval coverage simulation t-interval teaching matplotlib numpy scipy">
+  <div class="card-img"><img src="../../../inference-uncertainty/confidence-intervals/thumb.webp" alt="Ce que signifie un intervalle de confiance à 95 %" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">Inférence et incertitude</span><h3>Ce que signifie un intervalle de confiance à 95 %</h3><p>100 IC à 95 % simulés pour une moyenne ; ceux qui manquent la vraie valeur sont en rouge.</p><span class="card-r">teaching classic (e.g. TeachingDemos::ci.examp())</span></div>
+</a>
+<a class="card" href="../../inference-uncertainty/power-curve/" data-cat="inference-uncertainty" data-k="courbe de puissance puissance d&#x27;un test t à deux échantillons selon la taille d&#x27;échantillon, pour des effets petits, moyens et grands. power curve power of a two-sample t-test against sample size for small, medium and large effects. pwr::pwr.t.test() + plot() inférence et incertitude inference &amp; uncertainty power analysis sample size t-test cohen&#x27;s d study design matplotlib numpy statsmodels">
+  <div class="card-img"><img src="../../../inference-uncertainty/power-curve/thumb.webp" alt="Courbe de puissance" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">Inférence et incertitude</span><h3>Courbe de puissance</h3><p>Puissance d&#x27;un test t à deux échantillons selon la taille d&#x27;échantillon, pour des effets petits, moyens et grands.</p><span class="card-r">pwr::pwr.t.test() + plot()</span></div>
+</a>
+<a class="card" href="../../inference-uncertainty/bland-altman/" data-cat="inference-uncertainty" data-k="graphique de bland–altman concordance entre deux méthodes de mesure, avec biais et limites de concordance à 95 %. bland–altman plot agreement between two measurement methods, with bias and 95% limits of agreement. blandaltmanleh::bland.altman.plot() / blandr::blandr.draw() inférence et incertitude inference &amp; uncertainty agreement bland-altman limits of agreement method comparison bias matplotlib numpy statsmodels scipy">
+  <div class="card-img"><img src="../../../inference-uncertainty/bland-altman/thumb.webp" alt="Graphique de Bland–Altman" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">Inférence et incertitude</span><h3>Graphique de Bland–Altman</h3><p>Concordance entre deux méthodes de mesure, avec biais et limites de concordance à 95 %.</p><span class="card-r">BlandAltmanLeh::bland.altman.plot() / blandr::blandr.draw()</span></div>
+</a></div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div><strong>Statlas</strong> · La galerie Python des graphiques statistiques<br>Créé par <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">Comment citer</a></div>
+    <div class="foot-links"><a href="https://github.com/warint/statlas">GitHub</a><a href="../../style.html">Style des graphiques</a><a href="https://github.com/warint/statlas/blob/main/CONTRIBUTING.md">Contribuer</a><span>Licence MIT</span></div>
+  </div>
+  <div class="wrap foot-langs"><a href="../../../inference-uncertainty/bootstrap-distribution/" hreflang="en" lang="en">English</a><a href="../../../fr/inference-uncertainty/bootstrap-distribution/" hreflang="fr" lang="fr" class=on aria-current=true>Français</a><a href="../../../ja/inference-uncertainty/bootstrap-distribution/" hreflang="ja" lang="ja">日本語</a><a href="../../../zh/inference-uncertainty/bootstrap-distribution/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div>
+</footer>
+<script src="../../../assets/app.js?v=e9d8945b"></script>
+</body>
+</html>

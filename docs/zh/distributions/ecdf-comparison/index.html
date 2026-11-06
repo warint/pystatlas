@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-Hans" data-copied="已复制 ✓">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ECDF 比较 · Statlas</title>
+<meta name="description" content="两组的经验累积分布，并标出 Kolmogorov–Smirnov 最大差距。">
+<meta name="author" content="Thierry Warin">
+<link rel="author" href="https://www.warin.ca">
+<meta name="citation_title" content="ECDF comparison — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="citation_author" content="Warin, Thierry">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_online_date" content="2026/11/06">
+<meta name="citation_publisher" content="Thierry Warin">
+<meta name="citation_language" content="zh">
+<meta name="citation_public_url" content="https://warint.github.io/statlas/zh/distributions/ecdf-comparison/">
+<meta name="DC.creator" content="Warin, Thierry">
+<meta name="DC.title" content="ECDF comparison — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="DC.date" content="2026">
+<link rel="canonical" href="https://warint.github.io/statlas/zh/distributions/ecdf-comparison/">
+<link rel="alternate" hreflang="en" href="https://warint.github.io/statlas/distributions/ecdf-comparison/">
+<link rel="alternate" hreflang="fr" href="https://warint.github.io/statlas/fr/distributions/ecdf-comparison/">
+<link rel="alternate" hreflang="ja" href="https://warint.github.io/statlas/ja/distributions/ecdf-comparison/">
+<link rel="alternate" hreflang="zh-Hans" href="https://warint.github.io/statlas/zh/distributions/ecdf-comparison/">
+<link rel="alternate" hreflang="x-default" href="https://warint.github.io/statlas/distributions/ecdf-comparison/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "ECDF comparison — Statlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/statlas/zh/distributions/ecdf-comparison/", "inLanguage": "zh-Hans", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "Statlas", "url": "https://warint.github.io/statlas/"}}</script>
+<meta property="og:title" content="ECDF 比较 · Statlas">
+<meta property="og:description" content="两组的经验累积分布，并标出 Kolmogorov–Smirnov 最大差距。">
+<meta property="og:locale" content="zh-Hans">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/style.css?v=e9d8945b">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>Statlas</span></a>
+    <nav class="nav-links">
+      <a href="../../index.html#gallery" class="on">图库</a>
+      <a href="../../style.html" class="">样式</a>
+      <a href="../../about.html" class="">关于</a>
+      <a href="../../about.html#cite" class="hide-sm">引用</a>
+      <details class="lang"><summary aria-label="Language"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span>中文</span></summary><div class="lang-menu"><a href="../../../distributions/ecdf-comparison/" hreflang="en" lang="en">English</a><a href="../../../fr/distributions/ecdf-comparison/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/distributions/ecdf-comparison/" hreflang="ja" lang="ja">日本語</a><a href="../../../zh/distributions/ecdf-comparison/" hreflang="zh-Hans" lang="zh-Hans" class=on aria-current=true>中文</a></div></details>
+      <a href="https://github.com/warint/statlas" class="gh" aria-label="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </nav>
+  </div>
+</header>
+<main>
+<article class="wrap ex">
+  <div class="crumbs"><a href="../../index.html">图库</a><span>/</span><a href="../../distributions/index.html">分布</a></div>
+  <header class="ex-head"><h1>ECDF 比较</h1><p class="lede">两组的经验累积分布，并标出 Kolmogorov–Smirnov 最大差距。</p>
+  <p class="byline">作者 <a href="https://www.warin.ca">Thierry Warin</a> · 隶属于 <a href="../../index.html">Statlas</a></p></header>
+  <figure class="figure"><a href="../../../distributions/ecdf-comparison/plot.png" target="_blank" rel="noopener"><img src="../../../distributions/ecdf-comparison/plot.png" alt="ECDF 比较"></a></figure>
+  <div class="ex-cols">
+    <div class="prose"><p>经验累积分布函数（ECDF）对 x 轴上的每个值，绘出小于或等于该值的观测所占的比例。与直方图不同，它无需分箱，任何分位数都可以直接读出。将两条 ECDF 画在一起时，二者之间的最大垂直距离正是双样本 <strong>Kolmogorov–Smirnov</strong> 统计量 D，图中以红色线段表示。</p><p>数据为 <strong>scikit-learn</strong> 自带糖尿病研究中的 442 名患者（<code>load_diabetes(scaled=False)</code>）：按性别比较体重指数。<code>scipy.stats.ecdf</code> 构建曲线，<code>scipy.stats.ks_2samp</code> 返回 D、其位置以及 p 值。</p><p class="note">代码及图中文字均为英文。</p></div>
+    <aside class="meta"><div class="meta-row"><span>R 中的对应函数</span><code>ggplot2::stat_ecdf()</code></div><div class="meta-row"><span>依赖库</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>SciPy</i><i>scikit-learn</i></div></div><div class="meta-row"><span>主题</span><div class="pills"><i>ECDF</i><i>Kolmogorov-Smirnov</i><i>cumulative distribution</i><i>two-sample test</i></div></div></aside>
+  </div>
+  <section class="code-card" id="code">
+    <div class="code-bar">
+      <span class="fname">ecdf-comparison.py · 41 行</span>
+      <div class="code-actions">
+        <a class="btn ghost" href="../../../distributions/ecdf-comparison/ecdf-comparison.py" download>下载</a>
+        <a class="btn ghost" href="https://github.com/warint/statlas/tree/main/gallery/01-distributions/04-ecdf-comparison">GitHub</a>
+        <button class="btn copy" data-copy>复制代码</button>
+      </div>
+    </div>
+    <pre class="code"><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_diabetes</span>
+
+<span class="c1"># Data: body-mass index of diabetes patients, split by sex (coded 1 / 2)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">load_diabetes</span><span class="p">(</span><span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scaled</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">frame</span>
+<span class="n">groups</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"Sex 1"</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">sex</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"bmi"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+          <span class="s2">"Sex 2"</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">sex</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"bmi"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()}</span>
+<span class="n">palette</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"#007AFF"</span><span class="p">,</span> <span class="s2">"#FF9500"</span><span class="p">]</span>
+
+<span class="c1"># Two-sample Kolmogorov–Smirnov test: D is the largest vertical gap</span>
+<span class="n">ks</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ks_2samp</span><span class="p">(</span><span class="o">*</span><span class="n">groups</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="n">x_gap</span> <span class="o">=</span> <span class="n">ks</span><span class="o">.</span><span class="n">statistic_location</span>
+<span class="n">F</span> <span class="o">=</span> <span class="p">[</span><span class="n">stats</span><span class="o">.</span><span class="n">ecdf</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">.</span><span class="n">cdf</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">groups</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+<span class="n">y_gap</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">x_gap</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">F</span><span class="p">]</span>
+
+<span class="n">lo</span><span class="p">,</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">bmi</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">bmi</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.5</span>  <span class="c1"># common x-range for both curves</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">d</span><span class="p">),</span> <span class="n">f</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">groups</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">F</span><span class="p">,</span> <span class="n">palette</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">lo</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">quantiles</span><span class="p">,</span> <span class="n">hi</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">probabilities</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">where</span><span class="o">=</span><span class="s2">"post"</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> (n = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="si">}</span><span class="s2">, median </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+
+<span class="c1"># Mark the KS distance</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x_gap</span><span class="p">,</span> <span class="n">x_gap</span><span class="p">],</span> <span class="n">y_gap</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#FF3B30"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">solid_capstyle</span><span class="o">=</span><span class="s2">"round"</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="n">x_gap</span><span class="p">,</span> <span class="n">x_gap</span><span class="p">],</span> <span class="n">y_gap</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#FF3B30"</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s2">"D = </span><span class="si">{</span><span class="n">ks</span><span class="o">.</span><span class="n">statistic</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="se">\n</span><span class="s2">at BMI </span><span class="si">{</span><span class="n">x_gap</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="p">(</span><span class="n">x_gap</span> <span class="o">+</span> <span class="mf">0.2</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">y_gap</span><span class="p">)),</span>
+            <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="n">x_gap</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">y_gap</span><span class="p">)),</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"left"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+            <span class="n">fontweight</span><span class="o">=</span><span class="s2">"semibold"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#FF3B30"</span><span class="p">,</span>
+            <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s2">"-"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#FF3B30"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">shrinkB</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s2">.0%</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Body-mass index (kg/m²)"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Cumulative share of patients"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">"lower right"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Sex 2 has fewer low-BMI patients than sex 1"</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Two-sample Kolmogorov–Smirnov D = </span><span class="si">{</span><span class="n">ks</span><span class="o">.</span><span class="n">statistic</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, p = </span><span class="si">{</span><span class="n">ks</span><span class="o">.</span><span class="n">pvalue</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span>
+        <span class="sa">f</span><span class="s2">" · n = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre>
+  </section>
+  <p class="hint">图表使用了可选的 <a href="../../style.html">Statlas 样式</a>：添加 <code>plt.style.use("statlas.mplstyle")</code> 即可完全还原其外观。</p>
+  <section class="cite" id="cite">
+  <div class="cite-head"><h2>如何引用</h2>
+  <p>Statlas 由 <a href="https://www.warin.ca">Thierry Warin</a> 创建并维护。如果它对你的工作有所帮助，敬请引用。</p></div>
+  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). ECDF comparison. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/distributions/ecdf-comparison/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). ECDF comparison. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/distributions/ecdf-comparison/">复制</button></div>
+  <div class="cite-box"><pre class="cite-bib">@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/statlas/}},
+  note         = {Source code: https://github.com/warint/statlas}
+}</pre><button class="btn ghost" data-copy-text="@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/statlas/}},
+  note         = {Source code: https://github.com/warint/statlas}
+}">复制 BibTeX</button></div>
+</section>
+  <div class="pager"><a href="../../distributions/ridgeline/"><small>上一个</small>山脊图</a><a class="next" href="../../distributions/qq-plot/"><small>下一个</small>带置信带的 Q–Q 图</a></div>
+  <h2 class="rel-h">更多分布图表</h2><div class="grid"><a class="card" href="../../distributions/histogram-density/" data-cat="distributions" data-k="带密度曲线的直方图 直方图、核密度和拟合的正态曲线，并附形态统计量。 histogram with density histogram, kernel density and fitted normal curve, with shape statistics. ggplot2::geom_histogram() + geom_density() 分布 distributions histogram kde normality skewness shapiro-wilk matplotlib numpy scipy scikit-learn">
+  <div class="card-img"><img src="../../../distributions/histogram-density/thumb.webp" alt="带密度曲线的直方图" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">分布</span><h3>带密度曲线的直方图</h3><p>直方图、核密度和拟合的正态曲线，并附形态统计量。</p><span class="card-r">ggplot2::geom_histogram() + geom_density()</span></div>
+</a>
+<a class="card" href="../../distributions/raincloud/" data-cat="distributions" data-k="雨云图 按组横向绘制半边小提琴图、箱线图和原始数据点。 raincloud plot half violin, box plot and raw points per group, drawn horizontally. ggdist::stat_halfeye() / ggrain::geom_rain() 分布 distributions raincloud violin box plot kruskal-wallis distribution matplotlib numpy scipy scikit-learn">
+  <div class="card-img"><img src="../../../distributions/raincloud/thumb.webp" alt="雨云图" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">分布</span><h3>雨云图</h3><p>按组横向绘制半边小提琴图、箱线图和原始数据点。</p><span class="card-r">ggdist::stat_halfeye() / ggrain::geom_rain()</span></div>
+</a>
+<a class="card" href="../../distributions/ridgeline/" data-cat="distributions" data-k="山脊图 以相互重叠的密度曲线比较多个组的同一分布。 ridgeline plot overlapping density curves to compare one distribution across many groups. ggridges::geom_density_ridges() 分布 distributions ridgeline joy plot kde seasonality friedman matplotlib numpy statsmodels scipy">
+  <div class="card-img"><img src="../../../distributions/ridgeline/thumb.webp" alt="山脊图" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">分布</span><h3>山脊图</h3><p>以相互重叠的密度曲线比较多个组的同一分布。</p><span class="card-r">ggridges::geom_density_ridges()</span></div>
+</a></div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div><strong>Statlas</strong> · Python 统计图形库<br>创建者 <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">如何引用</a></div>
+    <div class="foot-links"><a href="https://github.com/warint/statlas">GitHub</a><a href="../../style.html">绘图样式</a><a href="https://github.com/warint/statlas/blob/main/CONTRIBUTING.md">参与贡献</a><span>MIT 许可证</span></div>
+  </div>
+  <div class="wrap foot-langs"><a href="../../../distributions/ecdf-comparison/" hreflang="en" lang="en">English</a><a href="../../../fr/distributions/ecdf-comparison/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/distributions/ecdf-comparison/" hreflang="ja" lang="ja">日本語</a><a href="../../../zh/distributions/ecdf-comparison/" hreflang="zh-Hans" lang="zh-Hans" class=on aria-current=true>中文</a></div>
+</footer>
+<script src="../../../assets/app.js?v=e9d8945b"></script>
+</body>
+</html>

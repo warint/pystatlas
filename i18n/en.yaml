@@ -1,0 +1,65 @@
+# English UI strings (source). Translations live in fr.yaml, ja.yaml, zh.yaml.
+# Keep {placeholders} and HTML tags exactly as they are.
+ui:
+  lang_name: English
+  tagline: The Python gallery of statistical graphics
+  lede: "A curated atlas of statistical charts for Python — regression models, Likert scales, survival curves, diagnostics and more. Pick a chart, copy the code, done."
+  nav_gallery: Gallery
+  nav_style: Style
+  nav_about: About
+  nav_cite: Cite
+  eyebrow: "{n} statistical charts · {k} families · 100% Python"
+  hero_1: Statistical graphics.
+  hero_2: Beautifully Pythonic.
+  by: By
+  part_of: part of
+  search_placeholder: "Search charts, methods or R functions — try “likert”"
+  empty: "No chart matches your search. Try “regression”, “proportion” or an R function name."
+  all: All
+  n_charts: "{n} charts"
+  gallery: Gallery
+  r_equivalent: R equivalent
+  libraries: Libraries
+  topics: Topics
+  n_lines: "{n} lines"
+  download: Download
+  copy_code: Copy code
+  copy: Copy
+  copied: Copied ✓
+  copy_bibtex: Copy BibTeX
+  hint: "Figures use the optional {style_link}: add {code} to match the look exactly."
+  style_link: Statlas style
+  code_note: The code and the text inside the figures are in English.
+  previous: Previous
+  next: Next
+  more_in: "More in {cat}"
+  cite_h: How to cite
+  cite_p: "{name} is created and maintained by {author}. If it helped your work, please cite it."
+  created_by: Created by
+  plot_style: Plot style
+  contribute: Contribute
+  license: MIT License
+  style_title: Plot style
+  style_h1: The Statlas style
+  style_lede: "One small Matplotlib style sheet gives every chart the same calm look: clear colours, no chart junk, generous whitespace. It works with Matplotlib, seaborn and pandas plotting."
+  step1_h: Download
+  step1_p: "{file} into your project."
+  step2_h: Activate
+  step3_h: Plot
+  step3_p: Every example in the gallery now looks identical on your machine.
+  palette: Palette
+  about_title: About
+  about_h1: "About {name}"
+  about_p1: "{name} is to Python what the R Graph Gallery, <code>ggstats</code> and <code>ggstatsplot</code> are to R: a catalogue of <strong>statistical</strong> charts — model coefficients, Likert scales, survival curves, diagnostics, effect sizes — each with clean, copy‑pasteable code built on the scientific Python stack."
+  principles_h: Principles
+  principle_1: "<strong>Self‑contained.</strong> Every script runs as is. Data comes from bundled datasets (statsmodels, scikit‑learn, lifelines) or a seeded simulation — no downloads."
+  principle_2: "<strong>Statistics first.</strong> Each chart carries the numbers that matter: estimates, intervals, test statistics, effect sizes."
+  principle_3: "<strong>Folder = page.</strong> The repository tree mirrors the site. Every example lives in <code>gallery/&lt;family&gt;/&lt;chart&gt;/plot.py</code> with a rendered <code>plot.png</code> and README."
+  families_h: Families
+  th_family: Family
+  th_charts: Charts
+  th_find: "What you'll find"
+  author_h: Author
+  author_p: "{name} is created and maintained by {author}. More of his work on data science, statistics and AI: {site}."
+  contribute_h: Contribute
+  contribute_p: "Add a folder with a <code>plot.py</code>, run <code>python build.py</code>, open a pull request. See {contrib}."

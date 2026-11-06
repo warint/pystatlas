@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ja" data-copied="コピーしました ✓">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>相関係数付きペアプロット · Statlas</title>
+<meta name="description" content="対角に群別 KDE、その上側に相関係数を配した散布図行列です。">
+<meta name="author" content="Thierry Warin">
+<link rel="author" href="https://www.warin.ca">
+<meta name="citation_title" content="Pairs plot with correlations — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="citation_author" content="Warin, Thierry">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_online_date" content="2026/11/06">
+<meta name="citation_publisher" content="Thierry Warin">
+<meta name="citation_language" content="ja">
+<meta name="citation_public_url" content="https://warint.github.io/statlas/ja/correlation/pairs-plot/">
+<meta name="DC.creator" content="Warin, Thierry">
+<meta name="DC.title" content="Pairs plot with correlations — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="DC.date" content="2026">
+<link rel="canonical" href="https://warint.github.io/statlas/ja/correlation/pairs-plot/">
+<link rel="alternate" hreflang="en" href="https://warint.github.io/statlas/correlation/pairs-plot/">
+<link rel="alternate" hreflang="fr" href="https://warint.github.io/statlas/fr/correlation/pairs-plot/">
+<link rel="alternate" hreflang="ja" href="https://warint.github.io/statlas/ja/correlation/pairs-plot/">
+<link rel="alternate" hreflang="zh-Hans" href="https://warint.github.io/statlas/zh/correlation/pairs-plot/">
+<link rel="alternate" hreflang="x-default" href="https://warint.github.io/statlas/correlation/pairs-plot/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Pairs plot with correlations — Statlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/statlas/ja/correlation/pairs-plot/", "inLanguage": "ja", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "Statlas", "url": "https://warint.github.io/statlas/"}}</script>
+<meta property="og:title" content="相関係数付きペアプロット · Statlas">
+<meta property="og:description" content="対角に群別 KDE、その上側に相関係数を配した散布図行列です。">
+<meta property="og:locale" content="ja">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/style.css?v=e9d8945b">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>Statlas</span></a>
+    <nav class="nav-links">
+      <a href="../../index.html#gallery" class="on">ギャラリー</a>
+      <a href="../../style.html" class="">スタイル</a>
+      <a href="../../about.html" class="">概要</a>
+      <a href="../../about.html#cite" class="hide-sm">引用</a>
+      <details class="lang"><summary aria-label="Language"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span>日本語</span></summary><div class="lang-menu"><a href="../../../correlation/pairs-plot/" hreflang="en" lang="en">English</a><a href="../../../fr/correlation/pairs-plot/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/correlation/pairs-plot/" hreflang="ja" lang="ja" class=on aria-current=true>日本語</a><a href="../../../zh/correlation/pairs-plot/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div></details>
+      <a href="https://github.com/warint/statlas" class="gh" aria-label="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </nav>
+  </div>
+</header>
+<main>
+<article class="wrap ex">
+  <div class="crumbs"><a href="../../index.html">ギャラリー</a><span>/</span><a href="../../correlation/index.html">相関と関連</a></div>
+  <header class="ex-head"><h1>相関係数付きペアプロット</h1><p class="lede">対角に群別 KDE、その上側に相関係数を配した散布図行列です。</p>
+  <p class="byline">著者： <a href="https://www.warin.ca">Thierry Warin</a> · 収録： <a href="../../index.html">Statlas</a></p></header>
+  <figure class="figure"><a href="../../../correlation/pairs-plot/plot.png" target="_blank" rel="noopener"><img src="../../../correlation/pairs-plot/plot.png" alt="相関係数付きペアプロット"></a></figure>
+  <div class="ex-cols">
+    <div class="prose"><p><code>GGally::ggpairs()</code> の Python 版です。対角線より下には変数の各ペアの散布図を群ごとに色分けして描き、対角線上には各変数の群別の密度を示し、対角線より上の対称なセルにはピアソンの <em>r</em> を全体（太字）と群ごとに有意性の星印付きで表示しています。この2つを比べることが要点です。群がプロットの異なる領域に位置していると、全体の相関と群内の相関は大きく異なり、符号が逆になることさえあります。</p><p>データは <strong>scikit-learn</strong> に同梱されているフィッシャーのアヤメの測定データ（<code>load_iris</code>）で、3種 150 個体の花です。密度は <code>scipy.stats.gaussian_kde</code>、相関は <code>scipy.stats.pearsonr</code> で求め、グリッドは通常の <code>plt.subplots(4, 4)</code> です。</p><p class="note">コードおよび図中のテキストは英語です。</p></div>
+    <aside class="meta"><div class="meta-row"><span>R での対応</span><code>GGally::ggpairs()</code></div><div class="meta-row"><span>ライブラリ</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>SciPy</i><i>scikit-learn</i></div></div><div class="meta-row"><span>トピック</span><div class="pills"><i>pairs plot</i><i>scatter matrix</i><i>correlation</i><i>KDE</i><i>Simpson&#x27;s paradox</i></div></div></aside>
+  </div>
+  <section class="code-card" id="code">
+    <div class="code-bar">
+      <span class="fname">pairs-plot.py · 59 行</span>
+      <div class="code-actions">
+        <a class="btn ghost" href="../../../correlation/pairs-plot/pairs-plot.py" download>ダウンロード</a>
+        <a class="btn ghost" href="https://github.com/warint/statlas/tree/main/gallery/04-correlation/03-pairs-plot">GitHub</a>
+        <button class="btn copy" data-copy>コードをコピー</button>
+      </div>
+    </div>
+    <pre class="code"><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_iris</span>
+
+<span class="c1"># Data: Fisher's iris (bundled with scikit-learn)</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">(</span><span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">" (cm)"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span><span class="o">.</span><span class="n">capitalize</span><span class="p">())</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"species"</span><span class="p">]</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">[</span><span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">]</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">species</span><span class="p">,</span> <span class="n">palette</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"setosa"</span><span class="p">,</span> <span class="s2">"versicolor"</span><span class="p">,</span> <span class="s2">"virginica"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"#007AFF"</span><span class="p">,</span> <span class="s2">"#FF9500"</span><span class="p">,</span> <span class="s2">"#34C759"</span><span class="p">]</span>
+<span class="n">stars</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="s2">"***"</span> <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="mf">.001</span> <span class="k">else</span> <span class="s2">"**"</span> <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="mf">.01</span> <span class="k">else</span> <span class="s2">"*"</span> <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="mf">.05</span> <span class="k">else</span> <span class="s2">""</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">9.5</span><span class="p">,</span> <span class="mf">8.6</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="s2">"col"</span><span class="p">)</span>
+<span class="n">lims</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.3</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">}</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">get_layout_engine</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">rect</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.92</span><span class="p">),</span> <span class="n">w_pad</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">h_pad</span><span class="o">=</span><span class="mf">0.04</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">yv</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">xv</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">j</span><span class="p">:</span>                                       <span class="c1"># diagonal: KDE per species</span>
+            <span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">lims</span><span class="p">[</span><span class="n">xv</span><span class="p">],</span> <span class="mi">200</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">species</span><span class="p">,</span> <span class="n">palette</span><span class="p">):</span>
+                <span class="n">dens</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">gaussian_kde</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">species</span> <span class="o">==</span> <span class="n">s</span><span class="p">,</span> <span class="n">xv</span><span class="p">])(</span><span class="n">grid</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">dens</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">dens</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.3</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">j</span><span class="p">:</span>                                      <span class="c1"># lower: scatter by species</span>
+            <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">species</span><span class="p">,</span> <span class="n">palette</span><span class="p">):</span>
+                <span class="n">d</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">species</span> <span class="o">==</span> <span class="n">s</span><span class="p">]</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="n">xv</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="n">yv</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.65</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">lims</span><span class="p">[</span><span class="n">yv</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>                                            <span class="c1"># upper: correlation coefficients</span>
+            <span class="n">r</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">xv</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">yv</span><span class="p">])</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.78</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"r = </span><span class="si">{</span><span class="n">r</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}{</span><span class="n">stars</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span>
+                    <span class="n">fontweight</span><span class="o">=</span><span class="s2">"semibold"</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">species</span><span class="p">,</span> <span class="n">palette</span><span class="p">)):</span>
+                <span class="n">d</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">species</span> <span class="o">==</span> <span class="n">s</span><span class="p">]</span>
+                <span class="n">rs</span><span class="p">,</span> <span class="n">ps</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="n">xv</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="n">yv</span><span class="p">])</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.52</span> <span class="o">-</span> <span class="n">k</span> <span class="o">*</span> <span class="mf">0.17</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">rs</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}{</span><span class="n">stars</span><span class="p">(</span><span class="n">ps</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span>
+                        <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelbottom</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">labelleft</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">sp</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="n">sp</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelbottom</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelleft</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xv</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">lims</span><span class="p">[</span><span class="n">xv</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">yv</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.985</span><span class="p">,</span> <span class="s2">"Pooled correlations hide what happens within species"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span>
+         <span class="n">fontweight</span><span class="o">=</span><span class="s2">"semibold"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"top"</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.945</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Pearson r, overall (bold) and within species · n = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2"> flowers, 50 per "</span>
+         <span class="s2">"species · * p&lt;.05  ** p&lt;.01  *** p&lt;.001"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"top"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre>
+  </section>
+  <p class="hint">図にはオプションの <a href="../../style.html">Statlas スタイル</a> を使用しています。同じ見た目にするには <code>plt.style.use("statlas.mplstyle")</code> を追加してください。</p>
+  <section class="cite" id="cite">
+  <div class="cite-head"><h2>引用方法</h2>
+  <p>Statlas は <a href="https://www.warin.ca">Thierry Warin</a> が作成・運営しています。研究や業務に役立った場合は、ぜひ引用してください。</p></div>
+  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). Pairs plot with correlations. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/correlation/pairs-plot/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). Pairs plot with correlations. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/correlation/pairs-plot/">コピー</button></div>
+  <div class="cite-box"><pre class="cite-bib">@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/statlas/}},
+  note         = {Source code: https://github.com/warint/statlas}
+}</pre><button class="btn ghost" data-copy-text="@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/statlas/}},
+  note         = {Source code: https://github.com/warint/statlas}
+}">BibTeX をコピー</button></div>
+</section>
+  <div class="pager"><a href="../../correlation/scatter-with-stats/"><small>前へ</small>統計量付き散布図</a><a class="next" href="../../correlation/correlogram-bubble/"><small>次へ</small>クラスタリング付きコレログラム</a></div>
+  <h2 class="rel-h">相関と関連のその他のグラフ</h2><div class="grid"><a class="card" href="../../correlation/correlation-matrix/" data-cat="correlation" data-k="相関行列 ピアソン相関の下三角ヒートマップ。有意でないセル（ホルム法）には×印を付けます。 correlation matrix lower-triangle pearson correlation heatmap; non-significant cells (holm) are crossed out. ggstatsplot::ggcorrmat() 相関と関連 correlation &amp; association correlation pearson heatmap holm multiple testing matplotlib numpy statsmodels scipy">
+  <div class="card-img"><img src="../../../correlation/correlation-matrix/thumb.webp" alt="相関行列" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">相関と関連</span><h3>相関行列</h3><p>ピアソン相関の下三角ヒートマップ。有意でないセル（ホルム法）には×印を付けます。</p><span class="card-r">ggstatsplot::ggcorrmat()</span></div>
+</a>
+<a class="card" href="../../correlation/scatter-with-stats/" data-cat="correlation" data-k="統計量付き散布図 散布図、95% 信頼帯付き ols 直線、周辺ヒストグラムに、ピアソンの r をサブタイトルで添えます。 scatterplot with statistics scatter, ols line with 95% band and marginal histograms, with pearson&#x27;s r in the subtitle. ggstatsplot::ggscatterstats() 相関と関連 correlation &amp; association correlation pearson scatterplot regression line marginal histogram matplotlib numpy statsmodels scipy scikit-learn">
+  <div class="card-img"><img src="../../../correlation/scatter-with-stats/thumb.webp" alt="統計量付き散布図" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">相関と関連</span><h3>統計量付き散布図</h3><p>散布図、95% 信頼帯付き OLS 直線、周辺ヒストグラムに、ピアソンの r をサブタイトルで添えます。</p><span class="card-r">ggstatsplot::ggscatterstats()</span></div>
+</a>
+<a class="card" href="../../correlation/correlogram-bubble/" data-cat="correlation" data-k="クラスタリング付きコレログラム r に応じて大きさと色を変えた corrplot 風の円を、階層的クラスタリングの順に並べます。 correlogram with clustering corrplot-style circles sized and coloured by r, ordered by hierarchical clustering. corrplot::corrplot(order = &quot;hclust&quot;, addrect = 3) 相関と関連 correlation &amp; association correlation correlogram hierarchical clustering heatmap corrplot matplotlib numpy scipy scikit-learn">
+  <div class="card-img"><img src="../../../correlation/correlogram-bubble/thumb.webp" alt="クラスタリング付きコレログラム" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">相関と関連</span><h3>クラスタリング付きコレログラム</h3><p>r に応じて大きさと色を変えた corrplot 風の円を、階層的クラスタリングの順に並べます。</p><span class="card-r">corrplot::corrplot(order = &quot;hclust&quot;, addrect = 3)</span></div>
+</a></div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div><strong>Statlas</strong> · 統計グラフのための Python ギャラリー<br>制作： <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">引用方法</a></div>
+    <div class="foot-links"><a href="https://github.com/warint/statlas">GitHub</a><a href="../../style.html">プロットスタイル</a><a href="https://github.com/warint/statlas/blob/main/CONTRIBUTING.md">貢献する</a><span>MIT ライセンス</span></div>
+  </div>
+  <div class="wrap foot-langs"><a href="../../../correlation/pairs-plot/" hreflang="en" lang="en">English</a><a href="../../../fr/correlation/pairs-plot/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/correlation/pairs-plot/" hreflang="ja" lang="ja" class=on aria-current=true>日本語</a><a href="../../../zh/correlation/pairs-plot/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div>
+</footer>
+<script src="../../../assets/app.js?v=e9d8945b"></script>
+</body>
+</html>

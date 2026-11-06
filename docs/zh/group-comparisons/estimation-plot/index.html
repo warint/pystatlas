@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-Hans" data-copied="已复制 ✓">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>估计图 · Statlas</title>
+<meta name="description" content="两组原始数据，加上均值差及其自助法 95% 置信区间。">
+<meta name="author" content="Thierry Warin">
+<link rel="author" href="https://www.warin.ca">
+<meta name="citation_title" content="Estimation plot — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="citation_author" content="Warin, Thierry">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_online_date" content="2026/11/06">
+<meta name="citation_publisher" content="Thierry Warin">
+<meta name="citation_language" content="zh">
+<meta name="citation_public_url" content="https://warint.github.io/statlas/zh/group-comparisons/estimation-plot/">
+<meta name="DC.creator" content="Warin, Thierry">
+<meta name="DC.title" content="Estimation plot — Statlas: The Python Gallery of Statistical Graphics">
+<meta name="DC.date" content="2026">
+<link rel="canonical" href="https://warint.github.io/statlas/zh/group-comparisons/estimation-plot/">
+<link rel="alternate" hreflang="en" href="https://warint.github.io/statlas/group-comparisons/estimation-plot/">
+<link rel="alternate" hreflang="fr" href="https://warint.github.io/statlas/fr/group-comparisons/estimation-plot/">
+<link rel="alternate" hreflang="ja" href="https://warint.github.io/statlas/ja/group-comparisons/estimation-plot/">
+<link rel="alternate" hreflang="zh-Hans" href="https://warint.github.io/statlas/zh/group-comparisons/estimation-plot/">
+<link rel="alternate" hreflang="x-default" href="https://warint.github.io/statlas/group-comparisons/estimation-plot/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Estimation plot — Statlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/statlas/zh/group-comparisons/estimation-plot/", "inLanguage": "zh-Hans", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "Statlas", "url": "https://warint.github.io/statlas/"}}</script>
+<meta property="og:title" content="估计图 · Statlas">
+<meta property="og:description" content="两组原始数据，加上均值差及其自助法 95% 置信区间。">
+<meta property="og:locale" content="zh-Hans">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/style.css?v=e9d8945b">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>Statlas</span></a>
+    <nav class="nav-links">
+      <a href="../../index.html#gallery" class="on">图库</a>
+      <a href="../../style.html" class="">样式</a>
+      <a href="../../about.html" class="">关于</a>
+      <a href="../../about.html#cite" class="hide-sm">引用</a>
+      <details class="lang"><summary aria-label="Language"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span>中文</span></summary><div class="lang-menu"><a href="../../../group-comparisons/estimation-plot/" hreflang="en" lang="en">English</a><a href="../../../fr/group-comparisons/estimation-plot/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/group-comparisons/estimation-plot/" hreflang="ja" lang="ja">日本語</a><a href="../../../zh/group-comparisons/estimation-plot/" hreflang="zh-Hans" lang="zh-Hans" class=on aria-current=true>中文</a></div></details>
+      <a href="https://github.com/warint/statlas" class="gh" aria-label="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </nav>
+  </div>
+</header>
+<main>
+<article class="wrap ex">
+  <div class="crumbs"><a href="../../index.html">图库</a><span>/</span><a href="../../group-comparisons/index.html">组间比较</a></div>
+  <header class="ex-head"><h1>估计图</h1><p class="lede">两组原始数据，加上均值差及其自助法 95% 置信区间。</p>
+  <p class="byline">作者 <a href="https://www.warin.ca">Thierry Warin</a> · 隶属于 <a href="../../index.html">Statlas</a></p></header>
+  <figure class="figure"><a href="../../../group-comparisons/estimation-plot/plot.png" target="_blank" rel="noopener"><img src="../../../group-comparisons/estimation-plot/plot.png" alt="估计图"></a></figure>
+  <div class="ex-cols">
+    <div class="prose"><p>Gardner–Altman 估计图将效应量而非 p 值置于核心位置。左轴展示两组的全部观测值；右侧的浮动坐标轴经过对齐，使其零点正好位于对照组均值处。在这条轴上，均值差的自助法分布以半边小提琴图呈现，点估计及其 95% 置信区间分别以圆点和线段表示。</p><p>数据为模拟数据：40 名患者服用安慰剂，40 名服用新药，结局为八周后收缩压的下降值。95% 置信区间为 <code>scipy.stats.bootstrap</code> 计算的偏差校正加速（BCa）自助法区间；每组蜂群图旁的竖线表示组均值 ± 1 SD，蜂群图由 <code>seaborn.swarmplot</code> 绘制。</p><p class="note">代码及图中文字均为英文。</p></div>
+    <aside class="meta"><div class="meta-row"><span>R 中的对应函数</span><code>dabestr::dabest() + plot()</code></div><div class="meta-row"><span>依赖库</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>pandas</i><i>seaborn</i><i>SciPy</i></div></div><div class="meta-row"><span>主题</span><div class="pills"><i>estimation</i><i>bootstrap</i><i>effect size</i><i>mean difference</i><i>confidence interval</i></div></div></aside>
+  </div>
+  <section class="code-card" id="code">
+    <div class="code-bar">
+      <span class="fname">estimation-plot.py · 62 行</span>
+      <div class="code-actions">
+        <a class="btn ghost" href="../../../group-comparisons/estimation-plot/estimation-plot.py" download>下载</a>
+        <a class="btn ghost" href="https://github.com/warint/statlas/tree/main/gallery/02-group-comparisons/03-estimation-plot">GitHub</a>
+        <button class="btn copy" data-copy>复制代码</button>
+      </div>
+    </div>
+    <pre class="code"><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+
+<span class="c1"># Simulated trial: reduction in systolic blood pressure (mmHg)</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">2024</span><span class="p">)</span>
+<span class="n">control</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="n">drug</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"group"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Placebo"</span><span class="p">]</span> <span class="o">*</span> <span class="mi">40</span> <span class="o">+</span> <span class="p">[</span><span class="s2">"Drug"</span><span class="p">]</span> <span class="o">*</span> <span class="mi">40</span><span class="p">,</span> <span class="s2">"drop"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">control</span><span class="p">,</span> <span class="n">drug</span><span class="p">]})</span>
+
+<span class="c1"># Mean difference with a BCa bootstrap 95% CI, and the bootstrap distribution</span>
+<span class="n">diff</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+<span class="n">boot</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">bootstrap</span><span class="p">((</span><span class="n">control</span><span class="p">,</span> <span class="n">drug</span><span class="p">),</span> <span class="n">diff</span><span class="p">,</span> <span class="n">n_resamples</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"BCa"</span><span class="p">,</span>
+                       <span class="n">random_state</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">lo</span><span class="p">,</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">boot</span><span class="o">.</span><span class="n">confidence_interval</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="n">drug</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">control</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">drug</span><span class="p">,</span> <span class="n">control</span><span class="p">,</span> <span class="n">equal_var</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Manual layout (the long subtitle would otherwise squeeze the panels apart)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">),</span> <span class="n">width_ratios</span><span class="o">=</span><span class="p">[</span><span class="mf">2.2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">layout</span><span class="o">=</span><span class="s2">"none"</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.12</span><span class="p">)</span>
+<span class="n">palette</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"#8E8E93"</span><span class="p">,</span> <span class="s2">"#007AFF"</span><span class="p">]</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"group"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"drop"</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">"group"</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+              <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">control</span><span class="p">,</span> <span class="n">drug</span><span class="p">]):</span>            <span class="c1"># mean ± SD as a gapped line beside the swarm</span>
+    <span class="n">m</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">d</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mf">0.32</span><span class="p">,</span> <span class="n">m</span> <span class="o">-</span> <span class="n">s</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="n">s</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#3A3A3C"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mf">0.32</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"white"</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"#3A3A3C"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Drop in systolic blood pressure (mmHg)"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"Placebo</span><span class="se">\n</span><span class="s2">(n = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">control</span><span class="p">)</span><span class="si">}</span><span class="s2">)"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Drug</span><span class="se">\n</span><span class="s2">(n = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">drug</span><span class="p">)</span><span class="si">}</span><span class="s2">)"</span><span class="p">])</span>
+
+<span class="c1"># Floating difference axis: zero aligned with the control mean</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.55</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">)</span>
+<span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ymin</span> <span class="o">-</span> <span class="n">control</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">ymax</span> <span class="o">-</span> <span class="n">control</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#3A3A3C"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#3A3A3C"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">":"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">0.32</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">],</span> <span class="p">[</span><span class="n">control</span><span class="o">.</span><span class="n">mean</span><span class="p">()]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#3A3A3C"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">1.32</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">],</span> <span class="p">[</span><span class="n">drug</span><span class="o">.</span><span class="n">mean</span><span class="p">()]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#3A3A3C"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">":"</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">boot</span><span class="o">.</span><span class="n">bootstrap_distribution</span><span class="p">,</span> <span class="n">positions</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">widths</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+                   <span class="n">showextrema</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">side</span><span class="o">=</span><span class="s2">"high"</span><span class="p">)</span>
+<span class="n">v</span><span class="p">[</span><span class="s2">"bodies"</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s2">"#007AFF"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"none"</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#1D1D1F"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#1D1D1F"</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Δ = </span><span class="si">{</span><span class="n">delta</span><span class="si">:</span><span class="s2">+.1f</span><span class="si">}</span><span class="se">\n</span><span class="s2">[</span><span class="si">{</span><span class="n">lo</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">hi</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">]"</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">hi</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+             <span class="n">textcoords</span><span class="o">=</span><span class="s2">"offset points"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"right"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"bottom"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span>
+             <span class="n">fontweight</span><span class="o">=</span><span class="s2">"semibold"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#007AFF"</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="s2">"Drug − Placebo"</span><span class="p">])</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">tick_right</span><span class="p">();</span> <span class="n">ax2</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_label_position</span><span class="p">(</span><span class="s2">"right"</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">spines</span><span class="p">[[</span><span class="s2">"left"</span><span class="p">]]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">);</span> <span class="n">ax2</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s2">"right"</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Mean difference (mmHg)"</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"The drug lowers blood pressure by about 6 mmHg more than placebo"</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Mean difference </span><span class="si">{</span><span class="n">delta</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> mmHg, BCa bootstrap 95% CI [</span><span class="si">{</span><span class="n">lo</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">hi</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">]"</span>
+        <span class="sa">f</span><span class="s2">" (5,000 resamples) · Welch's t(</span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">df</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">statistic</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, p = </span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">pvalue</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre>
+  </section>
+  <p class="hint">图表使用了可选的 <a href="../../style.html">Statlas 样式</a>：添加 <code>plt.style.use("statlas.mplstyle")</code> 即可完全还原其外观。</p>
+  <section class="cite" id="cite">
+  <div class="cite-head"><h2>如何引用</h2>
+  <p>Statlas 由 <a href="https://www.warin.ca">Thierry Warin</a> 创建并维护。如果它对你的工作有所帮助，敬请引用。</p></div>
+  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). Estimation plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/group-comparisons/estimation-plot/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). Estimation plot. In Statlas: The Python Gallery of Statistical Graphics. https://warint.github.io/statlas/group-comparisons/estimation-plot/">复制</button></div>
+  <div class="cite-box"><pre class="cite-bib">@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/statlas/}},
+  note         = {Source code: https://github.com/warint/statlas}
+}</pre><button class="btn ghost" data-copy-text="@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {Statlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/statlas/}},
+  note         = {Source code: https://github.com/warint/statlas}
+}">复制 BibTeX</button></div>
+</section>
+  <div class="pager"><a href="../../group-comparisons/within-subjects/"><small>上一个</small>被试内比较</a><a class="next" href="../../group-comparisons/means-with-ci/"><small>下一个</small>交互作用图</a></div>
+  <h2 class="rel-h">更多组间比较图表</h2><div class="grid"><a class="card" href="../../group-comparisons/between-groups-violin/" data-cat="group-comparisons" data-k="组间比较 小提琴图 + 箱线图 + 散点，附 welch 方差分析、效应量和两两检验。 between-groups comparison violin + box + points with welch&#x27;s anova, effect size and pairwise tests. ggstatsplot::ggbetweenstats() 组间比较 group comparisons anova welch games-howell effect size violin matplotlib numpy pandas scipy scikit-learn statsmodels">
+  <div class="card-img"><img src="../../../group-comparisons/between-groups-violin/thumb.webp" alt="组间比较" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">组间比较</span><h3>组间比较</h3><p>小提琴图 + 箱线图 + 散点，附 Welch 方差分析、效应量和两两检验。</p><span class="card-r">ggstatsplot::ggbetweenstats()</span></div>
+</a>
+<a class="card" href="../../group-comparisons/within-subjects/" data-cat="group-comparisons" data-k="被试内比较 重复测量数据，每名被试一条线，附均值、重复测量方差分析和配对检验。 within-subjects comparison repeated measures with one line per subject, means, rm-anova and paired tests. ggstatsplot::ggwithinstats() 组间比较 group comparisons repeated measures paired t-test rm-anova effect size spaghetti plot matplotlib numpy pandas scipy statsmodels">
+  <div class="card-img"><img src="../../../group-comparisons/within-subjects/thumb.webp" alt="被试内比较" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">组间比较</span><h3>被试内比较</h3><p>重复测量数据，每名被试一条线，附均值、重复测量方差分析和配对检验。</p><span class="card-r">ggstatsplot::ggwithinstats()</span></div>
+</a>
+<a class="card" href="../../group-comparisons/means-with-ci/" data-cat="group-comparisons" data-k="交互作用图 两个因素下各组均值及其 95% 置信区间，附双因素方差分析。 interaction plot group means with 95% confidence intervals for two factors, with a two-way anova. ggpubr::ggline(add = &quot;mean_ci&quot;) / ggstats 组间比较 group comparisons two-way anova interaction means confidence interval factorial matplotlib numpy pandas statsmodels scipy scikit-learn">
+  <div class="card-img"><img src="../../../group-comparisons/means-with-ci/thumb.webp" alt="交互作用图" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">组间比较</span><h3>交互作用图</h3><p>两个因素下各组均值及其 95% 置信区间，附双因素方差分析。</p><span class="card-r">ggpubr::ggline(add = &quot;mean_ci&quot;) / ggstats</span></div>
+</a></div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div><strong>Statlas</strong> · Python 统计图形库<br>创建者 <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">如何引用</a></div>
+    <div class="foot-links"><a href="https://github.com/warint/statlas">GitHub</a><a href="../../style.html">绘图样式</a><a href="https://github.com/warint/statlas/blob/main/CONTRIBUTING.md">参与贡献</a><span>MIT 许可证</span></div>
+  </div>
+  <div class="wrap foot-langs"><a href="../../../group-comparisons/estimation-plot/" hreflang="en" lang="en">English</a><a href="../../../fr/group-comparisons/estimation-plot/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/group-comparisons/estimation-plot/" hreflang="ja" lang="ja">日本語</a><a href="../../../zh/group-comparisons/estimation-plot/" hreflang="zh-Hans" lang="zh-Hans" class=on aria-current=true>中文</a></div>
+</footer>
+<script src="../../../assets/app.js?v=e9d8945b"></script>
+</body>
+</html>

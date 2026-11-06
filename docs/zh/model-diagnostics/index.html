@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-Hans" data-copied="已复制 ✓">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>模型诊断 · Statlas</title>
+<meta name="description" content="残差、杠杆值、校准与 ROC 曲线：先检验，再信任模型。">
+<meta name="author" content="Thierry Warin">
+<link rel="author" href="https://www.warin.ca">
+<meta name="citation_title" content="Statlas: The Python Gallery of Statistical Graphics">
+<meta name="citation_author" content="Warin, Thierry">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_online_date" content="2026/11/06">
+<meta name="citation_publisher" content="Thierry Warin">
+<meta name="citation_language" content="zh">
+<meta name="citation_public_url" content="https://warint.github.io/statlas/zh/model-diagnostics/">
+<meta name="DC.creator" content="Warin, Thierry">
+<meta name="DC.title" content="Statlas: The Python Gallery of Statistical Graphics">
+<meta name="DC.date" content="2026">
+<link rel="canonical" href="https://warint.github.io/statlas/zh/model-diagnostics/">
+<link rel="alternate" hreflang="en" href="https://warint.github.io/statlas/model-diagnostics/">
+<link rel="alternate" hreflang="fr" href="https://warint.github.io/statlas/fr/model-diagnostics/">
+<link rel="alternate" hreflang="ja" href="https://warint.github.io/statlas/ja/model-diagnostics/">
+<link rel="alternate" hreflang="zh-Hans" href="https://warint.github.io/statlas/zh/model-diagnostics/">
+<link rel="alternate" hreflang="x-default" href="https://warint.github.io/statlas/model-diagnostics/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Statlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/statlas/zh/model-diagnostics/", "inLanguage": "zh-Hans", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "Statlas", "url": "https://warint.github.io/statlas/"}}</script>
+<meta property="og:title" content="模型诊断 · Statlas">
+<meta property="og:description" content="残差、杠杆值、校准与 ROC 曲线：先检验，再信任模型。">
+<meta property="og:locale" content="zh-Hans">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css?v=e9d8945b">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>Statlas</span></a>
+    <nav class="nav-links">
+      <a href="../index.html#gallery" class="on">图库</a>
+      <a href="../style.html" class="">样式</a>
+      <a href="../about.html" class="">关于</a>
+      <a href="../about.html#cite" class="hide-sm">引用</a>
+      <details class="lang"><summary aria-label="Language"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span>中文</span></summary><div class="lang-menu"><a href="../../model-diagnostics/" hreflang="en" lang="en">English</a><a href="../../fr/model-diagnostics/" hreflang="fr" lang="fr">Français</a><a href="../../ja/model-diagnostics/" hreflang="ja" lang="ja">日本語</a><a href="../../zh/model-diagnostics/" hreflang="zh-Hans" lang="zh-Hans" class=on aria-current=true>中文</a></div></details>
+      <a href="https://github.com/warint/statlas" class="gh" aria-label="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="hero hero-sm"><div class="wrap">
+<div class="crumbs"><a href="../index.html">图库</a><span>/</span>模型诊断</div>
+<h1>模型诊断</h1><p class="lede">残差、杠杆值、校准与 ROC 曲线：先检验，再信任模型。</p></div></section>
+<section class="wrap section"><div class="grid"><a class="card" href="../model-diagnostics/residual-diagnostics/" data-cat="model-diagnostics" data-k="残差诊断 线性模型经典的 2 × 2 诊断图——线性、正态性、方差与杠杆值。 residual diagnostics the classic 2 × 2 panel for a linear model — linearity, normality, variance, leverage. plot(lm) / performance::check_model() 模型诊断 model diagnostics residuals q-q plot cook&#x27;s distance leverage heteroscedasticity matplotlib numpy statsmodels scipy">
+  <div class="card-img"><img src="../../model-diagnostics/residual-diagnostics/thumb.webp" alt="残差诊断" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">模型诊断</span><h3>残差诊断</h3><p>线性模型经典的 2 × 2 诊断图——线性、正态性、方差与杠杆值。</p><span class="card-r">plot(lm) / performance::check_model()</span></div>
+</a>
+<a class="card" href="../model-diagnostics/influence-plot/" data-cat="model-diagnostics" data-k="影响图 学生化残差对杠杆值，气泡大小由 cook 距离决定。 influence plot studentized residuals vs leverage, with bubbles sized by cook&#x27;s distance. car::influenceplot() 模型诊断 model diagnostics influence cook&#x27;s distance leverage outliers studentized residuals matplotlib numpy statsmodels scipy">
+  <div class="card-img"><img src="../../model-diagnostics/influence-plot/thumb.webp" alt="影响图" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">模型诊断</span><h3>影响图</h3><p>学生化残差对杠杆值，气泡大小由 Cook 距离决定。</p><span class="card-r">car::influencePlot()</span></div>
+</a>
+<a class="card" href="../model-diagnostics/roc-curve/" data-cat="model-diagnostics" data-k="roc 曲线 以 roc 曲线、auc 及其自助法 95% 置信区间和 youden 点比较三个分类器。 roc curves three classifiers compared by roc curve, auc with bootstrap 95% ci and youden point. proc::ggroc() / proc::ci.auc() 模型诊断 model diagnostics roc auc classification bootstrap youden index matplotlib numpy statsmodels scikit-learn">
+  <div class="card-img"><img src="../../model-diagnostics/roc-curve/thumb.webp" alt="ROC 曲线" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">模型诊断</span><h3>ROC 曲线</h3><p>以 ROC 曲线、AUC 及其自助法 95% 置信区间和 Youden 点比较三个分类器。</p><span class="card-r">pROC::ggroc() / pROC::ci.auc()</span></div>
+</a>
+<a class="card" href="../model-diagnostics/calibration-plot/" data-cat="model-diagnostics" data-k="校准图 按十分位分组的预测风险与观测风险，附 wilson 置信区间、预测值直方图和 brier 分数。 calibration plot predicted vs observed risk per decile, with wilson cis, prediction histograms and brier score. rms::calibrate() / probably::cal_plot_breaks() 模型诊断 model diagnostics calibration reliability diagram brier score classification probability matplotlib numpy pandas statsmodels scikit-learn">
+  <div class="card-img"><img src="../../model-diagnostics/calibration-plot/thumb.webp" alt="校准图" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">模型诊断</span><h3>校准图</h3><p>按十分位分组的预测风险与观测风险，附 Wilson 置信区间、预测值直方图和 Brier 分数。</p><span class="card-r">rms::calibrate() / probably::cal_plot_breaks()</span></div>
+</a>
+<a class="card" href="../model-diagnostics/partial-regression/" data-cat="model-diagnostics" data-k="添加变量图 每个预测变量一张偏回归图；每条拟合斜率都等于对应的回归系数。 added-variable plots one partial-regression panel per predictor; each fitted slope equals its coefficient. car::avplots() 模型诊断 model diagnostics partial regression added-variable frisch-waugh-lovell influence multiple regression matplotlib numpy statsmodels">
+  <div class="card-img"><img src="../../model-diagnostics/partial-regression/thumb.webp" alt="添加变量图" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">模型诊断</span><h3>添加变量图</h3><p>每个预测变量一张偏回归图；每条拟合斜率都等于对应的回归系数。</p><span class="card-r">car::avPlots()</span></div>
+</a></div></section>
+</main>
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div><strong>Statlas</strong> · Python 统计图形库<br>创建者 <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../about.html#cite">如何引用</a></div>
+    <div class="foot-links"><a href="https://github.com/warint/statlas">GitHub</a><a href="../style.html">绘图样式</a><a href="https://github.com/warint/statlas/blob/main/CONTRIBUTING.md">参与贡献</a><span>MIT 许可证</span></div>
+  </div>
+  <div class="wrap foot-langs"><a href="../../model-diagnostics/" hreflang="en" lang="en">English</a><a href="../../fr/model-diagnostics/" hreflang="fr" lang="fr">Français</a><a href="../../ja/model-diagnostics/" hreflang="ja" lang="ja">日本語</a><a href="../../zh/model-diagnostics/" hreflang="zh-Hans" lang="zh-Hans" class=on aria-current=true>中文</a></div>
+</footer>
+<script src="../../assets/app.js?v=e9d8945b"></script>
+</body>
+</html>

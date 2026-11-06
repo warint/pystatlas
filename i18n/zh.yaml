@@ -1,0 +1,431 @@
+ui:
+  lang_name: 中文
+  tagline: Python 统计图形库
+  lede: 精心编排的 Python 统计图表图集——回归模型、Likert 量表、生存曲线、模型诊断等应有尽有。选一张图，复制代码，即可完成。
+  nav_gallery: 图库
+  nav_style: 样式
+  nav_about: 关于
+  nav_cite: 引用
+  eyebrow: '{n} 张统计图表 · {k} 个类别 · 100% Python'
+  hero_1: 统计之美，
+  hero_2: 尽在 Python。
+  by: 作者
+  part_of: 隶属于
+  search_placeholder: 搜索图表、方法或 R 函数——试试“likert”
+  empty: 没有与搜索匹配的图表。试试“regression”“proportion”或某个 R 函数名。
+  all: 全部
+  n_charts: '{n} 张图表'
+  gallery: 图库
+  r_equivalent: R 中的对应函数
+  libraries: 依赖库
+  topics: 主题
+  n_lines: '{n} 行'
+  download: 下载
+  copy_code: 复制代码
+  copy: 复制
+  copied: 已复制 ✓
+  copy_bibtex: 复制 BibTeX
+  hint: '图表使用了可选的 {style_link}：添加 {code} 即可完全还原其外观。'
+  style_link: Statlas 样式
+  code_note: 代码及图中文字均为英文。
+  previous: 上一个
+  next: 下一个
+  more_in: '更多{cat}图表'
+  cite_h: 如何引用
+  cite_p: '{name} 由 {author} 创建并维护。如果它对你的工作有所帮助，敬请引用。'
+  created_by: 创建者
+  plot_style: 绘图样式
+  contribute: 参与贡献
+  license: MIT 许可证
+  style_title: 绘图样式
+  style_h1: Statlas 样式
+  style_lede: 一个小巧的 Matplotlib 样式表，让每张图表都呈现同样沉静的外观：色彩清晰、没有冗余装饰、留白充裕。它适用于 Matplotlib、seaborn 和 pandas 绘图。
+  step1_h: 下载
+  step1_p: '将 {file} 下载到你的项目中。'
+  step2_h: 启用
+  step3_h: 绘图
+  step3_p: 现在，图库中的每个示例在你的电脑上都会呈现完全相同的效果。
+  palette: 调色板
+  about_title: 关于
+  about_h1: '关于 {name}'
+  about_p1: '{name} 之于 Python，正如 R Graph Gallery、<code>ggstats</code> 和 <code>ggstatsplot</code> 之于 R：一本<strong>统计</strong>图表目录——模型系数、Likert 量表、生存曲线、模型诊断、效应量——每张图都配有基于科学计算 Python 生态、简洁且可直接复制粘贴的代码。'
+  principles_h: 设计原则
+  principle_1: <strong>自成一体。</strong>每个脚本都可直接运行。数据来自库中自带的数据集（statsmodels、scikit‑learn、lifelines）或设定了随机种子的模拟——无需下载。
+  principle_2: <strong>统计优先。</strong>每张图表都标注了关键数字：估计值、区间、检验统计量和效应量。
+  principle_3: <strong>文件夹即页面。</strong>代码仓库的目录树与网站结构一一对应。每个示例都位于 <code>gallery/&lt;family&gt;/&lt;chart&gt;/plot.py</code>，并附有渲染好的 <code>plot.png</code> 和 README。
+  families_h: 图表类别
+  th_family: 类别
+  th_charts: 图表
+  th_find: 内容概览
+  author_h: 作者
+  author_p: '{name} 由 {author} 创建并维护。更多关于数据科学、统计学与人工智能的作品，请访问：{site}。'
+  contribute_h: 参与贡献
+  contribute_p: 新建一个包含 <code>plot.py</code> 的文件夹，运行 <code>python build.py</code>，然后提交 pull request。详见 {contrib}。
+categories:
+  distributions:
+    title: 分布
+    summary: 看清数据的形态：直方图、密度图、山脊图、ECDF 与 Q–Q 图。
+  group-comparisons:
+    title: 组间比较
+    summary: 以 ggstatsplot 的方式比较各组，将检验、效应量和 p 值直接标注在图上。
+  proportions-surveys:
+    title: 比例与问卷调查
+    summary: 比例、交叉表与 Likert 量表，延续 ggstats::gglikert 与 stat_prop 的风格。
+  correlation:
+    title: 相关与关联
+    summary: 相关矩阵、附带统计量的散点图以及变量两两之间的关系。
+  regression-models:
+    title: 回归模型
+    summary: 系数图、优势比、模型比较与边际效应——Python 版的 ggcoef_model。
+  model-diagnostics:
+    title: 模型诊断
+    summary: 残差、杠杆值、校准与 ROC 曲线：先检验，再信任模型。
+  survival:
+    title: 生存分析
+    summary: 附风险表的 Kaplan–Meier 曲线、累积风险以及 Cox 模型风险比。
+  time-series:
+    title: 时间序列
+    summary: 序列分解、自相关、带预测区间的预测以及随时间的变化。
+  multivariate:
+    title: 多元分析与聚类
+    summary: 面向高维数据的 PCA 双标图、碎石图、聚类与热图。
+  inference-uncertainty:
+    title: 推断与不确定性
+    summary: 自助法（Bootstrap）、置信区间、统计功效、一致性分析与元分析森林图。
+examples:
+  distributions/histogram-density:
+    title: 带密度曲线的直方图
+    summary: 直方图、核密度和拟合的正态曲线，并附形态统计量。
+    description: |
+      这是审视任何连续变量的第一步。柱形以密度刻度展示经验分布，实线是核密度估计（KDE），虚线是均值和标准差相同的正态分布。两条曲线不一致时，说明数据并非正态——此处长长的右尾把**均值**拉到了**中位数**之上。
+
+      数据为 **scikit-learn** 自带的 569 例乳腺癌活检的平均肿瘤面积。`scipy.stats.gaussian_kde` 绘制密度曲线，`scipy.stats.skew` / `kurtosis` 描述分布形态，`scipy.stats.shapiro` 检验正态性。
+  distributions/raincloud:
+    title: 雨云图
+    summary: 按组横向绘制半边小提琴图、箱线图和原始数据点。
+    description: |
+      雨云图将同一数据的三种视图叠在一起：半边小提琴图（“云”）展示密度，细长的箱线图给出中位数和四分位数，下方抖动的散点（“雨”）则呈现每一个观测值。没有任何信息被隐藏，因此双峰、离群值和小样本都一目了然。
+
+      数据为 **scikit-learn** 自带的鸢尾花数据集：三个品种的花萼长度。密度由 `scipy.stats.gaussian_kde` 计算，副标题报告 Kruskal–Wallis 检验（`scipy.stats.kruskal`），并以 ε² 作为效应量。
+  distributions/ridgeline:
+    title: 山脊图
+    summary: 以相互重叠的密度曲线比较多个组的同一分布。
+    description: |
+      山脊图（又称“joy”图）为每组绘制一条密度曲线并纵向堆叠，曲线之间略有重叠，从而在一张紧凑的图中容纳十几个分布。这里每条山脊代表一个日历月份，展示 61 年间海表温度的变化；白色刻线标出中位数，颜色也编码中位数，季节周期与年际离散可以一并读出。
+
+      数据为 **statsmodels** 自带的 El Niño 月度海表温度（1950–2010）（`sm.datasets.elnino`）。密度由 `scipy.stats.gaussian_kde` 计算；由于每一年在每个月都贡献一个值，副标题报告 Friedman 检验（`scipy.stats.friedmanchisquare`），并以 Kendall's W 作为效应量。
+  distributions/ecdf-comparison:
+    title: ECDF 比较
+    summary: 两组的经验累积分布，并标出 Kolmogorov–Smirnov 最大差距。
+    description: |
+      经验累积分布函数（ECDF）对 x 轴上的每个值，绘出小于或等于该值的观测所占的比例。与直方图不同，它无需分箱，任何分位数都可以直接读出。将两条 ECDF 画在一起时，二者之间的最大垂直距离正是双样本 **Kolmogorov–Smirnov** 统计量 D，图中以红色线段表示。
+
+      数据为 **scikit-learn** 自带糖尿病研究中的 442 名患者（`load_diabetes(scaled=False)`）：按性别比较体重指数。`scipy.stats.ecdf` 构建曲线，`scipy.stats.ks_2samp` 返回 D、其位置以及 p 值。
+  distributions/qq-plot:
+    title: 带置信带的 Q–Q 图
+    summary: 带 95% 包络带的正态 Q–Q 图，分别展示原始变量与对数变换后的变量。
+    description: |
+      分位数–分位数图将排序并标准化后的数据与正态分布对应的理论分位数相对照。正态数据落在对角线上；弯曲的香蕉形模式则意味着偏态。阴影带是基于正态次序统计量的 Beta 分布构建的 95% 逐点包络，落在其外的点比随机波动所能解释的更为极端。
+
+      数据为 235 个比利时工人家庭的收入（Engel 食品支出数据，**statsmodels** 自带）。左图为原始收入，右图为其对数。分位数由 `scipy.stats.norm.ppf` 计算，包络由 `scipy.stats.beta.ppf` 计算，每个子图均报告 Shapiro–Wilk 检验。
+  group-comparisons/between-groups-violin:
+    title: 组间比较
+    summary: 小提琴图 + 箱线图 + 散点，附 Welch 方差分析、效应量和两两检验。
+    description: |
+      `ggbetweenstats()` 的 Python 版本：展示每一个观测值，外面包裹小提琴图（分布）和细长的箱线图（四分位数），并突出显示各组均值。副标题报告 Welch 单因素方差分析（对方差不齐稳健），以及作为效应量的 ω²；括号标注经 Holm 校正的两两 Welch t 检验结果。
+
+      数据为 **scikit-learn** 自带的经典葡萄酒识别数据：三个品种的酒精含量。
+  group-comparisons/within-subjects:
+    title: 被试内比较
+    summary: 重复测量数据，每名被试一条线，附均值、重复测量方差分析和配对检验。
+    description: |
+      当同一批被试在每种条件下都接受测量时，值得关注的是每个人*内部*的变化。细灰线连接每名被试的各次测量，便于看出是否几乎所有人都朝同一方向变化；小提琴图展示各条件下的分布，大圆点（以彩色线相连）为各条件的均值。
+
+      数据为模拟数据：24 名参与者分别在服用安慰剂、低剂量和高剂量咖啡因后记录反应时间，并包含被试随机效应。副标题报告单因素重复测量方差分析（`statsmodels.stats.anova.AnovaRM`）及偏 η²，括号标注经 Holm 校正的配对 t 检验（`scipy.stats.ttest_rel`）及 Cohen's d_z。
+  group-comparisons/estimation-plot:
+    title: 估计图
+    summary: 两组原始数据，加上均值差及其自助法 95% 置信区间。
+    description: |
+      Gardner–Altman 估计图将效应量而非 p 值置于核心位置。左轴展示两组的全部观测值；右侧的浮动坐标轴经过对齐，使其零点正好位于对照组均值处。在这条轴上，均值差的自助法分布以半边小提琴图呈现，点估计及其 95% 置信区间分别以圆点和线段表示。
+
+      数据为模拟数据：40 名患者服用安慰剂，40 名服用新药，结局为八周后收缩压的下降值。95% 置信区间为 `scipy.stats.bootstrap` 计算的偏差校正加速（BCa）自助法区间；每组蜂群图旁的竖线表示组均值 ± 1 SD，蜂群图由 `seaborn.swarmplot` 绘制。
+  group-comparisons/means-with-ci:
+    title: 交互作用图
+    summary: 两个因素下各组均值及其 95% 置信区间，附双因素方差分析。
+    description: |
+      交互作用图展示两个因素每种组合下的结局均值：一个因素置于 x 轴，另一个以彩色、略微错开的折线表示。每个均值都带有 95% 置信区间。折线平行意味着两个因素独立起作用；折线趋近、发散或交叉则提示存在交互作用。
+
+      数据为 **scikit-learn** 自带糖尿病研究中的 442 名患者（`load_diabetes(scaled=False)`）：按 BMI 分级和性别划分的一年后疾病进展。双因素方差分析（II 型平方和）由 `statsmodels.formula.api.ols` 和 `statsmodels.stats.anova.anova_lm` 计算，并给出每一项的偏 η²；区间基于 t 分布。
+  group-comparisons/tukey-hsd:
+    title: Tukey HSD 区间
+    summary: 所有两两均值差的 95% 联合置信区间。
+    description: |
+      方差分析表明“各组存在差异”之后，Tukey 真实显著差异（HSD）法进一步指出*哪些*组对之间存在差异。每一行是一组两两均值差，其置信区间经过放宽，使所有区间**同时**在 95% 水平上成立。不跨过零的区间会被着色：第一组年龄更大时为蓝色，更小时为橙色。
+
+      数据为 **statsmodels** 自带的 1996 年美国全国选举研究中的 944 名受访者（`sm.datasets.anes96`）：按政党认同（从坚定的民主党人到坚定的共和党人）比较年龄。区间由 `statsmodels.stats.multicomp.pairwise_tukeyhsd` 计算，总体检验由 `scipy.stats.f_oneway` 完成。
+  proportions-surveys/likert-diverging:
+    title: 发散式 Likert 图
+    summary: 以中性回答为中心的发散堆叠条形图，展示五点 Likert 题项。
+    description: |
+      `gglikert()` 的 Python 版本。每一行是一道问卷题项；条形被分成五个回答等级，并经过平移，使**中性**回答横跨零点：不同意向左延伸，同意向右延伸。题项按总体同意程度排序，两侧的列分别给出不同意（左）和同意（右）的总比例，无需逐段阅读即可比较各行。
+
+      数据为设定了随机种子的模拟：600 名员工对六条职场陈述的回答。百分比由 `pd.crosstab(normalize="index")` 计算；副标题报告 **Friedman 检验**（`scipy.stats.friedmanchisquare`），检验同一批受访者对各题项的回答分布是否相同。
+  proportions-surveys/stacked-proportions:
+    title: 按组堆叠的比例图
+    summary: 带百分比标签和每组 n 的 100% 堆叠条形图，附卡方检验和 Cramér's V。
+    description: |
+      `ggbarstats()` 的 Python 版本。每根条形代表一组并缩放到 100%，因此各段展示的是该组内结局的**条件分布**；标签为行百分比，每根条形下方的数字为组的样本量。副标题报告 Pearson χ² 独立性检验以及 **Cramér's V**——将 χ² 缩放到 0–1 范围的效应量。
+
+      数据为 **statsmodels** 自带的 1996 年美国全国选举研究（`sm.datasets.anes96`）：944 名选民按受教育程度划分的政党认同。检验由 `scipy.stats.chi2_contingency` 完成，V 由 `scipy.stats.contingency.association` 计算。
+  proportions-surveys/mosaic-plot:
+    title: 带 Pearson 残差的马赛克图
+    summary: 色块面积与单元格频数成正比，并按相对于独立性的 Pearson 残差着色。
+    description: |
+      马赛克图将二维列联表画成一个被切分成若干色块的正方形。列的**宽度**是第一个变量的边际比例，色块的**高度**是第二个变量的条件比例，因此每个色块的面积与其频数成正比。与 `vcd::mosaic(shade = TRUE)` 一样，颜色表示 **Pearson 残差**（观测值 − 期望值）/ √期望值：蓝色色块的人数多于独立假设的预测，红色色块则较少；残差超过 ±2 或 ±4 的单元格正是驱动 χ² 的关键所在。
+
+      数据为 **statsmodels** 自带的 1974 年 *Redbook* 对 6,366 名已婚女性的调查（`sm.datasets.fair`）：自评婚姻质量与婚外情所花时间。色块用 `ax.bar` 手工绘制；期望频数由 `scipy.stats.chi2_contingency` 计算。
+  proportions-surveys/proportions-with-ci:
+    title: 带置信区间的比例
+    summary: 按大小排序的各组比例点图，附 Wilson 95% 置信区间。
+    description: |
+      当问题是“每组中有多大比例……？”时，每组一个点加上其置信区间，胜过条形图：眼睛比较的是位置，而区间宽度能立刻显示哪些组样本较小。这里使用 **Wilson 得分区间**而非教科书中的 Wald 区间，因为前者在小样本组以及比例接近 0 或 1 时仍能保持 95% 的覆盖率。虚线为总体比例。
+
+      数据为 **statsmodels** 自带的 1974 年 *Redbook* 已婚女性调查（`sm.datasets.fair`）：按受访者职业划分的报告有过婚外情的比例。区间由 `statsmodels.stats.proportion.proportion_confint(method="wilson")` 计算，副标题用 `scipy.stats.chi2_contingency` 检验所有比例是否相等。
+  proportions-surveys/crosstab-residuals:
+    title: 带标准化残差的交叉表
+    summary: 以热图呈现的列联表，按相对于独立性的标准化残差着色。
+    description: |
+      `ggstats::ggtable()` 的 Python 版本：熟悉的交叉表，但每个单元格按其**标准化（调整）残差**着色——即观测频数高于或低于独立假设预测值多少个标准误。在独立假设下，这些残差近似服从标准正态分布，因此超过 ±2 的单元格（以粗体标出）正是使 χ² 检验显著的那些。每个单元格显示频数及其行百分比；边际给出合计。
+
+      数据为 **statsmodels** 自带的 1974 年 *Redbook* 调查（`sm.datasets.fair`）：6,366 名女性的宗教虔诚度与自评婚姻质量。期望频数由 `scipy.stats.chi2_contingency` 计算；残差为 (O − E) / √(E · (1 − 行比例) · (1 − 列比例))。
+  correlation/correlation-matrix:
+    title: 相关矩阵
+    summary: 下三角 Pearson 相关热图；不显著的单元格（Holm 校正）以叉号划去。
+    description: |
+      `ggcorrmat()` 的 Python 版本。由于相关矩阵是对称的，只绘制下三角；每个色块显示 Pearson *r*，并以从 −1（红）到 +1（蓝）的发散色阶着色。因为同时检验了 21 个相关系数，p 值经过 **Holm 校正**，校正后在 α = .05 水平上不显著的变量对会变灰并打叉，视线可以直接略过。
+
+      数据为 **statsmodels** 自带的美国各州犯罪统计（`sm.datasets.statecrime`，50 个州 + 哥伦比亚特区）。相关系数和 p 值由 `scipy.stats.pearsonr` 计算，校正由 `statsmodels.stats.multitest.multipletests(method="holm")` 完成。
+  correlation/scatter-with-stats:
+    title: 附统计量的散点图
+    summary: 散点、OLS 回归线及 95% 置信带和边际直方图，副标题给出 Pearson r。
+    description: |
+      `ggscatterstats()` 的 Python 版本。中央面板展示所有观测值，以及最小二乘回归线和其 95% 置信带（反映的是每个 *x* 处 *y* 均值的不确定性，而非单个数据点的不确定性）。上方和右侧的边际直方图揭示了每个变量的分布形态——相关系数默认这一形态是合理的。副标题报告 Pearson *r* 及其 95% 置信区间、t 检验和样本量。
+
+      数据为 **scikit-learn** 自带的糖尿病研究（`load_diabetes(scaled=False)`）：442 名患者的体重指数与一年后疾病进展的定量指标。检验由 `scipy.stats.pearsonr` 完成，回归线和置信带来自 **statsmodels** OLS 的 `get_prediction().conf_int()`。
+  correlation/pairs-plot:
+    title: 附相关系数的配对图
+    summary: 散点矩阵，对角线为分组 KDE，上三角为相关系数。
+    description: |
+      `GGally::ggpairs()` 的 Python 版本。对角线以下，每对变量都有一张按组着色的散点图；对角线展示每个变量在各组中的密度；对角线以上的对称单元格则给出 Pearson *r*，包括总体（粗体）和各组内的值，并附显著性星号。比较二者正是关键：当各组位于图中不同区域时，合并相关与组内相关可能差异悬殊——甚至符号相反。
+
+      数据为 **scikit-learn** 自带的 Fisher 鸢尾花测量数据（`load_iris`），来自三个品种的 150 朵花。密度使用 `scipy.stats.gaussian_kde`，相关系数使用 `scipy.stats.pearsonr`；网格只是一个普通的 `plt.subplots(4, 4)`。
+  correlation/correlogram-bubble:
+    title: 带聚类的相关图
+    summary: corrplot 风格的圆圈，大小与颜色由 r 决定，按层次聚类排序。
+    description: |
+      `corrplot(method = "circle", order = "hclust")` 的 Python 版本。每个圆圈的**面积**随 |*r*| 增大，颜色表示符号，因此强相关十分醒目，弱相关则逐渐淡去。变量按**层次聚类**（以 1 − *r* 为距离的完全连接法）重新排序，使正相关的变量沿对角线聚成块；方框勾勒出三个聚类，效果同 `addrect = 3`。
+
+      数据为 **scikit-learn** 自带的 178 种意大利葡萄酒的 13 项化学测量（`load_wine`）。排序来自 `scipy.cluster.hierarchy.linkage` 和 `leaves_list`，方框来自 `fcluster`。
+  regression-models/coefficient-plot:
+    title: 系数图
+    summary: 回归估计值及其 95% 置信区间，每项一行。
+    description: |
+      系数图（又称点须图）取代了回归结果表。每个点是一个估计值，每条线是其 95% 置信区间，虚线标示零点。置信区间跨过零的项以灰色绘制，显著效应因此一目了然。
+
+      模型使用 **statsmodels** 公式 API 解释美国 50 个州（+ 哥伦比亚特区）的暴力犯罪率。预测变量事先经过标准化，因此系数可以直接比较：表示预测变量变化一个标准差时，每 10 万人中犯罪数的变化。
+  regression-models/odds-ratio-forest:
+    title: 优势比森林图
+    summary: 对数刻度上的 logistic 回归优势比，并列附 OR [95% CI] 表格。
+    description: |
+      Logistic 回归系数是对数优势；取指数后即为**优势比**。每个点表示预测变量变化一个单位时结局优势的倍数变化，线段为其 95% 置信区间，OR = 1 处的虚线表示“无效应”。由于比值在对数刻度上是对称的（0.5 与 2 强度相当），x 轴采用对数刻度。右侧一列重复列出这些数字，与论文中的表格如出一辙。
+
+      数据为 **statsmodels** 自带的 1974 年 *Redbook* 对 6,366 名已婚女性的调查（`sm.datasets.fair`）。结局为受访者是否报告有过婚外情；模型用 `smf.logit()` 拟合，优势比为 `params` 和 `conf_int()` 的 `np.exp()`。
+  regression-models/compare-models:
+    title: 嵌套模型比较
+    summary: 三个嵌套回归的系数并排展示，观察估计值如何变化。
+    description: |
+      当协变量逐块加入时，值得关注的往往不是*哪些*项显著，而是*估计值如何变化*。这里每项占一行，每个模型对应一个错开的点须，便于跟踪某个系数随模型扩展而发生的变化。空心标记表示在 5% 水平上不显著。副标题以 R² 和新增变量块的 F 检验对模型进行比较。
+
+      数据为 **scikit-learn** 自带的 442 名糖尿病患者（`load_diabetes`）：用体重指数、血压和血清指标解释一年后的疾病进展。预测变量经过标准化，因此每个系数表示每变化一个标准差时疾病进展的变化。模型用 `smf.ols()` 拟合，并用 `anova_lm()` 比较。
+  regression-models/predicted-probabilities:
+    title: 预测概率
+    summary: 按组绘制随某一预测变量变化的模型预测概率曲线，附 95% 置信带。
+    description: |
+      优势比难以直观感受，概率则不然。这张图将 logistic 模型还原到结局尺度：每条曲线是某个因素水平下，成功的预测概率随一个连续预测变量取值范围的变化，其他协变量固定在均值。置信带是在 logit 尺度上计算后再反变换的 95% 置信区间，因此始终位于 [0, 1] 之内。地毯线标示观测到的学生——成绩提高者位于顶部，未提高者位于底部。
+
+      数据为 **statsmodels** 自带的 Spector & Mazzeo（1980）实验（`sm.datasets.spector`）：在控制此前 GPA 和前测成绩（TUCE）后，一种新的教学方法（PSI）能否提高成绩？模型为二项 `smf.glm()`；曲线来自 `get_prediction().summary_frame()`。
+  regression-models/interaction-effects:
+    title: 交互效应
+    summary: 两个连续预测变量的简单斜率（均值 ± 1 SD）与 Johnson–Neyman 图。
+    description: |
+      交互项意味着一个预测变量的斜率取决于另一个变量。**左图**在调节变量的三个取值——均值及 ±1 个标准差——处分别画出该斜率，各附 95% 置信带。**右图**是 Johnson–Neyman 视图：焦点预测变量的边际效应 β₁ + β₃·moderator 在调节变量整个取值范围内的变化，附 95% 置信区间。置信带不包含零的区域效应显著；转折点即 Johnson–Neyman 点。
+
+      数据为 **scikit-learn** 自带的 442 名糖尿病患者（`load_diabetes`）：一年后的疾病进展，用 `smf.ols("target ~ age * bmi")` 建模。边际效应的方差根据 `cov_params()` 手工计算：Var(β₁) + 2m·Cov(β₁, β₃) + m²·Var(β₃)。
+  regression-models/quantile-regression:
+    title: 分位数回归过程
+    summary: 斜率如何随条件分布变化，并与单一的 OLS 估计相对照。
+    description: |
+      OLS 只估计一个斜率：对条件**均值**的效应。分位数回归则为每个条件分位数 τ 估计一个斜率，从而可以看出某个预测变量是在拉伸分布，而不仅仅是平移分布。深色线是 τ = 0.05 … 0.95 时的分位数回归系数及其 95% 置信带；橙色线和虚线分别是 OLS 估计及其 95% 置信区间，按构造为常数。左图展示数据以及若干条拟合的分位数回归线。
+
+      数据为 Engel（1857）对 235 个比利时工人家庭的家庭预算调查，由 **statsmodels** 自带（`sm.datasets.engel`）。模型用 `smf.quantreg().fit(q=τ)` 和 `smf.ols()` 拟合。
+  model-diagnostics/residual-diagnostics:
+    title: 残差诊断
+    summary: 线性模型经典的 2 × 2 诊断图——线性、正态性、方差与杠杆值。
+    description: |
+      残差的四种视图回答四个问题。**残差与拟合值**：关系是否为线性（LOWESS 曲线是否平坦）？**正态 Q–Q 图**：残差是否近似正态（点是否落在直线上）？**尺度–位置图**：离散程度是否恒定（曲线是否平坦）？**残差与杠杆值**：是否有观测值在牵引拟合，即落在 Cook 距离虚线等值线之外？每个子图都标注了三个最极端的观测值，正式检验结果列于副标题。
+
+      模型是基于 `sm.datasets.statecrime` 中美国 50 个州 + 哥伦比亚特区的暴力犯罪回归。所有结果均来自 **statsmodels** 的 `get_influence()`，另用 `lowess()` 绘制平滑曲线，并使用 `het_breuschpagan()` 和 `scipy.stats.shapiro()`。
+  model-diagnostics/influence-plot:
+    title: 影响图
+    summary: 学生化残差对杠杆值，气泡大小由 Cook 距离决定。
+    description: |
+      当一个观测值既在预测变量上不寻常（高杠杆值，x 轴），又拟合不佳（学生化残差大，y 轴）时，它就是**强影响点**。气泡面积随综合二者的 Cook 距离增大（∝ √D，使极端值依然清晰可读）。虚线标出常用的经验阈值——杠杆值 2p/n 和 3p/n、学生化残差 ±2——Cook's D 超过 4/n 的观测值会被标注名称并着色。
+
+      模型使用 **statsmodels** OLS 解释美国 50 个州 + 哥伦比亚特区的谋杀率（`sm.datasets.statecrime`）。学生化（删除）残差、帽子值和 Cook 距离均来自 `model.get_influence()`；副标题像 `car::outlierTest()` 一样，用 Bonferroni 离群值检验来检查最大残差。
+  model-diagnostics/roc-curve:
+    title: ROC 曲线
+    summary: 以 ROC 曲线、AUC 及其自助法 95% 置信区间和 Youden 点比较三个分类器。
+    description: |
+      ROC 曲线描绘随着决策阈值由严到宽变化时，灵敏度相对于 1 − 特异度的变化轨迹。对角线相当于抛硬币；曲线越贴近左上角越好。**AUC** 是随机抽取的一个阳性样本得分高于随机抽取的一个阴性样本的概率；其 95% 区间来自对测试集的 1,000 次自助重抽样，并用配对自助法比较最优和最弱的模型。每条曲线上的点是使 **Youden's J** = 灵敏度 + 特异度 − 1 最大化的阈值。
+
+      数据为 Fair 婚外情调查的 6,366 名受访者（`sm.datasets.fair`），按 70/30 划分为训练集和测试集。来自 **scikit-learn** 的 logistic 回归、随机森林和朴素贝叶斯模型预测受访者是否报告有过婚外情；曲线和 AUC 由 `roc_curve()` 和 `roc_auc_score()` 计算。
+  model-diagnostics/calibration-plot:
+    title: 校准图
+    summary: 按十分位分组的预测风险与观测风险，附 Wilson 置信区间、预测值直方图和 Brier 分数。
+    description: |
+      一个模型可以很好地对样本排序（AUC 高），却仍然给出错误的概率。可靠性图正是用来检验这一点的：测试样本按预测风险分为十个十分位组，每组的平均预测值与观测事件率相对照，并附 95% Wilson 区间。校准良好的模型落在对角线上；点位于对角线下方意味着模型过度自信。下方的直方图展示预测值的实际分布位置。
+
+      数据为 Fair 婚外情调查（`sm.datasets.fair`），按 70/30 划分。比较来自 **scikit-learn** 的 logistic 回归和高斯朴素贝叶斯模型；**Brier 分数**（`brier_score_loss`，越低越好）概括概率预测的准确度，区间由 `proportion_confint(method="wilson")` 计算。
+  model-diagnostics/partial-regression:
+    title: 添加变量图
+    summary: 每个预测变量一张偏回归图；每条拟合斜率都等于对应的回归系数。
+    description: |
+      在多元回归中，y 对单个预测变量的原始散点图会把该变量的效应与所有与之相关的因素混在一起。**添加变量图**消除了这种混杂：它将 y 对所有*其他*预测变量回归的残差，与焦点预测变量对同样这些预测变量回归的残差相对照。根据 Frisch–Waugh–Lovell 定理，穿过点云的直线斜率恰好等于多元回归系数，而在 x 轴上远离中心的点正是驱动该系数的观测值。
+
+      模型是基于 `sm.datasets.statecrime` 中美国 50 个州 + 哥伦比亚特区的暴力犯罪回归，用 **statsmodels** `smf.ols()` 拟合。残差由每个坐标轴各一次辅助 OLS 拟合计算；每个子图报告 β 及其 t 值和 p 值。
+  survival/kaplan-meier:
+    title: Kaplan–Meier 生存曲线
+    summary: 带置信带、删失标记、log-rank 检验和风险表的生存曲线。
+    description: |
+      Kaplan–Meier 估计量将随访时间——有的以事件结束，有的被删失——转换为一条阶梯曲线，表示存活超过每一天的概率。阴影带为逐点 95% 置信区间，短竖线标记删失患者，虚线从 50% 处下落至各组的**中位生存时间**。下方的表格给出仍处于风险中的人数，据此可以判断每条曲线的尾部有多少数据支撑。
+
+      数据为 NCCTG 晚期肺癌试验（`lifelines.datasets.load_lung`）。曲线由 `KaplanMeierFitter` 计算，组间比较由 `logrank_test` 完成。
+  survival/cox-hazard-ratios:
+    title: Cox 风险比
+    summary: Cox 比例风险模型的森林图，附 HR、95% 置信区间和 p 值。
+    description: |
+      Cox 比例风险模型估计每个协变量使事件的瞬时风险变为原来的多少倍。每一行展示一个**风险比**（HR）及其 95% 置信区间，采用对数刻度，使风险减半与加倍到 HR = 1 参考线的距离相等。右侧表格重复列出这些数字，与正式发表的森林图一致。
+
+      数据为 Rossi 再犯研究（`lifelines.datasets.load_rossi`）：432 名获释囚犯被随访一年，事件为再次被捕。模型用 `lifelines.CoxPHFitter` 拟合；副标题报告一致性指数（C 指数）以及整个模型的似然比检验。
+  survival/cumulative-hazard:
+    title: 累积风险
+    summary: 三种肿瘤分级的 Nelson–Aalen 累积风险曲线，附 95% 置信带。
+    description: |
+      累积风险 H(t) 将事件的瞬时风险随时间累加；它是“迄今为止累积的风险”，并通过 S(t) = exp(−H(t)) 与生存函数相联系。与生存曲线不同，它不以 1 为上界，其**斜率**就是风险本身——直线意味着风险恒定，向上弯曲的曲线则意味着风险随时间增长。
+
+      数据为德国乳腺癌研究组 2 号试验（`lifelines.datasets.load_gbsg2`）：686 名女性按肿瘤分级划分的无复发生存。曲线由 `lifelines.NelsonAalenFitter` 计算，副标题报告三个分级之间的 log-rank 检验（`multivariate_logrank_test`）。x 轴截止于五年，此后仍处于风险中的女性过少。
+  survival/adjusted-survival:
+    title: 调整后的生存曲线
+    summary: Cox 模型针对不同年龄预测的生存曲线，其他协变量固定在均值。
+    description: |
+      风险比难以直观感受，生存曲线则不然。这里使用拟合好的 Cox 比例风险模型，为仅在年龄上不同的假想个体**预测**完整的生存曲线，其他所有协变量都固定在样本均值。曲线之间的纵向差距，就是年龄效应换算成保持未被捕概率后的结果。
+
+      数据为 Rossi 再犯研究（`lifelines.datasets.load_rossi`）。模型用 `lifelines.CoxPHFitter` 基于全部七个协变量拟合，曲线来自 `predict_survival_function()`；整个样本观测到的 Kaplan–Meier 曲线以灰色绘制作为参照。
+  time-series/stl-decomposition:
+    title: STL 分解
+    summary: 将序列分解为趋势、季节和残余成分，并以堆叠面板展示。
+    description: |
+      STL（基于 Loess 的季节–趋势分解）将序列写成**观测值 = 趋势 + 季节 + 残余**。各面板共用时间轴，但纵轴刻度各自独立，因此每个面板左侧的灰色竖条——在数据单位上长度完全相同——显示了每个成分的真实大小：竖条短，说明该成分占主导；竖条长，说明该成分较小。
+
+      数据为 **statsmodels** 自带的 Mauna Loa 大气 CO₂ 测量值（`sm.datasets.co2`），由周数据重采样为月均值，缺失值经过插补。分解使用 `statsmodels.tsa.seasonal.STL`，周期为 12 个月并采用稳健拟合；副标题给出按 Wang、Smith & Hyndman（2006）定义的趋势强度和季节性强度。
+  time-series/acf-pacf:
+    title: ACF 与 PACF
+    summary: 自相关与偏自相关棒棒糖图，附 95% 显著性带。
+    description: |
+      自相关函数（ACF）衡量序列与其自身 k 步之前的值的相关程度；偏自相关函数（PACF）则在剔除中间较短滞后的影响后做同样的衡量。超出灰色带（±1.96/√n）的竖线大于白噪声所能产生的水平。两个面板结合起来可提示合适的模型：这里 ACF 随 **11 年太阳活动周期**振荡，而 PACF 在几个滞后之后截尾——这正是自回归过程的特征。
+
+      数据为 **statsmodels** 自带的 1700–2008 年 Wolf 太阳黑子年度数（`sm.datasets.sunspots`）。相关系数由 `statsmodels.tsa.stattools.acf` 和 `pacf` 计算，副标题报告检验无自相关的 Ljung–Box 检验。
+  time-series/arima-forecast:
+    title: SARIMA 预测
+    summary: 季节性 ARIMA 预测，附 80% 和 95% 预测区间，并与留出数据对照。
+    description: |
+      只有附带不确定性，预测才是诚实的。深色扇形为 80% 预测区间，浅色扇形为 95% 区间；两者都随预测期延长而变宽。最后四年数据在拟合时被**留出**，因此圆点显示的是实际发生的情况，副标题报告样本外 RMSE，以及这些月份中有多少落在 95% 区间之内。
+
+      数据为 **statsmodels** 自带的 Mauna Loa CO₂ 测量值（`sm.datasets.co2`），汇总为月均值。模型为季节性 ARIMA(1,1,1)(0,1,1)₁₂——经典的“航空公司”模型结构——用 `statsmodels.tsa.statespace.SARIMAX` 拟合；区间来自 `get_forecast().conf_int()`。
+  time-series/seasonal-subseries:
+    title: 季节子序列图
+    summary: 各日历月份跨年份的取值，并以月均值作为参照。
+    description: |
+      季节子序列图（又称月份图）将月度序列切分为十二条迷你时间序列，每个日历月份一条，各自贯穿所有年份。水平横条为该月的均值，因此从一根横条到下一根横条即可读出**季节形态**，而每个面板内的折线则显示该月份在不同年份间是在漂移还是在波动。
+
+      数据为东太平洋 Niño 1+2 区 1950–2010 年的月度海表温度（`sm.datasets.elnino`，**statsmodels** 自带）。副标题报告温度对月份的单因素方差分析（`scipy.stats.f_oneway`）及 η²，即季节所解释的总变异比例。1997–98 年的 El Niño 冬季被突出显示。
+  multivariate/pca-biplot:
+    title: PCA 双标图
+    summary: 观测值与变量载荷在前两个主成分上的投影。
+    description: |
+      双标图在同一个主成分平面上叠加两类信息：**得分**（每个观测值一个点，按组着色，每组附 68% 正态椭圆）和**载荷**（每个变量一个箭头）。指向相同方向的箭头呈正相关；长箭头在所示两个主成分上的权重较大；各组位于其取值较高的变量一侧。
+
+      数据为 **scikit-learn** 葡萄酒数据集中的 178 种葡萄酒（13 项化学测量，三个品种）。变量先经过标准化，再由 `sklearn.decomposition.PCA` 给出得分、载荷以及标注在各坐标轴上的方差占比。
+  multivariate/scree-plot:
+    title: 碎石图
+    summary: 各主成分解释的方差、累积占比以及平行分析截断线。
+    description: |
+      应保留多少个主成分？柱形展示每个主成分所承载的方差占比，橙色线为累积总和。灰色虚线是 **Horn 平行分析**：在同等规模的随机不相关数据上计算的同一组特征值的第 95 百分位数。只有超过这一噪声基线的主成分才会被保留（蓝色）；点线标示较早的 Kaiser 准则（特征值 > 1）。
+
+      数据为 **scikit-learn** 葡萄酒数据集中经标准化的 13 项化学测量。相关矩阵的特征值（即 PCA 方差）由 `numpy.linalg.eigvalsh` 计算；平行分析基于 500 次设定随机种子的模拟。
+  multivariate/silhouette-clusters:
+    title: k-means 轮廓图
+    summary: PCA 空间中的 k-means 聚类，旁附每个观测值的轮廓宽度。
+    description: |
+      轮廓宽度比较每个观测值与其所属聚类的接近程度和与最近的其他聚类的接近程度：接近 1 表示归属恰当，接近 0 表示处于边界，为负则可能被错误归类。聚类数 k 取平均轮廓宽度最高者（尝试了 2 到 8）。左图在前两个主成分上展示各聚类；右图将每个聚类内的轮廓宽度排序，虚线为总体平均值。
+
+      数据为 **scikit-learn** 葡萄酒数据集中经标准化的 13 项化学测量。`sklearn` 中的 `KMeans`、`silhouette_score` 和 `silhouette_samples` 完成主要计算；`PCA` 仅用于绘制聚类。
+  multivariate/clustered-heatmap:
+    title: 聚类热图
+    summary: 带行列树状图和分组色条的 Z 分数热图。
+    description: |
+      每一行是一个观测值，每一列是一个变量，每个单元格是其 z 分数（低于该变量均值为蓝色，高于为红色）。行和列按**层次聚类**（基于欧氏距离的 Ward 连接法）重新排序，树状图展示合并过程。左侧色条给出每一行的已知分组，因此可以一眼看出无监督的聚类树是否重新发现了这些分组——以及哪些变量驱动了这种划分。
+
+      数据为 **scikit-learn** 葡萄酒数据集中的 178 种葡萄酒（三个品种，13 项测量）。`seaborn.clustermap` 完成聚类和绘图；`scipy.cluster.hierarchy` 将行聚类树切分为三个聚类，用于计算与真实品种之间的调整兰德指数。
+  inference-uncertainty/bootstrap-distribution:
+    title: 自助法分布
+    summary: 重抽样得到的相关系数，附百分位数法和 BCa 95% 置信区间。
+    description: |
+      自助法（Bootstrap）在从数据中有放回抽取的数千个样本上重新估计统计量；这些估计值的离散程度即为其抽样不确定性。直方图是相关系数的自助法分布，橙色线是在完整样本中观测到的值。上方绘有两个 95% 区间：简单的**百分位数**区间，以及 **BCa**（偏差校正加速）区间——后者会发生偏移，以校正此处可见的偏差和偏度，因为该分布远非对称。
+
+      数据为 **statsmodels** `statecrime` 数据集中的美国 50 个州 + 哥伦比亚特区：单亲家庭占比与暴力犯罪率。`scipy.stats.bootstrap`（配对，9,999 次重抽样）给出两种区间。
+  inference-uncertainty/confidence-intervals:
+    title: 95% 置信区间的含义
+    summary: 100 个模拟的均值 95% 置信区间；未覆盖真值的以红色显示。
+    description: |
+      “95% 置信”是*方法*的属性，而不是某一个区间的属性。这里将同一项研究——从已知均值为 100 的总体中抽取 25 个样本——重复 100 次，每条水平线是围绕样本均值得到的 95% t 区间。其中约 95 个区间覆盖了真实均值（虚线）；少数未覆盖的以红色绘制。区间宽度也各不相同，因为每个样本都各自估计标准差。
+
+      数据由 `numpy` 模拟（设定随机种子，正态总体，μ = 100，σ = 15），区间使用 `scipy.stats.t.interval` 计算。
+  inference-uncertainty/power-curve:
+    title: 统计功效曲线
+    summary: 小、中、大效应下双样本 t 检验的统计功效随样本量的变化。
+    description: |
+      统计功效是一项研究检测到真实存在的效应的概率。每条曲线对应 Cohen 的一个基准效应量（小 d = 0.2、中 0.5、大 0.8），展示功效如何随每组参与者人数增加而提高。曲线与惯用的 80% 线相交处，用圆点标出所需样本量——请注意，随着效应变小，所需样本量会急剧膨胀（x 轴为对数刻度）。
+
+      使用 `statsmodels.stats.power.TTestIndPower` 计算：`.power()` 绘制曲线，`.solve_power()` 求所需 n（双侧 α = .05，各组样本量相等）。
+  inference-uncertainty/bland-altman:
+    title: Bland–Altman 图
+    summary: 两种测量方法之间的一致性，附偏倚和 95% 一致性界限。
+    description: |
+      当两台仪器测量同一事物时，高相关性并不能说明它们是否**一致**。Bland–Altman 图将两种方法的差值置于 y 轴，均值置于 x 轴。中间的线为平均差值（系统偏倚），外侧两条线为 95% **一致性界限**（偏倚 ± 1.96 SD），大多数不一致都落在此范围内。阴影带是这三条线的 95% 置信区间，采用 Bland & Altman（1986）的标准误；点云若呈现斜率，则提示存在比例偏倚。
+
+      数据由 `numpy` 模拟（设定随机种子）：80 名患者的收缩压，分别由参考袖带和一种新型腕式设备测量。偏倚和区间使用 `scipy.stats.t` 计算；斜率检验为 **statsmodels** 的 OLS 拟合。
+  inference-uncertainty/meta-analysis-forest:
+    title: 元分析森林图
+    summary: 各研究的风险比及置信区间、随机效应合并菱形与异质性统计量。
+    description: |
+      森林图将元分析中的每项研究排成一行：方块是该研究的估计值（面积与研究权重成正比），须线是其 95% 置信区间。底部的菱形是合并后的**随机效应**估计（DerSimonian–Laird 法），其宽度即为 95% 置信区间。副标题报告异质性——Cochran's Q、I²（变异中由研究间真实差异所致的比例）以及 τ²（研究间差异的方差）。
+
+      数据为 13 项经典的卡介苗（BCG）预防结核病试验（Colditz 等，1994；R 中 **metafor** 包的 `dat.bcg`），以频数形式录入。对数风险比由 `effectsize_2proportions` 计算，合并由 `statsmodels.stats.meta_analysis` 中的 `combine_effects` 完成。
+  inference-uncertainty/funnel-plot:
+    title: 漏斗图
+    summary: 各研究效应量对其标准误作图，附伪 95% 漏斗区域和 Egger 检验。
+    description: |
+      每个点代表一项研究：x 轴为效应量，（倒置的）y 轴为标准误，因此大型、精确的研究位于顶部。没有偏倚时，这些点会围绕合并效应形成对称的漏斗，其中 95% 落在伪置信区域（± 1.96 SE）之内。这里左下角是空的：结果为阴性的小型研究缺失了。**Egger 回归检验**（标准正态离差对精度回归）量化了这种不对称性；其拟合线以虚线表示。
+
+      该元分析由 `numpy` 模拟（设定随机种子）：100 项试验，真实标准化效应为 0.2，其中不显著的小型试验大多被锁进了“抽屉”（灰色空心点——在现实中永远无法观测到）。Egger 检验为 **statsmodels** 的 OLS 拟合。
