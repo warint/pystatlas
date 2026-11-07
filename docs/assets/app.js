@@ -20,6 +20,9 @@
         card.hidden = !ok;
         if (ok) n++;
       });
+      sec.querySelectorAll(".sub").forEach((sub) => {
+        sub.hidden = !sub.querySelector(".card:not([hidden])");
+      });
       sec.hidden = n === 0;
       shown += n;
     });

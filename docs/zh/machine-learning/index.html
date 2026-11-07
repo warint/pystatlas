@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-Hans" data-copied="已复制 ✓">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>机器学习 · PyStatlas</title>
+<meta name="description" content="模型对新数据的预测效果如何？原因何在？样本外评估、学习曲线与模型无关的解释——每一项都附带其不确定性。">
+<meta name="author" content="Thierry Warin">
+<link rel="author" href="https://www.warin.ca">
+<meta name="citation_title" content="PyStatlas: The Python Gallery of Statistical Graphics">
+<meta name="citation_author" content="Warin, Thierry">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_online_date" content="2026/11/06">
+<meta name="citation_publisher" content="Thierry Warin">
+<meta name="citation_language" content="zh">
+<meta name="citation_public_url" content="https://warint.github.io/pystatlas/zh/machine-learning/">
+<meta name="DC.creator" content="Warin, Thierry">
+<meta name="DC.title" content="PyStatlas: The Python Gallery of Statistical Graphics">
+<meta name="DC.date" content="2026">
+<link rel="canonical" href="https://warint.github.io/pystatlas/zh/machine-learning/">
+<link rel="alternate" hreflang="en" href="https://warint.github.io/pystatlas/machine-learning/">
+<link rel="alternate" hreflang="fr" href="https://warint.github.io/pystatlas/fr/machine-learning/">
+<link rel="alternate" hreflang="ja" href="https://warint.github.io/pystatlas/ja/machine-learning/">
+<link rel="alternate" hreflang="zh-Hans" href="https://warint.github.io/pystatlas/zh/machine-learning/">
+<link rel="alternate" hreflang="x-default" href="https://warint.github.io/pystatlas/machine-learning/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "PyStatlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/pystatlas/zh/machine-learning/", "inLanguage": "zh-Hans", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "PyStatlas", "url": "https://warint.github.io/pystatlas/"}}</script>
+<meta property="og:title" content="机器学习 · PyStatlas">
+<meta property="og:description" content="模型对新数据的预测效果如何？原因何在？样本外评估、学习曲线与模型无关的解释——每一项都附带其不确定性。">
+<meta property="og:locale" content="zh-Hans">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css?v=aedcc37b">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>PyStatlas</span></a>
+    <nav class="nav-links">
+      <a href="../index.html#gallery" class="on">图库</a>
+      <a href="../style.html" class="">样式</a>
+      <a href="../about.html" class="">关于</a>
+      <a href="../about.html#cite" class="hide-sm">引用</a>
+      <details class="lang"><summary aria-label="Language"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span>中文</span></summary><div class="lang-menu"><a href="../../machine-learning/" hreflang="en" lang="en">English</a><a href="../../fr/machine-learning/" hreflang="fr" lang="fr">Français</a><a href="../../ja/machine-learning/" hreflang="ja" lang="ja">日本語</a><a href="../../zh/machine-learning/" hreflang="zh-Hans" lang="zh-Hans" class=on aria-current=true>中文</a></div></details>
+      <a href="https://github.com/warint/pystatlas" class="gh" aria-label="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="hero hero-sm"><div class="wrap">
+<div class="crumbs"><a href="../index.html">图库</a><span>/</span>机器学习</div>
+<h1>机器学习</h1><p class="lede">模型对新数据的预测效果如何？原因何在？样本外评估、学习曲线与模型无关的解释——每一项都附带其不确定性。</p></div></section>
+<section class="wrap section"><div class="grid"><a class="card" href="../machine-learning/confusion-matrix/" data-cat="machine-learning" data-k="带指标的混淆矩阵 样本外混淆矩阵，显示计数与行内占比，并为主要指标给出自助法区间。 confusion matrix with metrics out-of-fold confusion matrix with counts and row shares, and bootstrap intervals for the headline metrics. yardstick::conf_mat() + autoplot() 机器学习 machine learning classification confusion matrix precision recall f1 cross-validation bootstrap matplotlib numpy scikit-learn">
+  <div class="card-img"><img src="../../machine-learning/confusion-matrix/thumb.webp" alt="带指标的混淆矩阵" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">机器学习</span><h3>带指标的混淆矩阵</h3><p>样本外混淆矩阵，显示计数与行内占比，并为主要指标给出自助法区间。</p><span class="card-r">yardstick::conf_mat() + autoplot()</span></div>
+</a><a class="card" href="../machine-learning/precision-recall/" data-cat="machine-learning" data-k="精确率–召回率曲线 两个分类器的样本外精确率–召回率曲线，附平均精确率与无技能基线。 precision–recall curves out-of-fold precision–recall curves for two classifiers, with average precision and the no-skill baseline. yardstick::pr_curve() + autoplot() 机器学习 machine learning classification precision recall average precision imbalanced data threshold matplotlib numpy scikit-learn">
+  <div class="card-img"><img src="../../machine-learning/precision-recall/thumb.webp" alt="精确率–召回率曲线" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">机器学习</span><h3>精确率–召回率曲线</h3><p>两个分类器的样本外精确率–召回率曲线，附平均精确率与无技能基线。</p><span class="card-r">yardstick::pr_curve() + autoplot()</span></div>
+</a><a class="card" href="../machine-learning/learning-curve/" data-cat="machine-learning" data-k="学习曲线 随训练集增大的训练得分与交叉验证得分，并显示各折之间的离散程度。 learning curve training and cross-validated score as the training set grows, with fold-to-fold spread. caret::learning_curve_dat() + ggplot() 机器学习 machine learning learning curve overfitting bias-variance cross-validation sample size matplotlib numpy scikit-learn">
+  <div class="card-img"><img src="../../machine-learning/learning-curve/thumb.webp" alt="学习曲线" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">机器学习</span><h3>学习曲线</h3><p>随训练集增大的训练得分与交叉验证得分，并显示各折之间的离散程度。</p><span class="card-r">caret::learning_curve_dat() + ggplot()</span></div>
+</a><a class="card" href="../machine-learning/model-comparison/" data-cat="machine-learning" data-k="交叉验证模型比较 多个模型逐折的得分，附均值与校正后的 95% 区间。 cross-validated model comparison fold-by-fold scores of several models, with means and corrected 95% intervals. caret::resamples() + bwplot() / tune::autoplot() 机器学习 machine learning model selection cross-validation repeated k-fold nadeau-bengio r² matplotlib numpy scipy scikit-learn">
+  <div class="card-img"><img src="../../machine-learning/model-comparison/thumb.webp" alt="交叉验证模型比较" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">机器学习</span><h3>交叉验证模型比较</h3><p>多个模型逐折的得分，附均值与校正后的 95% 区间。</p><span class="card-r">caret::resamples() + bwplot() / tune::autoplot()</span></div>
+</a><a class="card" href="../machine-learning/permutation-importance/" data-cat="machine-learning" data-k="置换重要性 逐个打乱特征时测试集 r² 的下降，每个特征重复 50 次。 permutation importance drop in test-set r² when each feature is shuffled, over 50 repeats per feature. vip::vip(method = &quot;permute&quot;) 机器学习 machine learning feature importance permutation model-agnostic interpretability random forest matplotlib numpy scikit-learn">
+  <div class="card-img"><img src="../../machine-learning/permutation-importance/thumb.webp" alt="置换重要性" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">机器学习</span><h3>置换重要性</h3><p>逐个打乱特征时测试集 R² 的下降，每个特征重复 50 次。</p><span class="card-r">vip::vip(method = &quot;permute&quot;)</span></div>
+</a><a class="card" href="../machine-learning/partial-dependence/" data-cat="machine-learning" data-k="带 ice 曲线的部分依赖图 模型对单个特征的平均响应（pdp），叠加在每位患者的个体曲线（ice）之上。 partial dependence with ice curves average model response to one feature (pdp) over the individual curves (ice) of every patient. pdp::partial(ice = true) + autoplot() / iml::featureeffect 机器学习 machine learning partial dependence ice interpretability non-linearity gradient boosting matplotlib numpy scikit-learn">
+  <div class="card-img"><img src="../../machine-learning/partial-dependence/thumb.webp" alt="带 ICE 曲线的部分依赖图" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">机器学习</span><h3>带 ICE 曲线的部分依赖图</h3><p>模型对单个特征的平均响应（PDP），叠加在每位患者的个体曲线（ICE）之上。</p><span class="card-r">pdp::partial(ice = TRUE) + autoplot() / iml::FeatureEffect</span></div>
+</a></div><div class="sub" id="machine-learning-advanced"><div class="sub-head"><h3>进阶：SHAP 解释</h3><p>Shapley 值将每个预测分解为各特征的可加贡献——从全局、逐个特征，到单个个案。</p></div><div class="grid"><a class="card" href="../machine-learning/shap-beeswarm/" data-cat="machine-learning" data-k="shap 汇总图（蜂群图） 每位患者在每个特征上的 shap 值，按特征取值着色，并给出平均 |shap| 重要性。 shap summary (beeswarm) every patient&#x27;s shap value for every feature, coloured by the feature&#x27;s value, with mean |shap| importance. shapviz::sv_importance(kind = &quot;beeswarm&quot;) 机器学习 machine learning shap shapley values beeswarm feature importance interpretability gradient boosting matplotlib numpy shap scikit-learn">
+  <div class="card-img"><img src="../../machine-learning/shap-beeswarm/thumb.webp" alt="SHAP 汇总图（蜂群图）" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">机器学习 · 进阶：SHAP 解释</span><h3>SHAP 汇总图（蜂群图）</h3><p>每位患者在每个特征上的 SHAP 值，按特征取值着色，并给出平均 |SHAP| 重要性。</p><span class="card-r">shapviz::sv_importance(kind = &quot;beeswarm&quot;)</span></div>
+</a><a class="card" href="../machine-learning/shap-dependence/" data-cat="machine-learning" data-k="shap 依赖图 某个特征的 shap 值对其取值作图，按其最强交互特征着色，并附平滑趋势线。 shap dependence plot shap value of one feature against its value, coloured by its strongest interaction partner, with a smooth trend. shapviz::sv_dependence() 机器学习 machine learning shap dependence plot interaction non-linearity lowess interpretability matplotlib numpy shap scikit-learn statsmodels">
+  <div class="card-img"><img src="../../machine-learning/shap-dependence/thumb.webp" alt="SHAP 依赖图" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">机器学习 · 进阶：SHAP 解释</span><h3>SHAP 依赖图</h3><p>某个特征的 SHAP 值对其取值作图，按其最强交互特征着色，并附平滑趋势线。</p><span class="card-r">shapviz::sv_dependence()</span></div>
+</a><a class="card" href="../machine-learning/shap-waterfall/" data-cat="machine-learning" data-k="单个预测的 shap 瀑布图 每个特征如何把一位患者的预测从平均值推到模型的输出。 shap waterfall for one prediction how each feature moves one patient&#x27;s prediction from the average to the model&#x27;s output. shapviz::sv_waterfall() 机器学习 machine learning shap waterfall local explanation individual prediction interpretability matplotlib numpy shap scikit-learn">
+  <div class="card-img"><img src="../../machine-learning/shap-waterfall/thumb.webp" alt="单个预测的 SHAP 瀑布图" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">机器学习 · 进阶：SHAP 解释</span><h3>单个预测的 SHAP 瀑布图</h3><p>每个特征如何把一位患者的预测从平均值推到模型的输出。</p><span class="card-r">shapviz::sv_waterfall()</span></div>
+</a></div></div></section>
+</main>
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div><strong>PyStatlas</strong> · Python 统计图形库<br>创建者 <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../about.html#cite">如何引用</a></div>
+    <div class="foot-links"><a href="https://github.com/warint/pystatlas">GitHub</a><a href="../style.html">绘图样式</a><a href="https://github.com/warint/pystatlas/blob/main/CONTRIBUTING.md">参与贡献</a><span>MIT 许可证</span></div>
+  </div>
+  <div class="wrap foot-langs"><a href="../../machine-learning/" hreflang="en" lang="en">English</a><a href="../../fr/machine-learning/" hreflang="fr" lang="fr">Français</a><a href="../../ja/machine-learning/" hreflang="ja" lang="ja">日本語</a><a href="../../zh/machine-learning/" hreflang="zh-Hans" lang="zh-Hans" class=on aria-current=true>中文</a></div>
+</footer>
+<script src="../../assets/app.js?v=aedcc37b"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ja" data-copied="コピーしました ✓">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>学習曲線 · PyStatlas</title>
+<meta name="description" content="訓練データを増やしたときの訓練スコアと交差検証スコアを、分割間のばらつきとともに示します。">
+<meta name="author" content="Thierry Warin">
+<link rel="author" href="https://www.warin.ca">
+<meta name="citation_title" content="Learning curve — PyStatlas: The Python Gallery of Statistical Graphics">
+<meta name="citation_author" content="Warin, Thierry">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_online_date" content="2026/11/06">
+<meta name="citation_publisher" content="Thierry Warin">
+<meta name="citation_language" content="ja">
+<meta name="citation_public_url" content="https://warint.github.io/pystatlas/ja/machine-learning/learning-curve/">
+<meta name="DC.creator" content="Warin, Thierry">
+<meta name="DC.title" content="Learning curve — PyStatlas: The Python Gallery of Statistical Graphics">
+<meta name="DC.date" content="2026">
+<link rel="canonical" href="https://warint.github.io/pystatlas/ja/machine-learning/learning-curve/">
+<link rel="alternate" hreflang="en" href="https://warint.github.io/pystatlas/machine-learning/learning-curve/">
+<link rel="alternate" hreflang="fr" href="https://warint.github.io/pystatlas/fr/machine-learning/learning-curve/">
+<link rel="alternate" hreflang="ja" href="https://warint.github.io/pystatlas/ja/machine-learning/learning-curve/">
+<link rel="alternate" hreflang="zh-Hans" href="https://warint.github.io/pystatlas/zh/machine-learning/learning-curve/">
+<link rel="alternate" hreflang="x-default" href="https://warint.github.io/pystatlas/machine-learning/learning-curve/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Learning curve — PyStatlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/pystatlas/ja/machine-learning/learning-curve/", "inLanguage": "ja", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "PyStatlas", "url": "https://warint.github.io/pystatlas/"}}</script>
+<meta property="og:title" content="学習曲線 · PyStatlas">
+<meta property="og:description" content="訓練データを増やしたときの訓練スコアと交差検証スコアを、分割間のばらつきとともに示します。">
+<meta property="og:locale" content="ja">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/style.css?v=aedcc37b">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>PyStatlas</span></a>
+    <nav class="nav-links">
+      <a href="../../index.html#gallery" class="on">ギャラリー</a>
+      <a href="../../style.html" class="">スタイル</a>
+      <a href="../../about.html" class="">概要</a>
+      <a href="../../about.html#cite" class="hide-sm">引用</a>
+      <details class="lang"><summary aria-label="Language"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span>日本語</span></summary><div class="lang-menu"><a href="../../../machine-learning/learning-curve/" hreflang="en" lang="en">English</a><a href="../../../fr/machine-learning/learning-curve/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/machine-learning/learning-curve/" hreflang="ja" lang="ja" class=on aria-current=true>日本語</a><a href="../../../zh/machine-learning/learning-curve/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div></details>
+      <a href="https://github.com/warint/pystatlas" class="gh" aria-label="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </nav>
+  </div>
+</header>
+<main>
+<article class="wrap ex">
+  <div class="crumbs"><a href="../../index.html">ギャラリー</a><span>/</span><a href="../../machine-learning/index.html">機械学習</a></div>
+  <header class="ex-head"><h1>学習曲線</h1><p class="lede">訓練データを増やしたときの訓練スコアと交差検証スコアを、分割間のばらつきとともに示します。</p>
+  <p class="byline">著者： <a href="https://www.warin.ca">Thierry Warin</a> · 収録： <a href="../../index.html">PyStatlas</a></p></header>
+  <figure class="figure"><a href="../../../machine-learning/learning-curve/plot.png" target="_blank" rel="noopener"><img src="../../../machine-learning/learning-curve/plot.png" alt="学習曲線"></a></figure>
+  <div class="ex-cols">
+    <div class="prose"><p>学習曲線は、データを追加で集める前に 2 つの問いに答えます。モデルは <strong>過学習</strong> しているか（訓練スコアと交差検証スコアの差が大きい）、それとも <strong>学習不足</strong> か（どちらのスコアも低く近い）。そして、観測値を増やせばまだ改善するか（検証曲線がまだ上がっているか）。線は反復交差検証の各分割の平均、帯は ±1 標準偏差で、その幅は別の分割で推定値がどれだけ動くかを示します。</p><p>同じ課題で 2 つのモデルを比べます。訓練データを丸暗記する深い決定木と、k 近傍法の分類器です。データは <strong>scikit-learn</strong> 付属の手書き数字 1,797 枚で、曲線は <code>sklearn.model_selection.learning_curve</code> に 5 × 2 の反復層化分割を用いて求めています。</p><p class="note">コードおよび図中のテキストは英語です。</p></div>
+    <aside class="meta"><div class="meta-row"><span>R での対応</span><code>caret::learning_curve_dat() + ggplot()</code></div><div class="meta-row"><span>ライブラリ</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>scikit-learn</i></div></div><div class="meta-row"><span>トピック</span><div class="pills"><i>learning curve</i><i>overfitting</i><i>bias-variance</i><i>cross-validation</i><i>sample size</i></div></div></aside>
+  </div>
+  <section class="code-card" id="code">
+    <div class="code-bar">
+      <span class="fname">learning-curve.py · 40 行</span>
+      <div class="code-actions">
+        <a class="btn ghost" href="../../../machine-learning/learning-curve/learning-curve.py" download>ダウンロード</a>
+        <a class="btn ghost" href="https://github.com/warint/pystatlas/tree/main/gallery/11-machine-learning/03-learning-curve">GitHub</a>
+        <button class="btn copy" data-copy>コードをコピー</button>
+      </div>
+    </div>
+    <pre class="code"><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_digits</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">RepeatedStratifiedKFold</span><span class="p">,</span> <span class="n">learning_curve</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.tree</span><span class="w"> </span><span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="n">RepeatedStratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">sizes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.08</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"Decision tree"</span><span class="p">:</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+          <span class="s2">"k-nearest neighbours"</span><span class="p">:</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)}</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">"figure.constrained_layout.use"</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>   <span class="c1"># manual margins leave room for the subtitle</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.97</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.80</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.12</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="n">n</span><span class="p">,</span> <span class="n">train</span><span class="p">,</span> <span class="n">valid</span> <span class="o">=</span> <span class="n">learning_curve</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span> <span class="n">train_sizes</span><span class="o">=</span><span class="n">sizes</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">scores</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">lab</span> <span class="ow">in</span> <span class="p">[(</span><span class="n">train</span><span class="p">,</span> <span class="s2">"#8E8E93"</span><span class="p">,</span> <span class="s2">"Training"</span><span class="p">),</span> <span class="p">(</span><span class="n">valid</span><span class="p">,</span> <span class="s2">"#007AFF"</span><span class="p">,</span> <span class="s2">"Cross-validated"</span><span class="p">)]:</span>
+        <span class="n">m</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">scores</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span> <span class="o">-</span> <span class="n">s</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="n">s</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.18</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">2.2</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">dy</span> <span class="o">=</span> <span class="mf">0.012</span> <span class="k">if</span> <span class="n">lab</span> <span class="o">==</span> <span class="s2">"Training"</span> <span class="k">else</span> <span class="o">-</span><span class="mf">0.012</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">25</span><span class="p">,</span> <span class="n">m</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dy</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">"semibold"</span><span class="p">)</span>
+    <span class="n">gap</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">valid</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">valid</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">train</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s2">"&lt;-&gt;"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#FF3B30"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.2</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">30</span><span class="p">,</span> <span class="nb">min</span><span class="p">((</span><span class="n">train</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">valid</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">),</span> <span class="sa">f</span><span class="s2">"gap </span><span class="si">{</span><span class="n">gap</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="n">ha</span><span class="o">=</span><span class="s2">"right"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#FF3B30"</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">"semibold"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Training observations"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mf">1.32</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Accuracy"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.03</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"The tree memorises its training set; the neighbours generalise"</span><span class="p">,</span>
+             <span class="n">x</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.97</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"left"</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.885</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"n = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="si">}</span><span class="s2"> digits · 5-fold × 2 repeats · lines = mean, bands = ±1 SD across folds"</span><span class="p">,</span>
+         <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre>
+  </section>
+  <p class="hint">図にはオプションの <a href="../../style.html">PyStatlas スタイル</a> を使用しています。同じ見た目にするには <code>plt.style.use("pystatlas.mplstyle")</code> を追加してください。</p>
+  <section class="cite" id="cite">
+  <div class="cite-head"><h2>引用方法</h2>
+  <p>PyStatlas は <a href="https://www.warin.ca">Thierry Warin</a> が作成・運営しています。研究や業務に役立った場合は、ぜひ引用してください。</p></div>
+  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). Learning curve. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/machine-learning/learning-curve/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). Learning curve. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/machine-learning/learning-curve/">コピー</button></div>
+  <div class="cite-box"><pre class="cite-bib">@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {PyStatlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/pystatlas/}},
+  note         = {Source code: https://github.com/warint/pystatlas}
+}</pre><button class="btn ghost" data-copy-text="@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {PyStatlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/pystatlas/}},
+  note         = {Source code: https://github.com/warint/pystatlas}
+}">BibTeX をコピー</button></div>
+</section>
+  <div class="pager"><a href="../../machine-learning/precision-recall/"><small>前へ</small>適合率–再現率曲線</a><a class="next" href="../../machine-learning/model-comparison/"><small>次へ</small>交差検証によるモデル比較</a></div>
+  <h2 class="rel-h">機械学習のその他のグラフ</h2><div class="grid"><a class="card" href="../../machine-learning/confusion-matrix/" data-cat="machine-learning" data-k="指標付き混同行列 件数と行ごとの割合を示す交差検証の混同行列に、主要指標のブートストラップ区間を添えます。 confusion matrix with metrics out-of-fold confusion matrix with counts and row shares, and bootstrap intervals for the headline metrics. yardstick::conf_mat() + autoplot() 機械学習 machine learning classification confusion matrix precision recall f1 cross-validation bootstrap matplotlib numpy scikit-learn">
+  <div class="card-img"><img src="../../../machine-learning/confusion-matrix/thumb.webp" alt="指標付き混同行列" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">機械学習</span><h3>指標付き混同行列</h3><p>件数と行ごとの割合を示す交差検証の混同行列に、主要指標のブートストラップ区間を添えます。</p><span class="card-r">yardstick::conf_mat() + autoplot()</span></div>
+</a>
+<a class="card" href="../../machine-learning/precision-recall/" data-cat="machine-learning" data-k="適合率–再現率曲線 2 つの分類器の交差検証による適合率–再現率曲線と、平均適合率、無技能のベースライン。 precision–recall curves out-of-fold precision–recall curves for two classifiers, with average precision and the no-skill baseline. yardstick::pr_curve() + autoplot() 機械学習 machine learning classification precision recall average precision imbalanced data threshold matplotlib numpy scikit-learn">
+  <div class="card-img"><img src="../../../machine-learning/precision-recall/thumb.webp" alt="適合率–再現率曲線" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">機械学習</span><h3>適合率–再現率曲線</h3><p>2 つの分類器の交差検証による適合率–再現率曲線と、平均適合率、無技能のベースライン。</p><span class="card-r">yardstick::pr_curve() + autoplot()</span></div>
+</a>
+<a class="card" href="../../machine-learning/model-comparison/" data-cat="machine-learning" data-k="交差検証によるモデル比較 複数モデルの分割ごとのスコアを、平均値と補正済み 95% 区間とともに示します。 cross-validated model comparison fold-by-fold scores of several models, with means and corrected 95% intervals. caret::resamples() + bwplot() / tune::autoplot() 機械学習 machine learning model selection cross-validation repeated k-fold nadeau-bengio r² matplotlib numpy scipy scikit-learn">
+  <div class="card-img"><img src="../../../machine-learning/model-comparison/thumb.webp" alt="交差検証によるモデル比較" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">機械学習</span><h3>交差検証によるモデル比較</h3><p>複数モデルの分割ごとのスコアを、平均値と補正済み 95% 区間とともに示します。</p><span class="card-r">caret::resamples() + bwplot() / tune::autoplot()</span></div>
+</a></div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div><strong>PyStatlas</strong> · 統計グラフのための Python ギャラリー<br>制作： <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">引用方法</a></div>
+    <div class="foot-links"><a href="https://github.com/warint/pystatlas">GitHub</a><a href="../../style.html">プロットスタイル</a><a href="https://github.com/warint/pystatlas/blob/main/CONTRIBUTING.md">貢献する</a><span>MIT ライセンス</span></div>
+  </div>
+  <div class="wrap foot-langs"><a href="../../../machine-learning/learning-curve/" hreflang="en" lang="en">English</a><a href="../../../fr/machine-learning/learning-curve/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/machine-learning/learning-curve/" hreflang="ja" lang="ja" class=on aria-current=true>日本語</a><a href="../../../zh/machine-learning/learning-curve/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div>
+</footer>
+<script src="../../../assets/app.js?v=aedcc37b"></script>
+</body>
+</html>

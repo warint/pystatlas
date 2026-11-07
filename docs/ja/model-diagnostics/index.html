@@ -32,7 +32,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../assets/style.css?v=71c084d5">
+<link rel="stylesheet" href="../../assets/style.css?v=aedcc37b">
 </head>
 <body>
 <header class="nav">
@@ -55,20 +55,16 @@
 <section class="wrap section"><div class="grid"><a class="card" href="../model-diagnostics/residual-diagnostics/" data-cat="model-diagnostics" data-k="残差診断 線形モデルのための定番の 2 × 2 パネル。線形性、正規性、分散、てこ比を確認します。 residual diagnostics the classic 2 × 2 panel for a linear model — linearity, normality, variance, leverage. plot(lm) / performance::check_model() モデル診断 model diagnostics residuals q-q plot cook&#x27;s distance leverage heteroscedasticity matplotlib numpy statsmodels scipy">
   <div class="card-img"><img src="../../model-diagnostics/residual-diagnostics/thumb.webp" alt="残差診断" loading="lazy" width="720" height="450"></div>
   <div class="card-body"><span class="kicker">モデル診断</span><h3>残差診断</h3><p>線形モデルのための定番の 2 × 2 パネル。線形性、正規性、分散、てこ比を確認します。</p><span class="card-r">plot(lm) / performance::check_model()</span></div>
-</a>
-<a class="card" href="../model-diagnostics/influence-plot/" data-cat="model-diagnostics" data-k="影響度プロット スチューデント化残差対てこ比を、クックの距離に応じた大きさのバブルで描きます。 influence plot studentized residuals vs leverage, with bubbles sized by cook&#x27;s distance. car::influenceplot() モデル診断 model diagnostics influence cook&#x27;s distance leverage outliers studentized residuals matplotlib numpy statsmodels scipy">
+</a><a class="card" href="../model-diagnostics/influence-plot/" data-cat="model-diagnostics" data-k="影響度プロット スチューデント化残差対てこ比を、クックの距離に応じた大きさのバブルで描きます。 influence plot studentized residuals vs leverage, with bubbles sized by cook&#x27;s distance. car::influenceplot() モデル診断 model diagnostics influence cook&#x27;s distance leverage outliers studentized residuals matplotlib numpy statsmodels scipy">
   <div class="card-img"><img src="../../model-diagnostics/influence-plot/thumb.webp" alt="影響度プロット" loading="lazy" width="720" height="450"></div>
   <div class="card-body"><span class="kicker">モデル診断</span><h3>影響度プロット</h3><p>スチューデント化残差対てこ比を、クックの距離に応じた大きさのバブルで描きます。</p><span class="card-r">car::influencePlot()</span></div>
-</a>
-<a class="card" href="../model-diagnostics/roc-curve/" data-cat="model-diagnostics" data-k="roc 曲線 3つの分類器を roc 曲線、ブートストラップ 95% 信頼区間付きの auc、ユーデン点で比較します。 roc curves three classifiers compared by roc curve, auc with bootstrap 95% ci and youden point. proc::ggroc() / proc::ci.auc() モデル診断 model diagnostics roc auc classification bootstrap youden index matplotlib numpy statsmodels scikit-learn">
+</a><a class="card" href="../model-diagnostics/roc-curve/" data-cat="model-diagnostics" data-k="roc 曲線 3つの分類器を roc 曲線、ブートストラップ 95% 信頼区間付きの auc、ユーデン点で比較します。 roc curves three classifiers compared by roc curve, auc with bootstrap 95% ci and youden point. proc::ggroc() / proc::ci.auc() モデル診断 model diagnostics roc auc classification bootstrap youden index matplotlib numpy statsmodels scikit-learn">
   <div class="card-img"><img src="../../model-diagnostics/roc-curve/thumb.webp" alt="ROC 曲線" loading="lazy" width="720" height="450"></div>
   <div class="card-body"><span class="kicker">モデル診断</span><h3>ROC 曲線</h3><p>3つの分類器を ROC 曲線、ブートストラップ 95% 信頼区間付きの AUC、ユーデン点で比較します。</p><span class="card-r">pROC::ggroc() / pROC::ci.auc()</span></div>
-</a>
-<a class="card" href="../model-diagnostics/calibration-plot/" data-cat="model-diagnostics" data-k="キャリブレーションプロット 十分位ごとの予測リスク対観測リスクを、ウィルソン信頼区間、予測値のヒストグラム、ブライアスコアとともに示します。 calibration plot predicted vs observed risk per decile, with wilson cis, prediction histograms and brier score. rms::calibrate() / probably::cal_plot_breaks() モデル診断 model diagnostics calibration reliability diagram brier score classification probability matplotlib numpy pandas statsmodels scikit-learn">
+</a><a class="card" href="../model-diagnostics/calibration-plot/" data-cat="model-diagnostics" data-k="キャリブレーションプロット 十分位ごとの予測リスク対観測リスクを、ウィルソン信頼区間、予測値のヒストグラム、ブライアスコアとともに示します。 calibration plot predicted vs observed risk per decile, with wilson cis, prediction histograms and brier score. rms::calibrate() / probably::cal_plot_breaks() モデル診断 model diagnostics calibration reliability diagram brier score classification probability matplotlib numpy pandas statsmodels scikit-learn">
   <div class="card-img"><img src="../../model-diagnostics/calibration-plot/thumb.webp" alt="キャリブレーションプロット" loading="lazy" width="720" height="450"></div>
   <div class="card-body"><span class="kicker">モデル診断</span><h3>キャリブレーションプロット</h3><p>十分位ごとの予測リスク対観測リスクを、ウィルソン信頼区間、予測値のヒストグラム、ブライアスコアとともに示します。</p><span class="card-r">rms::calibrate() / probably::cal_plot_breaks()</span></div>
-</a>
-<a class="card" href="../model-diagnostics/partial-regression/" data-cat="model-diagnostics" data-k="追加変数プロット 説明変数ごとの偏回帰パネル。当てはめた各傾きはその回帰係数に一致します。 added-variable plots one partial-regression panel per predictor; each fitted slope equals its coefficient. car::avplots() モデル診断 model diagnostics partial regression added-variable frisch-waugh-lovell influence multiple regression matplotlib numpy statsmodels">
+</a><a class="card" href="../model-diagnostics/partial-regression/" data-cat="model-diagnostics" data-k="追加変数プロット 説明変数ごとの偏回帰パネル。当てはめた各傾きはその回帰係数に一致します。 added-variable plots one partial-regression panel per predictor; each fitted slope equals its coefficient. car::avplots() モデル診断 model diagnostics partial regression added-variable frisch-waugh-lovell influence multiple regression matplotlib numpy statsmodels">
   <div class="card-img"><img src="../../model-diagnostics/partial-regression/thumb.webp" alt="追加変数プロット" loading="lazy" width="720" height="450"></div>
   <div class="card-body"><span class="kicker">モデル診断</span><h3>追加変数プロット</h3><p>説明変数ごとの偏回帰パネル。当てはめた各傾きはその回帰係数に一致します。</p><span class="card-r">car::avPlots()</span></div>
 </a></div></section>
@@ -80,6 +76,6 @@
   </div>
   <div class="wrap foot-langs"><a href="../../model-diagnostics/" hreflang="en" lang="en">English</a><a href="../../fr/model-diagnostics/" hreflang="fr" lang="fr">Français</a><a href="../../ja/model-diagnostics/" hreflang="ja" lang="ja" class=on aria-current=true>日本語</a><a href="../../zh/model-diagnostics/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div>
 </footer>
-<script src="../../assets/app.js?v=71c084d5"></script>
+<script src="../../assets/app.js?v=aedcc37b"></script>
 </body>
 </html>

@@ -19,8 +19,9 @@ thanks:
     statsmodels: https://www.statsmodels.org
     scikit-learn: https://scikit-learn.org
     lifelines: https://lifelines.readthedocs.io
+    SHAP: https://shap.readthedocs.io
   datasets:
-    - name: "scikit-learn toy datasets — Breast Cancer Wisconsin, Iris, Diabetes, Wine"
+    - name: "scikit-learn toy datasets — Breast Cancer Wisconsin, Iris, Diabetes, Wine, Digits"
       url: https://scikit-learn.org/stable/datasets/toy_dataset.html
     - name: "statsmodels datasets — El Niño, Engel food expenditure, ANES 1996, Fair's affairs, US state crime, Spector, Mauna Loa CO₂, sunspots"
       url: https://www.statsmodels.org/stable/datasets/index.html
@@ -61,6 +62,12 @@ thanks:
     - name: corrplot (Taiyun Wei, Viliam Simko)
       url: https://github.com/taiyun/corrplot
       pkgs: [corrplot]
+    - name: "SHAP (Scott Lundberg and Su-In Lee, 2017) and shapviz (Michael Mayer)"
+      url: https://shap.readthedocs.io
+      pkgs: [shapviz]
+    - name: "vip and pdp (Brandon Greenwell, Bradley Boehmke) and tidymodels' yardstick"
+      url: https://koalaverse.github.io/vip/
+      pkgs: [vip, pdp, yardstick]
   site:
     - name: PyYAML
       url: https://pyyaml.org

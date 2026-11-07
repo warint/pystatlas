@@ -2,6 +2,7 @@ ui:
   lang_name: "Français"
   tagline: "La galerie Python des graphiques statistiques"
   lede: "Un atlas soigneusement choisi de graphiques statistiques pour Python : chaque figure affiche ses statistiques — tests, intervalles de confiance, tailles d'effet. Modèles de régression, échelles de Likert, courbes de survie, diagnostics et plus encore. Choisissez un graphique, copiez le code, c'est fait."
+  approach: "La plupart des ressources Python enseignent d'abord le code et gardent les questions pour plus tard. Cette galerie fait l'inverse. Elle s'adresse aux étudiants et aux chercheurs qui connaissent leur domaine et ont une question à trancher : ces groupes diffèrent-ils, ces deux variables évoluent-elles ensemble, pourquoi le modèle a-t-il prédit cela ? Partez de la question, trouvez le graphique qui y répond, lisez les statistiques qu'il affiche, et ne prenez que le code dont vous avez besoin."
   nav_gallery: "Galerie"
   nav_style: "Style"
   nav_about: "À propos"
@@ -99,6 +100,13 @@ categories:
   inference-uncertainty:
     title: "Inférence et incertitude"
     summary: "Bootstrap, intervalles de confiance, puissance, concordance et graphiques en forêt de méta-analyse."
+  machine-learning:
+    title: "Apprentissage automatique"
+    summary: "Le modèle prédit-il bien sur de nouvelles données, et pourquoi ? Évaluation hors échantillon, courbes d'apprentissage et explications indépendantes du modèle — chacune avec son incertitude."
+    subcategories:
+      advanced:
+        title: "Avancé : explications SHAP"
+        summary: "Les valeurs de Shapley décomposent chaque prédiction en contributions additives des variables — globalement, variable par variable, et pour un cas unique."
 examples:
   distributions/histogram-density:
     title: "Histogramme avec densité"
@@ -436,3 +444,68 @@ examples:
       Chaque point est une étude : sa taille d'effet sur l'axe des x, son erreur type sur l'axe des y (inversé), de sorte que les grandes études précises se situent en haut. En l'absence de biais, les points forment un entonnoir symétrique autour de l'effet combiné, 95 % d'entre eux se trouvant dans la région de pseudo-confiance (± 1.96 erreur type). Ici, le coin inférieur gauche est vide : il manque de petites études aux résultats nuls. Le **test de régression d'Egger** (écart normal centré réduit en fonction de la précision) quantifie cette asymétrie ; sa droite ajustée est en tirets.
 
       La méta-analyse est simulée avec `numpy` (graine fixe) : 100 essais d'un effet standardisé réel de 0.2, où les petits essais non significatifs restent pour la plupart dans les tiroirs (en gris creux — jamais observables dans la réalité). Le test d'Egger est un ajustement MCO de **statsmodels**.
+  machine-learning/confusion-matrix:
+    title: "Matrice de confusion avec indicateurs"
+    summary: "Matrice de confusion hors échantillon, avec effectifs et parts par ligne, et intervalles bootstrap pour les principaux indicateurs."
+    description: |
+      Une matrice de confusion croise la classe réelle et la classe prédite. Chaque case affiche un effectif et sa part dans la classe réelle (la ligne), de sorte que la diagonale se lit directement comme sensibilité et spécificité. Les prédictions sont **hors échantillon** (*out-of-fold*) : chaque observation est prédite par un modèle qui ne l'a jamais vue au cours d'une validation croisée à 10 plis — c'est ce à quoi ressemblerait la matrice sur de nouvelles données.
+
+      Le panneau de droite donne l'exactitude, la précision, le rappel, le F1 et le coefficient de corrélation de Matthews (MCC), chacun avec un intervalle bootstrap à 95 % : un chiffre seul cache combien il varierait avec un autre échantillon. Les données sont les 569 biopsies mammaires fournies avec **scikit-learn** ; le modèle est une régression logistique standardisée, les prédictions viennent de `cross_val_predict` et les indicateurs de `sklearn.metrics`.
+  machine-learning/precision-recall:
+    title: "Courbes précision–rappel"
+    summary: "Courbes précision–rappel hors échantillon pour deux classifieurs, avec précision moyenne et référence sans compétence."
+    description: |
+      Quand la classe positive est rare, une courbe ROC peut sembler excellente alors que la plupart des alertes sont fausses. La courbe précision–rappel répond à la question opérationnelle : si je veux détecter cette part des positifs (**rappel**), quelle part de mes alertes sera juste (**précision**) ? Chaque point correspond à un seuil de décision. La ligne en tirets est la référence sans compétence — la prévalence de la classe positive — et l'aire sous chaque courbe est résumée par la **précision moyenne** (AP).
+
+      Les données sont les 1 797 chiffres manuscrits fournis avec **scikit-learn**, transformés en problème d'événement rare : détecter le chiffre 9 (environ 10 % des images). Les scores sont des probabilités hors échantillon issues d'une validation croisée à 5 plis (`cross_val_predict(method="predict_proba")`) ; courbes et AP proviennent de `precision_recall_curve` et `average_precision_score`. Le marqueur indique le seuil par défaut de 0,5 sur chaque courbe.
+  machine-learning/learning-curve:
+    title: "Courbe d'apprentissage"
+    summary: "Score d'entraînement et score en validation croisée à mesure que l'échantillon d'entraînement grandit, avec la dispersion entre plis."
+    description: |
+      Une courbe d'apprentissage répond à deux questions avant de collecter davantage de données : le modèle **surapprend**-il (un grand écart entre le score d'entraînement et le score en validation croisée) ou **sous-apprend**-il (deux scores bas et proches) ? Et plus d'observations aideraient-elles encore (la courbe de validation monte-t-elle toujours) ? Les lignes sont des moyennes sur les plis d'une validation croisée répétée ; les bandes valent ±1 écart type, leur largeur montre combien l'estimation bougerait avec un autre découpage.
+
+      Deux modèles sont comparés sur la même tâche : un arbre de décision profond, qui mémorise son échantillon d'entraînement, et un classifieur des k plus proches voisins. Les données sont les 1 797 chiffres manuscrits fournis avec **scikit-learn** ; les courbes viennent de `sklearn.model_selection.learning_curve` avec un découpage stratifié 5 × 2 répété.
+  machine-learning/model-comparison:
+    title: "Comparaison de modèles en validation croisée"
+    summary: "Scores pli par pli de plusieurs modèles, avec moyennes et intervalles à 95 % corrigés."
+    description: |
+      « Le modèle B obtient 0,47, le modèle A 0,46 » ne dit rien tant qu'on ignore de combien le score varie d'un découpage à l'autre. Ici, chaque modèle est évalué sur les **mêmes** plis répétés 10 × 5 ; chaque point est un pli, le gros marqueur la moyenne et la barre son intervalle à 95 %. Les scores des plis ne sont pas indépendants — les échantillons d'entraînement se chevauchent — l'intervalle utilise donc la variance **corrigée de Nadeau et Bengio** plutôt que l'erreur type naïve, beaucoup trop étroite.
+
+      Les données sont les 442 patients diabétiques fournis avec **scikit-learn** (`load_diabetes`), la variable à prédire une mesure de la progression de la maladie après un an ; le score est le R² hors échantillon. Les scores viennent de `cross_val_score` avec `RepeatedKFold` ; les modèles linéaires sont standardisés dans un `Pipeline`.
+  machine-learning/permutation-importance:
+    title: "Importance par permutation"
+    summary: "Baisse du R² sur l'échantillon test quand chaque variable est permutée, sur 50 répétitions par variable."
+    description: |
+      L'importance par permutation pose une question simple, valable pour tout modèle : de combien le modèle prédit-il moins bien sur des données **mises de côté** quand on mélange une variable, ce qui rompt son lien avec la cible ? Une forte baisse signifie que le modèle s'appuie sur cette variable. Le mélange est aléatoire, il est donc répété 50 fois par variable ; la boîte montre la dispersion et le point la moyenne. Les variables dont la boîte chevauche zéro n'apportent aucun signal exploitable à ce modèle.
+
+      Contrairement aux importances fondées sur l'impureté intégrées aux modèles d'arbres, l'importance par permutation est calculée sur les données test, est comparable d'un type de modèle à l'autre et n'est pas biaisée en faveur des variables à nombreuses valeurs distinctes. Elle mesure ce que le **modèle** utilise, pas des effets causaux, et des variables corrélées se partagent (et peuvent se masquer) leur importance. Les données sont les 442 patients diabétiques fournis avec **scikit-learn** ; le modèle est une forêt aléatoire ; les importances viennent de `sklearn.inspection.permutation_importance`.
+  machine-learning/partial-dependence:
+    title: "Dépendance partielle avec courbes ICE"
+    summary: "Réponse moyenne du modèle à une variable (PDP) sur les courbes individuelles (ICE) de chaque patient."
+    description: |
+      Un graphique de dépendance partielle (PDP) montre comment la prédiction du modèle change, en moyenne, quand une variable varie et que toutes les autres gardent leurs valeurs observées. Derrière la moyenne se trouvent les courbes d'**espérance conditionnelle individuelle** (ICE), une par observation. Des courbes ICE parallèles signifient que l'effet est le même pour tous ; des courbes qui s'écartent ou se croisent révèlent des **interactions** que la moyenne masque. Les courbes ICE sont centrées sur le bord gauche pour comparer leurs formes plutôt que leurs niveaux ; les traits en bas marquent où se trouvent réellement les données, car ailleurs le modèle extrapole.
+
+      Les données sont les 442 patients diabétiques fournis avec **scikit-learn** ; le modèle est un gradient boosting, et les courbes viennent de `sklearn.inspection.partial_dependence(kind="both")`. Un PDP décrit le modèle, pas le monde : il n'est causal que si le modèle l'est.
+  machine-learning/shap-beeswarm:
+    title: "Synthèse SHAP (essaim)"
+    summary: "La valeur SHAP de chaque patient pour chaque variable, colorée selon la valeur de la variable, avec l'importance moyenne |SHAP|."
+    description: |
+      SHAP (SHapley Additive exPlanations ; Lundberg et Lee, 2017) décompose chaque prédiction en contributions additives, une par variable, de sorte que **valeur de base + somme des contributions = prédiction**. Les contributions sont des valeurs de Shapley issues de la théorie des jeux coopératifs : l'effet marginal moyen de chaque variable sur tous les ordres dans lesquels les variables pourraient être ajoutées.
+
+      L'essaim montre un point par patient et par variable. La position est la valeur SHAP — de combien cette variable a poussé la prédiction de ce patient vers le haut ou vers le bas — et la couleur est la valeur de la variable elle-même, de faible (bleu) à élevée (rouge). Les variables sont triées par moyenne |SHAP|, affichée à droite comme importance globale. Une séparation nette, rouge à droite et bleu à gauche, signale un effet monotone ; des couleurs mêlées signalent une non-linéarité ou des interactions.
+
+      Les données sont les 442 patients diabétiques fournis avec **scikit-learn** ; le modèle est un gradient boosting et les valeurs SHAP exactes pour arbres viennent de `shap.TreeExplainer`. La figure est dessinée avec Matplotlib pour respecter le style de la galerie ; `shap.plots.beeswarm` donne une vue semblable en une ligne.
+  machine-learning/shap-dependence:
+    title: "Graphique de dépendance SHAP"
+    summary: "Valeur SHAP d'une variable en fonction de sa valeur, colorée selon son principal partenaire d'interaction, avec une tendance lissée."
+    description: |
+      Un graphique de dépendance SHAP se concentre sur une seule variable. Chaque point est un patient : l'axe horizontal donne la valeur de la variable, l'axe vertical sa valeur SHAP — sa contribution à la prédiction de ce patient. La courbe de tendance (un lissage LOWESS) est proche d'une courbe de dépendance partielle, mais le nuage autour d'elle est informatif : à indice de masse corporelle égal, les contributions diffèrent d'un patient à l'autre à cause des **interactions** avec d'autres variables.
+
+      La couleur montre la variable qui explique le mieux cette dispersion verticale, choisie ici comme celle dont les valeurs d'**interaction** SHAP avec l'indice de masse corporelle sont en moyenne les plus fortes (`shap.TreeExplainer.shap_interaction_values`). Les données sont les 442 patients diabétiques fournis avec **scikit-learn** ; le modèle est un gradient boosting ; le lissage vient de `statsmodels.nonparametric.lowess`.
+  machine-learning/shap-waterfall:
+    title: "Cascade SHAP pour une prédiction"
+    summary: "Comment chaque variable déplace la prédiction d'un patient, de la moyenne jusqu'à la sortie du modèle."
+    description: |
+      Les graphiques globaux décrivent le modèle ; une cascade explique **une** prédiction. Elle part de la valeur de base — la prédiction moyenne du modèle sur les données — et ajoute la valeur SHAP de chaque variable, la plus grande d'abord, jusqu'à la prédiction de ce patient. Les barres rouges poussent la prédiction vers le haut, les bleues la tirent vers le bas ; les plus petites contributions sont regroupées en une barre pour garder le graphique lisible. Les valeurs SHAP étant additives, les barres somment toujours exactement l'écart entre la valeur de base et la prédiction.
+
+      C'est le graphique à montrer quand une décision individuelle doit être justifiée — un prêt, un diagnostic, une transaction signalée. Il explique ce qu'a fait le **modèle**, pas pourquoi le résultat se produit. Les données sont les 442 patients diabétiques fournis avec **scikit-learn** ; le modèle est un gradient boosting ; les valeurs SHAP viennent de `shap.TreeExplainer`. Le patient présenté est un cas à risque élevé (plus de 60 points au-dessus de la valeur de base), choisi parce que son explication tire dans les deux sens.

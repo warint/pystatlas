@@ -1,0 +1,6 @@
+title: Machine learning
+summary: "How well does a model predict on new data, and why? Out-of-fold evaluation, learning curves and model-agnostic explanations — each with its uncertainty."
+subcategories:
+  advanced:
+    title: "Advanced: SHAP explanations"
+    summary: "Shapley values split every prediction into additive feature contributions — globally, feature by feature, and for a single case."

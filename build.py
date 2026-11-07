@@ -51,7 +51,7 @@ ASSET_V = hashlib.md5(b"".join(f.read_bytes() for f in sorted((ROOT / "site_src"
 LIB_NAMES = {
     "numpy": "NumPy", "pandas": "pandas", "matplotlib": "Matplotlib",
     "seaborn": "seaborn", "scipy": "SciPy", "statsmodels": "statsmodels",
-    "sklearn": "scikit-learn", "lifelines": "lifelines",
+    "sklearn": "scikit-learn", "lifelines": "lifelines", "shap": "SHAP",
 }
 
 RUNNER = r"""
@@ -90,6 +90,7 @@ class Example:
     tags: list[str]
     code: str
     libs: list[str]
+    sub: str = ""          # optional subcategory key (see _category.yaml → subcategories)
 
     @property
     def url(self) -> str:  # relative to docs root
@@ -112,6 +113,7 @@ class Category:
     title: str
     summary: str
     examples: list[Example] = field(default_factory=list)
+    subs: dict = field(default_factory=dict)   # key → {title, summary}
 
 
 def split_prefix(name: str) -> tuple[int, str]:
@@ -137,7 +139,7 @@ def parse_example(cat: Category, folder: Path) -> Example:
         title=meta["title"], summary=meta.get("summary", ""),
         description=(meta.get("description") or "").strip(),
         r=meta.get("r", ""), tags=list(meta.get("tags", [])),
-        code=code, libs=libs,
+        code=code, libs=libs, sub=meta.get("subcategory", ""),
     )
 
 
@@ -146,7 +148,8 @@ def discover() -> list[Category]:
     for cdir in sorted(p for p in GALLERY.iterdir() if p.is_dir()):
         meta = yaml.safe_load((cdir / "_category.yaml").read_text())
         order, slug = split_prefix(cdir.name)
-        cat = Category(cdir, slug, order, meta["title"], meta.get("summary", ""))
+        cat = Category(cdir, slug, order, meta["title"], meta.get("summary", ""),
+                       subs=meta.get("subcategories") or {})
         for edir in sorted(p for p in cdir.iterdir() if (p / "plot.py").exists()):
             cat.examples.append(parse_example(cat, edir))
         cats.append(cat)
@@ -230,6 +233,28 @@ def csummary(c: "Category") -> str:
     return (TR["categories"].get(c.slug) or {}).get("summary") or c.summary
 
 
+def subtitle(c: "Category", key: str) -> str:
+    tr = ((TR["categories"].get(c.slug) or {}).get("subcategories") or {}).get(key) or {}
+    return tr.get("title") or c.subs[key]["title"]
+
+
+def subsummary(c: "Category", key: str) -> str:
+    tr = ((TR["categories"].get(c.slug) or {}).get("subcategories") or {}).get(key) or {}
+    return tr.get("summary") or c.subs[key].get("summary", "")
+
+
+def grouped_grid(c: "Category", home: str, root: str) -> str:
+    """Main examples first, then one titled block per subcategory."""
+    out = [f'<div class="grid">{"".join(card(e, home, root) for e in c.examples if not e.sub)}</div>']
+    for key in c.subs:
+        exs = [e for e in c.examples if e.sub == key]
+        if exs:
+            out.append(f'<div class="sub" id="{c.slug}-{key}"><div class="sub-head"><h3>{esc(subtitle(c, key))}</h3>'
+                       f'<p>{esc(subsummary(c, key))}</p></div>'
+                       f'<div class="grid">{"".join(card(e, home, root) for e in exs)}</div></div>')
+    return "".join(out)
+
+
 def _ex(ex: "Example") -> dict:
     return TR["examples"].get(f"{ex.category.slug}/{ex.slug}") or {}
 
@@ -253,7 +278,8 @@ def prefix(lang: str) -> str:
 def export_i18n(cats: list["Category"]) -> None:
     """Write i18n/_source.yaml: every English string, ready to translate."""
     src = {"ui": EN["ui"],
-           "categories": {c.slug: {"title": c.title, "summary": c.summary} for c in cats},
+           "categories": {c.slug: {"title": c.title, "summary": c.summary,
+                                   **({"subcategories": c.subs} if c.subs else {})} for c in cats},
            "examples": {f"{c.slug}/{e.slug}": {"title": e.title, "summary": e.summary, "description": e.description}
                         for c in cats for e in c.examples}}
     (I18N / "_source.yaml").write_text(
@@ -354,9 +380,10 @@ def card(ex: "Example", home: str, root: str) -> str:
     keywords = " ".join([etitle(ex), esummary(ex), ex.title, ex.summary, ex.r, ctitle(ex.category),
                          ex.category.title, *ex.tags, *ex.libs]).lower()
     r = f'<span class="card-r">{esc(ex.r)}</span>' if ex.r else ""
+    kicker = ctitle(ex.category) + (f" · {subtitle(ex.category, ex.sub)}" if ex.sub else "")
     return f"""<a class="card" href="{home}{ex.url}" data-cat="{ex.category.slug}" data-k="{esc(keywords)}">
   <div class="card-img"><img src="{root}{ex.url}thumb.webp" alt="{esc(etitle(ex))}" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><span class="kicker">{esc(ctitle(ex.category))}</span><h3>{esc(etitle(ex))}</h3><p>{esc(esummary(ex))}</p>{r}</div>
+  <div class="card-body"><span class="kicker">{esc(kicker)}</span><h3>{esc(etitle(ex))}</h3><p>{esc(esummary(ex))}</p>{r}</div>
 </a>"""
 
 
@@ -444,22 +471,20 @@ def build_language(cats: list["Category"]) -> None:
     for c in cats:
         out = out_root / c.slug
         out.mkdir(parents=True, exist_ok=True)
-        cards = "\n".join(card(e, "../", "../" + rootp) for e in c.examples)
         body = f"""<section class="hero hero-sm"><div class="wrap">
 <div class="crumbs"><a href="../index.html">{esc(t('gallery'))}</a><span>/</span>{esc(ctitle(c))}</div>
 <h1>{esc(ctitle(c))}</h1><p class="lede">{esc(csummary(c))}</p></div></section>
-<section class="wrap section"><div class="grid">{cards}</div></section>"""
+<section class="wrap section">{grouped_grid(c, "../", "../" + rootp)}</section>"""
         (out / "index.html").write_text(page(f"{ctitle(c)} · {CONFIG['name']}", body, 1, f"{c.slug}/", csummary(c), "gallery"))
 
     chips = f'<button class="chip on" data-filter="all">{esc(t("all"))}</button>' + "".join(
         f'<button class="chip" data-filter="{c.slug}">{esc(ctitle(c))}</button>' for c in cats)
     sections = []
     for c in cats:
-        cards = "\n".join(card(e, "", rootp) for e in c.examples)
         sections.append(f"""<section class="cat" data-cat="{c.slug}" id="{c.slug}">
   <div class="cat-head"><div><h2>{esc(ctitle(c))}</h2><p>{esc(csummary(c))}</p></div>
   <a class="more" href="{c.slug}/index.html">{esc(t('n_charts', n=len(c.examples)))} ›</a></div>
-  <div class="grid">{cards}</div>
+  {grouped_grid(c, "", rootp)}
 </section>""")
     tiles = "".join(
         f'<a class="tile" href="#{c.slug}" data-jump="{c.slug}"><img src="{rootp}{c.examples[0].url}thumb.webp" alt="" loading="lazy">'
@@ -468,6 +493,7 @@ def build_language(cats: list["Category"]) -> None:
   <p class="eyebrow">{esc(t('eyebrow', n=len(all_ex), k=len(cats)))}</p>
   <h1>{esc(t('hero_1'))}<br><span class="h-accent">{esc(t('hero_2'))}</span></h1>
   <p class="lede">{esc(t('lede'))}</p>
+  <p class="approach">{esc(t('approach'))}</p>
   <p class="byline">{esc(t('by'))} <a href="{CONFIG['author_url']}">{esc(CONFIG['author'])}</a></p>
   <div class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
     <input id="q" type="search" placeholder="{esc(t('search_placeholder'))}" autocomplete="off" spellcheck="false">

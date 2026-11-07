@@ -241,6 +241,14 @@ pre.code code { background: none; padding: 0; font-size: inherit; }
 .thanks li { margin: 3px 0; font-size: 15px; }
 .thanks .pkgs { margin: 0; font-size: 15px; line-height: 1.8; }
 
+/* --- subcategories (e.g. Machine learning → Advanced) --- */
+.sub-head { margin: 40px 0 18px; padding-top: 26px; border-top: 1px solid var(--line-2); }
+.sub-head h3 { font-size: 22px; letter-spacing: -.02em; margin: 0 0 4px; font-weight: 700; }
+.sub-head p { margin: 0; color: var(--text-3); font-size: 15px; }
+
+/* --- home: how to use the gallery --- */
+.approach { max-width: 680px; margin: 18px auto 0; color: var(--text-3); font-size: 16px; line-height: 1.55; }
+
 /* --- pygments (generated) --- */
 
 .code .k,.code .kn,.code .kd,.code .kc,.code .ow{color:var(--c-kw);font-weight:500}
