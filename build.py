@@ -43,7 +43,7 @@ ROOT = Path(__file__).resolve().parent
 GALLERY = ROOT / "gallery"
 DOCS = ROOT / "docs"
 SITE_SRC = ROOT / "site_src"
-STYLE = ROOT / "statlas.mplstyle"
+STYLE = ROOT / "pystatlas.mplstyle"
 CONFIG = yaml.safe_load((ROOT / "statlas.yaml").read_text())
 import hashlib
 ASSET_V = hashlib.md5(b"".join(f.read_bytes() for f in sorted((ROOT / "site_src").iterdir()))).hexdigest()[:8]
@@ -398,7 +398,8 @@ def build_site(cats: list["Category"]) -> None:
     css = (DOCS / "assets" / "style.css").read_text()
     css += "\n/* --- pygments (generated) --- */\n" + pygments_css()
     (DOCS / "assets" / "style.css").write_text(css)
-    shutil.copy(STYLE, DOCS / "statlas.mplstyle")
+    shutil.copy(STYLE, DOCS / "pystatlas.mplstyle")
+    shutil.copy(STYLE, DOCS / "statlas.mplstyle")   # old name, kept so earlier download links still work
     (DOCS / ".nojekyll").write_text("")
 
     # shared, language-independent files: figures, thumbnails, scripts
@@ -528,7 +529,7 @@ def example_page(ex: "Example", prev_ex: "Example | None", next_ex: "Example | N
     lines = ex.code.count("\n")
     note = f'<p class="note">{esc(t("code_note"))}</p>' if LANG != "en" else ""
     hint = t("hint", style_link=f'<a href="{home}style.html">{esc(t("style_link"))}</a>',
-             code='<code>plt.style.use("statlas.mplstyle")</code>')
+             code='<code>plt.style.use("pystatlas.mplstyle")</code>')
     body = f"""<article class="wrap ex">
   <div class="crumbs"><a href="{home}index.html">{esc(t('gallery'))}</a><span>/</span><a href="{home}{c.slug}/index.html">{esc(ctitle(c))}</a></div>
   <header class="ex-head"><h1>{esc(etitle(ex))}</h1><p class="lede">{esc(esummary(ex))}</p>
@@ -562,18 +563,18 @@ def style_page(rootp: str) -> str:
     swatches = "".join(f'<div class="sw"><i style="background:#{c}"></i><code>#{c}</code></div>' for c in
                        ["007AFF", "FF9500", "34C759", "FF3B30", "AF52DE", "5AC8FA", "FF2D55", "5856D6", "A2845E", "8E8E93"])
     style_src = highlight(STYLE.read_text(), PythonLexer(), FORMATTER)
-    f = f'<a href="{rootp}statlas.mplstyle" download>statlas.mplstyle</a>'
+    f = f'<a href="{rootp}pystatlas.mplstyle" download>pystatlas.mplstyle</a>'
     return f"""<section class="hero hero-sm"><div class="wrap">
 <h1>{esc(t('style_h1'))}</h1><p class="lede">{esc(t('style_lede'))}</p></div></section>
 <section class="wrap ex">
 <div class="steps">
   <div><b>1</b><h3>{esc(t('step1_h'))}</h3><p>{t('step1_p', file=f)}</p></div>
-  <div><b>2</b><h3>{esc(t('step2_h'))}</h3><p><code>plt.style.use("statlas.mplstyle")</code></p></div>
+  <div><b>2</b><h3>{esc(t('step2_h'))}</h3><p><code>plt.style.use("pystatlas.mplstyle")</code></p></div>
   <div><b>3</b><h3>{esc(t('step3_h'))}</h3><p>{esc(t('step3_p'))}</p></div>
 </div>
 <h2 class="rel-h">{esc(t('palette'))}</h2><div class="swatches">{swatches}</div>
-<section class="code-card"><div class="code-bar"><span class="fname">statlas.mplstyle</span>
-<div class="code-actions"><a class="btn ghost" href="{rootp}statlas.mplstyle" download>{esc(t('download'))}</a><button class="btn copy" data-copy>{esc(t('copy'))}</button></div></div>
+<section class="code-card"><div class="code-bar"><span class="fname">pystatlas.mplstyle</span>
+<div class="code-actions"><a class="btn ghost" href="{rootp}pystatlas.mplstyle" download>{esc(t('download'))}</a><button class="btn copy" data-copy>{esc(t('copy'))}</button></div></div>
 <pre class="code"><code>{style_src}</code></pre></section>
 </section>"""
 

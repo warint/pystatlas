@@ -2,8 +2,9 @@
 ui:
   lang_name: English
   tagline: The Python gallery of statistical graphics
-  lede: A curated atlas of statistical charts for Python — regression models, Likert scales, survival
-    curves, diagnostics and more. Pick a chart, copy the code, done.
+  lede: 'A curated atlas of statistical charts for Python: every figure carries its statistics — tests,
+    confidence intervals, effect sizes. Regression models, Likert scales, survival curves, diagnostics
+    and more. Pick a chart, copy the code, done.'
   nav_gallery: Gallery
   nav_style: Style
   nav_about: About

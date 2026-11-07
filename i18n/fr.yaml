@@ -1,7 +1,7 @@
 ui:
   lang_name: "Français"
   tagline: "La galerie Python des graphiques statistiques"
-  lede: "Un atlas soigneusement choisi de graphiques statistiques pour Python — modèles de régression, échelles de Likert, courbes de survie, diagnostics et plus encore. Choisissez un graphique, copiez le code, c'est fait."
+  lede: "Un atlas soigneusement choisi de graphiques statistiques pour Python : chaque figure affiche ses statistiques — tests, intervalles de confiance, tailles d'effet. Modèles de régression, échelles de Likert, courbes de survie, diagnostics et plus encore. Choisissez un graphique, copiez le code, c'est fait."
   nav_gallery: "Galerie"
   nav_style: "Style"
   nav_about: "À propos"

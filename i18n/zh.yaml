@@ -1,7 +1,7 @@
 ui:
   lang_name: 中文
   tagline: Python 统计图形库
-  lede: 精心编排的 Python 统计图表图集——回归模型、Likert 量表、生存曲线、模型诊断等应有尽有。选一张图，复制代码，即可完成。
+  lede: 精心编排的 Python 统计图表图集——每张图都标注其统计量：检验、置信区间和效应量。回归模型、Likert 量表、生存曲线、模型诊断等应有尽有。选一张图，复制代码，即可完成。
   nav_gallery: 图库
   nav_style: 样式
   nav_about: 关于

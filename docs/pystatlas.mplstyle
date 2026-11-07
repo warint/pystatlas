@@ -1,0 +1,59 @@
+# PyStatlas — a calm, Apple-inspired Matplotlib style
+# Usage: plt.style.use("pystatlas.mplstyle")
+
+figure.figsize      : 8, 5
+figure.dpi          : 110
+figure.facecolor    : white
+figure.titlesize    : 15
+figure.titleweight  : semibold
+figure.constrained_layout.use : True
+
+font.family         : sans-serif
+font.sans-serif     : SF Pro Display, SF Pro Text, Helvetica Neue, Helvetica, Inter, Arial, DejaVu Sans
+font.size           : 11
+
+text.color          : 1d1d1f
+axes.labelcolor     : 1d1d1f
+axes.edgecolor      : c7c7cc
+axes.linewidth      : 0.8
+axes.facecolor      : white
+axes.titlesize      : 13
+axes.titleweight    : semibold
+axes.titlelocation  : left
+axes.titlepad       : 12
+axes.labelsize      : 11
+axes.labelpad       : 6
+axes.spines.top     : False
+axes.spines.right   : False
+axes.grid           : True
+axes.grid.axis      : y
+axes.axisbelow      : True
+axes.prop_cycle     : cycler('color', ['007AFF', 'FF9500', '34C759', 'FF3B30', 'AF52DE', '5AC8FA', 'FF2D55', '5856D6', 'A2845E', '8E8E93'])
+
+grid.color          : e5e5ea
+grid.linewidth      : 0.8
+grid.linestyle      : -
+
+xtick.color         : 6e6e73
+ytick.color         : 6e6e73
+xtick.labelsize     : 10
+ytick.labelsize     : 10
+xtick.major.size    : 0
+ytick.major.size    : 0
+xtick.major.pad     : 6
+ytick.major.pad     : 6
+
+legend.frameon      : False
+legend.fontsize     : 10
+legend.title_fontsize : 10
+
+lines.linewidth     : 2
+lines.markersize    : 6
+patch.edgecolor     : white
+patch.linewidth     : 0.6
+
+savefig.dpi         : 200
+savefig.facecolor   : white
+savefig.bbox        : tight
+savefig.pad_inches  : 0.15
+image.cmap          : viridis

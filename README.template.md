@@ -45,7 +45,7 @@ pip install -r requirements.txt
 python gallery/05-regression-models/01-coefficient-plot/plot.py
 ```
 
-For the exact look of the gallery, drop [`statlas.mplstyle`](statlas.mplstyle) next to your script and add `plt.style.use("statlas.mplstyle")`.
+For the exact look of the gallery, drop [`pystatlas.mplstyle`](pystatlas.mplstyle) next to your script and add `plt.style.use("pystatlas.mplstyle")`.
 
 ## Build the site
 

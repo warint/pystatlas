@@ -52,7 +52,7 @@ plt.show()
   ax.text(0, 1.02, "Welch's t(48.2) = 3.1, p = .003, d = 0.84 · n = 120",
           transform=ax.transAxes, fontsize=9.5, color="#6E6E73")
   ```
-- **Style.** Don't set fonts, spines or grid globally — `build.py` applies `statlas.mplstyle`.
+- **Style.** Don't set fonts, spines or grid globally — `build.py` applies `pystatlas.mplstyle`.
   Use the palette in that order: `#007AFF` blue, `#FF9500` orange, `#34C759` green,
   `#FF3B30` red, `#AF52DE` purple, `#5AC8FA` teal; greys `#8E8E93`, `#AEAEB2`, `#C7C7CC`,
   text `#1D1D1F` / `#3A3A3C` / `#6E6E73`. Sequential: `"Blues"`/`"viridis"`;
