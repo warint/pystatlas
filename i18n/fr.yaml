@@ -2,7 +2,7 @@ ui:
   lang_name: "Français"
   tagline: "La galerie Python des graphiques statistiques"
   lede: "Un atlas soigneusement choisi de graphiques statistiques pour Python : chaque figure affiche ses statistiques — tests, intervalles de confiance, tailles d'effet. Modèles de régression, échelles de Likert, courbes de survie, diagnostics et plus encore. Choisissez un graphique, copiez le code, c'est fait."
-  approach: "La plupart des ressources Python enseignent d'abord le code et gardent les questions pour plus tard. Cette galerie fait l'inverse. Elle s'adresse aux étudiants et aux chercheurs qui connaissent leur domaine et ont une question à trancher : ces groupes diffèrent-ils, ces deux variables évoluent-elles ensemble, pourquoi le modèle a-t-il prédit cela ? Partez de la question, trouvez le graphique qui y répond, lisez les statistiques qu'il affiche, et ne prenez que le code dont vous avez besoin."
+  approach: "La plupart des ressources Python enseignent d'abord le code et gardent les questions pour plus tard. Cette galerie fait l'inverse. Conçue d'abord pour les étudiants en sciences sociales, elle s'adresse à toute personne qui connaît son domaine et a une question à trancher : ces groupes diffèrent-ils, ces deux variables évoluent-elles ensemble, pourquoi le modèle a-t-il prédit cela ? Partez de la question, trouvez le graphique qui y répond, lisez les statistiques qu'il affiche, et ne prenez que le code dont vous avez besoin."
   nav_gallery: "Galerie"
   nav_style: "Style"
   nav_about: "À propos"

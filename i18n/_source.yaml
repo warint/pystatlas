@@ -6,10 +6,10 @@ ui:
     confidence intervals, effect sizes. Regression models, Likert scales, survival curves, diagnostics
     and more. Pick a chart, copy the code, done.'
   approach: Most Python resources teach the code first and leave the questions for later. This gallery
-    works the other way round. It is written for students and researchers who know their field and have
-    a question to answer — do these groups differ, do these two variables move together, why did the model
-    predict this? Start from the question, find the chart that answers it, read the statistics it reports,
-    and take only the code you need.
+    works the other way round. It was first written for social-science students, and it serves anyone
+    who knows their field and has a question to answer — do these groups differ, do these two variables
+    move together, why did the model predict this? Start from the question, find the chart that answers
+    it, read the statistics it reports, and take only the code you need.
   nav_gallery: Gallery
   nav_style: Style
   nav_about: About
