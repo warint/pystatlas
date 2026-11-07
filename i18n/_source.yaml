@@ -2,9 +2,10 @@
 ui:
   lang_name: English
   tagline: A Python gallery of statistical graphics for the social sciences
-  lede: Statistical charts for Python, built on real social-science data and organised by the question
-    they answer. Every figure reports the statistics behind it — estimates, confidence intervals, tests,
-    effect sizes — from distributions and group comparisons to regression, survival and machine learning.
+  lede: 'Statistical charts for Python, built on real social-science data and organised by the question
+    they answer. Machine learning — how well a model predicts and why — and spatial data — maps and spatial
+    autocorrelation — sit alongside distributions, group comparisons, regression and survival, and every
+    figure reports the statistics behind it: estimates, confidence intervals, tests, effect sizes.'
   approach: Most Python resources teach the code first and leave the questions for later. This gallery
     works the other way round. It was first written for social-science students, and it serves anyone
     who knows their field and has a question to answer — do these groups differ, do these two variables
@@ -102,6 +103,19 @@ ui:
     cited here.
   data_used_in: 'Used in:'
 categories:
+  machine-learning:
+    title: Machine learning
+    summary: How well does a model predict on new data, and why? Out-of-fold evaluation, learning curves
+      and model-agnostic explanations — each with its uncertainty.
+    subcategories:
+      advanced:
+        title: 'Advanced: SHAP explanations'
+        summary: Shapley values split every prediction into additive feature contributions — globally,
+          feature by feature, and for a single case.
+  spatial-data:
+    title: Spatial data
+    summary: Is a value higher where its neighbours' values are higher? Spatial weights, global and local
+      spatial autocorrelation, and how far clusters reach — on Guerry's 1830s France.
   distributions:
     title: Distributions
     summary: 'See the shape of your data: histograms, densities, ridgelines, ECDFs and Q–Q plots.'
@@ -133,20 +147,480 @@ categories:
   inference-uncertainty:
     title: Inference & uncertainty
     summary: Bootstrap, confidence intervals, power, agreement and meta-analysis forest plots.
-  machine-learning:
-    title: Machine learning
-    summary: How well does a model predict on new data, and why? Out-of-fold evaluation, learning curves
-      and model-agnostic explanations — each with its uncertainty.
-    subcategories:
-      advanced:
-        title: 'Advanced: SHAP explanations'
-        summary: Shapley values split every prediction into additive feature contributions — globally,
-          feature by feature, and for a single case.
-  spatial-data:
-    title: Spatial data
-    summary: Is a value higher where its neighbours' values are higher? Spatial weights, global and local
-      spatial autocorrelation, and how far clusters reach — on Guerry's 1830s France.
 examples:
+  machine-learning/confusion-matrix:
+    title: Confusion matrix with metrics
+    summary: How well a logistic regression predicts who voted Dole in 1996 — out-of-fold confusion matrix
+      with counts and row shares, and bootstrap intervals for the headline metrics.
+    description: 'A confusion matrix crosses the true class with the predicted class. Each cell
+
+      shows a count and its share of the true class (the row), so the diagonal reads
+
+      directly as sensitivity and specificity. The predictions are **out-of-fold**:
+
+      every observation is predicted by a model that never saw it during a 10-fold
+
+      cross-validation, which is what the matrix would look like on new data.
+
+
+      The side panel reports accuracy, precision, recall, F1 and the Matthews
+
+      correlation coefficient (MCC), each with a 95% bootstrap interval — a single
+
+      number hides how much it would move with another sample. Data are the 944
+
+      respondents of the 1996 American National Election Study who voted for
+
+      Clinton or Dole, bundled with **statsmodels** (`sm.datasets.anes96`). The
+
+      model predicts a Dole vote from party identification, left–right
+
+      self-placement, age, education, income, days watching TV news and the
+
+      population of the respondent''s place of residence (log). It is a standardised
+
+      logistic regression; the predictions come from `cross_val_predict` and the
+
+      metrics from `sklearn.metrics`.'
+  machine-learning/precision-recall:
+    title: Precision–recall curves
+    summary: Out-of-fold precision–recall curves for two classifiers predicting which married women report
+      an affair, with average precision and the no-skill baseline.
+    description: 'When the positive class is a minority, a ROC curve can look excellent while
+
+      many alarms are false. The precision–recall curve answers the operational question
+
+      instead: if I want to catch this share of positives (**recall**), how many of
+
+      my alerts will be right (**precision**)? Each point is one decision threshold.
+
+      The dashed line is the no-skill baseline — the prevalence of the positive
+
+      class — and the area under each curve is summarised by the **average
+
+      precision** (AP).
+
+
+      Data are the 6,366 married women of the 1974 *Redbook* magazine survey analysed
+
+      by Fair (1978), bundled with **statsmodels** (`sm.datasets.fair`). The outcome
+
+      is whether a woman reports any extramarital affair — a minority class, about
+
+      one in three. The predictors are her rating of the marriage, age, years
+
+      married, number of children, religiousness, education and her own and her
+
+      husband''s occupation. Scores are out-of-fold probabilities from a 5-fold
+
+      cross-validation (`cross_val_predict(method="predict_proba")`); curves and AP
+
+      come from `precision_recall_curve` and `average_precision_score`. The marker
+
+      shows the default 0.5 threshold on each curve. Here the logistic regression
+
+      ranks women better than the random forest (higher AP), yet at the 0.5
+
+      threshold it flags only about a third of those who report an affair.'
+  machine-learning/learning-curve:
+    title: Learning curve
+    summary: Training and cross-validated accuracy as the training set grows, for two models predicting
+      which married women report an affair.
+    description: 'A learning curve answers two questions before anyone collects more data: is
+
+      the model **overfitting** (a wide gap between the training score and the
+
+      cross-validated score) or **underfitting** (both scores low and close), and
+
+      would more observations still help (is the validation curve still rising)?
+
+      Lines are means over the folds of a repeated cross-validation; bands are
+
+      ±1 standard deviation, so the width shows how much the estimate would move
+
+      with another split.
+
+
+      Two models are compared on the same task: a deep decision tree, which
+
+      memorises its training set, and a standardised logistic regression. Data are
+
+      the 6,366 married women of the 1974 *Redbook* magazine survey analysed by Fair
+
+      (1978), bundled with **statsmodels** (`sm.datasets.fair`); the outcome is
+
+      whether a woman reports any extramarital affair (about one in three), predicted
+
+      from her rating of the marriage, age, years married, children, religiousness,
+
+      education and occupations. The curves come from
+
+      `sklearn.model_selection.learning_curve` with a 5 × 2 repeated stratified
+
+      split. The verdict is sobering: the tree''s cross-validated accuracy stays
+
+      below the majority-class baseline, while the logistic regression''s two curves
+
+      are flat and joined — more respondents would not help; better predictors
+
+      would.'
+  machine-learning/model-comparison:
+    title: Cross-validated model comparison
+    summary: Fold-by-fold R² of six models predicting California school districts' maths results, with
+      means and corrected 95% intervals.
+    description: '"Model B scores 0.47, model A 0.46" says nothing until we know how much the
+
+      score moves from one split to the next. Here every model is evaluated on the
+
+      **same** 10 × 5 repeated folds; each dot is one fold, the large marker is the
+
+      mean and the bar its 95% interval. Fold scores are not independent — the
+
+      training sets overlap — so the interval uses the **Nadeau–Bengio corrected**
+
+      variance rather than the naive standard error, which would be far too narrow.
+
+
+      Data are the 303 California school districts of the 1998 STAR test bundled
+
+      with **statsmodels** (`sm.datasets.star98`): the outcome is the share of
+
+      students scoring above the national median in maths, predicted from ten
+
+      district characteristics (share of low-income students, ethnic composition,
+
+      teacher experience and salary, spending per pupil, pupils per teacher,
+
+      college-prep enrolment, year-round schools). The score is the out-of-sample
+
+      R². Scores come from `cross_val_score` with `RepeatedKFold`; the linear models
+
+      are standardised in a `Pipeline`. Here plain linear regression does as well
+
+      as the tree ensembles: flexibility buys nothing when the relationship is close
+
+      to additive.'
+  machine-learning/permutation-importance:
+    title: Permutation importance
+    summary: Which district characteristics a random forest relies on to predict maths results — drop
+      in test-set R² when each one is shuffled.
+    description: 'Permutation importance asks a simple, model-agnostic question: how much worse
+
+      does the model predict on **held-out** data when one feature is shuffled,
+
+      breaking its link with the outcome? A large drop means the model relies on
+
+      that feature. Shuffling is random, so it is repeated 50 times per feature; the
+
+      box shows the spread and the dot the mean. Features whose box straddles zero
+
+      carry no usable signal for this model.
+
+
+      Unlike the impurity-based importances built into tree models, permutation
+
+      importance is computed on test data, is comparable across model types and is
+
+      not biased towards features with many distinct values. It measures what the
+
+      **model** uses, not causal effects, and correlated features share (and can
+
+      hide) each other''s importance. Data are the 303 California school districts of
+
+      the 1998 STAR test bundled with **statsmodels** (`sm.datasets.star98`); the
+
+      outcome is the share of students scoring above the national median in maths,
+
+      predicted from ten district characteristics (poverty, ethnic composition,
+
+      teachers, spending, class size, college-prep enrolment). The model is a random
+
+      forest; importances come from `sklearn.inspection.permutation_importance`.
+
+      Here the share of low-income students dominates, while teacher pay, spending
+
+      and class size add nothing once it is known — a statement about the model''s
+
+      predictions, not proof that resources do not matter.'
+  machine-learning/partial-dependence:
+    title: Partial dependence with ICE curves
+    summary: How predicted maths results change with poverty and with spending per pupil — the average
+      (PDP) over one curve per school district (ICE).
+    description: 'A partial dependence plot (PDP) shows how the model''s prediction changes, on
+
+      average, as one feature varies while all others keep their observed values.
+
+      Behind the average sit the **individual conditional expectation** (ICE)
+
+      curves — one per observation. Parallel ICE curves mean the effect is the same
+
+      for everyone; curves that fan out or cross reveal **interactions** that the
+
+      average hides. ICE curves are centred at the left edge so that their shapes,
+
+      not their levels, can be compared; the rug marks where the data actually are,
+
+      since the model extrapolates elsewhere.
+
+
+      Data are the 303 California school districts of the 1998 STAR test bundled
+
+      with **statsmodels** (`sm.datasets.star98`); the outcome is the share of
+
+      students scoring above the national median in maths, predicted from ten
+
+      district characteristics. The two panels contrast the share of low-income
+
+      students, along which predictions fall steeply, with spending per pupil,
+
+      along which they barely move. The model is a gradient-boosting regressor, and
+
+      the curves come from `sklearn.inspection.partial_dependence(kind="both")`. A
+
+      PDP describes the model, not the world: it is causal only if the model is.'
+  machine-learning/shap-beeswarm:
+    title: SHAP summary (beeswarm)
+    summary: Every school district's SHAP value for every characteristic, coloured by the characteristic's
+      value, with mean |SHAP| importance.
+    description: 'SHAP (SHapley Additive exPlanations; Lundberg and Lee, 2017) splits each
+
+      prediction into additive contributions, one per feature, so that
+
+      **base value + sum of contributions = prediction**. The contributions are
+
+      Shapley values from cooperative game theory: each feature''s average marginal
+
+      effect over all orders in which features could be added.
+
+
+      The beeswarm shows one dot per school district and feature. Position is the
+
+      SHAP value — how far that feature pushed this district''s prediction up or down —
+
+      and colour is the feature''s own value, from low (blue) to high (red). Features
+
+      are sorted by mean |SHAP|, printed on the right as a global importance. A
+
+      clean red-right / blue-left split means a monotone effect; mixed colours
+
+      signal non-linearity or interactions.
+
+
+      Data are the 303 California school districts of the 1998 STAR test bundled
+
+      with **statsmodels** (`sm.datasets.star98`); the outcome is the share of
+
+      students scoring above the national median in maths, in percentage points,
+
+      predicted from ten district characteristics. The model is a gradient-boosting
+
+      regressor and the exact tree SHAP values come from
+
+      `shap.TreeExplainer`. The figure is drawn with Matplotlib so it matches the
+
+      gallery style; `shap.plots.beeswarm` gives a similar view in one line.'
+  machine-learning/shap-dependence:
+    title: SHAP dependence plot
+    summary: How the share of low-income students feeds into each district's predicted maths results,
+      coloured by its strongest interaction partner, with a smooth trend.
+    description: 'A SHAP dependence plot zooms in on one feature. Each dot is a school district:
+
+      the horizontal axis is the feature''s value, the vertical axis its SHAP value —
+
+      its contribution to that district''s prediction. The trend line (a LOWESS
+
+      smooth) is close to a partial-dependence curve, but the cloud around it is
+
+      informative: at the same share of low-income students, contributions differ
+
+      from district to district because of **interactions** with other features.
+
+
+      Colour shows the feature that best explains that vertical spread, chosen here
+
+      as the feature whose SHAP **interaction** values with the share of low-income
+
+      students are largest on average (`shap.TreeExplainer.shap_interaction_values`).
+
+      Here it is the share of Hispanic students, which is also strongly correlated
+
+      with poverty (r ≈ 0.7), so the colour gradient partly reflects that
+
+      correlation rather than an interaction. Data are the
+
+      303 California school districts of the 1998 STAR test bundled with
+
+      **statsmodels** (`sm.datasets.star98`); the outcome is the share of students
+
+      scoring above the national median in maths, predicted from ten district
+
+      characteristics. The model is a gradient-boosting regressor; the smooth comes
+
+      from `statsmodels.nonparametric.lowess`.'
+  machine-learning/shap-waterfall:
+    title: SHAP waterfall for one prediction
+    summary: How each characteristic moves one struggling school district's predicted maths results from
+      the average to the model's output.
+    description: 'Global charts describe the model; a waterfall explains **one** prediction.
+
+      It starts from the base value — the model''s average prediction over the
+
+      data — and adds each feature''s SHAP value in turn, largest first, until it
+
+      reaches this district''s prediction. Red bars push the prediction up, blue bars
+
+      pull it down; the smallest contributions are pooled into one bar so the chart
+
+      stays readable. Because SHAP values are additive, the bars always sum exactly
+
+      to the gap between the base value and the prediction.
+
+
+      This is the chart to show when a single case must be explained — a district
+
+      flagged for support, a loan, a benefit claim. It explains what the **model**
+
+      did, not why the outcome happens. Data are the 303 California school districts
+
+      of the 1998 STAR test bundled with **statsmodels** (`sm.datasets.star98`); the
+
+      outcome is the share of students scoring above the national median in maths,
+
+      predicted from ten district characteristics. The model is a gradient-boosting
+
+      regressor; SHAP values come from `shap.TreeExplainer`. The district shown is a
+
+      struggling one (predicted more than 20 points below the base value) chosen
+
+      because its explanation pulls in both directions.'
+  spatial-data/spatial-weights:
+    title: Choropleth with spatial weights
+    summary: A map of one variable with the neighbour network drawn on top — the structure every spatial
+      statistic relies on.
+    description: 'Every spatial statistic starts by deciding who is a neighbour of whom. This
+
+      chart shows that decision before any test is run: a choropleth of one
+
+      variable, with a line joining the centres of every pair of neighbouring
+
+      areas. Here neighbours share a border or a corner (**queen contiguity**), and
+
+      each row of the weights matrix is later standardised so that an area''s
+
+      "spatial lag" is the average of its neighbours. Other choices — rook
+
+      contiguity, the k nearest neighbours, a distance band — give different
+
+      networks and can change the results, so the network is worth looking at.
+
+
+      Data are André-Michel Guerry''s *Essay on the Moral Statistics of France*
+
+      (1833): 85 départements around 1830, as prepared by the Center for Spatial
+
+      Data Science and loaded with **libpysal** (`examples.load_example("Guerry")`,
+
+      fetched once and cached). The variable is the percentage of military
+
+      conscripts who could read and write. Weights come from
+
+      `libpysal.weights.Queen`; the map is drawn with **GeoPandas**.'
+  spatial-data/moran-scatterplot:
+    title: Moran scatterplot (global autocorrelation)
+    summary: Each area against the average of its neighbours, with Moran's I, its permutation test and
+      the reference distribution.
+    description: '**Global** spatial autocorrelation asks one question for the whole map: do
+
+      similar values sit next to each other more than chance would allow? The
+
+      Moran scatterplot answers it visually. Each point is an area: on the
+
+      horizontal axis its own (standardised) value, on the vertical axis the
+
+      average of its neighbours — the **spatial lag**. With row-standardised
+
+      weights, the slope of the fitted line is exactly **Moran''s I** (Moran, 1950).
+
+      Points in the upper-right and lower-left quadrants are areas that resemble
+
+      their neighbours; the other two quadrants hold spatial outliers.
+
+
+      Inference is by permutation: the values are shuffled across the map 999
+
+      times and I is recomputed each time. The inset shows that reference
+
+      distribution under spatial randomness; the pseudo p-value is the share of
+
+      shuffles at least as extreme as the observed I. Data are Guerry''s (1833)
+
+      literacy rates for 85 French départements, loaded with **libpysal**;
+
+      weights are queen contiguity and the statistic comes from `esda.Moran`.'
+  spatial-data/lisa-cluster-map:
+    title: LISA cluster map (local autocorrelation)
+    summary: Where the clusters and spatial outliers are — local Moran's I for each area, mapped with
+      its permutation significance.
+    description: 'A global statistic says *whether* a map is clustered; a **local** indicator
+
+      of spatial association (LISA; Anselin, 1995) says *where*. Local Moran''s I
+
+      is computed for each area from its own value and its neighbours'' values.
+
+      Areas whose local statistic is significant (pseudo p < 0.05, 999 conditional
+
+      permutations) are coloured by quadrant of the Moran scatterplot:
+
+      **high–high** and **low–low** clusters, and **high–low** or **low–high**
+
+      spatial outliers. Everything else is grey.
+
+
+      Two cautions come with every LISA map. The 85 tests are not independent and
+
+      are not corrected for multiple comparisons, so a few significant areas are
+
+      expected by chance alone; and a significant area marks the *core* of a
+
+      cluster, which usually extends to its neighbours. Data are Guerry''s (1833)
+
+      literacy rates for 85 départements, loaded with **libpysal**; the statistic
+
+      comes from `esda.Moran_Local` and the map from **GeoPandas**.'
+  spatial-data/spatial-correlogram:
+    title: Spatial correlogram
+    summary: Moran's I at increasing neighbour orders, with a permutation envelope — how far spatial clustering
+      reaches.
+    description: 'Moran''s I with first-order neighbours measures clustering at the shortest
+
+      range. A spatial correlogram repeats the computation for neighbours of order
+
+      2 (neighbours of neighbours, excluding closer ones), 3, and so on. The curve
+
+      shows the **spatial scale** of a pattern: how many steps away two areas can
+
+      be and still resemble each other, and whether distant areas become
+
+      *opposites* — negative I — as they do when a country is split into two
+
+      large regions. It is the spatial counterpart of the autocorrelation function
+
+      of a time series.
+
+
+      The grey band is the 95% range of I under spatial randomness, from 999
+
+      permutations at each order; points outside it are unlikely under no spatial
+
+      structure. Two variables from Guerry''s (1833) moral statistics of 85
+
+      départements are compared: literacy, and population per crime against
+
+      persons (higher means fewer crimes). Weights are higher-order queen
+
+      contiguity from `libpysal.weights.higher_order`, row-standardised; I comes
+
+      from `esda.Moran`.'
   distributions/histogram-density:
     title: Histogram with density
     summary: Histogram, kernel density and fitted normal curve, with shape statistics.
@@ -1470,476 +1944,3 @@ examples:
       or less, which Raudenbush showed produces genuinely larger effects. Egger''s
 
       test is an OLS fit from **statsmodels**.'
-  machine-learning/confusion-matrix:
-    title: Confusion matrix with metrics
-    summary: How well a logistic regression predicts who voted Dole in 1996 — out-of-fold confusion matrix
-      with counts and row shares, and bootstrap intervals for the headline metrics.
-    description: 'A confusion matrix crosses the true class with the predicted class. Each cell
-
-      shows a count and its share of the true class (the row), so the diagonal reads
-
-      directly as sensitivity and specificity. The predictions are **out-of-fold**:
-
-      every observation is predicted by a model that never saw it during a 10-fold
-
-      cross-validation, which is what the matrix would look like on new data.
-
-
-      The side panel reports accuracy, precision, recall, F1 and the Matthews
-
-      correlation coefficient (MCC), each with a 95% bootstrap interval — a single
-
-      number hides how much it would move with another sample. Data are the 944
-
-      respondents of the 1996 American National Election Study who voted for
-
-      Clinton or Dole, bundled with **statsmodels** (`sm.datasets.anes96`). The
-
-      model predicts a Dole vote from party identification, left–right
-
-      self-placement, age, education, income, days watching TV news and the
-
-      population of the respondent''s place of residence (log). It is a standardised
-
-      logistic regression; the predictions come from `cross_val_predict` and the
-
-      metrics from `sklearn.metrics`.'
-  machine-learning/precision-recall:
-    title: Precision–recall curves
-    summary: Out-of-fold precision–recall curves for two classifiers predicting which married women report
-      an affair, with average precision and the no-skill baseline.
-    description: 'When the positive class is a minority, a ROC curve can look excellent while
-
-      many alarms are false. The precision–recall curve answers the operational question
-
-      instead: if I want to catch this share of positives (**recall**), how many of
-
-      my alerts will be right (**precision**)? Each point is one decision threshold.
-
-      The dashed line is the no-skill baseline — the prevalence of the positive
-
-      class — and the area under each curve is summarised by the **average
-
-      precision** (AP).
-
-
-      Data are the 6,366 married women of the 1974 *Redbook* magazine survey analysed
-
-      by Fair (1978), bundled with **statsmodels** (`sm.datasets.fair`). The outcome
-
-      is whether a woman reports any extramarital affair — a minority class, about
-
-      one in three. The predictors are her rating of the marriage, age, years
-
-      married, number of children, religiousness, education and her own and her
-
-      husband''s occupation. Scores are out-of-fold probabilities from a 5-fold
-
-      cross-validation (`cross_val_predict(method="predict_proba")`); curves and AP
-
-      come from `precision_recall_curve` and `average_precision_score`. The marker
-
-      shows the default 0.5 threshold on each curve. Here the logistic regression
-
-      ranks women better than the random forest (higher AP), yet at the 0.5
-
-      threshold it flags only about a third of those who report an affair.'
-  machine-learning/learning-curve:
-    title: Learning curve
-    summary: Training and cross-validated accuracy as the training set grows, for two models predicting
-      which married women report an affair.
-    description: 'A learning curve answers two questions before anyone collects more data: is
-
-      the model **overfitting** (a wide gap between the training score and the
-
-      cross-validated score) or **underfitting** (both scores low and close), and
-
-      would more observations still help (is the validation curve still rising)?
-
-      Lines are means over the folds of a repeated cross-validation; bands are
-
-      ±1 standard deviation, so the width shows how much the estimate would move
-
-      with another split.
-
-
-      Two models are compared on the same task: a deep decision tree, which
-
-      memorises its training set, and a standardised logistic regression. Data are
-
-      the 6,366 married women of the 1974 *Redbook* magazine survey analysed by Fair
-
-      (1978), bundled with **statsmodels** (`sm.datasets.fair`); the outcome is
-
-      whether a woman reports any extramarital affair (about one in three), predicted
-
-      from her rating of the marriage, age, years married, children, religiousness,
-
-      education and occupations. The curves come from
-
-      `sklearn.model_selection.learning_curve` with a 5 × 2 repeated stratified
-
-      split. The verdict is sobering: the tree''s cross-validated accuracy stays
-
-      below the majority-class baseline, while the logistic regression''s two curves
-
-      are flat and joined — more respondents would not help; better predictors
-
-      would.'
-  machine-learning/model-comparison:
-    title: Cross-validated model comparison
-    summary: Fold-by-fold R² of six models predicting California school districts' maths results, with
-      means and corrected 95% intervals.
-    description: '"Model B scores 0.47, model A 0.46" says nothing until we know how much the
-
-      score moves from one split to the next. Here every model is evaluated on the
-
-      **same** 10 × 5 repeated folds; each dot is one fold, the large marker is the
-
-      mean and the bar its 95% interval. Fold scores are not independent — the
-
-      training sets overlap — so the interval uses the **Nadeau–Bengio corrected**
-
-      variance rather than the naive standard error, which would be far too narrow.
-
-
-      Data are the 303 California school districts of the 1998 STAR test bundled
-
-      with **statsmodels** (`sm.datasets.star98`): the outcome is the share of
-
-      students scoring above the national median in maths, predicted from ten
-
-      district characteristics (share of low-income students, ethnic composition,
-
-      teacher experience and salary, spending per pupil, pupils per teacher,
-
-      college-prep enrolment, year-round schools). The score is the out-of-sample
-
-      R². Scores come from `cross_val_score` with `RepeatedKFold`; the linear models
-
-      are standardised in a `Pipeline`. Here plain linear regression does as well
-
-      as the tree ensembles: flexibility buys nothing when the relationship is close
-
-      to additive.'
-  machine-learning/permutation-importance:
-    title: Permutation importance
-    summary: Which district characteristics a random forest relies on to predict maths results — drop
-      in test-set R² when each one is shuffled.
-    description: 'Permutation importance asks a simple, model-agnostic question: how much worse
-
-      does the model predict on **held-out** data when one feature is shuffled,
-
-      breaking its link with the outcome? A large drop means the model relies on
-
-      that feature. Shuffling is random, so it is repeated 50 times per feature; the
-
-      box shows the spread and the dot the mean. Features whose box straddles zero
-
-      carry no usable signal for this model.
-
-
-      Unlike the impurity-based importances built into tree models, permutation
-
-      importance is computed on test data, is comparable across model types and is
-
-      not biased towards features with many distinct values. It measures what the
-
-      **model** uses, not causal effects, and correlated features share (and can
-
-      hide) each other''s importance. Data are the 303 California school districts of
-
-      the 1998 STAR test bundled with **statsmodels** (`sm.datasets.star98`); the
-
-      outcome is the share of students scoring above the national median in maths,
-
-      predicted from ten district characteristics (poverty, ethnic composition,
-
-      teachers, spending, class size, college-prep enrolment). The model is a random
-
-      forest; importances come from `sklearn.inspection.permutation_importance`.
-
-      Here the share of low-income students dominates, while teacher pay, spending
-
-      and class size add nothing once it is known — a statement about the model''s
-
-      predictions, not proof that resources do not matter.'
-  machine-learning/partial-dependence:
-    title: Partial dependence with ICE curves
-    summary: How predicted maths results change with poverty and with spending per pupil — the average
-      (PDP) over one curve per school district (ICE).
-    description: 'A partial dependence plot (PDP) shows how the model''s prediction changes, on
-
-      average, as one feature varies while all others keep their observed values.
-
-      Behind the average sit the **individual conditional expectation** (ICE)
-
-      curves — one per observation. Parallel ICE curves mean the effect is the same
-
-      for everyone; curves that fan out or cross reveal **interactions** that the
-
-      average hides. ICE curves are centred at the left edge so that their shapes,
-
-      not their levels, can be compared; the rug marks where the data actually are,
-
-      since the model extrapolates elsewhere.
-
-
-      Data are the 303 California school districts of the 1998 STAR test bundled
-
-      with **statsmodels** (`sm.datasets.star98`); the outcome is the share of
-
-      students scoring above the national median in maths, predicted from ten
-
-      district characteristics. The two panels contrast the share of low-income
-
-      students, along which predictions fall steeply, with spending per pupil,
-
-      along which they barely move. The model is a gradient-boosting regressor, and
-
-      the curves come from `sklearn.inspection.partial_dependence(kind="both")`. A
-
-      PDP describes the model, not the world: it is causal only if the model is.'
-  machine-learning/shap-beeswarm:
-    title: SHAP summary (beeswarm)
-    summary: Every school district's SHAP value for every characteristic, coloured by the characteristic's
-      value, with mean |SHAP| importance.
-    description: 'SHAP (SHapley Additive exPlanations; Lundberg and Lee, 2017) splits each
-
-      prediction into additive contributions, one per feature, so that
-
-      **base value + sum of contributions = prediction**. The contributions are
-
-      Shapley values from cooperative game theory: each feature''s average marginal
-
-      effect over all orders in which features could be added.
-
-
-      The beeswarm shows one dot per school district and feature. Position is the
-
-      SHAP value — how far that feature pushed this district''s prediction up or down —
-
-      and colour is the feature''s own value, from low (blue) to high (red). Features
-
-      are sorted by mean |SHAP|, printed on the right as a global importance. A
-
-      clean red-right / blue-left split means a monotone effect; mixed colours
-
-      signal non-linearity or interactions.
-
-
-      Data are the 303 California school districts of the 1998 STAR test bundled
-
-      with **statsmodels** (`sm.datasets.star98`); the outcome is the share of
-
-      students scoring above the national median in maths, in percentage points,
-
-      predicted from ten district characteristics. The model is a gradient-boosting
-
-      regressor and the exact tree SHAP values come from
-
-      `shap.TreeExplainer`. The figure is drawn with Matplotlib so it matches the
-
-      gallery style; `shap.plots.beeswarm` gives a similar view in one line.'
-  machine-learning/shap-dependence:
-    title: SHAP dependence plot
-    summary: How the share of low-income students feeds into each district's predicted maths results,
-      coloured by its strongest interaction partner, with a smooth trend.
-    description: 'A SHAP dependence plot zooms in on one feature. Each dot is a school district:
-
-      the horizontal axis is the feature''s value, the vertical axis its SHAP value —
-
-      its contribution to that district''s prediction. The trend line (a LOWESS
-
-      smooth) is close to a partial-dependence curve, but the cloud around it is
-
-      informative: at the same share of low-income students, contributions differ
-
-      from district to district because of **interactions** with other features.
-
-
-      Colour shows the feature that best explains that vertical spread, chosen here
-
-      as the feature whose SHAP **interaction** values with the share of low-income
-
-      students are largest on average (`shap.TreeExplainer.shap_interaction_values`).
-
-      Here it is the share of Hispanic students, which is also strongly correlated
-
-      with poverty (r ≈ 0.7), so the colour gradient partly reflects that
-
-      correlation rather than an interaction. Data are the
-
-      303 California school districts of the 1998 STAR test bundled with
-
-      **statsmodels** (`sm.datasets.star98`); the outcome is the share of students
-
-      scoring above the national median in maths, predicted from ten district
-
-      characteristics. The model is a gradient-boosting regressor; the smooth comes
-
-      from `statsmodels.nonparametric.lowess`.'
-  machine-learning/shap-waterfall:
-    title: SHAP waterfall for one prediction
-    summary: How each characteristic moves one struggling school district's predicted maths results from
-      the average to the model's output.
-    description: 'Global charts describe the model; a waterfall explains **one** prediction.
-
-      It starts from the base value — the model''s average prediction over the
-
-      data — and adds each feature''s SHAP value in turn, largest first, until it
-
-      reaches this district''s prediction. Red bars push the prediction up, blue bars
-
-      pull it down; the smallest contributions are pooled into one bar so the chart
-
-      stays readable. Because SHAP values are additive, the bars always sum exactly
-
-      to the gap between the base value and the prediction.
-
-
-      This is the chart to show when a single case must be explained — a district
-
-      flagged for support, a loan, a benefit claim. It explains what the **model**
-
-      did, not why the outcome happens. Data are the 303 California school districts
-
-      of the 1998 STAR test bundled with **statsmodels** (`sm.datasets.star98`); the
-
-      outcome is the share of students scoring above the national median in maths,
-
-      predicted from ten district characteristics. The model is a gradient-boosting
-
-      regressor; SHAP values come from `shap.TreeExplainer`. The district shown is a
-
-      struggling one (predicted more than 20 points below the base value) chosen
-
-      because its explanation pulls in both directions.'
-  spatial-data/spatial-weights:
-    title: Choropleth with spatial weights
-    summary: A map of one variable with the neighbour network drawn on top — the structure every spatial
-      statistic relies on.
-    description: 'Every spatial statistic starts by deciding who is a neighbour of whom. This
-
-      chart shows that decision before any test is run: a choropleth of one
-
-      variable, with a line joining the centres of every pair of neighbouring
-
-      areas. Here neighbours share a border or a corner (**queen contiguity**), and
-
-      each row of the weights matrix is later standardised so that an area''s
-
-      "spatial lag" is the average of its neighbours. Other choices — rook
-
-      contiguity, the k nearest neighbours, a distance band — give different
-
-      networks and can change the results, so the network is worth looking at.
-
-
-      Data are André-Michel Guerry''s *Essay on the Moral Statistics of France*
-
-      (1833): 85 départements around 1830, as prepared by the Center for Spatial
-
-      Data Science and loaded with **libpysal** (`examples.load_example("Guerry")`,
-
-      fetched once and cached). The variable is the percentage of military
-
-      conscripts who could read and write. Weights come from
-
-      `libpysal.weights.Queen`; the map is drawn with **GeoPandas**.'
-  spatial-data/moran-scatterplot:
-    title: Moran scatterplot (global autocorrelation)
-    summary: Each area against the average of its neighbours, with Moran's I, its permutation test and
-      the reference distribution.
-    description: '**Global** spatial autocorrelation asks one question for the whole map: do
-
-      similar values sit next to each other more than chance would allow? The
-
-      Moran scatterplot answers it visually. Each point is an area: on the
-
-      horizontal axis its own (standardised) value, on the vertical axis the
-
-      average of its neighbours — the **spatial lag**. With row-standardised
-
-      weights, the slope of the fitted line is exactly **Moran''s I** (Moran, 1950).
-
-      Points in the upper-right and lower-left quadrants are areas that resemble
-
-      their neighbours; the other two quadrants hold spatial outliers.
-
-
-      Inference is by permutation: the values are shuffled across the map 999
-
-      times and I is recomputed each time. The inset shows that reference
-
-      distribution under spatial randomness; the pseudo p-value is the share of
-
-      shuffles at least as extreme as the observed I. Data are Guerry''s (1833)
-
-      literacy rates for 85 French départements, loaded with **libpysal**;
-
-      weights are queen contiguity and the statistic comes from `esda.Moran`.'
-  spatial-data/lisa-cluster-map:
-    title: LISA cluster map (local autocorrelation)
-    summary: Where the clusters and spatial outliers are — local Moran's I for each area, mapped with
-      its permutation significance.
-    description: 'A global statistic says *whether* a map is clustered; a **local** indicator
-
-      of spatial association (LISA; Anselin, 1995) says *where*. Local Moran''s I
-
-      is computed for each area from its own value and its neighbours'' values.
-
-      Areas whose local statistic is significant (pseudo p < 0.05, 999 conditional
-
-      permutations) are coloured by quadrant of the Moran scatterplot:
-
-      **high–high** and **low–low** clusters, and **high–low** or **low–high**
-
-      spatial outliers. Everything else is grey.
-
-
-      Two cautions come with every LISA map. The 85 tests are not independent and
-
-      are not corrected for multiple comparisons, so a few significant areas are
-
-      expected by chance alone; and a significant area marks the *core* of a
-
-      cluster, which usually extends to its neighbours. Data are Guerry''s (1833)
-
-      literacy rates for 85 départements, loaded with **libpysal**; the statistic
-
-      comes from `esda.Moran_Local` and the map from **GeoPandas**.'
-  spatial-data/spatial-correlogram:
-    title: Spatial correlogram
-    summary: Moran's I at increasing neighbour orders, with a permutation envelope — how far spatial clustering
-      reaches.
-    description: 'Moran''s I with first-order neighbours measures clustering at the shortest
-
-      range. A spatial correlogram repeats the computation for neighbours of order
-
-      2 (neighbours of neighbours, excluding closer ones), 3, and so on. The curve
-
-      shows the **spatial scale** of a pattern: how many steps away two areas can
-
-      be and still resemble each other, and whether distant areas become
-
-      *opposites* — negative I — as they do when a country is split into two
-
-      large regions. It is the spatial counterpart of the autocorrelation function
-
-      of a time series.
-
-
-      The grey band is the 95% range of I under spatial randomness, from 999
-
-      permutations at each order; points outside it are unlikely under no spatial
-
-      structure. Two variables from Guerry''s (1833) moral statistics of 85
-
-      départements are compared: literacy, and population per crime against
-
-      persons (higher means fewer crimes). Weights are higher-order queen
-
-      contiguity from `libpysal.weights.higher_order`, row-standardised; I comes
-
-      from `esda.Moran`.'

@@ -1,7 +1,7 @@
 ui:
   lang_name: "Français"
   tagline: "Une galerie Python de graphiques statistiques pour les sciences sociales"
-  lede: "Des graphiques statistiques pour Python, construits sur de vraies données de sciences sociales et rangés selon la question à laquelle ils répondent. Chaque figure affiche les statistiques qui la fondent — estimations, intervalles de confiance, tests, tailles d'effet —, des distributions et comparaisons de groupes jusqu'à la régression, la survie et l'apprentissage automatique."
+  lede: "Des graphiques statistiques pour Python, construits sur de vraies données de sciences sociales et rangés selon la question à laquelle ils répondent. L'apprentissage automatique — ce que vaut un modèle et pourquoi il prédit ce qu'il prédit — et les données spatiales — cartes et autocorrélation spatiale — y côtoient les distributions, les comparaisons de groupes, la régression et la survie, et chaque figure affiche les statistiques qui la fondent : estimations, intervalles de confiance, tests, tailles d'effet."
   approach: "La plupart des ressources Python enseignent d'abord le code et gardent les questions pour plus tard. Cette galerie fait l'inverse. Conçue d'abord pour les étudiants en sciences sociales, elle s'adresse à toute personne qui connaît son domaine et a une question à trancher : ces groupes diffèrent-ils, ces deux variables évoluent-elles ensemble, pourquoi le modèle a-t-il prédit cela ? Partez de la question, trouvez le graphique qui y répond, lisez les statistiques qu'il affiche, et ne prenez que le code dont vous avez besoin."
   nav_gallery: "Galerie"
   nav_style: "Style"
