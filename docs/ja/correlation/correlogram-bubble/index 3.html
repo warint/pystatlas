@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ja" data-copied="コピーしました ✓">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>クラスタリング付きコレログラム · PyStatlas</title>
+<meta name="description" content="学区に関する 13 の指標について、r に応じて大きさと色を決めた corrplot 風の円を、階層的クラスタリングの順に並べたものです。">
+<meta name="author" content="Thierry Warin">
+<link rel="author" href="https://www.warin.ca">
+<meta name="citation_title" content="Correlogram with clustering — PyStatlas: The Python Gallery of Statistical Graphics">
+<meta name="citation_author" content="Warin, Thierry">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_online_date" content="2026/11/06">
+<meta name="citation_publisher" content="Thierry Warin">
+<meta name="citation_language" content="ja">
+<meta name="citation_public_url" content="https://warint.github.io/pystatlas/ja/correlation/correlogram-bubble/">
+<meta name="DC.creator" content="Warin, Thierry">
+<meta name="DC.title" content="Correlogram with clustering — PyStatlas: The Python Gallery of Statistical Graphics">
+<meta name="DC.date" content="2026">
+<link rel="canonical" href="https://warint.github.io/pystatlas/ja/correlation/correlogram-bubble/">
+<link rel="alternate" hreflang="en" href="https://warint.github.io/pystatlas/correlation/correlogram-bubble/">
+<link rel="alternate" hreflang="fr" href="https://warint.github.io/pystatlas/fr/correlation/correlogram-bubble/">
+<link rel="alternate" hreflang="ja" href="https://warint.github.io/pystatlas/ja/correlation/correlogram-bubble/">
+<link rel="alternate" hreflang="zh-Hans" href="https://warint.github.io/pystatlas/zh/correlation/correlogram-bubble/">
+<link rel="alternate" hreflang="x-default" href="https://warint.github.io/pystatlas/correlation/correlogram-bubble/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Correlogram with clustering — PyStatlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/pystatlas/ja/correlation/correlogram-bubble/", "inLanguage": "ja", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "PyStatlas", "url": "https://warint.github.io/pystatlas/"}}</script>
+<meta property="og:title" content="クラスタリング付きコレログラム · PyStatlas">
+<meta property="og:description" content="学区に関する 13 の指標について、r に応じて大きさと色を決めた corrplot 風の円を、階層的クラスタリングの順に並べたものです。">
+<meta property="og:locale" content="ja">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/style.css?v=aedcc37b">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>PyStatlas</span></a>
+    <nav class="nav-links">
+      <a href="../../index.html#gallery" class="on">ギャラリー</a>
+      <a href="../../style.html" class="">スタイル</a>
+      <a href="../../about.html" class="">概要</a>
+      <a href="../../about.html#cite" class="hide-sm">引用</a>
+      <details class="lang"><summary aria-label="Language"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span>日本語</span></summary><div class="lang-menu"><a href="../../../correlation/correlogram-bubble/" hreflang="en" lang="en">English</a><a href="../../../fr/correlation/correlogram-bubble/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/correlation/correlogram-bubble/" hreflang="ja" lang="ja" class=on aria-current=true>日本語</a><a href="../../../zh/correlation/correlogram-bubble/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div></details>
+      <a href="https://github.com/warint/pystatlas" class="gh" aria-label="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </nav>
+  </div>
+</header>
+<main>
+<article class="wrap ex">
+  <div class="crumbs"><a href="../../index.html">ギャラリー</a><span>/</span><a href="../../correlation/index.html">相関と関連</a></div>
+  <header class="ex-head"><h1>クラスタリング付きコレログラム</h1><p class="lede">学区に関する 13 の指標について、r に応じて大きさと色を決めた corrplot 風の円を、階層的クラスタリングの順に並べたものです。</p>
+  <p class="byline">著者： <a href="https://www.warin.ca">Thierry Warin</a> · 収録： <a href="../../index.html">PyStatlas</a></p></header>
+  <figure class="figure"><a href="../../../correlation/correlogram-bubble/plot.png" target="_blank" rel="noopener"><img src="../../../correlation/correlogram-bubble/plot.png" alt="クラスタリング付きコレログラム"></a></figure>
+  <div class="ex-cols">
+    <div class="prose"><p><code>corrplot(method = &quot;circle&quot;, order = &quot;hclust&quot;)</code> の Python 版です。各円の <strong>面積</strong> は |<em>r</em>| とともに大きくなり、色は符号を表すため、強い相関は目立ち、弱い相関は薄れて見えます。変数は <strong>階層的クラスタリング</strong>（距離 1 − <em>r</em> に対する完全連結法）によって並べ替えられ、正の相関をもつ変数どうしが対角線に沿ってブロックにまとまります。枠は <code>addrect = 3</code> と同様に3つのクラスターを囲んでいます。ここでは低所得の児童、ヒスパニック系の児童、マイノリティの教員が一つのブロックを成し、数学の成績はその 3 つすべてと負の相関を示します。</p><p>データは <strong>statsmodels</strong> に同梱されている STAR98 テストのカリフォルニア州 303 学区（<code>sm.datasets.star98</code>）に関する 13 の指標です。数学の成績（全国中央値を上回る児童の割合）、児童の構成（低所得、ヒスパニック系、黒人、アジア系の児童）、教員（マイノリティの割合、経験年数、給与）、資源（児童一人当たり支出、児童・教員比）、学校の編成（大学進学準備コース、チャータースクール、通年制の学校）を含みます。並び順は <code>scipy.cluster.hierarchy.linkage</code> と <code>leaves_list</code>、枠は <code>fcluster</code> によるものです。</p><p class="note">コードおよび図中のテキストは英語です。</p></div>
+    <aside class="meta"><div class="meta-row"><span>R での対応</span><code>corrplot::corrplot(order = &quot;hclust&quot;, addrect = 3)</code></div><div class="meta-row"><span>ライブラリ</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>statsmodels</i><i>SciPy</i></div></div><div class="meta-row"><span>トピック</span><div class="pills"><i>correlation</i><i>correlogram</i><i>hierarchical clustering</i><i>heatmap</i><i>corrplot</i><i>education</i></div></div></aside>
+  </div>
+  <section class="code-card" id="code">
+    <div class="code-bar">
+      <span class="fname">correlogram-bubble.py · 66 行</span>
+      <div class="code-actions">
+        <a class="btn ghost" href="../../../correlation/correlogram-bubble/correlogram-bubble.py" download>ダウンロード</a>
+        <a class="btn ghost" href="https://github.com/warint/pystatlas/tree/main/gallery/04-correlation/04-correlogram-bubble">GitHub</a>
+        <button class="btn copy" data-copy>コードをコピー</button>
+      </div>
+    </div>
+    <pre class="code"><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">Rectangle</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.cluster.hierarchy</span><span class="w"> </span><span class="kn">import</span> <span class="n">fcluster</span><span class="p">,</span> <span class="n">leaves_list</span><span class="p">,</span> <span class="n">linkage</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial.distance</span><span class="w"> </span><span class="kn">import</span> <span class="n">squareform</span>
+
+<span class="c1"># Data: 13 indicators for 303 California school districts (STAR98, bundled with statsmodels)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">star98</span><span class="o">.</span><span class="n">load_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"MATH"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">df</span><span class="o">.</span><span class="n">NABOVE</span> <span class="o">/</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">NABOVE</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">NBELOW</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"MATH"</span><span class="p">:</span> <span class="s2">"Math above median"</span><span class="p">,</span> <span class="s2">"LOWINC"</span><span class="p">:</span> <span class="s2">"Low-income pupils"</span><span class="p">,</span>
+          <span class="s2">"PERHISP"</span><span class="p">:</span> <span class="s2">"Hispanic pupils"</span><span class="p">,</span> <span class="s2">"PERBLACK"</span><span class="p">:</span> <span class="s2">"Black pupils"</span><span class="p">,</span>
+          <span class="s2">"PERASIAN"</span><span class="p">:</span> <span class="s2">"Asian pupils"</span><span class="p">,</span> <span class="s2">"PERMINTE"</span><span class="p">:</span> <span class="s2">"Minority teachers"</span><span class="p">,</span>
+          <span class="s2">"AVYRSEXP"</span><span class="p">:</span> <span class="s2">"Teacher experience"</span><span class="p">,</span> <span class="s2">"AVSALK"</span><span class="p">:</span> <span class="s2">"Teacher salary"</span><span class="p">,</span>
+          <span class="s2">"PERSPENK"</span><span class="p">:</span> <span class="s2">"Spending per pupil"</span><span class="p">,</span> <span class="s2">"PTRATIO"</span><span class="p">:</span> <span class="s2">"Pupil–teacher ratio"</span><span class="p">,</span>
+          <span class="s2">"PCTAF"</span><span class="p">:</span> <span class="s2">"College-prep courses"</span><span class="p">,</span> <span class="s2">"PCTCHRT"</span><span class="p">:</span> <span class="s2">"Charter schools"</span><span class="p">,</span>
+          <span class="s2">"PCTYRRND"</span><span class="p">:</span> <span class="s2">"Year-round schools"</span><span class="p">}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">labels</span><span class="p">)]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+<span class="n">corr</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+
+<span class="c1"># Hierarchical clustering on the distance 1 - r, then reorder the matrix</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">linkage</span><span class="p">(</span><span class="n">squareform</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">corr</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">checks</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">method</span><span class="o">=</span><span class="s2">"complete"</span><span class="p">)</span>
+<span class="n">order</span> <span class="o">=</span> <span class="n">leaves_list</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
+<span class="n">corr</span> <span class="o">=</span> <span class="n">corr</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">order</span><span class="p">,</span> <span class="n">order</span><span class="p">]</span>
+<span class="n">clusters</span> <span class="o">=</span> <span class="n">fcluster</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s2">"maxclust"</span><span class="p">)[</span><span class="n">order</span><span class="p">]</span>
+<span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">corr</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">8.4</span><span class="p">,</span> <span class="mf">7.2</span><span class="p">))</span>
+<span class="n">cmap</span><span class="p">,</span> <span class="n">norm</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s2">"RdBu"</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">corr</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">j</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">Circle</span><span class="p">((</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.47</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">r</span><span class="p">)),</span> <span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">r</span><span class="p">)),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="c1"># Boxes around the clusters (consecutive runs along the diagonal)</span>
+<span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">idx</span> <span class="o">==</span> <span class="n">k</span> <span class="ow">or</span> <span class="n">clusters</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">!=</span> <span class="n">clusters</span><span class="p">[</span><span class="n">start</span><span class="p">]:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">Rectangle</span><span class="p">((</span><span class="n">start</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">start</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">idx</span> <span class="o">-</span> <span class="n">start</span><span class="p">,</span> <span class="n">idx</span> <span class="o">-</span> <span class="n">start</span><span class="p">,</span>
+                               <span class="n">fill</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s2">"#1D1D1F"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.6</span><span class="p">))</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">idx</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">corr</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"right"</span><span class="p">,</span> <span class="n">rotation_mode</span><span class="o">=</span><span class="s2">"anchor"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">corr</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span> <span class="n">minor</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span> <span class="n">minor</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s2">"minor"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#E5E5EA"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s2">"major"</span><span class="p">,</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s2">"minor"</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">k</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">"equal"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">cb</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">ScalarMappable</span><span class="p">(</span><span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">),</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
+                  <span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">cb</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s2">"Pearson r"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#3A3A3C"</span><span class="p">)</span>
+<span class="n">cb</span><span class="o">.</span><span class="n">outline</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">r_pov</span> <span class="o">=</span> <span class="n">corr</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"Math above median"</span><span class="p">,</span> <span class="s2">"Low-income pupils"</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Math results run against the poverty block (r = </span><span class="si">{</span><span class="n">r_pov</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> with low income)"</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Pearson r · n = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2"> school districts · complete-linkage clustering on 1 − r · "</span>
+        <span class="s2">"circle area grows with |r|"</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre>
+  </section>
+  <p class="hint">図にはオプションの <a href="../../style.html">PyStatlas スタイル</a> を使用しています。同じ見た目にするには <code>plt.style.use("pystatlas.mplstyle")</code> を追加してください。</p>
+  <section class="cite" id="cite">
+  <div class="cite-head"><h2>引用方法</h2>
+  <p>PyStatlas は <a href="https://www.warin.ca">Thierry Warin</a> が作成・運営しています。研究や業務に役立った場合は、ぜひ引用してください。</p></div>
+  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). Correlogram with clustering. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/correlation/correlogram-bubble/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). Correlogram with clustering. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/correlation/correlogram-bubble/">コピー</button></div>
+  <div class="cite-box"><pre class="cite-bib">@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {PyStatlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/pystatlas/}},
+  note         = {Source code: https://github.com/warint/pystatlas}
+}</pre><button class="btn ghost" data-copy-text="@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {PyStatlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/pystatlas/}},
+  note         = {Source code: https://github.com/warint/pystatlas}
+}">BibTeX をコピー</button></div>
+</section>
+  <div class="pager"><a href="../../correlation/pairs-plot/"><small>前へ</small>相関係数付きペアプロット</a><span></span></div>
+  <h2 class="rel-h">相関と関連のその他のグラフ</h2><div class="grid"><a class="card" href="../../correlation/correlation-matrix/" data-cat="correlation" data-k="相関行列 ピアソン相関の下三角ヒートマップ。有意でないセル（ホルム法）には×印を付けます。 correlation matrix lower-triangle pearson correlation heatmap; non-significant cells (holm) are crossed out. ggstatsplot::ggcorrmat() 相関と関連 correlation &amp; association correlation pearson heatmap holm multiple testing matplotlib numpy statsmodels scipy">
+  <div class="card-img"><img src="../../../correlation/correlation-matrix/thumb.webp" alt="相関行列" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">相関と関連</span><h3>相関行列</h3><p>ピアソン相関の下三角ヒートマップ。有意でないセル（ホルム法）には×印を付けます。</p><span class="card-r">ggstatsplot::ggcorrmat()</span></div>
+</a>
+<a class="card" href="../../correlation/scatter-with-stats/" data-cat="correlation" data-k="統計量付き散布図 カリフォルニア州 303 学区における低所得世帯の児童の割合と数学の成績 — 散布図、95% 信頼帯付きの ols 直線、周辺ヒストグラム、ピアソンの r。 scatterplot with statistics low-income pupils vs math results in 303 california districts — scatter, ols line with 95% band, marginal histograms and pearson&#x27;s r. ggstatsplot::ggscatterstats() 相関と関連 correlation &amp; association correlation pearson scatterplot regression line marginal histogram education matplotlib numpy statsmodels scipy">
+  <div class="card-img"><img src="../../../correlation/scatter-with-stats/thumb.webp" alt="統計量付き散布図" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">相関と関連</span><h3>統計量付き散布図</h3><p>カリフォルニア州 303 学区における低所得世帯の児童の割合と数学の成績 — 散布図、95% 信頼帯付きの OLS 直線、周辺ヒストグラム、ピアソンの r。</p><span class="card-r">ggstatsplot::ggscatterstats()</span></div>
+</a>
+<a class="card" href="../../correlation/pairs-plot/" data-cat="correlation" data-k="相関係数付きペアプロット 学区に関する 4 変数の散布図行列。対角線上に群別の密度、その上に全体と群内の相関係数を示します。 pairs plot with correlations scatter matrix of four school-district variables, with group kdes on the diagonal and pooled vs within-group correlations above it. ggally::ggpairs() 相関と関連 correlation &amp; association pairs plot scatter matrix correlation kde simpson&#x27;s paradox confounding education matplotlib numpy pandas statsmodels scipy">
+  <div class="card-img"><img src="../../../correlation/pairs-plot/thumb.webp" alt="相関係数付きペアプロット" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">相関と関連</span><h3>相関係数付きペアプロット</h3><p>学区に関する 4 変数の散布図行列。対角線上に群別の密度、その上に全体と群内の相関係数を示します。</p><span class="card-r">GGally::ggpairs()</span></div>
+</a></div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div><strong>PyStatlas</strong> · 統計グラフのための Python ギャラリー<br>制作： <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">引用方法</a></div>
+    <div class="foot-links"><a href="https://github.com/warint/pystatlas">GitHub</a><a href="../../style.html">プロットスタイル</a><a href="https://github.com/warint/pystatlas/blob/main/CONTRIBUTING.md">貢献する</a><span>MIT ライセンス</span></div>
+  </div>
+  <div class="wrap foot-langs"><a href="../../../correlation/correlogram-bubble/" hreflang="en" lang="en">English</a><a href="../../../fr/correlation/correlogram-bubble/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/correlation/correlogram-bubble/" hreflang="ja" lang="ja" class=on aria-current=true>日本語</a><a href="../../../zh/correlation/correlogram-bubble/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div>
+</footer>
+<script src="../../../assets/app.js?v=aedcc37b"></script>
+</body>
+</html>

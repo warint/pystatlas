@@ -45,6 +45,7 @@ DOCS = ROOT / "docs"
 SITE_SRC = ROOT / "site_src"
 STYLE = ROOT / "pystatlas.mplstyle"
 CONFIG = yaml.safe_load((ROOT / "statlas.yaml").read_text())
+DATA_SOURCES = yaml.safe_load((ROOT / "data_sources.yaml").read_text())
 import hashlib
 ASSET_V = hashlib.md5(b"".join(f.read_bytes() for f in sorted((ROOT / "site_src").iterdir()))).hexdigest()[:8]
 
@@ -241,6 +242,28 @@ def subtitle(c: "Category", key: str) -> str:
 def subsummary(c: "Category", key: str) -> str:
     tr = ((TR["categories"].get(c.slug) or {}).get("subcategories") or {}).get(key) or {}
     return tr.get("summary") or c.subs[key].get("summary", "")
+
+
+def sources_of(ex: "Example") -> list[str]:
+    """Keys of data_sources.yaml whose pattern appears in the chart's code or description."""
+    text = ex.code + "\n" + ex.description
+    return [k for k, d in DATA_SOURCES.items() if re.search(d["match"], text)]
+
+
+def source_html(key: str) -> str:
+    d = DATA_SOURCES[key]
+    link = f' <a href="{d["url"]}">{esc(d["url"])}</a>' if d.get("url") else ""
+    return (f'<li><strong>{esc(d["label"])}.</strong> {esc(d["cite"])}{link}'
+            f'<br><span class="src-note">{esc(d["note"])}</span></li>')
+
+
+def data_block(ex: "Example") -> str:
+    keys = sources_of(ex)
+    if not keys:
+        return ""
+    return (f'<section class="data-src" id="data"><h2>{esc(t("data_h"))}</h2>'
+            f'<ul>{"".join(source_html(k) for k in keys)}</ul>'
+            f'<p class="src-disclaimer">{esc(t("data_disclaimer"))}</p></section>')
 
 
 def grouped_grid(c: "Category", home: str, root: str) -> str:
@@ -577,6 +600,7 @@ def example_page(ex: "Example", prev_ex: "Example | None", next_ex: "Example | N
     <pre class="code"><code>{highlight_py(ex.code)}</code></pre>
   </section>
   <p class="hint">{hint}</p>
+  {data_block(ex)}
   {cite_block(ex)}
   {nav}
   {f'<h2 class="rel-h">{esc(t("more_in", cat=ctitle(c)))}</h2><div class="grid">{rel}</div>' if rel else ''}
@@ -638,6 +662,19 @@ def thanks_block(cats: list["Category"]) -> str:
 </section>"""
 
 
+def sources_section(cats: list["Category"]) -> str:
+    exs = [e for c in cats for e in c.examples]
+    used = {k: [e for e in exs if k in sources_of(e)] for k in DATA_SOURCES}
+    items = "".join(
+        source_html(k).replace("</li>", f'<br><span class="src-used">{esc(t("data_used_in"))} '
+                                         + ", ".join(f'<a href="{e.url}">{esc(etitle(e))}</a>' for e in v)
+                                         + "</span></li>")
+        for k, v in used.items() if v)
+    return (f'<section class="data-src" id="data"><h2>{esc(t("data_sources_h"))}</h2>'
+            f'<p>{esc(t("data_intro"))}</p><ul>{items}</ul>'
+            f'<p class="src-disclaimer">{esc(t("data_disclaimer"))}</p></section>')
+
+
 def about_page(cats: list["Category"]) -> str:
     name = esc(CONFIG["name"])
     author = f'<strong><a href="{CONFIG["author_url"]}">{esc(CONFIG["author"])}</a></strong>'
@@ -656,6 +693,7 @@ def about_page(cats: list["Category"]) -> str:
 <h2>{esc(t('contribute_h'))}</h2>
 <p>{t('contribute_p', contrib=f'<a href="{CONFIG["repo_url"]}/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>')}</p>
 {thanks_block(cats)}
+{sources_section(cats)}
 </section>"""
 
 
@@ -675,6 +713,7 @@ f"""# {ex.title}
 {ex.description}
 {r}
 **Libraries:** {', '.join(ex.libs)}
+{"".join(chr(10) + "**Data:** " + DATA_SOURCES[k]["cite"] + (" " + DATA_SOURCES[k]["url"] if DATA_SOURCES[k]["url"] else "") + " — " + DATA_SOURCES[k]["note"] + chr(10) for k in sources_of(ex))}
 
 ```python
 {ex.code.rstrip()}

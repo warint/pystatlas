@@ -21,6 +21,9 @@ Holm-corrected paired t-tests (`scipy.stats.ttest_rel`) with Cohen's d_z
 **R equivalent:** `ggstatsplot::ggwithinstats()`  
 **Libraries:** Matplotlib, NumPy, pandas, statsmodels, SciPy
 
+**Data:** World Bank. Fertility rate, total (births per woman), indicator SP.DYN.TFRT.IN. World Development Indicators. https://data.worldbank.org/indicator/SP.DYN.TFRT.IN — Primary sources: UN Population Division, UN Statistical Division, national statistical offices, Eurostat and others. Distributed with statsmodels (sm.datasets.fertility) under the World Bank terms of use.
+
+
 ```python
 from itertools import combinations
 

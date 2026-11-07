@@ -21,6 +21,9 @@ Ljung–Box test of no autocorrelation.
 **R equivalent:** `forecast::ggtsdisplay()`  
 **Libraries:** Matplotlib, NumPy, statsmodels
 
+**Data:** Federal Reserve Bank of St. Louis. FRED, Federal Reserve Economic Data; U.S. Bureau of Labor Statistics (unemployment rate). Accessed December 15, 2009. https://fred.stlouisfed.org/ — Compiled by Skipper Seabold for statsmodels (sm.datasets.macrodata); public domain.
+
+
 ```python
 import matplotlib.pyplot as plt
 import numpy as np

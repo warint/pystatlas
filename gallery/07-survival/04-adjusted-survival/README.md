@@ -18,6 +18,9 @@ sample is drawn in grey for reference.
 **R equivalent:** `survminer::ggadjustedcurves()`  
 **Libraries:** Matplotlib, NumPy, pandas, lifelines
 
+**Data:** Rossi, P. H., Berk, R. A., & Lenihan, K. J. (1980). Money, Work, and Crime: Some Experimental Results. Academic Press. https://lifelines.readthedocs.io/en/latest/lifelines.datasets.html — Men released from Maryland state prisons in the 1970s, half randomly assigned to financial aid. Distributed with lifelines (lifelines.datasets.load_rossi).
+
+
 ```python
 import matplotlib.pyplot as plt
 import numpy as np

@@ -20,6 +20,9 @@ curves come from `get_prediction().summary_frame()`.
 **R equivalent:** `ggeffects::ggpredict() / marginaleffects::plot_predictions()`  
 **Libraries:** Matplotlib, NumPy, pandas, statsmodels
 
+**Data:** Spector, L. C., & Mazzeo, M. (1980). Probit analysis and economic education. Journal of Economic Education, 11(2), 37–44. https://www.statsmodels.org/stable/datasets/generated/spector.html — Obtained from W. Greene's Econometric Analysis web site with the original author's permission; distributed with statsmodels (sm.datasets.spector).
+
+
 ```python
 import matplotlib.pyplot as plt
 import numpy as np

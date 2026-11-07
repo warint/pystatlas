@@ -26,6 +26,9 @@ Var(β₁) + 2m·Cov(β₁, β₃) + m²·Var(β₃).
 **R equivalent:** `interactions::interact_plot() / interactions::johnson_neyman()`  
 **Libraries:** Matplotlib, NumPy, pandas, statsmodels, SciPy
 
+**Data:** Gill, J. (2001). Generalized Linear Models: A Unified Approach (Quantitative Applications in the Social Sciences, No. 134). Sage. https://www.statsmodels.org/stable/datasets/generated/star98.html — Original data from the California Department of Education's Standardized Testing and Reporting (STAR) program, 1998. Subset distributed with statsmodels (sm.datasets.star98) with the author's permission.
+
+
 ```python
 import matplotlib.pyplot as plt
 import numpy as np

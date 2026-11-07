@@ -19,6 +19,9 @@ panel reports a Shapiro–Wilk test.
 **R equivalent:** `qqplotr::stat_qq_band()`  
 **Libraries:** Matplotlib, NumPy, statsmodels, SciPy
 
+**Data:** Koenker, R., & Bassett, G. (1982). Robust tests for heteroscedasticity based on regression quantiles. Econometrica, 50(1), 43–61. https://doi.org/10.2307/1912528 — Engel's (1857) household budget data as used by Koenker and Bassett and distributed with R's quantreg; in statsmodels as sm.datasets.engel; public domain.
+
+
 ```python
 import matplotlib.pyplot as plt
 import numpy as np

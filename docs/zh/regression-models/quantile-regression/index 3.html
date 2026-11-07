@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="zh-Hans" data-copied="已复制 ✓">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分位数回归过程 · PyStatlas</title>
+<meta name="description" content="斜率如何随条件分布变化，并与单一的 OLS 估计相对照。">
+<meta name="author" content="Thierry Warin">
+<link rel="author" href="https://www.warin.ca">
+<meta name="citation_title" content="Quantile regression process — PyStatlas: The Python Gallery of Statistical Graphics">
+<meta name="citation_author" content="Warin, Thierry">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_online_date" content="2026/11/06">
+<meta name="citation_publisher" content="Thierry Warin">
+<meta name="citation_language" content="zh">
+<meta name="citation_public_url" content="https://warint.github.io/pystatlas/zh/regression-models/quantile-regression/">
+<meta name="DC.creator" content="Warin, Thierry">
+<meta name="DC.title" content="Quantile regression process — PyStatlas: The Python Gallery of Statistical Graphics">
+<meta name="DC.date" content="2026">
+<link rel="canonical" href="https://warint.github.io/pystatlas/zh/regression-models/quantile-regression/">
+<link rel="alternate" hreflang="en" href="https://warint.github.io/pystatlas/regression-models/quantile-regression/">
+<link rel="alternate" hreflang="fr" href="https://warint.github.io/pystatlas/fr/regression-models/quantile-regression/">
+<link rel="alternate" hreflang="ja" href="https://warint.github.io/pystatlas/ja/regression-models/quantile-regression/">
+<link rel="alternate" hreflang="zh-Hans" href="https://warint.github.io/pystatlas/zh/regression-models/quantile-regression/">
+<link rel="alternate" hreflang="x-default" href="https://warint.github.io/pystatlas/regression-models/quantile-regression/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Quantile regression process — PyStatlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/pystatlas/zh/regression-models/quantile-regression/", "inLanguage": "zh-Hans", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "PyStatlas", "url": "https://warint.github.io/pystatlas/"}}</script>
+<meta property="og:title" content="分位数回归过程 · PyStatlas">
+<meta property="og:description" content="斜率如何随条件分布变化，并与单一的 OLS 估计相对照。">
+<meta property="og:locale" content="zh-Hans">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/style.css?v=aedcc37b">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>PyStatlas</span></a>
+    <nav class="nav-links">
+      <a href="../../index.html#gallery" class="on">图库</a>
+      <a href="../../style.html" class="">样式</a>
+      <a href="../../about.html" class="">关于</a>
+      <a href="../../about.html#cite" class="hide-sm">引用</a>
+      <details class="lang"><summary aria-label="Language"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span>中文</span></summary><div class="lang-menu"><a href="../../../regression-models/quantile-regression/" hreflang="en" lang="en">English</a><a href="../../../fr/regression-models/quantile-regression/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/regression-models/quantile-regression/" hreflang="ja" lang="ja">日本語</a><a href="../../../zh/regression-models/quantile-regression/" hreflang="zh-Hans" lang="zh-Hans" class=on aria-current=true>中文</a></div></details>
+      <a href="https://github.com/warint/pystatlas" class="gh" aria-label="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </nav>
+  </div>
+</header>
+<main>
+<article class="wrap ex">
+  <div class="crumbs"><a href="../../index.html">图库</a><span>/</span><a href="../../regression-models/index.html">回归模型</a></div>
+  <header class="ex-head"><h1>分位数回归过程</h1><p class="lede">斜率如何随条件分布变化，并与单一的 OLS 估计相对照。</p>
+  <p class="byline">作者 <a href="https://www.warin.ca">Thierry Warin</a> · 隶属于 <a href="../../index.html">PyStatlas</a></p></header>
+  <figure class="figure"><a href="../../../regression-models/quantile-regression/plot.png" target="_blank" rel="noopener"><img src="../../../regression-models/quantile-regression/plot.png" alt="分位数回归过程"></a></figure>
+  <div class="ex-cols">
+    <div class="prose"><p>OLS 只估计一个斜率：对条件<strong>均值</strong>的效应。分位数回归则为每个条件分位数 τ 估计一个斜率，从而可以看出某个预测变量是在拉伸分布，而不仅仅是平移分布。深色线是 τ = 0.05 … 0.95 时的分位数回归系数及其 95% 置信带；橙色线和虚线分别是 OLS 估计及其 95% 置信区间，按构造为常数。左图展示数据以及若干条拟合的分位数回归线。</p><p>数据为 Engel（1857）对 235 个比利时工人家庭的家庭预算调查，由 <strong>statsmodels</strong> 自带（<code>sm.datasets.engel</code>）。模型用 <code>smf.quantreg().fit(q=τ)</code> 和 <code>smf.ols()</code> 拟合。</p><p class="note">代码及图中文字均为英文。</p></div>
+    <aside class="meta"><div class="meta-row"><span>R 中的对应函数</span><code>quantreg::plot(summary(rq(tau = 1:19 / 20)))</code></div><div class="meta-row"><span>依赖库</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>statsmodels</i></div></div><div class="meta-row"><span>主题</span><div class="pills"><i>quantile regression</i><i>heteroscedasticity</i><i>OLS</i><i>confidence interval</i><i>Engel curve</i></div></div></aside>
+  </div>
+  <section class="code-card" id="code">
+    <div class="code-bar">
+      <span class="fname">quantile-regression.py · 52 行</span>
+      <div class="code-actions">
+        <a class="btn ghost" href="../../../regression-models/quantile-regression/quantile-regression.py" download>下载</a>
+        <a class="btn ghost" href="https://github.com/warint/pystatlas/tree/main/gallery/05-regression-models/06-quantile-regression">GitHub</a>
+        <button class="btn copy" data-copy>复制代码</button>
+      </div>
+    </div>
+    <pre class="code"><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.formula.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">smf</span>
+
+<span class="c1"># Data: Engel food expenditure vs household income (Belgian francs)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">engel</span><span class="o">.</span><span class="n">load_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
+<span class="n">quantiles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.96</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
+
+<span class="c1"># Fit one quantile regression per τ and keep slope + 95% CI</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">quantiles</span><span class="p">:</span>
+    <span class="n">fit</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">quantreg</span><span class="p">(</span><span class="s2">"foodexp ~ income"</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="n">q</span><span class="p">)</span>
+    <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">conf_int</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"income"</span><span class="p">]</span>
+    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">q</span><span class="p">,</span> <span class="n">fit</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">"Intercept"</span><span class="p">],</span> <span class="n">fit</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">"income"</span><span class="p">],</span> <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">))</span>
+<span class="n">qr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+<span class="n">ols</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">"foodexp ~ income"</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">ols_lo</span><span class="p">,</span> <span class="n">ols_hi</span> <span class="o">=</span> <span class="n">ols</span><span class="o">.</span><span class="n">conf_int</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"income"</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">width_ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">]))</span>
+
+<span class="c1"># Left: data with selected quantile lines and the OLS line</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">income</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">foodexp</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#8E8E93"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">income</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">df</span><span class="o">.</span><span class="n">income</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">50</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">q</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">s_</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="ow">in</span> <span class="n">qr</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">18</span><span class="p">]]:</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">s_</span> <span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#007AFF"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span> <span class="o">+</span> <span class="mf">0.6</span> <span class="o">*</span> <span class="p">(</span><span class="n">q</span> <span class="o">==</span> <span class="mf">0.5</span><span class="p">))</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mf">1.01</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">s_</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="sa">f</span><span class="s2">"τ = </span><span class="si">{</span><span class="n">q</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">8.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#007AFF"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"center"</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ols</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">"Intercept"</span><span class="p">]</span> <span class="o">+</span> <span class="n">ols</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">"income"</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#FF9500"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"--"</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">right</span><span class="o">=</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mf">1.17</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Household income"</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Food expenditure"</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Quantile lines fan out"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="c1"># Right: slope estimates across τ vs the OLS slope</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">qr</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">qr</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">qr</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#007AFF"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">qr</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">qr</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">"o-"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#007AFF"</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">mec</span><span class="o">=</span><span class="s2">"white"</span><span class="p">,</span> <span class="n">mew</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Quantile regression (95% CI)"</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">ols</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">"income"</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#FF9500"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"OLS (95% CI)"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">(</span><span class="n">ols_lo</span><span class="p">,</span> <span class="n">ols_hi</span><span class="p">):</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#FF9500"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"--"</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Quantile τ of food expenditure"</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Slope: extra food spending per franc of income"</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">"upper left"</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Income slope by quantile"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">slope</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">qr</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">2</span><span class="p">),</span> <span class="n">qr</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.07</span><span class="p">,</span> <span class="s2">"Income raises food spending most for the biggest spenders"</span><span class="p">,</span>
+         <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">"semibold"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"bottom"</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Engel data · n = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2"> · income slope at τ = .10: </span><span class="si">{</span><span class="n">slope</span><span class="p">[</span><span class="mf">0.1</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, "</span>
+         <span class="sa">f</span><span class="s2">"τ = .50: </span><span class="si">{</span><span class="n">slope</span><span class="p">[</span><span class="mf">0.5</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, τ = .90: </span><span class="si">{</span><span class="n">slope</span><span class="p">[</span><span class="mf">0.9</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> · OLS: </span><span class="si">{</span><span class="n">ols</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">'income'</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> "</span>
+         <span class="sa">f</span><span class="s2">"[</span><span class="si">{</span><span class="n">ols_lo</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">ols_hi</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">]"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"bottom"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre>
+  </section>
+  <p class="hint">图表使用了可选的 <a href="../../style.html">PyStatlas 样式</a>：添加 <code>plt.style.use("pystatlas.mplstyle")</code> 即可完全还原其外观。</p>
+  <section class="cite" id="cite">
+  <div class="cite-head"><h2>如何引用</h2>
+  <p>PyStatlas 由 <a href="https://www.warin.ca">Thierry Warin</a> 创建并维护。如果它对你的工作有所帮助，敬请引用。</p></div>
+  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). Quantile regression process. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/regression-models/quantile-regression/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). Quantile regression process. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/regression-models/quantile-regression/">复制</button></div>
+  <div class="cite-box"><pre class="cite-bib">@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {PyStatlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/pystatlas/}},
+  note         = {Source code: https://github.com/warint/pystatlas}
+}</pre><button class="btn ghost" data-copy-text="@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {PyStatlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/pystatlas/}},
+  note         = {Source code: https://github.com/warint/pystatlas}
+}">复制 BibTeX</button></div>
+</section>
+  <div class="pager"><a href="../../regression-models/interaction-effects/"><small>上一个</small>交互效应</a><span></span></div>
+  <h2 class="rel-h">更多回归模型图表</h2><div class="grid"><a class="card" href="../../regression-models/coefficient-plot/" data-cat="regression-models" data-k="系数图 回归估计值及其 95% 置信区间，每项一行。 coefficient plot regression estimates with 95% confidence intervals, one row per term. ggstats::ggcoef_model() 回归模型 regression models regression ols confidence interval dot-and-whisker matplotlib numpy statsmodels">
+  <div class="card-img"><img src="../../../regression-models/coefficient-plot/thumb.webp" alt="系数图" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">回归模型</span><h3>系数图</h3><p>回归估计值及其 95% 置信区间，每项一行。</p><span class="card-r">ggstats::ggcoef_model()</span></div>
+</a>
+<a class="card" href="../../regression-models/odds-ratio-forest/" data-cat="regression-models" data-k="优势比森林图 对数刻度上的 logistic 回归优势比，并列附 or [95% ci] 表格。 odds-ratio forest plot logistic regression odds ratios on a log scale, with a table of or [95% ci] alongside. ggstats::ggcoef_model(exponentiate = true) 回归模型 regression models logistic regression odds ratio forest plot confidence interval glm matplotlib numpy statsmodels">
+  <div class="card-img"><img src="../../../regression-models/odds-ratio-forest/thumb.webp" alt="优势比森林图" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">回归模型</span><h3>优势比森林图</h3><p>对数刻度上的 logistic 回归优势比，并列附 OR [95% CI] 表格。</p><span class="card-r">ggstats::ggcoef_model(exponentiate = TRUE)</span></div>
+</a>
+<a class="card" href="../../regression-models/compare-models/" data-cat="regression-models" data-k="嵌套模型比较 并排展示学区数学成绩的三个嵌套回归的系数，观察逐块加入变量时估计值如何变化。 comparing nested models coefficients of three nested regressions of district math results side by side, to see how estimates shift as blocks are added. ggstats::ggcoef_compare() 回归模型 regression models regression model comparison nested models confidence interval ols education matplotlib numpy statsmodels">
+  <div class="card-img"><img src="../../../regression-models/compare-models/thumb.webp" alt="嵌套模型比较" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">回归模型</span><h3>嵌套模型比较</h3><p>并排展示学区数学成绩的三个嵌套回归的系数，观察逐块加入变量时估计值如何变化。</p><span class="card-r">ggstats::ggcoef_compare()</span></div>
+</a></div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div><strong>PyStatlas</strong> · Python 统计图形库<br>创建者 <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">如何引用</a></div>
+    <div class="foot-links"><a href="https://github.com/warint/pystatlas">GitHub</a><a href="../../style.html">绘图样式</a><a href="https://github.com/warint/pystatlas/blob/main/CONTRIBUTING.md">参与贡献</a><span>MIT 许可证</span></div>
+  </div>
+  <div class="wrap foot-langs"><a href="../../../regression-models/quantile-regression/" hreflang="en" lang="en">English</a><a href="../../../fr/regression-models/quantile-regression/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/regression-models/quantile-regression/" hreflang="ja" lang="ja">日本語</a><a href="../../../zh/regression-models/quantile-regression/" hreflang="zh-Hans" lang="zh-Hans" class=on aria-current=true>中文</a></div>
+</footer>
+<script src="../../../assets/app.js?v=aedcc37b"></script>
+</body>
+</html>

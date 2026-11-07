@@ -22,6 +22,9 @@ slope test is an OLS fit from **statsmodels**.
 **R equivalent:** `BlandAltmanLeh::bland.altman.plot() / blandr::blandr.draw()`  
 **Libraries:** Matplotlib, NumPy, statsmodels, SciPy
 
+**Data:** Simulated data with a fixed random seed, created for this example. — No real respondents, documents or measurements: the numbers only illustrate how the chart and its statistics work.
+
+
 ```python
 import matplotlib.pyplot as plt
 import numpy as np

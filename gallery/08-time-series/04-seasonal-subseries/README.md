@@ -23,6 +23,9 @@ highlighted.
 **R equivalent:** `feasts::gg_subseries()`  
 **Libraries:** Matplotlib, NumPy, SciPy, statsmodels
 
+**Data:** Eurostat. Euro area (18, fixed composition) total turnover index, manufacture of electrical equipment (NACE Rev. 2), working-day adjusted, not seasonally adjusted. https://ec.europa.eu/eurostat — Distributed with statsmodels (statsmodels.datasets.elec_equip); public domain.
+
+
 ```python
 import matplotlib.pyplot as plt
 import numpy as np

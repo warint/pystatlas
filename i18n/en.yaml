@@ -71,3 +71,8 @@ ui:
   thanks_inspiration: "Inspiration"
   thanks_r: "R packages whose charts the examples mirror"
   thanks_site: "Building the site"
+  data_h: "Data source"
+  data_sources_h: "Data sources"
+  data_intro: "Almost every example uses published data, reproduced as distributed with statsmodels, lifelines or R's metafor; the two simulated examples are marked as such. Each entry gives the original reference, how the data reach the gallery, and the charts that use them."
+  data_disclaimer: "The examples illustrate statistical methods. Their titles describe what each figure shows in these particular data — often a small, dated or partial sample — not the author's position on the substantive question. For interpretation, context and data quality, rely on the original sources cited here."
+  data_used_in: "Used in:"

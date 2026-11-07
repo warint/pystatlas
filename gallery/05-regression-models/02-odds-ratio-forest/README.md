@@ -19,6 +19,9 @@ odds ratios are `np.exp()` of `params` and `conf_int()`.
 **R equivalent:** `ggstats::ggcoef_model(exponentiate = TRUE)`  
 **Libraries:** Matplotlib, NumPy, statsmodels
 
+**Data:** Fair, R. C. (1978). A theory of extramarital affairs. Journal of Political Economy, 86(1), 45–61. https://doi.org/10.1086/260646 — Data from the 1974 Redbook magazine survey; distributed with statsmodels (sm.datasets.fair) with the author's permission.
+
+
 ```python
 import matplotlib.pyplot as plt
 import numpy as np

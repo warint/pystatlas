@@ -21,12 +21,8 @@ thanks:
     lifelines: https://lifelines.readthedocs.io
     SHAP: https://shap.readthedocs.io
   datasets:
-    - name: "statsmodels datasets — American National Election Study 1996, California STAR 1998 school districts, US state crime, Fair's affairs survey, World Bank fertility rates, Engel household budgets, Spector teaching experiment, US macroeconomic series, euro-area electrical-equipment turnover"
-      url: https://www.statsmodels.org/stable/datasets/index.html
-    - name: "lifelines datasets — Rossi recidivism study, Democracy and Dictatorship leader spells (Cheibub, Gandhi and Vreeland)"
-      url: https://lifelines.readthedocs.io/en/latest/lifelines.datasets.html
-    - name: "Teacher-expectancy experiments (Raudenbush, 1984), as distributed in R's metafor (dat.raudenbush1985)"
-      url: https://wviechtb.github.io/metadat/reference/dat.raudenbush1985.html
+    - name: "All data sources, with full references — see “Data sources” below"
+      url: "#data"
   inspiration:   # `pkgs`: the functions of these R packages that the gallery mirrors are listed automatically
     - name: The R Graph Gallery (Yan Holtz)
       url: https://r-graph-gallery.com

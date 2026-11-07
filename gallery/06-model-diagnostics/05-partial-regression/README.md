@@ -19,6 +19,9 @@ computed with one auxiliary OLS fit per axis; each panel reports β, its t and p
 **R equivalent:** `car::avPlots()`  
 **Libraries:** Matplotlib, NumPy, statsmodels
 
+**Data:** U.S. Census Bureau. Statistical Abstract of the United States, state tables for 2009 (crime rates from the FBI Uniform Crime Reporting program). https://www.statsmodels.org/stable/datasets/generated/statecrime.html — Compiled for statsmodels (sm.datasets.statecrime); public domain. See the statsmodels page for each variable's table and footnotes.
+
+
 ```python
 import matplotlib.pyplot as plt
 import numpy as np

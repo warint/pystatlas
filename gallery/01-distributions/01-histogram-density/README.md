@@ -21,6 +21,9 @@ tests normality.
 **R equivalent:** `ggplot2::geom_histogram() + geom_density()`  
 **Libraries:** Matplotlib, NumPy, statsmodels, SciPy
 
+**Data:** World Bank. Fertility rate, total (births per woman), indicator SP.DYN.TFRT.IN. World Development Indicators. https://data.worldbank.org/indicator/SP.DYN.TFRT.IN — Primary sources: UN Population Division, UN Statistical Division, national statistical offices, Eurostat and others. Distributed with statsmodels (sm.datasets.fertility) under the World Bank terms of use.
+
+
 ```python
 import matplotlib.pyplot as plt
 import numpy as np

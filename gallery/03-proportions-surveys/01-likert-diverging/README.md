@@ -18,6 +18,9 @@ receive the same distribution of answers from the same respondents.
 **R equivalent:** `ggstats::gglikert()`  
 **Libraries:** Matplotlib, NumPy, pandas, SciPy
 
+**Data:** Simulated data with a fixed random seed, created for this example. — No real respondents, documents or measurements: the numbers only illustrate how the chart and its statistics work.
+
+
 ```python
 import matplotlib.pyplot as plt
 import numpy as np

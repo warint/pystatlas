@@ -21,6 +21,9 @@ durations — with ε² as effect size.
 **R equivalent:** `ggdist::stat_halfeye() / ggrain::geom_rain()`  
 **Libraries:** Matplotlib, NumPy, lifelines, SciPy
 
+**Data:** Cheibub, J. A., Gandhi, J., & Vreeland, J. R. (2010). Democracy and dictatorship revisited. Public Choice, 143(1–2), 67–101. https://doi.org/10.1007/s11127-009-9491-2 — 202 countries; distributed with lifelines (lifelines.datasets.load_dd).
+
+
 ```python
 import matplotlib.pyplot as plt
 import numpy as np

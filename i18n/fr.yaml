@@ -69,6 +69,11 @@ ui:
   thanks_inspiration: "Sources d'inspiration"
   thanks_r: "Paquets R dont les exemples reprennent les graphiques"
   thanks_site: "Construction du site"
+  data_h: "Source des données"
+  data_sources_h: "Sources des données"
+  data_intro: "Presque tous les exemples reposent sur des données publiées, reproduites telles que les distribuent statsmodels, lifelines ou le paquet R metafor ; les deux exemples simulés sont signalés comme tels. Chaque entrée donne la référence originale, la façon dont les données arrivent dans la galerie et les graphiques qui les utilisent."
+  data_disclaimer: "Les exemples illustrent des méthodes statistiques. Leurs titres décrivent ce que chaque figure montre dans ces données précises — souvent un échantillon restreint, daté ou partiel —, et non la position de l'auteur sur la question de fond. Pour l'interprétation, le contexte et la qualité des données, reportez-vous aux sources originales citées ici."
+  data_used_in: "Utilisé dans :"
 categories:
   distributions:
     title: "Distributions"

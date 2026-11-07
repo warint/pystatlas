@@ -19,6 +19,9 @@ with `smf.quantreg().fit(q=τ)` and `smf.ols()`.
 **R equivalent:** `quantreg::plot(summary(rq(tau = 1:19 / 20)))`  
 **Libraries:** Matplotlib, NumPy, statsmodels
 
+**Data:** Koenker, R., & Bassett, G. (1982). Robust tests for heteroscedasticity based on regression quantiles. Econometrica, 50(1), 43–61. https://doi.org/10.2307/1912528 — Engel's (1857) household budget data as used by Koenker and Bassett and distributed with R's quantreg; in statsmodels as sm.datasets.engel; public domain.
+
+
 ```python
 import matplotlib.pyplot as plt
 import numpy as np

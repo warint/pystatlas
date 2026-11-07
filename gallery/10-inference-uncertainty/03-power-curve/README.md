@@ -18,6 +18,7 @@ group sizes).
 **R equivalent:** `pwr::pwr.t.test() + plot()`  
 **Libraries:** Matplotlib, NumPy, statsmodels
 
+
 ```python
 import matplotlib.pyplot as plt
 import numpy as np

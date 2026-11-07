@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ja" data-copied="コピーしました ✓">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>推定プロット · PyStatlas</title>
+<meta name="description" content="2群の生データに、平均値の差とそのブートストラップ 95% 信頼区間を添えます。">
+<meta name="author" content="Thierry Warin">
+<link rel="author" href="https://www.warin.ca">
+<meta name="citation_title" content="Estimation plot — PyStatlas: The Python Gallery of Statistical Graphics">
+<meta name="citation_author" content="Warin, Thierry">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_online_date" content="2026/11/06">
+<meta name="citation_publisher" content="Thierry Warin">
+<meta name="citation_language" content="ja">
+<meta name="citation_public_url" content="https://warint.github.io/pystatlas/ja/group-comparisons/estimation-plot/">
+<meta name="DC.creator" content="Warin, Thierry">
+<meta name="DC.title" content="Estimation plot — PyStatlas: The Python Gallery of Statistical Graphics">
+<meta name="DC.date" content="2026">
+<link rel="canonical" href="https://warint.github.io/pystatlas/ja/group-comparisons/estimation-plot/">
+<link rel="alternate" hreflang="en" href="https://warint.github.io/pystatlas/group-comparisons/estimation-plot/">
+<link rel="alternate" hreflang="fr" href="https://warint.github.io/pystatlas/fr/group-comparisons/estimation-plot/">
+<link rel="alternate" hreflang="ja" href="https://warint.github.io/pystatlas/ja/group-comparisons/estimation-plot/">
+<link rel="alternate" hreflang="zh-Hans" href="https://warint.github.io/pystatlas/zh/group-comparisons/estimation-plot/">
+<link rel="alternate" hreflang="x-default" href="https://warint.github.io/pystatlas/group-comparisons/estimation-plot/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Estimation plot — PyStatlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/pystatlas/ja/group-comparisons/estimation-plot/", "inLanguage": "ja", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "PyStatlas", "url": "https://warint.github.io/pystatlas/"}}</script>
+<meta property="og:title" content="推定プロット · PyStatlas">
+<meta property="og:description" content="2群の生データに、平均値の差とそのブートストラップ 95% 信頼区間を添えます。">
+<meta property="og:locale" content="ja">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/style.css?v=aedcc37b">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>PyStatlas</span></a>
+    <nav class="nav-links">
+      <a href="../../index.html#gallery" class="on">ギャラリー</a>
+      <a href="../../style.html" class="">スタイル</a>
+      <a href="../../about.html" class="">概要</a>
+      <a href="../../about.html#cite" class="hide-sm">引用</a>
+      <details class="lang"><summary aria-label="Language"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span>日本語</span></summary><div class="lang-menu"><a href="../../../group-comparisons/estimation-plot/" hreflang="en" lang="en">English</a><a href="../../../fr/group-comparisons/estimation-plot/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/group-comparisons/estimation-plot/" hreflang="ja" lang="ja" class=on aria-current=true>日本語</a><a href="../../../zh/group-comparisons/estimation-plot/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div></details>
+      <a href="https://github.com/warint/pystatlas" class="gh" aria-label="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </nav>
+  </div>
+</header>
+<main>
+<article class="wrap ex">
+  <div class="crumbs"><a href="../../index.html">ギャラリー</a><span>/</span><a href="../../group-comparisons/index.html">群間比較</a></div>
+  <header class="ex-head"><h1>推定プロット</h1><p class="lede">2群の生データに、平均値の差とそのブートストラップ 95% 信頼区間を添えます。</p>
+  <p class="byline">著者： <a href="https://www.warin.ca">Thierry Warin</a> · 収録： <a href="../../index.html">PyStatlas</a></p></header>
+  <figure class="figure"><a href="../../../group-comparisons/estimation-plot/plot.png" target="_blank" rel="noopener"><img src="../../../group-comparisons/estimation-plot/plot.png" alt="推定プロット"></a></figure>
+  <div class="ex-cols">
+    <div class="prose"><p>ガードナー・アルトマンの推定プロットは、p値ではなく効果量を中心に据えます。左の軸には両群のすべての観測値を示し、右側の浮いた軸はゼロが基準群の平均に一致するように配置されています。その軸上に、平均値の差のブートストラップ分布を半分のバイオリンとして描き、点推定値とその 95% 信頼区間を点と線で示しています。</p><p>データは <strong>statsmodels</strong> に同梱されている2009年の米国50州とコロンビア特別区です（<code>sm.datasets.statecrime</code>）。人口10万人あたりの暴力犯罪率を、貧困率が中央の州（14.2%）を上回る23州と、それ以下の28州とで比較しています。この比較は実験ではなく観察にもとづくもので、差の大きさを測るものであって、その原因を示すものではありません。95% 信頼区間は <code>scipy.stats.bootstrap</code> によるバイアス補正・加速（BCa）ブートストラップで、サブタイトルにはウェルチの t 検定（<code>scipy.stats.ttest_ind</code>）も示しています。各スウォームの横の縦線は群平均 ± 1 標準偏差を表し、スウォームは <code>seaborn.swarmplot</code> で描いています。1,300 を超える位置にある孤立した点はコロンビア特別区です。</p><p class="note">コードおよび図中のテキストは英語です。</p></div>
+    <aside class="meta"><div class="meta-row"><span>R での対応</span><code>dabestr::dabest() + plot()</code></div><div class="meta-row"><span>ライブラリ</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>seaborn</i><i>statsmodels</i><i>SciPy</i></div></div><div class="meta-row"><span>トピック</span><div class="pills"><i>estimation</i><i>bootstrap</i><i>effect size</i><i>mean difference</i><i>confidence interval</i><i>crime</i><i>poverty</i></div></div></aside>
+  </div>
+  <section class="code-card" id="code">
+    <div class="code-bar">
+      <span class="fname">estimation-plot.py · 66 行</span>
+      <div class="code-actions">
+        <a class="btn ghost" href="../../../group-comparisons/estimation-plot/estimation-plot.py" download>ダウンロード</a>
+        <a class="btn ghost" href="https://github.com/warint/pystatlas/tree/main/gallery/02-group-comparisons/03-estimation-plot">GitHub</a>
+        <button class="btn copy" data-copy>コードをコピー</button>
+      </div>
+    </div>
+    <pre class="code"><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+
+<span class="c1"># Data: violent crimes per 100,000 residents in 2009, by state poverty rate</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">statecrime</span><span class="o">.</span><span class="n">load_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
+<span class="n">cut</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">poverty</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"group"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">poverty</span> <span class="o">&gt;</span> <span class="n">cut</span><span class="p">,</span> <span class="s2">"High poverty"</span><span class="p">,</span> <span class="s2">"Low poverty"</span><span class="p">)</span>
+<span class="n">low</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">group</span> <span class="o">==</span> <span class="s2">"Low poverty"</span><span class="p">,</span> <span class="s2">"violent"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">high</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">group</span> <span class="o">==</span> <span class="s2">"High poverty"</span><span class="p">,</span> <span class="s2">"violent"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+<span class="c1"># Mean difference with a BCa bootstrap 95% CI, and the bootstrap distribution</span>
+<span class="n">diff</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+<span class="n">boot</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">bootstrap</span><span class="p">((</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">),</span> <span class="n">diff</span><span class="p">,</span> <span class="n">n_resamples</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"BCa"</span><span class="p">,</span>
+                       <span class="n">random_state</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">lo</span><span class="p">,</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">boot</span><span class="o">.</span><span class="n">confidence_interval</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="n">high</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">low</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">high</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">equal_var</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Manual layout (the long subtitle would otherwise squeeze the panels apart)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">),</span> <span class="n">width_ratios</span><span class="o">=</span><span class="p">[</span><span class="mf">2.2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">layout</span><span class="o">=</span><span class="s2">"none"</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.12</span><span class="p">)</span>
+<span class="n">palette</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"#8E8E93"</span><span class="p">,</span> <span class="s2">"#007AFF"</span><span class="p">]</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"group"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"violent"</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">"group"</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+              <span class="n">order</span><span class="o">=</span><span class="p">[</span><span class="s2">"Low poverty"</span><span class="p">,</span> <span class="s2">"High poverty"</span><span class="p">],</span> <span class="n">hue_order</span><span class="o">=</span><span class="p">[</span><span class="s2">"Low poverty"</span><span class="p">,</span> <span class="s2">"High poverty"</span><span class="p">],</span>
+              <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">]):</span>            <span class="c1"># mean ± SD as a gapped line beside the swarm</span>
+    <span class="n">m</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">d</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mf">0.32</span><span class="p">,</span> <span class="n">m</span> <span class="o">-</span> <span class="n">s</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="n">s</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#3A3A3C"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mf">0.32</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"white"</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"#3A3A3C"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Violent crimes per 100,000 residents"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"Poverty ≤ </span><span class="si">{</span><span class="n">cut</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%</span><span class="se">\n</span><span class="s2">(n = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">low</span><span class="p">)</span><span class="si">}</span><span class="s2"> states)"</span><span class="p">,</span>
+                      <span class="sa">f</span><span class="s2">"Poverty &gt; </span><span class="si">{</span><span class="n">cut</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%</span><span class="se">\n</span><span class="s2">(n = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">high</span><span class="p">)</span><span class="si">}</span><span class="s2"> states)"</span><span class="p">])</span>
+
+<span class="c1"># Floating difference axis: zero aligned with the low-poverty mean</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.55</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">)</span>
+<span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ymin</span> <span class="o">-</span> <span class="n">low</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">ymax</span> <span class="o">-</span> <span class="n">low</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#3A3A3C"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#3A3A3C"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">":"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">0.32</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">],</span> <span class="p">[</span><span class="n">low</span><span class="o">.</span><span class="n">mean</span><span class="p">()]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#3A3A3C"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">1.32</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">],</span> <span class="p">[</span><span class="n">high</span><span class="o">.</span><span class="n">mean</span><span class="p">()]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#3A3A3C"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">":"</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">boot</span><span class="o">.</span><span class="n">bootstrap_distribution</span><span class="p">,</span> <span class="n">positions</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">widths</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+                   <span class="n">showextrema</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">side</span><span class="o">=</span><span class="s2">"high"</span><span class="p">)</span>
+<span class="n">v</span><span class="p">[</span><span class="s2">"bodies"</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s2">"#007AFF"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"none"</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#1D1D1F"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#1D1D1F"</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Δ = </span><span class="si">{</span><span class="n">delta</span><span class="si">:</span><span class="s2">+.0f</span><span class="si">}</span><span class="se">\n</span><span class="s2">[</span><span class="si">{</span><span class="n">lo</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">hi</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">]"</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">hi</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+             <span class="n">textcoords</span><span class="o">=</span><span class="s2">"offset points"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"right"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"bottom"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span>
+             <span class="n">fontweight</span><span class="o">=</span><span class="s2">"semibold"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#007AFF"</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="s2">"High − Low"</span><span class="p">])</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">tick_right</span><span class="p">();</span> <span class="n">ax2</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_label_position</span><span class="p">(</span><span class="s2">"right"</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">spines</span><span class="p">[[</span><span class="s2">"left"</span><span class="p">]]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">);</span> <span class="n">ax2</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s2">"right"</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Mean difference (crimes per 100,000)"</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"High-poverty states record </span><span class="si">{</span><span class="n">delta</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> more violent crimes per 100,000 on average"</span><span class="p">,</span>
+             <span class="n">pad</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"BCa bootstrap 95% CI [</span><span class="si">{</span><span class="n">lo</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">hi</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">] (5,000 resamples) · "</span>
+        <span class="sa">f</span><span class="s2">"Welch's t(</span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">df</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">statistic</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, p = </span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">pvalue</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> · 2009 data"</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre>
+  </section>
+  <p class="hint">図にはオプションの <a href="../../style.html">PyStatlas スタイル</a> を使用しています。同じ見た目にするには <code>plt.style.use("pystatlas.mplstyle")</code> を追加してください。</p>
+  <section class="cite" id="cite">
+  <div class="cite-head"><h2>引用方法</h2>
+  <p>PyStatlas は <a href="https://www.warin.ca">Thierry Warin</a> が作成・運営しています。研究や業務に役立った場合は、ぜひ引用してください。</p></div>
+  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). Estimation plot. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/group-comparisons/estimation-plot/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). Estimation plot. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/group-comparisons/estimation-plot/">コピー</button></div>
+  <div class="cite-box"><pre class="cite-bib">@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {PyStatlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/pystatlas/}},
+  note         = {Source code: https://github.com/warint/pystatlas}
+}</pre><button class="btn ghost" data-copy-text="@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {PyStatlas: The Python Gallery of Statistical Graphics},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/pystatlas/}},
+  note         = {Source code: https://github.com/warint/pystatlas}
+}">BibTeX をコピー</button></div>
+</section>
+  <div class="pager"><a href="../../group-comparisons/within-subjects/"><small>前へ</small>被験者内比較</a><a class="next" href="../../group-comparisons/means-with-ci/"><small>次へ</small>交互作用プロット</a></div>
+  <h2 class="rel-h">群間比較のその他のグラフ</h2><div class="grid"><a class="card" href="../../group-comparisons/between-groups-violin/" data-cat="group-comparisons" data-k="群間比較 バイオリン＋箱ひげ＋データ点に、ウェルチの分散分析、効果量、多重比較を添えます。 between-groups comparison violin + box + points with welch&#x27;s anova, effect size and pairwise tests. ggstatsplot::ggbetweenstats() 群間比較 group comparisons anova welch holm effect size violin education inequality matplotlib numpy pandas statsmodels scipy">
+  <div class="card-img"><img src="../../../group-comparisons/between-groups-violin/thumb.webp" alt="群間比較" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">群間比較</span><h3>群間比較</h3><p>バイオリン＋箱ひげ＋データ点に、ウェルチの分散分析、効果量、多重比較を添えます。</p><span class="card-r">ggstatsplot::ggbetweenstats()</span></div>
+</a>
+<a class="card" href="../../group-comparisons/within-subjects/" data-cat="group-comparisons" data-k="被験者内比較 被験者ごとの線、平均、反復測定分散分析、対応のある検定で反復測定データを示します。 within-subjects comparison repeated measures with one line per subject, means, rm-anova and paired tests. ggstatsplot::ggwithinstats() 群間比較 group comparisons repeated measures paired t-test rm-anova effect size spaghetti plot panel data demography matplotlib numpy pandas statsmodels scipy">
+  <div class="card-img"><img src="../../../group-comparisons/within-subjects/thumb.webp" alt="被験者内比較" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">群間比較</span><h3>被験者内比較</h3><p>被験者ごとの線、平均、反復測定分散分析、対応のある検定で反復測定データを示します。</p><span class="card-r">ggstatsplot::ggwithinstats()</span></div>
+</a>
+<a class="card" href="../../group-comparisons/means-with-ci/" data-cat="group-comparisons" data-k="交互作用プロット 2要因の群平均を 95% 信頼区間とともに描き、二元配置分散分析を添えます。 interaction plot group means with 95% confidence intervals for two factors, with a two-way anova. ggpubr::ggline(add = &quot;mean_ci&quot;) / ggstats 群間比較 group comparisons two-way anova interaction means confidence interval factorial survey elections ideology matplotlib numpy pandas statsmodels scipy">
+  <div class="card-img"><img src="../../../group-comparisons/means-with-ci/thumb.webp" alt="交互作用プロット" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">群間比較</span><h3>交互作用プロット</h3><p>2要因の群平均を 95% 信頼区間とともに描き、二元配置分散分析を添えます。</p><span class="card-r">ggpubr::ggline(add = &quot;mean_ci&quot;) / ggstats</span></div>
+</a></div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div><strong>PyStatlas</strong> · 統計グラフのための Python ギャラリー<br>制作： <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">引用方法</a></div>
+    <div class="foot-links"><a href="https://github.com/warint/pystatlas">GitHub</a><a href="../../style.html">プロットスタイル</a><a href="https://github.com/warint/pystatlas/blob/main/CONTRIBUTING.md">貢献する</a><span>MIT ライセンス</span></div>
+  </div>
+  <div class="wrap foot-langs"><a href="../../../group-comparisons/estimation-plot/" hreflang="en" lang="en">English</a><a href="../../../fr/group-comparisons/estimation-plot/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/group-comparisons/estimation-plot/" hreflang="ja" lang="ja" class=on aria-current=true>日本語</a><a href="../../../zh/group-comparisons/estimation-plot/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div>
+</footer>
+<script src="../../../assets/app.js?v=aedcc37b"></script>
+</body>
+</html>

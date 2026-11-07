@@ -20,6 +20,9 @@ into three groups of 101 districts.
 **R equivalent:** `ggstatsplot::ggbetweenstats()`  
 **Libraries:** Matplotlib, NumPy, pandas, statsmodels, SciPy
 
+**Data:** Gill, J. (2001). Generalized Linear Models: A Unified Approach (Quantitative Applications in the Social Sciences, No. 134). Sage. https://www.statsmodels.org/stable/datasets/generated/star98.html — Original data from the California Department of Education's Standardized Testing and Reporting (STAR) program, 1998. Subset distributed with statsmodels (sm.datasets.star98) with the author's permission.
+
+
 ```python
 from itertools import combinations
 

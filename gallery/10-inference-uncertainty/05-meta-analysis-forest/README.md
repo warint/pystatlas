@@ -25,6 +25,9 @@ before the expectancy was induced.
 **R equivalent:** `meta::forest() / metafor::forest()`  
 **Libraries:** Matplotlib, NumPy, pandas, SciPy, statsmodels
 
+**Data:** Raudenbush, S. W. (1984). Magnitude of teacher expectancy effects on pupil IQ as a function of the credibility of expectancy induction: A synthesis of findings from 18 experiments. Journal of Educational Psychology, 76(1), 85–97. https://doi.org/10.1037/0022-0663.76.1.85 — Effect sizes and variances typed in from dat.raudenbush1985 in R's metadat/metafor (Viechtbauer, 2010, Journal of Statistical Software, 36(3), https://doi.org/10.18637/jss.v036.i03); one of the 18 experiments contributes two rows.
+
+
 ```python
 import matplotlib.pyplot as plt
 import numpy as np

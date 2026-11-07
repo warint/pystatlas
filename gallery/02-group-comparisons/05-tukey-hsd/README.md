@@ -19,6 +19,9 @@ from `statsmodels.stats.multicomp.pairwise_tukeyhsd`, the omnibus test from
 **R equivalent:** `TukeyHSD() + plot()`  
 **Libraries:** Matplotlib, NumPy, pandas, statsmodels, SciPy
 
+**Data:** Rosenstone, S. J., Kinder, D. R., Miller, W. E., & the National Election Studies. (2016). ANES 1996 Time Series Study (ICPSR 6896; Version 6) [Data set]. Inter-university Consortium for Political and Social Research. https://doi.org/10.3886/ICPSR06896.v6 — Subset of 944 respondents distributed with statsmodels (sm.datasets.anes96); public domain.
+
+
 ```python
 import matplotlib.pyplot as plt
 import numpy as np

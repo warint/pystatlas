@@ -21,6 +21,9 @@ p-value.
 **R equivalent:** `ggplot2::stat_ecdf()`  
 **Libraries:** Matplotlib, NumPy, lifelines, SciPy
 
+**Data:** Rossi, P. H., Berk, R. A., & Lenihan, K. J. (1980). Money, Work, and Crime: Some Experimental Results. Academic Press. https://lifelines.readthedocs.io/en/latest/lifelines.datasets.html — Men released from Maryland state prisons in the 1970s, half randomly assigned to financial aid. Distributed with lifelines (lifelines.datasets.load_rossi).
+
+
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
