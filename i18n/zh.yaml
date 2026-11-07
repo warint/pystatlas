@@ -61,6 +61,13 @@ ui:
   author_p: '{name} 由 {author} 创建并维护。更多关于数据科学、统计学与人工智能的作品，请访问：{site}。'
   contribute_h: 参与贡献
   contribute_p: 新建一个包含 <code>plot.py</code> 的文件夹，运行 <code>python build.py</code>，然后提交 pull request。详见 {contrib}。
+  thanks_h: "致谢"
+  thanks_p: "PyStatlas 建立在开源软件、开放数据和 R 社区的成果之上。每个示例都使用了以下工作，或受其启发。"
+  thanks_py: "示例中使用的 Python 包"
+  thanks_data: "数据集"
+  thanks_inspiration: "灵感来源"
+  thanks_r: "示例所对应的 R 包"
+  thanks_site: "网站构建"
 categories:
   distributions:
     title: 分布

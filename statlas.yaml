@@ -6,3 +6,41 @@ site_url: https://warint.github.io/pystatlas/
 author: Thierry Warin
 author_url: https://www.warin.ca
 year: 2026
+
+# Thank-you section of the About / Cite page. Python and R package lists are
+# derived from the gallery scripts; the entries below are curated by hand.
+thanks:
+  python_urls:
+    NumPy: https://numpy.org
+    pandas: https://pandas.pydata.org
+    Matplotlib: https://matplotlib.org
+    seaborn: https://seaborn.pydata.org
+    SciPy: https://scipy.org
+    statsmodels: https://www.statsmodels.org
+    scikit-learn: https://scikit-learn.org
+    lifelines: https://lifelines.readthedocs.io
+  datasets:
+    - name: "scikit-learn toy datasets — Breast Cancer Wisconsin, Iris, Diabetes, Wine"
+      url: https://scikit-learn.org/stable/datasets/toy_dataset.html
+    - name: "statsmodels datasets — El Niño, Engel food expenditure, ANES 1996, Fair's affairs, US state crime, Spector, Mauna Loa CO₂, sunspots"
+      url: https://www.statsmodels.org/stable/datasets/index.html
+    - name: "lifelines datasets — NCCTG lung cancer, Rossi recidivism, GBSG2 breast cancer"
+      url: https://lifelines.readthedocs.io/en/latest/lifelines.datasets.html
+    - name: "BCG vaccine trials (Colditz et al., 1994), as distributed in R's metafor (dat.bcg)"
+      url: https://wviechtb.github.io/metafor/reference/dat.bcg.html
+  inspiration:
+    - name: The R Graph Gallery (Yan Holtz)
+      url: https://r-graph-gallery.com
+    - name: ggstats (Joseph Larmarange)
+      url: https://larmarange.github.io/ggstats/
+    - name: ggstatsplot (Indrajeet Patil)
+      url: https://indrajeetpatil.github.io/ggstatsplot/
+  site:
+    - name: PyYAML
+      url: https://pyyaml.org
+    - name: Pygments
+      url: https://pygments.org
+    - name: Pillow
+      url: https://python-pillow.org
+    - name: GitHub Pages
+      url: https://pages.github.com

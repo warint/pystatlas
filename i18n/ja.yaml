@@ -62,6 +62,13 @@ ui:
   author_p: "{name} は {author} が作成・運営しています。データサイエンス、統計学、AI に関するその他の活動は {site} をご覧ください。"
   contribute_h: 貢献する
   contribute_p: "<code>plot.py</code> を含むフォルダを追加し、<code>python build.py</code> を実行して、プルリクエストを送ってください。詳しくは {contrib} をご覧ください。"
+  thanks_h: "謝辞"
+  thanks_p: "PyStatlas は、オープンソースソフトウェア、オープンデータ、そして R コミュニティの成果の上に成り立っています。すべての例は、以下の成果を用いて、あるいはそれに着想を得て作られています。"
+  thanks_py: "例で使用している Python パッケージ"
+  thanks_data: "データセット"
+  thanks_inspiration: "着想を得たプロジェクト"
+  thanks_r: "例が再現している R パッケージ"
+  thanks_site: "サイトの構築"
 categories:
   distributions:
     title: 分布

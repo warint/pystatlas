@@ -579,6 +579,30 @@ def style_page(rootp: str) -> str:
 </section>"""
 
 
+def thanks_block(cats: list["Category"]) -> str:
+    th = CONFIG["thanks"]
+    exs = [e for c in cats for e in c.examples]
+    link = lambda name, url: f'<a href="{url}">{esc(name)}</a>'
+    used = {l for e in exs for l in e.libs}
+    py = [l for l in th["python_urls"] if l in used] + sorted(used - set(th["python_urls"]))
+    py_html = " · ".join(link(l, th["python_urls"][l]) if l in th["python_urls"] else esc(l) for l in py)
+    rpk = sorted({m for e in exs if e.r for m in re.findall(r"([A-Za-z][A-Za-z0-9.]*)::", e.r)}, key=str.lower)
+    bioc = {"ComplexHeatmap"}  # Bioconductor, not CRAN
+    r_url = lambda m: (f"https://bioconductor.org/packages/{m}/" if m in bioc
+                       else f"https://cran.r-project.org/package={m}")
+    r_html = " · ".join(link(m, r_url(m)) for m in rpk)
+    items = lambda key: "".join(f"<li>{link(d['name'], d['url'])}</li>" for d in th[key])
+    return f"""<section class="thanks" id="thanks">
+<h2>{esc(t('thanks_h'))}</h2>
+<p>{esc(t('thanks_p'))}</p>
+<h3>{esc(t('thanks_py'))}</h3><p class="pkgs">{py_html}</p>
+<h3>{esc(t('thanks_data'))}</h3><ul>{items('datasets')}</ul>
+<h3>{esc(t('thanks_inspiration'))}</h3><ul>{items('inspiration')}</ul>
+<h3>{esc(t('thanks_r'))}</h3><p class="pkgs">{r_html}</p>
+<h3>{esc(t('thanks_site'))}</h3><p class="pkgs">{" · ".join(link(d['name'], d['url']) for d in th['site'])}</p>
+</section>"""
+
+
 def about_page(cats: list["Category"]) -> str:
     name = esc(CONFIG["name"])
     author = f'<strong><a href="{CONFIG["author_url"]}">{esc(CONFIG["author"])}</a></strong>'
@@ -596,6 +620,7 @@ def about_page(cats: list["Category"]) -> str:
 {cite_block()}
 <h2>{esc(t('contribute_h'))}</h2>
 <p>{t('contribute_p', contrib=f'<a href="{CONFIG["repo_url"]}/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>')}</p>
+{thanks_block(cats)}
 </section>"""
 
 

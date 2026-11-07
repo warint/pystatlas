@@ -61,6 +61,13 @@ ui:
   author_p: "{name} est créé et maintenu par {author}. Retrouvez ses autres travaux en science des données, en statistique et en IA : {site}."
   contribute_h: "Contribuer"
   contribute_p: "Ajoutez un dossier contenant un <code>plot.py</code>, lancez <code>python build.py</code>, puis ouvrez une pull request. Voir {contrib}."
+  thanks_h: "Remerciements"
+  thanks_p: "PyStatlas s'appuie sur des logiciels libres, des données ouvertes et la communauté R. Chaque exemple est construit avec les travaux ci-dessous, ou inspiré par eux."
+  thanks_py: "Paquets Python utilisés dans les exemples"
+  thanks_data: "Jeux de données"
+  thanks_inspiration: "Sources d'inspiration"
+  thanks_r: "Paquets R dont les exemples reprennent les graphiques"
+  thanks_site: "Construction du site"
 categories:
   distributions:
     title: "Distributions"

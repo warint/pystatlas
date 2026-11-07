@@ -63,3 +63,10 @@ ui:
   author_p: "{name} is created and maintained by {author}. More of his work on data science, statistics and AI: {site}."
   contribute_h: Contribute
   contribute_p: "Add a folder with a <code>plot.py</code>, run <code>python build.py</code>, open a pull request. See {contrib}."
+  thanks_h: "Thank you"
+  thanks_p: "PyStatlas stands on the shoulders of open-source software, open data and the R community. Every example is built with, or inspired by, the work below."
+  thanks_py: "Python packages used in the examples"
+  thanks_data: "Datasets"
+  thanks_inspiration: "Inspiration"
+  thanks_r: "R packages whose charts the examples mirror"
+  thanks_site: "Building the site"
