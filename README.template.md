@@ -4,7 +4,7 @@
 
 <h1 align="center">PyStatlas</h1>
 
-<p align="center"><b>The Python gallery of statistical graphics for the social sciences.</b><br>
+<p align="center"><b>A Python gallery of statistical graphics for the social sciences.</b><br>
 {{N}} charts · {{K}} families · copy‑paste Python code · inspired by the R Graph Gallery, <code>ggstats</code> and <code>ggstatsplot</code>.</p>
 
 <p align="center">
