@@ -3,3 +3,7 @@ __pycache__/
 *.pyc
 .DS_Store
 .ipynb_checkpoints/
+
+# Duplicate copies created by macOS/iCloud sync ("index 2.html", "plot 3.png")
+* [0-9]
+* [0-9].*
