@@ -1,5 +1,216 @@
 [
  {
+  "title": "Confusion matrix with metrics",
+  "summary": "How well a logistic regression predicts who voted Dole in 1996 \u2014 out-of-fold confusion matrix with counts and row shares, and bootstrap intervals for the headline metrics.",
+  "r": "yardstick::conf_mat() + autoplot()",
+  "category": "Machine learning",
+  "tags": [
+   "classification",
+   "confusion matrix",
+   "precision",
+   "recall",
+   "F1",
+   "cross-validation",
+   "bootstrap",
+   "elections",
+   "voting"
+  ],
+  "url": "machine-learning/confusion-matrix/"
+ },
+ {
+  "title": "Precision\u2013recall curves",
+  "summary": "Out-of-fold precision\u2013recall curves for two classifiers predicting which married women report an affair, with average precision and the no-skill baseline.",
+  "r": "yardstick::pr_curve() + autoplot()",
+  "category": "Machine learning",
+  "tags": [
+   "classification",
+   "precision",
+   "recall",
+   "average precision",
+   "imbalanced data",
+   "threshold",
+   "survey data",
+   "family"
+  ],
+  "url": "machine-learning/precision-recall/"
+ },
+ {
+  "title": "Learning curve",
+  "summary": "Training and cross-validated accuracy as the training set grows, for two models predicting which married women report an affair.",
+  "r": "caret::learning_curve_dat() + ggplot()",
+  "category": "Machine learning",
+  "tags": [
+   "learning curve",
+   "overfitting",
+   "bias-variance",
+   "cross-validation",
+   "sample size",
+   "survey data",
+   "family"
+  ],
+  "url": "machine-learning/learning-curve/"
+ },
+ {
+  "title": "Cross-validated model comparison",
+  "summary": "Fold-by-fold R\u00b2 of six models predicting California school districts' maths results, with means and corrected 95% intervals.",
+  "r": "caret::resamples() + bwplot() / tune::autoplot()",
+  "category": "Machine learning",
+  "tags": [
+   "model selection",
+   "cross-validation",
+   "repeated k-fold",
+   "Nadeau-Bengio",
+   "R\u00b2",
+   "education"
+  ],
+  "url": "machine-learning/model-comparison/"
+ },
+ {
+  "title": "Permutation importance",
+  "summary": "Which district characteristics a random forest relies on to predict maths results \u2014 drop in test-set R\u00b2 when each one is shuffled.",
+  "r": "vip::vip(method = \"permute\")",
+  "category": "Machine learning",
+  "tags": [
+   "feature importance",
+   "permutation",
+   "model-agnostic",
+   "interpretability",
+   "random forest",
+   "education",
+   "poverty"
+  ],
+  "url": "machine-learning/permutation-importance/"
+ },
+ {
+  "title": "Partial dependence with ICE curves",
+  "summary": "How predicted maths results change with poverty and with spending per pupil \u2014 the average (PDP) over one curve per school district (ICE).",
+  "r": "pdp::partial(ice = TRUE) + autoplot() / iml::FeatureEffect",
+  "category": "Machine learning",
+  "tags": [
+   "partial dependence",
+   "ICE",
+   "interpretability",
+   "non-linearity",
+   "gradient boosting",
+   "education",
+   "poverty"
+  ],
+  "url": "machine-learning/partial-dependence/"
+ },
+ {
+  "title": "SHAP summary (beeswarm)",
+  "summary": "Every school district's SHAP value for every characteristic, coloured by the characteristic's value, with mean |SHAP| importance.",
+  "r": "shapviz::sv_importance(kind = \"beeswarm\")",
+  "category": "Machine learning",
+  "tags": [
+   "SHAP",
+   "Shapley values",
+   "beeswarm",
+   "feature importance",
+   "interpretability",
+   "gradient boosting",
+   "education",
+   "poverty"
+  ],
+  "url": "machine-learning/shap-beeswarm/"
+ },
+ {
+  "title": "SHAP dependence plot",
+  "summary": "How the share of low-income students feeds into each district's predicted maths results, coloured by its strongest interaction partner, with a smooth trend.",
+  "r": "shapviz::sv_dependence()",
+  "category": "Machine learning",
+  "tags": [
+   "SHAP",
+   "dependence plot",
+   "interaction",
+   "non-linearity",
+   "LOWESS",
+   "interpretability",
+   "education",
+   "poverty"
+  ],
+  "url": "machine-learning/shap-dependence/"
+ },
+ {
+  "title": "SHAP waterfall for one prediction",
+  "summary": "How each characteristic moves one struggling school district's predicted maths results from the average to the model's output.",
+  "r": "shapviz::sv_waterfall()",
+  "category": "Machine learning",
+  "tags": [
+   "SHAP",
+   "waterfall",
+   "local explanation",
+   "individual prediction",
+   "interpretability",
+   "education"
+  ],
+  "url": "machine-learning/shap-waterfall/"
+ },
+ {
+  "title": "Choropleth with spatial weights",
+  "summary": "A map of one variable with the neighbour network drawn on top \u2014 the structure every spatial statistic relies on.",
+  "r": "spdep::poly2nb() + plot(nb, coords)",
+  "category": "Spatial data",
+  "tags": [
+   "spatial weights",
+   "contiguity",
+   "queen",
+   "choropleth",
+   "neighbours",
+   "Guerry",
+   "literacy"
+  ],
+  "url": "spatial-data/spatial-weights/"
+ },
+ {
+  "title": "Moran scatterplot (global autocorrelation)",
+  "summary": "Each area against the average of its neighbours, with Moran's I, its permutation test and the reference distribution.",
+  "r": "spdep::moran.plot() + spdep::moran.mc()",
+  "category": "Spatial data",
+  "tags": [
+   "spatial autocorrelation",
+   "Moran's I",
+   "global",
+   "permutation test",
+   "spatial lag",
+   "Guerry",
+   "literacy"
+  ],
+  "url": "spatial-data/moran-scatterplot/"
+ },
+ {
+  "title": "LISA cluster map (local autocorrelation)",
+  "summary": "Where the clusters and spatial outliers are \u2014 local Moran's I for each area, mapped with its permutation significance.",
+  "r": "spdep::localmoran_perm() / rgeoda::local_moran()",
+  "category": "Spatial data",
+  "tags": [
+   "spatial autocorrelation",
+   "LISA",
+   "local Moran",
+   "hot spots",
+   "clusters",
+   "permutation test",
+   "Guerry",
+   "literacy"
+  ],
+  "url": "spatial-data/lisa-cluster-map/"
+ },
+ {
+  "title": "Spatial correlogram",
+  "summary": "Moran's I at increasing neighbour orders, with a permutation envelope \u2014 how far spatial clustering reaches.",
+  "r": "spdep::sp.correlogram(method = \"I\")",
+  "category": "Spatial data",
+  "tags": [
+   "spatial autocorrelation",
+   "correlogram",
+   "Moran's I",
+   "higher-order neighbours",
+   "spatial scale",
+   "Guerry"
+  ],
+  "url": "spatial-data/spatial-correlogram/"
+ },
+ {
   "title": "Histogram with density",
   "summary": "Histogram, kernel density and fitted normal curve, with shape statistics.",
   "r": "ggplot2::geom_histogram() + geom_density()",
@@ -711,216 +922,5 @@
    "Pygmalion effect"
   ],
   "url": "inference-uncertainty/funnel-plot/"
- },
- {
-  "title": "Confusion matrix with metrics",
-  "summary": "How well a logistic regression predicts who voted Dole in 1996 \u2014 out-of-fold confusion matrix with counts and row shares, and bootstrap intervals for the headline metrics.",
-  "r": "yardstick::conf_mat() + autoplot()",
-  "category": "Machine learning",
-  "tags": [
-   "classification",
-   "confusion matrix",
-   "precision",
-   "recall",
-   "F1",
-   "cross-validation",
-   "bootstrap",
-   "elections",
-   "voting"
-  ],
-  "url": "machine-learning/confusion-matrix/"
- },
- {
-  "title": "Precision\u2013recall curves",
-  "summary": "Out-of-fold precision\u2013recall curves for two classifiers predicting which married women report an affair, with average precision and the no-skill baseline.",
-  "r": "yardstick::pr_curve() + autoplot()",
-  "category": "Machine learning",
-  "tags": [
-   "classification",
-   "precision",
-   "recall",
-   "average precision",
-   "imbalanced data",
-   "threshold",
-   "survey data",
-   "family"
-  ],
-  "url": "machine-learning/precision-recall/"
- },
- {
-  "title": "Learning curve",
-  "summary": "Training and cross-validated accuracy as the training set grows, for two models predicting which married women report an affair.",
-  "r": "caret::learning_curve_dat() + ggplot()",
-  "category": "Machine learning",
-  "tags": [
-   "learning curve",
-   "overfitting",
-   "bias-variance",
-   "cross-validation",
-   "sample size",
-   "survey data",
-   "family"
-  ],
-  "url": "machine-learning/learning-curve/"
- },
- {
-  "title": "Cross-validated model comparison",
-  "summary": "Fold-by-fold R\u00b2 of six models predicting California school districts' maths results, with means and corrected 95% intervals.",
-  "r": "caret::resamples() + bwplot() / tune::autoplot()",
-  "category": "Machine learning",
-  "tags": [
-   "model selection",
-   "cross-validation",
-   "repeated k-fold",
-   "Nadeau-Bengio",
-   "R\u00b2",
-   "education"
-  ],
-  "url": "machine-learning/model-comparison/"
- },
- {
-  "title": "Permutation importance",
-  "summary": "Which district characteristics a random forest relies on to predict maths results \u2014 drop in test-set R\u00b2 when each one is shuffled.",
-  "r": "vip::vip(method = \"permute\")",
-  "category": "Machine learning",
-  "tags": [
-   "feature importance",
-   "permutation",
-   "model-agnostic",
-   "interpretability",
-   "random forest",
-   "education",
-   "poverty"
-  ],
-  "url": "machine-learning/permutation-importance/"
- },
- {
-  "title": "Partial dependence with ICE curves",
-  "summary": "How predicted maths results change with poverty and with spending per pupil \u2014 the average (PDP) over one curve per school district (ICE).",
-  "r": "pdp::partial(ice = TRUE) + autoplot() / iml::FeatureEffect",
-  "category": "Machine learning",
-  "tags": [
-   "partial dependence",
-   "ICE",
-   "interpretability",
-   "non-linearity",
-   "gradient boosting",
-   "education",
-   "poverty"
-  ],
-  "url": "machine-learning/partial-dependence/"
- },
- {
-  "title": "SHAP summary (beeswarm)",
-  "summary": "Every school district's SHAP value for every characteristic, coloured by the characteristic's value, with mean |SHAP| importance.",
-  "r": "shapviz::sv_importance(kind = \"beeswarm\")",
-  "category": "Machine learning",
-  "tags": [
-   "SHAP",
-   "Shapley values",
-   "beeswarm",
-   "feature importance",
-   "interpretability",
-   "gradient boosting",
-   "education",
-   "poverty"
-  ],
-  "url": "machine-learning/shap-beeswarm/"
- },
- {
-  "title": "SHAP dependence plot",
-  "summary": "How the share of low-income students feeds into each district's predicted maths results, coloured by its strongest interaction partner, with a smooth trend.",
-  "r": "shapviz::sv_dependence()",
-  "category": "Machine learning",
-  "tags": [
-   "SHAP",
-   "dependence plot",
-   "interaction",
-   "non-linearity",
-   "LOWESS",
-   "interpretability",
-   "education",
-   "poverty"
-  ],
-  "url": "machine-learning/shap-dependence/"
- },
- {
-  "title": "SHAP waterfall for one prediction",
-  "summary": "How each characteristic moves one struggling school district's predicted maths results from the average to the model's output.",
-  "r": "shapviz::sv_waterfall()",
-  "category": "Machine learning",
-  "tags": [
-   "SHAP",
-   "waterfall",
-   "local explanation",
-   "individual prediction",
-   "interpretability",
-   "education"
-  ],
-  "url": "machine-learning/shap-waterfall/"
- },
- {
-  "title": "Choropleth with spatial weights",
-  "summary": "A map of one variable with the neighbour network drawn on top \u2014 the structure every spatial statistic relies on.",
-  "r": "spdep::poly2nb() + plot(nb, coords)",
-  "category": "Spatial data",
-  "tags": [
-   "spatial weights",
-   "contiguity",
-   "queen",
-   "choropleth",
-   "neighbours",
-   "Guerry",
-   "literacy"
-  ],
-  "url": "spatial-data/spatial-weights/"
- },
- {
-  "title": "Moran scatterplot (global autocorrelation)",
-  "summary": "Each area against the average of its neighbours, with Moran's I, its permutation test and the reference distribution.",
-  "r": "spdep::moran.plot() + spdep::moran.mc()",
-  "category": "Spatial data",
-  "tags": [
-   "spatial autocorrelation",
-   "Moran's I",
-   "global",
-   "permutation test",
-   "spatial lag",
-   "Guerry",
-   "literacy"
-  ],
-  "url": "spatial-data/moran-scatterplot/"
- },
- {
-  "title": "LISA cluster map (local autocorrelation)",
-  "summary": "Where the clusters and spatial outliers are \u2014 local Moran's I for each area, mapped with its permutation significance.",
-  "r": "spdep::localmoran_perm() / rgeoda::local_moran()",
-  "category": "Spatial data",
-  "tags": [
-   "spatial autocorrelation",
-   "LISA",
-   "local Moran",
-   "hot spots",
-   "clusters",
-   "permutation test",
-   "Guerry",
-   "literacy"
-  ],
-  "url": "spatial-data/lisa-cluster-map/"
- },
- {
-  "title": "Spatial correlogram",
-  "summary": "Moran's I at increasing neighbour orders, with a permutation envelope \u2014 how far spatial clustering reaches.",
-  "r": "spdep::sp.correlogram(method = \"I\")",
-  "category": "Spatial data",
-  "tags": [
-   "spatial autocorrelation",
-   "correlogram",
-   "Moran's I",
-   "higher-order neighbours",
-   "spatial scale",
-   "Guerry"
-  ],
-  "url": "spatial-data/spatial-correlogram/"
  }
 ]

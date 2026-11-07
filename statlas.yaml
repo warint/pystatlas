@@ -6,6 +6,9 @@ site_url: https://warint.github.io/pystatlas/
 author: Thierry Warin
 author_url: https://www.warin.ca
 year: 2026
+# Families shown first on the home page, the README and the About table —
+# the ones that set PyStatlas apart from other chart galleries.
+featured_first: [machine-learning, spatial-data]
 
 # Thank-you section of the About / Cite page. Python and R package lists are
 # derived from the gallery scripts; the entries below are curated by hand.

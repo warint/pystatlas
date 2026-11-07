@@ -3,6 +3,8 @@
   <url><loc>https://warint.github.io/pystatlas/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/about.html</loc></url>
   <url><loc>https://warint.github.io/pystatlas/style.html</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/machine-learning/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/spatial-data/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/distributions/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/group-comparisons/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/proportions-surveys/</loc></url>
@@ -13,8 +15,19 @@
   <url><loc>https://warint.github.io/pystatlas/time-series/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/multivariate/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/inference-uncertainty/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/machine-learning/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/spatial-data/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/machine-learning/confusion-matrix/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/machine-learning/precision-recall/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/machine-learning/learning-curve/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/machine-learning/model-comparison/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/machine-learning/permutation-importance/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/machine-learning/partial-dependence/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/machine-learning/shap-beeswarm/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/machine-learning/shap-dependence/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/machine-learning/shap-waterfall/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/spatial-data/spatial-weights/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/spatial-data/moran-scatterplot/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/spatial-data/lisa-cluster-map/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/spatial-data/spatial-correlogram/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/distributions/histogram-density/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/distributions/raincloud/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/distributions/ridgeline/</loc></url>
@@ -63,22 +76,11 @@
   <url><loc>https://warint.github.io/pystatlas/inference-uncertainty/bland-altman/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/inference-uncertainty/meta-analysis-forest/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/inference-uncertainty/funnel-plot/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/machine-learning/confusion-matrix/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/machine-learning/precision-recall/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/machine-learning/learning-curve/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/machine-learning/model-comparison/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/machine-learning/permutation-importance/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/machine-learning/partial-dependence/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/machine-learning/shap-beeswarm/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/machine-learning/shap-dependence/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/machine-learning/shap-waterfall/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/spatial-data/spatial-weights/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/spatial-data/moran-scatterplot/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/spatial-data/lisa-cluster-map/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/spatial-data/spatial-correlogram/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/fr/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/fr/about.html</loc></url>
   <url><loc>https://warint.github.io/pystatlas/fr/style.html</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/fr/machine-learning/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/fr/spatial-data/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/fr/distributions/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/fr/group-comparisons/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/fr/proportions-surveys/</loc></url>
@@ -89,8 +91,19 @@
   <url><loc>https://warint.github.io/pystatlas/fr/time-series/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/fr/multivariate/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/fr/inference-uncertainty/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/fr/machine-learning/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/fr/spatial-data/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/fr/machine-learning/confusion-matrix/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/fr/machine-learning/precision-recall/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/fr/machine-learning/learning-curve/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/fr/machine-learning/model-comparison/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/fr/machine-learning/permutation-importance/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/fr/machine-learning/partial-dependence/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/fr/machine-learning/shap-beeswarm/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/fr/machine-learning/shap-dependence/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/fr/machine-learning/shap-waterfall/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/fr/spatial-data/spatial-weights/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/fr/spatial-data/moran-scatterplot/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/fr/spatial-data/lisa-cluster-map/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/fr/spatial-data/spatial-correlogram/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/fr/distributions/histogram-density/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/fr/distributions/raincloud/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/fr/distributions/ridgeline/</loc></url>
@@ -139,22 +152,11 @@
   <url><loc>https://warint.github.io/pystatlas/fr/inference-uncertainty/bland-altman/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/fr/inference-uncertainty/meta-analysis-forest/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/fr/inference-uncertainty/funnel-plot/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/fr/machine-learning/confusion-matrix/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/fr/machine-learning/precision-recall/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/fr/machine-learning/learning-curve/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/fr/machine-learning/model-comparison/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/fr/machine-learning/permutation-importance/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/fr/machine-learning/partial-dependence/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/fr/machine-learning/shap-beeswarm/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/fr/machine-learning/shap-dependence/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/fr/machine-learning/shap-waterfall/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/fr/spatial-data/spatial-weights/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/fr/spatial-data/moran-scatterplot/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/fr/spatial-data/lisa-cluster-map/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/fr/spatial-data/spatial-correlogram/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/ja/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/ja/about.html</loc></url>
   <url><loc>https://warint.github.io/pystatlas/ja/style.html</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/ja/machine-learning/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/ja/spatial-data/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/ja/distributions/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/ja/group-comparisons/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/ja/proportions-surveys/</loc></url>
@@ -165,8 +167,19 @@
   <url><loc>https://warint.github.io/pystatlas/ja/time-series/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/ja/multivariate/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/ja/inference-uncertainty/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/ja/machine-learning/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/ja/spatial-data/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/ja/machine-learning/confusion-matrix/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/ja/machine-learning/precision-recall/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/ja/machine-learning/learning-curve/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/ja/machine-learning/model-comparison/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/ja/machine-learning/permutation-importance/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/ja/machine-learning/partial-dependence/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/ja/machine-learning/shap-beeswarm/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/ja/machine-learning/shap-dependence/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/ja/machine-learning/shap-waterfall/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/ja/spatial-data/spatial-weights/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/ja/spatial-data/moran-scatterplot/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/ja/spatial-data/lisa-cluster-map/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/ja/spatial-data/spatial-correlogram/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/ja/distributions/histogram-density/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/ja/distributions/raincloud/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/ja/distributions/ridgeline/</loc></url>
@@ -215,22 +228,11 @@
   <url><loc>https://warint.github.io/pystatlas/ja/inference-uncertainty/bland-altman/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/ja/inference-uncertainty/meta-analysis-forest/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/ja/inference-uncertainty/funnel-plot/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/ja/machine-learning/confusion-matrix/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/ja/machine-learning/precision-recall/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/ja/machine-learning/learning-curve/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/ja/machine-learning/model-comparison/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/ja/machine-learning/permutation-importance/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/ja/machine-learning/partial-dependence/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/ja/machine-learning/shap-beeswarm/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/ja/machine-learning/shap-dependence/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/ja/machine-learning/shap-waterfall/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/ja/spatial-data/spatial-weights/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/ja/spatial-data/moran-scatterplot/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/ja/spatial-data/lisa-cluster-map/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/ja/spatial-data/spatial-correlogram/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/zh/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/zh/about.html</loc></url>
   <url><loc>https://warint.github.io/pystatlas/zh/style.html</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/zh/machine-learning/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/zh/spatial-data/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/zh/distributions/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/zh/group-comparisons/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/zh/proportions-surveys/</loc></url>
@@ -241,8 +243,19 @@
   <url><loc>https://warint.github.io/pystatlas/zh/time-series/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/zh/multivariate/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/zh/inference-uncertainty/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/zh/machine-learning/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/zh/spatial-data/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/zh/machine-learning/confusion-matrix/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/zh/machine-learning/precision-recall/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/zh/machine-learning/learning-curve/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/zh/machine-learning/model-comparison/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/zh/machine-learning/permutation-importance/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/zh/machine-learning/partial-dependence/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/zh/machine-learning/shap-beeswarm/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/zh/machine-learning/shap-dependence/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/zh/machine-learning/shap-waterfall/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/zh/spatial-data/spatial-weights/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/zh/spatial-data/moran-scatterplot/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/zh/spatial-data/lisa-cluster-map/</loc></url>
+  <url><loc>https://warint.github.io/pystatlas/zh/spatial-data/spatial-correlogram/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/zh/distributions/histogram-density/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/zh/distributions/raincloud/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/zh/distributions/ridgeline/</loc></url>
@@ -291,17 +304,4 @@
   <url><loc>https://warint.github.io/pystatlas/zh/inference-uncertainty/bland-altman/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/zh/inference-uncertainty/meta-analysis-forest/</loc></url>
   <url><loc>https://warint.github.io/pystatlas/zh/inference-uncertainty/funnel-plot/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/zh/machine-learning/confusion-matrix/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/zh/machine-learning/precision-recall/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/zh/machine-learning/learning-curve/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/zh/machine-learning/model-comparison/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/zh/machine-learning/permutation-importance/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/zh/machine-learning/partial-dependence/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/zh/machine-learning/shap-beeswarm/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/zh/machine-learning/shap-dependence/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/zh/machine-learning/shap-waterfall/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/zh/spatial-data/spatial-weights/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/zh/spatial-data/moran-scatterplot/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/zh/spatial-data/lisa-cluster-map/</loc></url>
-  <url><loc>https://warint.github.io/pystatlas/zh/spatial-data/spatial-correlogram/</loc></url>
 </urlset>

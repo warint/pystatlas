@@ -155,7 +155,10 @@ def discover() -> list[Category]:
         for edir in sorted(p for p in cdir.iterdir() if (p / "plot.py").exists()):
             cat.examples.append(parse_example(cat, edir))
         cats.append(cat)
-    return sorted(cats, key=lambda c: c.order)
+    # Families listed under `featured_first` in statlas.yaml lead the page, in
+    # that order; the rest keep their folder number.
+    first = CONFIG.get("featured_first") or []
+    return sorted(cats, key=lambda c: (first.index(c.slug) if c.slug in first else len(first), c.order))
 
 
 # --------------------------------------------------------------------------- render
