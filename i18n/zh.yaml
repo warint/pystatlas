@@ -8,7 +8,7 @@ ui:
   nav_about: 关于
   nav_cite: 引用
   eyebrow: '{n} 张统计图表 · {k} 个类别 · 100% Python'
-  hero_1: "社会科学统计，"
+  hero_1: "社会数据科学，"
   hero_2: "尽在 Python。"
   by: 作者
   part_of: 隶属于

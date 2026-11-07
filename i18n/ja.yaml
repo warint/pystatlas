@@ -9,7 +9,7 @@ ui:
   nav_about: 概要
   nav_cite: 引用
   eyebrow: "統計グラフ {n} 種 · {k} カテゴリ · 100% Python"
-  hero_1: "社会科学の統計を、"
+  hero_1: "社会データサイエンスを、"
   hero_2: "美しく Python で。"
   by: 著者：
   part_of: 収録：

@@ -10,7 +10,7 @@ ui:
   nav_about: About
   nav_cite: Cite
   eyebrow: "{n} statistical charts · {k} families · 100% Python"
-  hero_1: "Social-science statistics."
+  hero_1: "Social data science."
   hero_2: "Beautifully Pythonic."
   by: By
   part_of: part of
