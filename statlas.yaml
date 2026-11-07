@@ -20,6 +20,9 @@ thanks:
     scikit-learn: https://scikit-learn.org
     lifelines: https://lifelines.readthedocs.io
     SHAP: https://shap.readthedocs.io
+    GeoPandas: https://geopandas.org
+    libpysal: https://pysal.org/libpysal/
+    esda: https://pysal.org/esda/
   datasets:
     - name: "All data sources, with full references — see “Data sources” below"
       url: "#data"
@@ -59,6 +62,9 @@ thanks:
     - name: "SHAP (Scott Lundberg and Su-In Lee, 2017) and shapviz (Michael Mayer)"
       url: https://shap.readthedocs.io
       pkgs: [shapviz]
+    - name: "spdep (Roger Bivand) and GeoDa / rgeoda (Luc Anselin, Xun Li)"
+      url: https://geodacenter.github.io
+      pkgs: [spdep, rgeoda]
     - name: "vip and pdp (Brandon Greenwell, Bradley Boehmke) and tidymodels' yardstick"
       url: https://koalaverse.github.io/vip/
       pkgs: [vip, pdp, yardstick]

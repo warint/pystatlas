@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="fr" data-copied="Copié ✓">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carte des regroupements LISA (autocorrélation locale) · PyStatlas</title>
+<meta name="description" content="Où se trouvent les regroupements et les valeurs atypiques spatiales — I de Moran local pour chaque zone, cartographié avec sa significativité par permutation.">
+<meta name="author" content="Thierry Warin">
+<link rel="author" href="https://www.warin.ca">
+<meta name="citation_title" content="LISA cluster map (local autocorrelation) — PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences">
+<meta name="citation_author" content="Warin, Thierry">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_online_date" content="2026/11/06">
+<meta name="citation_publisher" content="Thierry Warin">
+<meta name="citation_language" content="fr">
+<meta name="citation_public_url" content="https://warint.github.io/pystatlas/fr/spatial-data/lisa-cluster-map/">
+<meta name="DC.creator" content="Warin, Thierry">
+<meta name="DC.title" content="LISA cluster map (local autocorrelation) — PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences">
+<meta name="DC.date" content="2026">
+<link rel="canonical" href="https://warint.github.io/pystatlas/fr/spatial-data/lisa-cluster-map/">
+<link rel="alternate" hreflang="en" href="https://warint.github.io/pystatlas/spatial-data/lisa-cluster-map/">
+<link rel="alternate" hreflang="fr" href="https://warint.github.io/pystatlas/fr/spatial-data/lisa-cluster-map/">
+<link rel="alternate" hreflang="ja" href="https://warint.github.io/pystatlas/ja/spatial-data/lisa-cluster-map/">
+<link rel="alternate" hreflang="zh-Hans" href="https://warint.github.io/pystatlas/zh/spatial-data/lisa-cluster-map/">
+<link rel="alternate" hreflang="x-default" href="https://warint.github.io/pystatlas/spatial-data/lisa-cluster-map/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "LISA cluster map (local autocorrelation) — PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences", "url": "https://warint.github.io/pystatlas/fr/spatial-data/lisa-cluster-map/", "inLanguage": "fr", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "PyStatlas", "url": "https://warint.github.io/pystatlas/"}}</script>
+<meta property="og:title" content="Carte des regroupements LISA (autocorrélation locale) · PyStatlas">
+<meta property="og:description" content="Où se trouvent les regroupements et les valeurs atypiques spatiales — I de Moran local pour chaque zone, cartographié avec sa significativité par permutation.">
+<meta property="og:locale" content="fr">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/style.css?v=78904a38">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>PyStatlas</span></a>
+    <nav class="nav-links">
+      <a href="../../index.html#gallery" class="on">Galerie</a>
+      <a href="../../style.html" class="">Style</a>
+      <a href="../../about.html" class="">À propos</a>
+      <a href="../../about.html#cite" class="hide-sm">Citer</a>
+      <details class="lang"><summary aria-label="Language"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span>Français</span></summary><div class="lang-menu"><a href="../../../spatial-data/lisa-cluster-map/" hreflang="en" lang="en">English</a><a href="../../../fr/spatial-data/lisa-cluster-map/" hreflang="fr" lang="fr" class=on aria-current=true>Français</a><a href="../../../ja/spatial-data/lisa-cluster-map/" hreflang="ja" lang="ja">日本語</a><a href="../../../zh/spatial-data/lisa-cluster-map/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div></details>
+      <a href="https://github.com/warint/pystatlas" class="gh" aria-label="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </nav>
+  </div>
+</header>
+<main>
+<article class="wrap ex">
+  <div class="crumbs"><a href="../../index.html">Galerie</a><span>/</span><a href="../../spatial-data/index.html">Données spatiales</a></div>
+  <header class="ex-head"><h1>Carte des regroupements LISA (autocorrélation locale)</h1><p class="lede">Où se trouvent les regroupements et les valeurs atypiques spatiales — I de Moran local pour chaque zone, cartographié avec sa significativité par permutation.</p>
+  <p class="byline">Par <a href="https://www.warin.ca">Thierry Warin</a> · fait partie de <a href="../../index.html">PyStatlas</a></p></header>
+  <figure class="figure"><a href="../../../spatial-data/lisa-cluster-map/plot.png" target="_blank" rel="noopener"><img src="../../../spatial-data/lisa-cluster-map/plot.png" alt="Carte des regroupements LISA (autocorrélation locale)"></a></figure>
+  <div class="ex-cols">
+    <div class="prose"><p>Une statistique globale dit <em>si</em> une carte est regroupée ; un indicateur <strong>local</strong> d&#x27;association spatiale (LISA ; Anselin, 1995) dit <em>où</em>. Le I de Moran local se calcule pour chaque zone à partir de sa propre valeur et de celles de ses voisines. Les zones dont la statistique locale est significative (pseudo p &lt; 0,05, 999 permutations conditionnelles) sont colorées selon leur quadrant du diagramme de Moran : regroupements <strong>haut–haut</strong> et <strong>bas–bas</strong>, valeurs atypiques <strong>haut–bas</strong> ou <strong>bas–haut</strong>. Tout le reste est en gris.</p><p>Deux précautions accompagnent toute carte LISA. Les 85 tests ne sont pas indépendants et ne sont pas corrigés pour les comparaisons multiples : quelques zones significatives sont attendues par le seul hasard. Et une zone significative marque le <em>cœur</em> d&#x27;un regroupement, qui s&#x27;étend généralement à ses voisines. Les données sont les taux d&#x27;alphabétisation de Guerry (1833) pour 85 départements, chargés avec <strong>libpysal</strong> ; la statistique vient de <code>esda.Moran_Local</code> et la carte de <strong>GeoPandas</strong>.</p><p class="note">Le code et le texte à l&#x27;intérieur des figures sont en anglais.</p></div>
+    <aside class="meta"><div class="meta-row"><span>Équivalent R</span><code>spdep::localmoran_perm() / rgeoda::local_moran()</code></div><div class="meta-row"><span>Bibliothèques</span><div class="pills"><i>GeoPandas</i><i>Matplotlib</i><i>NumPy</i><i>esda</i><i>libpysal</i></div></div><div class="meta-row"><span>Thèmes</span><div class="pills"><i>spatial autocorrelation</i><i>LISA</i><i>local Moran</i><i>hot spots</i><i>clusters</i><i>permutation test</i><i>Guerry</i><i>literacy</i></div></div></aside>
+  </div>
+  <section class="code-card" id="code">
+    <div class="code-bar">
+      <span class="fname">lisa-cluster-map.py · 43 lignes</span>
+      <div class="code-actions">
+        <a class="btn ghost" href="../../../spatial-data/lisa-cluster-map/lisa-cluster-map.py" download>Télécharger</a>
+        <a class="btn ghost" href="https://github.com/warint/pystatlas/tree/main/gallery/12-spatial-data/03-lisa-cluster-map">GitHub</a>
+        <button class="btn copy" data-copy>Copier le code</button>
+      </div>
+    </div>
+    <pre class="code"><code><span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">esda.moran</span><span class="w"> </span><span class="kn">import</span> <span class="n">Moran_Local</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libpysal</span><span class="w"> </span><span class="kn">import</span> <span class="n">examples</span><span class="p">,</span> <span class="n">weights</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">Patch</span>
+
+<span class="c1"># Data: literacy of military conscripts in 85 départements, c. 1830 (Guerry, 1833)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">examples</span><span class="o">.</span><span class="n">load_example</span><span class="p">(</span><span class="s2">"Guerry"</span><span class="p">)</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="s2">"guerry.shp"</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="s2">"Litercy"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">Queen</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">use_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">w</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="s2">"r"</span>
+<span class="n">lisa</span> <span class="o">=</span> <span class="n">Moran_Local</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">permutations</span><span class="o">=</span><span class="mi">999</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Quadrants: 1 high–high, 2 low–high, 3 low–low, 4 high–low; grey if not significant</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s2">"High–high cluster"</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s2">"Low–low cluster"</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">"Low–high outlier"</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="s2">"High–low outlier"</span><span class="p">}</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s2">"#FF3B30"</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s2">"#007AFF"</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">"#9FCBFF"</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="s2">"#FFA8A2"</span><span class="p">}</span>
+<span class="n">sig</span> <span class="o">=</span> <span class="n">lisa</span><span class="o">.</span><span class="n">p_sim</span> <span class="o">&lt;</span> <span class="mf">0.05</span>
+<span class="n">g</span><span class="p">[</span><span class="s2">"cluster"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">lisa</span><span class="o">.</span><span class="n">q</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">((</span><span class="n">g</span><span class="p">[</span><span class="s2">"cluster"</span><span class="p">]</span> <span class="o">==</span> <span class="n">k</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">}</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">7.4</span><span class="p">))</span>
+<span class="n">g</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="n">colors</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s2">"#E5E5EA"</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">g</span><span class="p">[</span><span class="s2">"cluster"</span><span class="p">]],</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"white"</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">handles</span> <span class="o">=</span> <span class="p">[</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">labels</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">counts</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">labels</span> <span class="k">if</span> <span class="n">counts</span><span class="p">[</span><span class="n">k</span><span class="p">]]</span>
+<span class="n">handles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">"#E5E5EA"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"Not significant (</span><span class="si">{</span><span class="nb">int</span><span class="p">((</span><span class="o">~</span><span class="n">sig</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">}</span><span class="s2">)"</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="n">handles</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">"lower left"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+
+<span class="c1"># Name the strongest cluster cores</span>
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">lisa</span><span class="o">.</span><span class="n">p_sim</span><span class="p">,</span> <span class="n">Is</span><span class="o">=</span><span class="n">lisa</span><span class="o">.</span><span class="n">Is</span><span class="p">)[</span><span class="n">sig</span><span class="p">]</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">"Is"</span><span class="p">)</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">representative_point</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">"Dprtmnt"</span><span class="p">],</span> <span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#1D1D1F"</span><span class="p">,</span>
+                <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s2">"round,pad=0.15"</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s2">"white"</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s2">"none"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">))</span>
+
+<span class="n">north</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">g</span><span class="p">[</span><span class="s2">"cluster"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">g</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">g</span><span class="p">[</span><span class="s2">"cluster"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">where</span> <span class="o">=</span> <span class="s2">"north and east"</span> <span class="k">if</span> <span class="n">north</span> <span class="k">else</span> <span class="s2">"south"</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"A literate </span><span class="si">{</span><span class="n">where</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">counts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> high–high) against a less literate "</span>
+             <span class="sa">f</span><span class="s2">"block (</span><span class="si">{</span><span class="n">counts</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2"> low–low)"</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Local Moran's I, 999 permutations, pseudo p &lt; 0.05, no multiple-testing correction · "</span>
+        <span class="sa">f</span><span class="s2">"queen weights · n = </span><span class="si">{</span><span class="n">w</span><span class="o">.</span><span class="n">n</span><span class="si">}</span><span class="s2"> départements, Guerry (1833)"</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre>
+  </section>
+  <p class="hint">Les figures utilisent le <a href="../../style.html">style PyStatlas</a> (facultatif) : ajoutez <code>plt.style.use("pystatlas.mplstyle")</code> pour obtenir exactement le même rendu.</p>
+  <section class="data-src" id="data"><h2>Source des données</h2><ul><li><strong>Guerry&#x27;s moral statistics of France, c. 1830 (85 départements).</strong> Guerry, A.-M. (1833). Essai sur la statistique morale de la France. Crochard. Data as compiled in Friendly, M. (2007). A.-M. Guerry&#x27;s moral statistics of France: Challenges for multivariable spatial analysis. Statistical Science, 22(3), 368–399. <a href="https://doi.org/10.1214/07-STS241">https://doi.org/10.1214/07-STS241</a><br><span class="src-note">Prepared by the Center for Spatial Data Science (University of Chicago) from the R package Guerry (Friendly and Dray), provided “as is”. Fetched once and cached by libpysal (examples.load_example(&quot;Guerry&quot;)). Variables come from Guerry&#x27;s tables as translated by Whitt and Reinking (2002).</span></li></ul><p class="src-disclaimer">Les exemples illustrent des méthodes statistiques. Leurs titres décrivent ce que chaque figure montre dans ces données précises — souvent un échantillon restreint, daté ou partiel —, et non la position de l&#x27;auteur sur la question de fond. Pour l&#x27;interprétation, le contexte et la qualité des données, reportez-vous aux sources originales citées ici.</p></section>
+  <section class="cite" id="cite">
+  <div class="cite-head"><h2>Comment citer</h2>
+  <p>PyStatlas est créé et maintenu par <a href="https://www.warin.ca">Thierry Warin</a>. S'il vous a été utile dans vos travaux, merci de le citer.</p></div>
+  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). LISA cluster map (local autocorrelation). In PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences. https://warint.github.io/pystatlas/spatial-data/lisa-cluster-map/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). LISA cluster map (local autocorrelation). In PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences. https://warint.github.io/pystatlas/spatial-data/lisa-cluster-map/">Copier</button></div>
+  <div class="cite-box"><pre class="cite-bib">@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/pystatlas/}},
+  note         = {Source code: https://github.com/warint/pystatlas}
+}</pre><button class="btn ghost" data-copy-text="@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/pystatlas/}},
+  note         = {Source code: https://github.com/warint/pystatlas}
+}">Copier le BibTeX</button></div>
+</section>
+  <div class="pager"><a href="../../spatial-data/moran-scatterplot/"><small>Précédent</small>Diagramme de Moran (autocorrélation globale)</a><a class="next" href="../../spatial-data/spatial-correlogram/"><small>Suivant</small>Corrélogramme spatial</a></div>
+  <h2 class="rel-h">Plus dans Données spatiales</h2><div class="grid"><a class="card" href="../../spatial-data/spatial-weights/" data-cat="spatial-data" data-k="carte choroplèthe avec pondérations spatiales une carte d&#x27;une variable avec, par-dessus, le réseau des voisins — la structure sur laquelle repose toute statistique spatiale. choropleth with spatial weights a map of one variable with the neighbour network drawn on top — the structure every spatial statistic relies on. spdep::poly2nb() + plot(nb, coords) données spatiales spatial data spatial weights contiguity queen choropleth neighbours guerry literacy geopandas matplotlib numpy libpysal">
+  <div class="card-img"><img src="../../../spatial-data/spatial-weights/thumb.webp" alt="Carte choroplèthe avec pondérations spatiales" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">Données spatiales</span><h3>Carte choroplèthe avec pondérations spatiales</h3><p>Une carte d&#x27;une variable avec, par-dessus, le réseau des voisins — la structure sur laquelle repose toute statistique spatiale.</p><span class="card-r">spdep::poly2nb() + plot(nb, coords)</span></div>
+</a>
+<a class="card" href="../../spatial-data/moran-scatterplot/" data-cat="spatial-data" data-k="diagramme de moran (autocorrélation globale) chaque zone face à la moyenne de ses voisines, avec le i de moran, son test par permutation et la distribution de référence. moran scatterplot (global autocorrelation) each area against the average of its neighbours, with moran&#x27;s i, its permutation test and the reference distribution. spdep::moran.plot() + spdep::moran.mc() données spatiales spatial data spatial autocorrelation moran&#x27;s i global permutation test spatial lag guerry literacy geopandas matplotlib numpy esda libpysal">
+  <div class="card-img"><img src="../../../spatial-data/moran-scatterplot/thumb.webp" alt="Diagramme de Moran (autocorrélation globale)" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">Données spatiales</span><h3>Diagramme de Moran (autocorrélation globale)</h3><p>Chaque zone face à la moyenne de ses voisines, avec le I de Moran, son test par permutation et la distribution de référence.</p><span class="card-r">spdep::moran.plot() + spdep::moran.mc()</span></div>
+</a>
+<a class="card" href="../../spatial-data/spatial-correlogram/" data-cat="spatial-data" data-k="corrélogramme spatial le i de moran à des ordres de voisinage croissants, avec une enveloppe de permutation — jusqu&#x27;où porte le regroupement spatial. spatial correlogram moran&#x27;s i at increasing neighbour orders, with a permutation envelope — how far spatial clustering reaches. spdep::sp.correlogram(method = &quot;i&quot;) données spatiales spatial data spatial autocorrelation correlogram moran&#x27;s i higher-order neighbours spatial scale guerry geopandas matplotlib numpy esda libpysal">
+  <div class="card-img"><img src="../../../spatial-data/spatial-correlogram/thumb.webp" alt="Corrélogramme spatial" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">Données spatiales</span><h3>Corrélogramme spatial</h3><p>Le I de Moran à des ordres de voisinage croissants, avec une enveloppe de permutation — jusqu&#x27;où porte le regroupement spatial.</p><span class="card-r">spdep::sp.correlogram(method = &quot;I&quot;)</span></div>
+</a></div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div><strong>PyStatlas</strong> · Une galerie Python de graphiques statistiques pour les sciences sociales<br>Créé par <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">Comment citer</a></div>
+    <div class="foot-links"><a href="https://github.com/warint/pystatlas">GitHub</a><a href="../../style.html">Style des graphiques</a><a href="https://github.com/warint/pystatlas/blob/main/CONTRIBUTING.md">Contribuer</a><span>Licence MIT</span></div>
+  </div>
+  <div class="wrap foot-langs"><a href="../../../spatial-data/lisa-cluster-map/" hreflang="en" lang="en">English</a><a href="../../../fr/spatial-data/lisa-cluster-map/" hreflang="fr" lang="fr" class=on aria-current=true>Français</a><a href="../../../ja/spatial-data/lisa-cluster-map/" hreflang="ja" lang="ja">日本語</a><a href="../../../zh/spatial-data/lisa-cluster-map/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div>
+</footer>
+<script src="../../../assets/app.js?v=78904a38"></script>
+</body>
+</html>

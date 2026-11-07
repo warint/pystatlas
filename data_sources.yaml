@@ -94,3 +94,10 @@ simulation:
   cite: "Simulated data with a fixed random seed, created for this example."
   url: ""
   note: "No real respondents, documents or measurements: the numbers only illustrate how the chart and its statistics work."
+
+guerry:
+  label: "Guerry's moral statistics of France, c. 1830 (85 départements)"
+  match: 'load_example\("Guerry"\)'
+  cite: "Guerry, A.-M. (1833). Essai sur la statistique morale de la France. Crochard. Data as compiled in Friendly, M. (2007). A.-M. Guerry's moral statistics of France: Challenges for multivariable spatial analysis. Statistical Science, 22(3), 368–399."
+  url: https://doi.org/10.1214/07-STS241
+  note: "Prepared by the Center for Spatial Data Science (University of Chicago) from the R package Guerry (Friendly and Dray), provided “as is”. Fetched once and cached by libpysal (examples.load_example(\"Guerry\")). Variables come from Guerry's tables as translated by Whitt and Reinking (2002)."

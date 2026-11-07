@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ja" data-copied="コピーしました ✓">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>モラン散布図（大域的自己相関） · PyStatlas</title>
+<meta name="description" content="各地域をその近隣の平均と比べ、モランの I、並べ替え検定、参照分布を添えます。">
+<meta name="author" content="Thierry Warin">
+<link rel="author" href="https://www.warin.ca">
+<meta name="citation_title" content="Moran scatterplot (global autocorrelation) — PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences">
+<meta name="citation_author" content="Warin, Thierry">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_online_date" content="2026/11/06">
+<meta name="citation_publisher" content="Thierry Warin">
+<meta name="citation_language" content="ja">
+<meta name="citation_public_url" content="https://warint.github.io/pystatlas/ja/spatial-data/moran-scatterplot/">
+<meta name="DC.creator" content="Warin, Thierry">
+<meta name="DC.title" content="Moran scatterplot (global autocorrelation) — PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences">
+<meta name="DC.date" content="2026">
+<link rel="canonical" href="https://warint.github.io/pystatlas/ja/spatial-data/moran-scatterplot/">
+<link rel="alternate" hreflang="en" href="https://warint.github.io/pystatlas/spatial-data/moran-scatterplot/">
+<link rel="alternate" hreflang="fr" href="https://warint.github.io/pystatlas/fr/spatial-data/moran-scatterplot/">
+<link rel="alternate" hreflang="ja" href="https://warint.github.io/pystatlas/ja/spatial-data/moran-scatterplot/">
+<link rel="alternate" hreflang="zh-Hans" href="https://warint.github.io/pystatlas/zh/spatial-data/moran-scatterplot/">
+<link rel="alternate" hreflang="x-default" href="https://warint.github.io/pystatlas/spatial-data/moran-scatterplot/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Moran scatterplot (global autocorrelation) — PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences", "url": "https://warint.github.io/pystatlas/ja/spatial-data/moran-scatterplot/", "inLanguage": "ja", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "PyStatlas", "url": "https://warint.github.io/pystatlas/"}}</script>
+<meta property="og:title" content="モラン散布図（大域的自己相関） · PyStatlas">
+<meta property="og:description" content="各地域をその近隣の平均と比べ、モランの I、並べ替え検定、参照分布を添えます。">
+<meta property="og:locale" content="ja">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/style.css?v=78904a38">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#1d1d1f"/><rect x="7.5" y="17" width="4" height="8.5" rx="2" fill="#fff"/><rect x="14" y="11" width="4" height="14.5" rx="2" fill="#fff"/><rect x="20.5" y="6.5" width="4" height="19" rx="2" fill="#0071e3"/></svg><span>PyStatlas</span></a>
+    <nav class="nav-links">
+      <a href="../../index.html#gallery" class="on">ギャラリー</a>
+      <a href="../../style.html" class="">スタイル</a>
+      <a href="../../about.html" class="">概要</a>
+      <a href="../../about.html#cite" class="hide-sm">引用</a>
+      <details class="lang"><summary aria-label="Language"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span>日本語</span></summary><div class="lang-menu"><a href="../../../spatial-data/moran-scatterplot/" hreflang="en" lang="en">English</a><a href="../../../fr/spatial-data/moran-scatterplot/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/spatial-data/moran-scatterplot/" hreflang="ja" lang="ja" class=on aria-current=true>日本語</a><a href="../../../zh/spatial-data/moran-scatterplot/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div></details>
+      <a href="https://github.com/warint/pystatlas" class="gh" aria-label="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </nav>
+  </div>
+</header>
+<main>
+<article class="wrap ex">
+  <div class="crumbs"><a href="../../index.html">ギャラリー</a><span>/</span><a href="../../spatial-data/index.html">空間データ</a></div>
+  <header class="ex-head"><h1>モラン散布図（大域的自己相関）</h1><p class="lede">各地域をその近隣の平均と比べ、モランの I、並べ替え検定、参照分布を添えます。</p>
+  <p class="byline">著者： <a href="https://www.warin.ca">Thierry Warin</a> · 収録： <a href="../../index.html">PyStatlas</a></p></header>
+  <figure class="figure"><a href="../../../spatial-data/moran-scatterplot/plot.png" target="_blank" rel="noopener"><img src="../../../spatial-data/moran-scatterplot/plot.png" alt="モラン散布図（大域的自己相関）"></a></figure>
+  <div class="ex-cols">
+    <div class="prose"><p><strong>大域的</strong>な空間自己相関は、地図全体について 1 つの問いを立てます。似た値どうしが、偶然で説明できる以上に隣り合っているか。モラン散布図はこれを視覚的に答えます。各点は地域で、横軸はその地域自身の（標準化した）値、縦軸は近隣の平均、すなわち<strong>空間ラグ</strong>です。行標準化した重みを使うと、当てはめた直線の傾きはちょうど<strong>モランの I</strong>（Moran, 1950）になります。右上と左下の象限の点は近隣に似た地域、残りの 2 つの象限には空間的な外れ値が入ります。</p><p>推測は並べ替えで行います。値を地図上で 999 回無作為に入れ替え、そのたびに I を計算し直します。挿入図は空間的無作為性のもとでの参照分布で、擬似 p 値は観測された I 以上に極端な入れ替えの割合です。データはゲリー（1833 年）の 85 県の識字率で、<strong>libpysal</strong> で読み込み、重みはクイーン型隣接、統計量は <code>esda.Moran</code> によります。</p><p class="note">コードおよび図中のテキストは英語です。</p></div>
+    <aside class="meta"><div class="meta-row"><span>R での対応</span><code>spdep::moran.plot() + spdep::moran.mc()</code></div><div class="meta-row"><span>ライブラリ</span><div class="pills"><i>GeoPandas</i><i>Matplotlib</i><i>NumPy</i><i>esda</i><i>libpysal</i></div></div><div class="meta-row"><span>トピック</span><div class="pills"><i>spatial autocorrelation</i><i>Moran&#x27;s I</i><i>global</i><i>permutation test</i><i>spatial lag</i><i>Guerry</i><i>literacy</i></div></div></aside>
+  </div>
+  <section class="code-card" id="code">
+    <div class="code-bar">
+      <span class="fname">moran-scatterplot.py · 44 行</span>
+      <div class="code-actions">
+        <a class="btn ghost" href="../../../spatial-data/moran-scatterplot/moran-scatterplot.py" download>ダウンロード</a>
+        <a class="btn ghost" href="https://github.com/warint/pystatlas/tree/main/gallery/12-spatial-data/02-moran-scatterplot">GitHub</a>
+        <button class="btn copy" data-copy>コードをコピー</button>
+      </div>
+    </div>
+    <pre class="code"><code><span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">esda.moran</span><span class="w"> </span><span class="kn">import</span> <span class="n">Moran</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libpysal</span><span class="w"> </span><span class="kn">import</span> <span class="n">examples</span><span class="p">,</span> <span class="n">weights</span>
+
+<span class="c1"># Data: literacy of military conscripts in 85 départements, c. 1830 (Guerry, 1833)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">examples</span><span class="o">.</span><span class="n">load_example</span><span class="p">(</span><span class="s2">"Guerry"</span><span class="p">)</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="s2">"guerry.shp"</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="s2">"Litercy"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Row-standardised queen weights, Moran's I with 999 permutations</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">Queen</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">use_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">w</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="s2">"r"</span>
+<span class="n">mi</span> <span class="o">=</span> <span class="n">Moran</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">permutations</span><span class="o">=</span><span class="mi">999</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">y</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">lag</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">lag_spatial</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>              <span class="c1"># average of the neighbours' z-scores</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">6.2</span><span class="p">))</span>
+<span class="n">quad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">select</span><span class="p">([(</span><span class="n">z</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lag</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">z</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lag</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)],</span> <span class="p">[</span><span class="s2">"#FF3B30"</span><span class="p">,</span> <span class="s2">"#007AFF"</span><span class="p">],</span> <span class="s2">"#8E8E93"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">lag</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">34</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">quad</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">z</span><span class="o">.</span><span class="n">max</span><span class="p">()])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">mi</span><span class="o">.</span><span class="n">I</span> <span class="o">*</span> <span class="n">xs</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#1D1D1F"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"slope = Moran's I = </span><span class="si">{</span><span class="n">mi</span><span class="o">.</span><span class="n">I</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#C7C7CC"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#C7C7CC"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">tx</span><span class="p">,</span> <span class="n">ty</span><span class="p">,</span> <span class="n">txt</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[(</span><span class="mf">0.98</span><span class="p">,</span> <span class="mf">0.97</span><span class="p">,</span> <span class="s2">"high, among high"</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="s2">"low, among low"</span><span class="p">),</span>
+                      <span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.97</span><span class="p">,</span> <span class="s2">"low, among high"</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.98</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="s2">"high, among low"</span><span class="p">)]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span> <span class="n">ty</span><span class="p">,</span> <span class="n">txt</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"right"</span> <span class="k">if</span> <span class="n">tx</span> <span class="o">&gt;</span> <span class="mf">0.5</span> <span class="k">else</span> <span class="s2">"left"</span><span class="p">,</span>
+            <span class="n">va</span><span class="o">=</span><span class="s2">"top"</span> <span class="k">if</span> <span class="n">ty</span> <span class="o">&gt;</span> <span class="mf">0.5</span> <span class="k">else</span> <span class="s2">"bottom"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Literacy, standardised (z)"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Neighbours' average literacy (spatial lag of z)"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">"x"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">"lower right"</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">))</span>
+
+<span class="c1"># Inset: reference distribution of I under spatial randomness</span>
+<span class="n">ins</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">inset_axes</span><span class="p">([</span><span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.58</span><span class="p">,</span> <span class="mf">0.32</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
+<span class="n">ins</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">mi</span><span class="o">.</span><span class="n">sim</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#C7C7CC"</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"white"</span><span class="p">)</span>
+<span class="n">ins</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">mi</span><span class="o">.</span><span class="n">I</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#FF3B30"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ins</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"999 random maps"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">8.5</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">"left"</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ins</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelsize</span><span class="o">=</span><span class="mf">7.5</span><span class="p">);</span> <span class="n">ins</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([]);</span> <span class="n">ins</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Literate départements sit next to literate départements (Moran's I = </span><span class="si">{</span><span class="n">mi</span><span class="o">.</span><span class="n">I</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)"</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Permutation p = </span><span class="si">{</span><span class="n">mi</span><span class="o">.</span><span class="n">p_sim</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> · E[I] = </span><span class="si">{</span><span class="n">mi</span><span class="o">.</span><span class="n">EI</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> under randomness · "</span>
+        <span class="sa">f</span><span class="s2">"queen weights, row-standardised · n = </span><span class="si">{</span><span class="n">w</span><span class="o">.</span><span class="n">n</span><span class="si">}</span><span class="s2"> départements, Guerry (1833)"</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre>
+  </section>
+  <p class="hint">図にはオプションの <a href="../../style.html">PyStatlas スタイル</a> を使用しています。同じ見た目にするには <code>plt.style.use("pystatlas.mplstyle")</code> を追加してください。</p>
+  <section class="data-src" id="data"><h2>データの出典</h2><ul><li><strong>Guerry&#x27;s moral statistics of France, c. 1830 (85 départements).</strong> Guerry, A.-M. (1833). Essai sur la statistique morale de la France. Crochard. Data as compiled in Friendly, M. (2007). A.-M. Guerry&#x27;s moral statistics of France: Challenges for multivariable spatial analysis. Statistical Science, 22(3), 368–399. <a href="https://doi.org/10.1214/07-STS241">https://doi.org/10.1214/07-STS241</a><br><span class="src-note">Prepared by the Center for Spatial Data Science (University of Chicago) from the R package Guerry (Friendly and Dray), provided “as is”. Fetched once and cached by libpysal (examples.load_example(&quot;Guerry&quot;)). Variables come from Guerry&#x27;s tables as translated by Whitt and Reinking (2002).</span></li></ul><p class="src-disclaimer">これらの例は統計手法を説明するためのものです。図のタイトルは、この特定のデータ（多くは小規模で、古く、部分的な標本）で図が示す内容を述べたものであり、実質的な問いに対する著者の立場ではありません。解釈、背景、データの質については、ここに挙げた元の出典を参照してください。</p></section>
+  <section class="cite" id="cite">
+  <div class="cite-head"><h2>引用方法</h2>
+  <p>PyStatlas は <a href="https://www.warin.ca">Thierry Warin</a> が作成・運営しています。研究や業務に役立った場合は、ぜひ引用してください。</p></div>
+  <div class="cite-box"><p class="cite-ref">Warin, T. (2026). Moran scatterplot (global autocorrelation). In PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences. https://warint.github.io/pystatlas/spatial-data/moran-scatterplot/</p><button class="btn ghost" data-copy-text="Warin, T. (2026). Moran scatterplot (global autocorrelation). In PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences. https://warint.github.io/pystatlas/spatial-data/moran-scatterplot/">コピー</button></div>
+  <div class="cite-box"><pre class="cite-bib">@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/pystatlas/}},
+  note         = {Source code: https://github.com/warint/pystatlas}
+}</pre><button class="btn ghost" data-copy-text="@misc{warin2026statlas,
+  author       = {Warin, Thierry},
+  title        = {PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences},
+  year         = {2026},
+  howpublished = {\url{https://warint.github.io/pystatlas/}},
+  note         = {Source code: https://github.com/warint/pystatlas}
+}">BibTeX をコピー</button></div>
+</section>
+  <div class="pager"><a href="../../spatial-data/spatial-weights/"><small>前へ</small>空間重み付きコロプレス図</a><a class="next" href="../../spatial-data/lisa-cluster-map/"><small>次へ</small>LISA クラスター地図（局所的自己相関）</a></div>
+  <h2 class="rel-h">空間データのその他のグラフ</h2><div class="grid"><a class="card" href="../../spatial-data/spatial-weights/" data-cat="spatial-data" data-k="空間重み付きコロプレス図 1 つの変数の地図に近隣ネットワークを重ねた図。あらゆる空間統計の土台となる構造です。 choropleth with spatial weights a map of one variable with the neighbour network drawn on top — the structure every spatial statistic relies on. spdep::poly2nb() + plot(nb, coords) 空間データ spatial data spatial weights contiguity queen choropleth neighbours guerry literacy geopandas matplotlib numpy libpysal">
+  <div class="card-img"><img src="../../../spatial-data/spatial-weights/thumb.webp" alt="空間重み付きコロプレス図" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">空間データ</span><h3>空間重み付きコロプレス図</h3><p>1 つの変数の地図に近隣ネットワークを重ねた図。あらゆる空間統計の土台となる構造です。</p><span class="card-r">spdep::poly2nb() + plot(nb, coords)</span></div>
+</a>
+<a class="card" href="../../spatial-data/lisa-cluster-map/" data-cat="spatial-data" data-k="lisa クラスター地図（局所的自己相関） クラスターと空間的外れ値がどこにあるか。各地域の局所モラン i を、並べ替えによる有意性とともに地図に示します。 lisa cluster map (local autocorrelation) where the clusters and spatial outliers are — local moran&#x27;s i for each area, mapped with its permutation significance. spdep::localmoran_perm() / rgeoda::local_moran() 空間データ spatial data spatial autocorrelation lisa local moran hot spots clusters permutation test guerry literacy geopandas matplotlib numpy esda libpysal">
+  <div class="card-img"><img src="../../../spatial-data/lisa-cluster-map/thumb.webp" alt="LISA クラスター地図（局所的自己相関）" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">空間データ</span><h3>LISA クラスター地図（局所的自己相関）</h3><p>クラスターと空間的外れ値がどこにあるか。各地域の局所モラン I を、並べ替えによる有意性とともに地図に示します。</p><span class="card-r">spdep::localmoran_perm() / rgeoda::local_moran()</span></div>
+</a>
+<a class="card" href="../../spatial-data/spatial-correlogram/" data-cat="spatial-data" data-k="空間コレログラム 近隣の次数を広げながらモランの i を求め、並べ替えによる包絡線を添えます。空間的なクラスターがどこまで及ぶかを示します。 spatial correlogram moran&#x27;s i at increasing neighbour orders, with a permutation envelope — how far spatial clustering reaches. spdep::sp.correlogram(method = &quot;i&quot;) 空間データ spatial data spatial autocorrelation correlogram moran&#x27;s i higher-order neighbours spatial scale guerry geopandas matplotlib numpy esda libpysal">
+  <div class="card-img"><img src="../../../spatial-data/spatial-correlogram/thumb.webp" alt="空間コレログラム" loading="lazy" width="720" height="450"></div>
+  <div class="card-body"><span class="kicker">空間データ</span><h3>空間コレログラム</h3><p>近隣の次数を広げながらモランの I を求め、並べ替えによる包絡線を添えます。空間的なクラスターがどこまで及ぶかを示します。</p><span class="card-r">spdep::sp.correlogram(method = &quot;I&quot;)</span></div>
+</a></div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div><strong>PyStatlas</strong> · 社会科学のための統計グラフ Python ギャラリー<br>制作： <a href="https://www.warin.ca">Thierry Warin</a> · <a href="https://www.warin.ca">www.warin.ca</a> · <a href="../../about.html#cite">引用方法</a></div>
+    <div class="foot-links"><a href="https://github.com/warint/pystatlas">GitHub</a><a href="../../style.html">プロットスタイル</a><a href="https://github.com/warint/pystatlas/blob/main/CONTRIBUTING.md">貢献する</a><span>MIT ライセンス</span></div>
+  </div>
+  <div class="wrap foot-langs"><a href="../../../spatial-data/moran-scatterplot/" hreflang="en" lang="en">English</a><a href="../../../fr/spatial-data/moran-scatterplot/" hreflang="fr" lang="fr">Français</a><a href="../../../ja/spatial-data/moran-scatterplot/" hreflang="ja" lang="ja" class=on aria-current=true>日本語</a><a href="../../../zh/spatial-data/moran-scatterplot/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div>
+</footer>
+<script src="../../../assets/app.js?v=78904a38"></script>
+</body>
+</html>

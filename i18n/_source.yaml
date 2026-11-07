@@ -66,7 +66,8 @@ ui:
   principles_h: Principles
   principle_1: <strong>Self‑contained.</strong> Every script runs as is. Data are real social‑science
     datasets bundled with statsmodels and lifelines (elections, schools, crime, fertility, regimes, recidivism…),
-    a small published table typed in, or — rarely — a labelled, seeded simulation. No downloads.
+    a small published table typed in, or — rarely — a labelled, seeded simulation. The spatial examples
+    fetch Guerry's map of France once through libpysal, then use the cached copy.
   principle_2: '<strong>Statistics first.</strong> Each chart carries the numbers that matter: estimates,
     intervals, test statistics, effect sizes.'
   principle_3: <strong>Folder = page.</strong> The repository tree mirrors the site. Every example lives
@@ -141,6 +142,10 @@ categories:
         title: 'Advanced: SHAP explanations'
         summary: Shapley values split every prediction into additive feature contributions — globally,
           feature by feature, and for a single case.
+  spatial-data:
+    title: Spatial data
+    summary: Is a value higher where its neighbours' values are higher? Spatial weights, global and local
+      spatial autocorrelation, and how far clusters reach — on Guerry's 1830s France.
 examples:
   distributions/histogram-density:
     title: Histogram with density
@@ -1810,3 +1815,131 @@ examples:
       struggling one (predicted more than 20 points below the base value) chosen
 
       because its explanation pulls in both directions.'
+  spatial-data/spatial-weights:
+    title: Choropleth with spatial weights
+    summary: A map of one variable with the neighbour network drawn on top — the structure every spatial
+      statistic relies on.
+    description: 'Every spatial statistic starts by deciding who is a neighbour of whom. This
+
+      chart shows that decision before any test is run: a choropleth of one
+
+      variable, with a line joining the centres of every pair of neighbouring
+
+      areas. Here neighbours share a border or a corner (**queen contiguity**), and
+
+      each row of the weights matrix is later standardised so that an area''s
+
+      "spatial lag" is the average of its neighbours. Other choices — rook
+
+      contiguity, the k nearest neighbours, a distance band — give different
+
+      networks and can change the results, so the network is worth looking at.
+
+
+      Data are André-Michel Guerry''s *Essay on the Moral Statistics of France*
+
+      (1833): 85 départements around 1830, as prepared by the Center for Spatial
+
+      Data Science and loaded with **libpysal** (`examples.load_example("Guerry")`,
+
+      fetched once and cached). The variable is the percentage of military
+
+      conscripts who could read and write. Weights come from
+
+      `libpysal.weights.Queen`; the map is drawn with **GeoPandas**.'
+  spatial-data/moran-scatterplot:
+    title: Moran scatterplot (global autocorrelation)
+    summary: Each area against the average of its neighbours, with Moran's I, its permutation test and
+      the reference distribution.
+    description: '**Global** spatial autocorrelation asks one question for the whole map: do
+
+      similar values sit next to each other more than chance would allow? The
+
+      Moran scatterplot answers it visually. Each point is an area: on the
+
+      horizontal axis its own (standardised) value, on the vertical axis the
+
+      average of its neighbours — the **spatial lag**. With row-standardised
+
+      weights, the slope of the fitted line is exactly **Moran''s I** (Moran, 1950).
+
+      Points in the upper-right and lower-left quadrants are areas that resemble
+
+      their neighbours; the other two quadrants hold spatial outliers.
+
+
+      Inference is by permutation: the values are shuffled across the map 999
+
+      times and I is recomputed each time. The inset shows that reference
+
+      distribution under spatial randomness; the pseudo p-value is the share of
+
+      shuffles at least as extreme as the observed I. Data are Guerry''s (1833)
+
+      literacy rates for 85 French départements, loaded with **libpysal**;
+
+      weights are queen contiguity and the statistic comes from `esda.Moran`.'
+  spatial-data/lisa-cluster-map:
+    title: LISA cluster map (local autocorrelation)
+    summary: Where the clusters and spatial outliers are — local Moran's I for each area, mapped with
+      its permutation significance.
+    description: 'A global statistic says *whether* a map is clustered; a **local** indicator
+
+      of spatial association (LISA; Anselin, 1995) says *where*. Local Moran''s I
+
+      is computed for each area from its own value and its neighbours'' values.
+
+      Areas whose local statistic is significant (pseudo p < 0.05, 999 conditional
+
+      permutations) are coloured by quadrant of the Moran scatterplot:
+
+      **high–high** and **low–low** clusters, and **high–low** or **low–high**
+
+      spatial outliers. Everything else is grey.
+
+
+      Two cautions come with every LISA map. The 85 tests are not independent and
+
+      are not corrected for multiple comparisons, so a few significant areas are
+
+      expected by chance alone; and a significant area marks the *core* of a
+
+      cluster, which usually extends to its neighbours. Data are Guerry''s (1833)
+
+      literacy rates for 85 départements, loaded with **libpysal**; the statistic
+
+      comes from `esda.Moran_Local` and the map from **GeoPandas**.'
+  spatial-data/spatial-correlogram:
+    title: Spatial correlogram
+    summary: Moran's I at increasing neighbour orders, with a permutation envelope — how far spatial clustering
+      reaches.
+    description: 'Moran''s I with first-order neighbours measures clustering at the shortest
+
+      range. A spatial correlogram repeats the computation for neighbours of order
+
+      2 (neighbours of neighbours, excluding closer ones), 3, and so on. The curve
+
+      shows the **spatial scale** of a pattern: how many steps away two areas can
+
+      be and still resemble each other, and whether distant areas become
+
+      *opposites* — negative I — as they do when a country is split into two
+
+      large regions. It is the spatial counterpart of the autocorrelation function
+
+      of a time series.
+
+
+      The grey band is the 95% range of I under spatial randomness, from 999
+
+      permutations at each order; points outside it are unlikely under no spatial
+
+      structure. Two variables from Guerry''s (1833) moral statistics of 85
+
+      départements are compared: literacy, and population per crime against
+
+      persons (higher means fewer crimes). Weights are higher-order queen
+
+      contiguity from `libpysal.weights.higher_order`, row-standardised; I comes
+
+      from `esda.Moran`.'

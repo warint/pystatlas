@@ -51,7 +51,7 @@ ui:
   about_h1: "À propos de {name}"
   about_p1: "{name} part des questions que se posent les chercheurs, pas du code. La galerie a d'abord été conçue pour les étudiants en sciences sociales qui connaissent leur domaine et doivent répondre à une question avec des données : ces groupes diffèrent-ils, deux variables évoluent-elles ensemble, que prédit le modèle et pourquoi ? Chaque graphique porte sur la figure les statistiques utiles et s'accompagne d'un script court et autonome, fondé sur l'écosystème scientifique de Python — dans l'esprit de <code>ggstats</code> et <code>ggstatsplot</code> pour R."
   principles_h: "Principes"
-  principle_1: "<strong>Autonome.</strong> Chaque script s'exécute tel quel. Les données sont de vrais jeux de données de sciences sociales fournis avec statsmodels et lifelines (élections, écoles, criminalité, fécondité, régimes politiques, récidive…), une petite table publiée saisie à la main ou, rarement, une simulation à graine fixe signalée comme telle. Aucun téléchargement."
+  principle_1: "<strong>Autonome.</strong> Chaque script s'exécute tel quel. Les données sont de vrais jeux de données de sciences sociales fournis avec statsmodels et lifelines (élections, écoles, criminalité, fécondité, régimes politiques, récidive…), une petite table publiée saisie à la main ou, rarement, une simulation à graine fixe signalée comme telle. Les exemples spatiaux téléchargent une fois la carte de France de Guerry avec libpysal, puis utilisent la copie conservée."
   principle_2: "<strong>La statistique d'abord.</strong> Chaque graphique affiche les chiffres qui comptent : estimations, intervalles, statistiques de test, tailles d'effet."
   principle_3: "<strong>Un dossier = une page.</strong> L'arborescence du dépôt reflète celle du site. Chaque exemple se trouve dans <code>gallery/&lt;family&gt;/&lt;chart&gt;/plot.py</code>, avec un <code>plot.png</code> généré et un README."
   families_h: "Familles"
@@ -112,6 +112,9 @@ categories:
       advanced:
         title: "Avancé : explications SHAP"
         summary: "Les valeurs de Shapley décomposent chaque prédiction en contributions additives des variables — globalement, variable par variable, et pour un cas unique."
+  spatial-data:
+    title: "Données spatiales"
+    summary: "Une valeur est-elle plus élevée là où celle des voisins l'est aussi ? Pondérations spatiales, autocorrélation spatiale globale et locale, et portée des regroupements — sur la France de Guerry, vers 1830."
 examples:
   distributions/histogram-density:
     title: "Histogramme avec densité"
@@ -514,3 +517,31 @@ examples:
       Les graphiques globaux décrivent le modèle ; une cascade explique **une** prédiction. Elle part de la valeur de base — la prédiction moyenne du modèle sur les données — et ajoute la valeur SHAP de chaque variable, la plus grande d'abord, jusqu'à la prédiction de ce district. Les barres rouges poussent la prédiction vers le haut, les bleues la tirent vers le bas ; les plus petites contributions sont regroupées en une barre pour garder le graphique lisible. Les valeurs SHAP étant additives, les barres somment toujours exactement l'écart entre la valeur de base et la prédiction.
 
       C'est le graphique à montrer quand un cas particulier doit être expliqué — un district signalé pour un soutien, un prêt, une demande de prestation. Il explique ce qu'a fait le **modèle**, pas pourquoi le résultat se produit. Les données sont les 303 districts scolaires californiens du test STAR de 1998, fournis avec **statsmodels** (`sm.datasets.star98`) ; la variable à prédire est la part des élèves au-dessus de la médiane nationale en mathématiques, à partir de dix caractéristiques des districts. Le modèle est un gradient boosting ; les valeurs SHAP viennent de `shap.TreeExplainer`. Le district présenté est en difficulté (prédit plus de 20 points sous la valeur de base), choisi parce que son explication tire dans les deux sens.
+  spatial-data/spatial-weights:
+    title: "Carte choroplèthe avec pondérations spatiales"
+    summary: "Une carte d'une variable avec, par-dessus, le réseau des voisins — la structure sur laquelle repose toute statistique spatiale."
+    description: |
+      Toute statistique spatiale commence par décider qui est voisin de qui. Ce graphique montre cette décision avant tout test : une carte choroplèthe d'une variable, avec une ligne entre les centres de chaque paire de zones voisines. Ici, deux zones sont voisines si elles partagent une frontière ou un coin (**contiguïté de type reine**) ; chaque ligne de la matrice de pondérations est ensuite standardisée, de sorte que le « décalage spatial » d'une zone est la moyenne de ses voisines. D'autres choix — contiguïté de type tour, k plus proches voisins, bande de distance — donnent d'autres réseaux et peuvent changer les résultats : le réseau mérite d'être regardé.
+
+      Les données sont l'*Essai sur la statistique morale de la France* d'André-Michel Guerry (1833) : 85 départements vers 1830, tels que préparés par le Center for Spatial Data Science et chargés avec **libpysal** (`examples.load_example("Guerry")`, téléchargés une fois puis conservés). La variable est le pourcentage de conscrits sachant lire et écrire. Les pondérations viennent de `libpysal.weights.Queen` ; la carte est dessinée avec **GeoPandas**.
+  spatial-data/moran-scatterplot:
+    title: "Diagramme de Moran (autocorrélation globale)"
+    summary: "Chaque zone face à la moyenne de ses voisines, avec le I de Moran, son test par permutation et la distribution de référence."
+    description: |
+      L'autocorrélation spatiale **globale** pose une seule question pour toute la carte : les valeurs semblables sont-elles voisines plus souvent que le hasard ne le permettrait ? Le diagramme de Moran y répond visuellement. Chaque point est une zone : en abscisse sa propre valeur (standardisée), en ordonnée la moyenne de ses voisines — le **décalage spatial**. Avec des pondérations standardisées par ligne, la pente de la droite ajustée est exactement le **I de Moran** (Moran, 1950). Les points des quadrants en haut à droite et en bas à gauche sont des zones qui ressemblent à leurs voisines ; les deux autres quadrants contiennent les valeurs atypiques spatiales.
+
+      L'inférence se fait par permutation : les valeurs sont redistribuées au hasard sur la carte 999 fois et I est recalculé à chaque fois. L'encart montre cette distribution de référence sous l'hypothèse d'aléa spatial ; la pseudo-valeur p est la part des permutations au moins aussi extrêmes que le I observé. Les données sont les taux d'alphabétisation de Guerry (1833) pour 85 départements, chargés avec **libpysal** ; les pondérations sont de type reine et la statistique vient de `esda.Moran`.
+  spatial-data/lisa-cluster-map:
+    title: "Carte des regroupements LISA (autocorrélation locale)"
+    summary: "Où se trouvent les regroupements et les valeurs atypiques spatiales — I de Moran local pour chaque zone, cartographié avec sa significativité par permutation."
+    description: |
+      Une statistique globale dit *si* une carte est regroupée ; un indicateur **local** d'association spatiale (LISA ; Anselin, 1995) dit *où*. Le I de Moran local se calcule pour chaque zone à partir de sa propre valeur et de celles de ses voisines. Les zones dont la statistique locale est significative (pseudo p < 0,05, 999 permutations conditionnelles) sont colorées selon leur quadrant du diagramme de Moran : regroupements **haut–haut** et **bas–bas**, valeurs atypiques **haut–bas** ou **bas–haut**. Tout le reste est en gris.
+
+      Deux précautions accompagnent toute carte LISA. Les 85 tests ne sont pas indépendants et ne sont pas corrigés pour les comparaisons multiples : quelques zones significatives sont attendues par le seul hasard. Et une zone significative marque le *cœur* d'un regroupement, qui s'étend généralement à ses voisines. Les données sont les taux d'alphabétisation de Guerry (1833) pour 85 départements, chargés avec **libpysal** ; la statistique vient de `esda.Moran_Local` et la carte de **GeoPandas**.
+  spatial-data/spatial-correlogram:
+    title: "Corrélogramme spatial"
+    summary: "Le I de Moran à des ordres de voisinage croissants, avec une enveloppe de permutation — jusqu'où porte le regroupement spatial."
+    description: |
+      Le I de Moran calculé avec les voisins d'ordre 1 mesure le regroupement à la plus courte portée. Un corrélogramme spatial répète le calcul pour les voisins d'ordre 2 (voisins de voisins, sans les plus proches), 3, et ainsi de suite. La courbe montre l'**échelle spatiale** d'un phénomène : à combien d'étapes deux zones peuvent-elles encore se ressembler, et les zones éloignées deviennent-elles *opposées* — I négatif — comme lorsqu'un pays se partage en deux grandes régions ? C'est l'équivalent spatial de la fonction d'autocorrélation d'une série chronologique.
+
+      La bande grise est l'intervalle à 95 % de I sous l'hypothèse d'aléa spatial, tiré de 999 permutations à chaque ordre ; les points hors de la bande sont peu probables en l'absence de structure spatiale. Deux variables des statistiques morales de Guerry (1833) pour 85 départements sont comparées : l'alphabétisation, et la population par crime contre les personnes (plus elle est élevée, moins il y a de crimes). Les pondérations sont des contiguïtés de type reine d'ordre supérieur, tirées de `libpysal.weights.higher_order` et standardisées par ligne ; I vient de `esda.Moran`.
