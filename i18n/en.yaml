@@ -3,7 +3,7 @@
 ui:
   lang_name: English
   tagline: The Python gallery of statistical graphics
-  lede: "A curated atlas of statistical charts for Python: every figure carries its statistics — tests, confidence intervals, effect sizes. Regression models, Likert scales, survival curves, diagnostics and more. Pick a chart, copy the code, done."
+  lede: "Statistical charts for Python, organised by the question they answer. Every figure reports the statistics behind it — estimates, confidence intervals, tests, effect sizes — from distributions and group comparisons to regression, survival and machine learning."
   approach: "Most Python resources teach the code first and leave the questions for later. This gallery works the other way round. It was first written for social-science students, and it serves anyone who knows their field and has a question to answer — do these groups differ, do these two variables move together, why did the model predict this? Start from the question, find the chart that answers it, read the statistics it reports, and take only the code you need."
   nav_gallery: Gallery
   nav_style: Style
@@ -51,7 +51,7 @@ ui:
   palette: Palette
   about_title: About
   about_h1: "About {name}"
-  about_p1: "{name} is to Python what the R Graph Gallery, <code>ggstats</code> and <code>ggstatsplot</code> are to R: a catalogue of <strong>statistical</strong> charts — model coefficients, Likert scales, survival curves, diagnostics, effect sizes — each with clean, copy‑pasteable code built on the scientific Python stack."
+  about_p1: "{name} starts from the questions researchers ask, not from the code. It was first written for social-science students who know their field and need to answer a question with data: do these groups differ, do two variables move together, what does the model predict and why? Each chart puts the relevant statistics on the figure and comes with a short, self-contained script built on the scientific Python stack — in the spirit of <code>ggstats</code> and <code>ggstatsplot</code> in R."
   principles_h: Principles
   principle_1: "<strong>Self‑contained.</strong> Every script runs as is. Data comes from bundled datasets (statsmodels, scikit‑learn, lifelines) or a seeded simulation — no downloads."
   principle_2: "<strong>Statistics first.</strong> Each chart carries the numbers that matter: estimates, intervals, test statistics, effect sizes."

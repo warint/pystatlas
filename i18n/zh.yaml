@@ -1,7 +1,7 @@
 ui:
   lang_name: 中文
   tagline: Python 统计图形库
-  lede: 精心编排的 Python 统计图表图集——每张图都标注其统计量：检验、置信区间和效应量。回归模型、Likert 量表、生存曲线、模型诊断等应有尽有。选一张图，复制代码，即可完成。
+  lede: "按所回答的问题组织的 Python 统计图表。从分布与组间比较，到回归、生存分析和机器学习，每张图都给出其背后的统计量——估计值、置信区间、检验和效应量。"
   approach: "大多数 Python 学习资源先教代码，把问题留到以后。本图库反其道而行之。它最初是为社会科学专业的学生编写的，也适合所有熟悉自己领域、手头有问题要回答的人：这些组之间有差异吗？这两个变量是否同步变化？模型为什么作出这样的预测？从问题出发，找到能回答它的图表，读懂图上给出的统计量，只取你需要的代码。"
   nav_gallery: 图库
   nav_style: 样式
@@ -49,7 +49,7 @@ ui:
   palette: 调色板
   about_title: 关于
   about_h1: '关于 {name}'
-  about_p1: '{name} 之于 Python，正如 R Graph Gallery、<code>ggstats</code> 和 <code>ggstatsplot</code> 之于 R：一本<strong>统计</strong>图表目录——模型系数、Likert 量表、生存曲线、模型诊断、效应量——每张图都配有基于科学计算 Python 生态、简洁且可直接复制粘贴的代码。'
+  about_p1: "{name} 从研究者提出的问题出发，而不是从代码出发。它最初是为社会科学专业的学生编写的：他们熟悉自己的领域，需要用数据回答问题——这些组之间有差异吗？两个变量是否同步变化？模型预测了什么，为什么？每张图都把相关统计量标在图上，并附有一段基于 Python 科学计算生态、简短且自包含的脚本——与 R 中 <code>ggstats</code> 和 <code>ggstatsplot</code> 的理念一致。"
   principles_h: 设计原则
   principle_1: <strong>自成一体。</strong>每个脚本都可直接运行。数据来自库中自带的数据集（statsmodels、scikit‑learn、lifelines）或设定了随机种子的模拟——无需下载。
   principle_2: <strong>统计优先。</strong>每张图表都标注了关键数字：估计值、区间、检验统计量和效应量。

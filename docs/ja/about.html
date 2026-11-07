@@ -50,9 +50,9 @@
 </header>
 <main>
 <section class="hero hero-sm"><div class="wrap">
-<h1>PyStatlas について</h1><p class="lede">Python で描く統計グラフの厳選アトラス。すべての図に検定、信頼区間、効果量などの統計量を表示します。回帰モデル、リッカート尺度、生存曲線、モデル診断など。グラフを選び、コードをコピーするだけです。</p></div></section>
+<h1>PyStatlas について</h1><p class="lede">答える問いごとに整理した、Python の統計グラフ集です。分布やグループ比較から回帰、生存分析、機械学習まで、すべての図に推定値、信頼区間、検定、効果量といった根拠となる統計量を示します。</p></div></section>
 <section class="wrap ex prose wide">
-<p>PyStatlas は、R における R Graph Gallery、<code>ggstats</code>、<code>ggstatsplot</code> の Python 版です。モデルの係数、リッカート尺度、生存曲線、モデル診断、効果量など、<strong>統計</strong>グラフを集めたカタログであり、いずれも科学技術計算向け Python スタックに基づく、そのままコピーして使える簡潔なコード付きです。</p>
+<p>PyStatlas は、コードからではなく、研究者が立てる問いから出発します。もともとは、自分の分野をよく知り、データで問いに答える必要がある社会科学の学生のために作られました。これらのグループに差はあるか、2 つの変数は連動しているか、モデルは何を予測し、それはなぜか。各グラフは必要な統計量を図の上に示し、Python の科学計算エコシステムで書かれた短く自己完結したスクリプトを添えています。R の <code>ggstats</code> や <code>ggstatsplot</code> と同じ考え方です。</p>
 <h2>基本方針</h2>
 <ul><li><strong>単体で動作。</strong>すべてのスクリプトはそのまま実行できます。データは同梱データセット（statsmodels、scikit‑learn、lifelines）またはシード固定のシミュレーションを使用し、ダウンロードは不要です。</li><li><strong>統計が第一。</strong>各グラフには、推定値、区間、検定統計量、効果量といった重要な数値が示されています。</li><li><strong>フォルダ＝ページ。</strong>リポジトリの構成はサイトの構成と一致しています。各例は <code>gallery/&lt;family&gt;/&lt;chart&gt;/plot.py</code> に置かれ、描画済みの <code>plot.png</code> と README が付属します。</li></ul>
 <h2>カテゴリ</h2>
