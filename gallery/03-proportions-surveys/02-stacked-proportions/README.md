@@ -71,4 +71,4 @@ plt.show()
 
 **PyStatlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/proportions-surveys/stacked-proportions/) · [← Proportions & surveys](../README.md)
 
-**Cite:** Warin, T. (2026). Stacked proportions by group. In PyStatlas: The Python Gallery of Statistical Graphics for the Social Sciences. https://warint.github.io/pystatlas/proportions-surveys/stacked-proportions/
+**Cite:** Warin, T. (2026). Stacked proportions by group. In PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences. https://warint.github.io/pystatlas/proportions-surveys/stacked-proportions/

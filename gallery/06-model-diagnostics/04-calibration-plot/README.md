@@ -74,4 +74,4 @@ plt.show()
 
 **PyStatlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/model-diagnostics/calibration-plot/) · [← Model diagnostics](../README.md)
 
-**Cite:** Warin, T. (2026). Calibration plot. In PyStatlas: The Python Gallery of Statistical Graphics for the Social Sciences. https://warint.github.io/pystatlas/model-diagnostics/calibration-plot/
+**Cite:** Warin, T. (2026). Calibration plot. In PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences. https://warint.github.io/pystatlas/model-diagnostics/calibration-plot/

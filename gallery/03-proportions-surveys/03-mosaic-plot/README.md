@@ -85,4 +85,4 @@ plt.show()
 
 **PyStatlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/proportions-surveys/mosaic-plot/) · [← Proportions & surveys](../README.md)
 
-**Cite:** Warin, T. (2026). Mosaic plot with Pearson residuals. In PyStatlas: The Python Gallery of Statistical Graphics for the Social Sciences. https://warint.github.io/pystatlas/proportions-surveys/mosaic-plot/
+**Cite:** Warin, T. (2026). Mosaic plot with Pearson residuals. In PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences. https://warint.github.io/pystatlas/proportions-surveys/mosaic-plot/
