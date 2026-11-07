@@ -12,7 +12,13 @@ ui:
   hero_2: "尽在 Python。"
   by: 作者
   part_of: 隶属于
-  search_placeholder: "按问题、方法或 R 函数搜索——试试“置信区间”或“调查”"
+  search_placeholder: "按图表、方法、数据来源、论文或作者搜索——试试“Rossi”或“Guerry”"
+  m_key: "关键词"
+  m_data: "数据"
+  m_topic: "数据主题"
+  m_ref: "参照"
+  m_text: "正文"
+  see_all: "在图库中查看全部 {n} 个匹配的图表"
   empty: "没有与搜索匹配的图表。试试“回归”“调查”“置信区间”或某个 R 函数名。"
   all: 全部
   n_charts: '{n} 张图表'

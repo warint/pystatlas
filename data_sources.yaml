@@ -3,6 +3,7 @@
 # full reference under the chart, in the "Data sources" section of the About page, and in
 # the chart README. Keep `cite` in the form a reader would paste into a bibliography.
 # `note` says how the data reach the example (distributor, subset, permission).
+# `topics` are search keywords: what the data are about, so the home-page search finds them.
 
 anes96:
   label: "American National Election Study, 1996"
@@ -10,6 +11,7 @@ anes96:
   cite: "Rosenstone, S. J., Kinder, D. R., Miller, W. E., & the National Election Studies. (2016). ANES 1996 Time Series Study (ICPSR 6896; Version 6) [Data set]. Inter-university Consortium for Political and Social Research."
   url: https://doi.org/10.3886/ICPSR06896.v6
   note: "Subset of 944 respondents distributed with statsmodels (sm.datasets.anes96); public domain."
+  topics: [elections, voting, political ideology, party identification, public opinion, US politics]
 
 star98:
   label: "California STAR test results, 1998 (303 school districts)"
@@ -17,6 +19,7 @@ star98:
   cite: "Gill, J. (2001). Generalized Linear Models: A Unified Approach (Quantitative Applications in the Social Sciences, No. 134). Sage."
   url: https://www.statsmodels.org/stable/datasets/generated/star98.html
   note: "Original data from the California Department of Education's Standardized Testing and Reporting (STAR) program, 1998. Subset distributed with statsmodels (sm.datasets.star98) with the author's permission."
+  topics: [education, schools, test scores, poverty, school districts, California]
 
 statecrime:
   label: "US state crime and social indicators, 2009"
@@ -24,6 +27,7 @@ statecrime:
   cite: "U.S. Census Bureau. Statistical Abstract of the United States, state tables for 2009 (crime rates from the FBI Uniform Crime Reporting program)."
   url: https://www.statsmodels.org/stable/datasets/generated/statecrime.html
   note: "Compiled for statsmodels (sm.datasets.statecrime); public domain. See the statsmodels page for each variable's table and footnotes."
+  topics: [crime, violent crime, poverty, urbanisation, single-parent households, US states]
 
 fair:
   label: "Redbook survey of married women, 1974 (Fair's affairs data)"
@@ -31,6 +35,7 @@ fair:
   cite: "Fair, R. C. (1978). A theory of extramarital affairs. Journal of Political Economy, 86(1), 45–61."
   url: https://doi.org/10.1086/260646
   note: "Data from the 1974 Redbook magazine survey; distributed with statsmodels (sm.datasets.fair) with the author's permission."
+  topics: [marriage, infidelity, extramarital affairs, religion, women, survey]
 
 fertility:
   label: "World Bank fertility rates by country, 1960–2013"
@@ -38,6 +43,7 @@ fertility:
   cite: "World Bank. Fertility rate, total (births per woman), indicator SP.DYN.TFRT.IN. World Development Indicators."
   url: https://data.worldbank.org/indicator/SP.DYN.TFRT.IN
   note: "Primary sources: UN Population Division, UN Statistical Division, national statistical offices, Eurostat and others. Distributed with statsmodels (sm.datasets.fertility) under the World Bank terms of use."
+  topics: [fertility, births, demography, population, development, countries]
 
 engel:
   label: "Engel's Belgian household budgets (235 families)"
@@ -45,6 +51,7 @@ engel:
   cite: "Koenker, R., & Bassett, G. (1982). Robust tests for heteroscedasticity based on regression quantiles. Econometrica, 50(1), 43–61."
   url: https://doi.org/10.2307/1912528
   note: "Engel's (1857) household budget data as used by Koenker and Bassett and distributed with R's quantreg; in statsmodels as sm.datasets.engel; public domain."
+  topics: [household budgets, food expenditure, income, consumption, Engel's law, Belgium]
 
 spector:
   label: "Spector and Mazzeo's teaching-method experiment (32 students)"
@@ -52,6 +59,7 @@ spector:
   cite: "Spector, L. C., & Mazzeo, M. (1980). Probit analysis and economic education. Journal of Economic Education, 11(2), 37–44."
   url: https://www.statsmodels.org/stable/datasets/generated/spector.html
   note: "Obtained from W. Greene's Econometric Analysis web site with the original author's permission; distributed with statsmodels (sm.datasets.spector)."
+  topics: [education, teaching methods, economics education, grades, experiment]
 
 macrodata:
   label: "US quarterly macroeconomic series, 1959–2009"
@@ -59,6 +67,7 @@ macrodata:
   cite: "Federal Reserve Bank of St. Louis. FRED, Federal Reserve Economic Data; U.S. Bureau of Labor Statistics (unemployment rate). Accessed December 15, 2009."
   url: https://fred.stlouisfed.org/
   note: "Compiled by Skipper Seabold for statsmodels (sm.datasets.macrodata); public domain."
+  topics: [macroeconomics, GDP, inflation, unemployment, interest rates, United States]
 
 elec_equip:
   label: "Euro-area electrical-equipment turnover, monthly, 1995–2016"
@@ -66,6 +75,7 @@ elec_equip:
   cite: "Eurostat. Euro area (18, fixed composition) total turnover index, manufacture of electrical equipment (NACE Rev. 2), working-day adjusted, not seasonally adjusted."
   url: https://ec.europa.eu/eurostat
   note: "Distributed with statsmodels (statsmodels.datasets.elec_equip); public domain."
+  topics: [manufacturing, industrial production, turnover, euro area, Europe]
 
 dd:
   label: "Democracy and Dictatorship: leader spells, 1946–2008"
@@ -73,6 +83,7 @@ dd:
   cite: "Cheibub, J. A., Gandhi, J., & Vreeland, J. R. (2010). Democracy and dictatorship revisited. Public Choice, 143(1–2), 67–101."
   url: https://doi.org/10.1007/s11127-009-9491-2
   note: "202 countries; distributed with lifelines (lifelines.datasets.load_dd)."
+  topics: [democracy, dictatorship, political leaders, regimes, political survival, countries]
 
 rossi:
   label: "Rossi recidivism experiment (432 released prisoners)"
@@ -80,6 +91,7 @@ rossi:
   cite: "Rossi, P. H., Berk, R. A., & Lenihan, K. J. (1980). Money, Work, and Crime: Some Experimental Results. Academic Press."
   url: https://lifelines.readthedocs.io/en/latest/lifelines.datasets.html
   note: "Men released from Maryland state prisons in the 1970s, half randomly assigned to financial aid. Distributed with lifelines (lifelines.datasets.load_rossi)."
+  topics: [recidivism, crime, prison, financial aid, criminal justice, experiment]
 
 raudenbush:
   label: "Teacher-expectancy experiments (Raudenbush, 1984)"
@@ -87,6 +99,7 @@ raudenbush:
   cite: "Raudenbush, S. W. (1984). Magnitude of teacher expectancy effects on pupil IQ as a function of the credibility of expectancy induction: A synthesis of findings from 18 experiments. Journal of Educational Psychology, 76(1), 85–97."
   url: https://doi.org/10.1037/0022-0663.76.1.85
   note: "Effect sizes and variances typed in from dat.raudenbush1985 in R's metadat/metafor (Viechtbauer, 2010, Journal of Statistical Software, 36(3), https://doi.org/10.18637/jss.v036.i03); one of the 18 experiments contributes two rows."
+  topics: [teacher expectancy, Pygmalion effect, IQ, education, meta-analysis]
 
 simulation:
   label: "Simulated data"
@@ -94,6 +107,7 @@ simulation:
   cite: "Simulated data with a fixed random seed, created for this example."
   url: ""
   note: "No real respondents, documents or measurements: the numbers only illustrate how the chart and its statistics work."
+  topics: [simulated data]
 
 guerry:
   label: "Guerry's moral statistics of France, c. 1830 (85 départements)"
@@ -101,3 +115,4 @@ guerry:
   cite: "Guerry, A.-M. (1833). Essai sur la statistique morale de la France. Crochard. Data as compiled in Friendly, M. (2007). A.-M. Guerry's moral statistics of France: Challenges for multivariable spatial analysis. Statistical Science, 22(3), 368–399."
   url: https://doi.org/10.1214/07-STS241
   note: "Prepared by the Center for Spatial Data Science (University of Chicago) from the R package Guerry (Friendly and Dray), provided “as is”. Fetched once and cached by libpysal (examples.load_example(\"Guerry\")). Variables come from Guerry's tables as translated by Whitt and Reinking (2002)."
+  topics: [crime, literacy, suicide, moral statistics, France, nineteenth century, départements]

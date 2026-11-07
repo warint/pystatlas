@@ -14,7 +14,13 @@ ui:
   hero_2: "Beautifully Pythonic."
   by: By
   part_of: part of
-  search_placeholder: "Search by question, method or R function — try “confidence interval” or “survey”"
+  search_placeholder: "Search charts, methods, data sources, papers or authors — try “recidivism” or “Guerry”"
+  m_key: "Keyword"
+  m_data: "Data"
+  m_topic: "Data topics"
+  m_ref: "Modelled on"
+  m_text: "In the text"
+  see_all: "Show all {n} matching charts in the gallery"
   empty: "No chart matches your search. Try “regression”, “survey”, “confidence interval” or an R function name."
   all: All
   n_charts: "{n} charts"

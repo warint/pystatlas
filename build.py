@@ -270,6 +270,40 @@ def data_block(ex: "Example") -> str:
             f'<p class="src-disclaimer">{esc(t("data_disclaimer"))}</p></section>')
 
 
+def _plain(text: str) -> str:
+    return re.sub(r"\s+", " ", re.sub(r"[*`]", "", text)).strip()
+
+
+def search_doc(ex: "Example") -> dict:
+    """Everything the home-page search looks through for one chart, by field.
+    Field kinds: chart (title, summary), key (tags, R function, libraries),
+    data (data source: label, full reference), topic (what
+    the data are about), ref (R packages and
+    authors the chart mirrors), text (the chart's explanation)."""
+    fields = [["chart", etitle(ex)], ["chart", esummary(ex)]]
+    if etitle(ex) != ex.title:
+        fields += [["chart", ex.title], ["chart", ex.summary]]
+    fields.append(["key", " · ".join([*ex.tags, ex.r, *ex.libs, ctitle(ex.category), ex.category.title])])
+    for k in sources_of(ex):
+        d = DATA_SOURCES[k]
+        fields.append(["data", f'{d["label"]}. {d["cite"]}'])
+        fields.append(["topic", f'{d["label"]}: ' + ", ".join(d.get("topics") or [])])
+    pkgs = set(re.findall(r"([A-Za-z][A-Za-z0-9.]*)::", ex.r))
+    for ins in CONFIG["thanks"]["inspiration"]:
+        if pkgs & set(ins.get("pkgs") or []):
+            fields.append(["ref", ins["name"]])
+    for desc in dict.fromkeys([edesc(ex), ex.description.strip()]):
+        if desc:
+            fields.append(["text", _plain(desc)])
+    return {"u": ex.url, "t": etitle(ex), "c": ctitle(ex.category), "f": fields}
+
+
+def search_index(cats: list["Category"]) -> str:
+    """The search index as JSON, safe to embed in a <script> element."""
+    docs = [search_doc(e) for c in cats for e in c.examples]
+    return json.dumps(docs, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+
+
 def grouped_grid(c: "Category", home: str, root: str) -> str:
     """Main examples first, then one titled block per subcategory."""
     out = [f'<div class="grid">{"".join(card(e, home, root) for e in c.examples if not e.sub)}</div>']
@@ -408,7 +442,7 @@ def card(ex: "Example", home: str, root: str) -> str:
                          ex.category.title, *ex.tags, *ex.libs]).lower()
     r = f'<span class="card-r">{esc(ex.r)}</span>' if ex.r else ""
     kicker = ctitle(ex.category) + (f" · {subtitle(ex.category, ex.sub)}" if ex.sub else "")
-    return f"""<a class="card" href="{home}{ex.url}" data-cat="{ex.category.slug}" data-k="{esc(keywords)}">
+    return f"""<a class="card" href="{home}{ex.url}" data-cat="{ex.category.slug}" data-id="{ex.url}" data-k="{esc(keywords)}">
   <div class="card-img"><img src="{root}{ex.url}thumb.webp" alt="{esc(etitle(ex))}" loading="lazy" width="720" height="450"></div>
   <div class="card-body"><span class="kicker">{esc(kicker)}</span><h3>{esc(etitle(ex))}</h3><p>{esc(esummary(ex))}</p>{r}</div>
 </a>"""
@@ -524,7 +558,9 @@ def build_language(cats: list["Category"]) -> None:
   <p class="byline">{esc(t('by'))} <a href="{CONFIG['author_url']}">{esc(CONFIG['author'])}</a></p>
   <div class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
     <input id="q" type="search" placeholder="{esc(t('search_placeholder'))}" autocomplete="off" spellcheck="false">
-    <kbd>/</kbd></div>
+    <kbd>/</kbd>
+    <div class="suggest" id="suggest" role="listbox" hidden data-root="{rootp}" data-m-key="{esc(t('m_key'))}" data-m-data="{esc(t('m_data'))}" data-m-topic="{esc(t('m_topic'))}" data-m-ref="{esc(t('m_ref'))}" data-m-text="{esc(t('m_text'))}" data-see-all="{esc(t('see_all'))}" data-none="{esc(t('empty'))}"></div></div>
+  <script type="application/json" id="search-index">{search_index(cats)}</script>
 </div></section>
 <section class="band"><div class="wrap tiles">{tiles}</div></section>
 <section class="wrap" id="gallery">

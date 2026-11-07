@@ -13,7 +13,13 @@ ui:
   hero_2: "美しく Python で。"
   by: 著者：
   part_of: 収録：
-  search_placeholder: "問い、手法、R 関数で検索 — 例：「信頼区間」「調査」"
+  search_placeholder: "グラフ、手法、データソース、論文、著者で検索 — 例：「Rossi」「Guerry」"
+  m_key: "キーワード"
+  m_data: "データ"
+  m_topic: "データのテーマ"
+  m_ref: "参考にしたもの"
+  m_text: "本文"
+  see_all: "一致する {n} 件のグラフをギャラリーで表示"
   empty: "検索に一致するグラフはありません。「回帰」「調査」「信頼区間」や R の関数名で試してください。"
   all: すべて
   n_charts: "{n} 件のグラフ"
