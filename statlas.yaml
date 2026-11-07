@@ -28,13 +28,39 @@ thanks:
       url: https://lifelines.readthedocs.io/en/latest/lifelines.datasets.html
     - name: "BCG vaccine trials (Colditz et al., 1994), as distributed in R's metafor (dat.bcg)"
       url: https://wviechtb.github.io/metafor/reference/dat.bcg.html
-  inspiration:
+  inspiration:   # `pkgs`: the functions of these R packages that the gallery mirrors are listed automatically
     - name: The R Graph Gallery (Yan Holtz)
       url: https://r-graph-gallery.com
-    - name: ggstats (Joseph Larmarange)
-      url: https://larmarange.github.io/ggstats/
     - name: ggstatsplot (Indrajeet Patil)
       url: https://indrajeetpatil.github.io/ggstatsplot/
+      pkgs: [ggstatsplot]
+    - name: ggstats (Joseph Larmarange)
+      url: https://larmarange.github.io/ggstats/
+      pkgs: [ggstats]
+    - name: ggdist (Matthew Kay) and ggrain (Nicholas Judd, Jordy van Langen)
+      url: https://mjskay.github.io/ggdist/
+      pkgs: [ggdist, ggrain]
+    - name: ggridges (Claus O. Wilke)
+      url: https://wilkelab.org/ggridges/
+      pkgs: [ggridges]
+    - name: survminer and factoextra (Alboukadel Kassambara)
+      url: https://rpkgs.datanovia.com/survminer/
+      pkgs: [survminer, factoextra]
+    - name: dabestr (Joses W. Ho and colleagues)
+      url: https://cran.r-project.org/package=dabestr
+      pkgs: [dabestr]
+    - name: performance, easystats (Daniel Lüdecke and colleagues)
+      url: https://easystats.github.io/performance/
+      pkgs: [performance]
+    - name: metafor (Wolfgang Viechtbauer)
+      url: https://www.metafor-project.org
+      pkgs: [metafor]
+    - name: GGally (Barret Schloerke, Di Cook)
+      url: https://ggobi.github.io/ggally/
+      pkgs: [GGally]
+    - name: corrplot (Taiyun Wei, Viliam Simko)
+      url: https://github.com/taiyun/corrplot
+      pkgs: [corrplot]
   site:
     - name: PyYAML
       url: https://pyyaml.org

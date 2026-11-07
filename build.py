@@ -591,7 +591,16 @@ def thanks_block(cats: list["Category"]) -> str:
     r_url = lambda m: (f"https://bioconductor.org/packages/{m}/" if m in bioc
                        else f"https://cran.r-project.org/package={m}")
     r_html = " · ".join(link(m, r_url(m)) for m in rpk)
-    items = lambda key: "".join(f"<li>{link(d['name'], d['url'])}</li>" for d in th[key])
+    funcs = {}
+    for e in exs:
+        for m, f in re.findall(r"([A-Za-z][A-Za-z0-9.]*)::([A-Za-z_][A-Za-z0-9_.]*)", e.r or ""):
+            funcs.setdefault(m, [])
+            if f not in funcs[m]:
+                funcs[m].append(f)
+    def item(d):
+        fs = [f"<code>{esc(f)}()</code>" for m in d.get("pkgs", []) for f in funcs.get(m, [])]
+        return f"<li>{link(d['name'], d['url'])}{' — ' + ', '.join(fs) if fs else ''}</li>"
+    items = lambda key: "".join(item(d) for d in th[key])
     return f"""<section class="thanks" id="thanks">
 <h2>{esc(t('thanks_h'))}</h2>
 <p>{esc(t('thanks_p'))}</p>
