@@ -21,14 +21,12 @@ thanks:
     lifelines: https://lifelines.readthedocs.io
     SHAP: https://shap.readthedocs.io
   datasets:
-    - name: "scikit-learn toy datasets — Breast Cancer Wisconsin, Iris, Diabetes, Wine, Digits"
-      url: https://scikit-learn.org/stable/datasets/toy_dataset.html
-    - name: "statsmodels datasets — El Niño, Engel food expenditure, ANES 1996, Fair's affairs, US state crime, Spector, Mauna Loa CO₂, sunspots"
+    - name: "statsmodels datasets — American National Election Study 1996, California STAR 1998 school districts, US state crime, Fair's affairs survey, World Bank fertility rates, Engel household budgets, Spector teaching experiment, US macroeconomic series, euro-area electrical-equipment turnover"
       url: https://www.statsmodels.org/stable/datasets/index.html
-    - name: "lifelines datasets — NCCTG lung cancer, Rossi recidivism, GBSG2 breast cancer"
+    - name: "lifelines datasets — Rossi recidivism study, Democracy and Dictatorship leader spells (Cheibub, Gandhi and Vreeland)"
       url: https://lifelines.readthedocs.io/en/latest/lifelines.datasets.html
-    - name: "BCG vaccine trials (Colditz et al., 1994), as distributed in R's metafor (dat.bcg)"
-      url: https://wviechtb.github.io/metafor/reference/dat.bcg.html
+    - name: "Teacher-expectancy experiments (Raudenbush, 1984), as distributed in R's metafor (dat.raudenbush1985)"
+      url: https://wviechtb.github.io/metadat/reference/dat.raudenbush1985.html
   inspiration:   # `pkgs`: the functions of these R packages that the gallery mirrors are listed automatically
     - name: The R Graph Gallery (Yan Holtz)
       url: https://r-graph-gallery.com

@@ -1,6 +1,6 @@
 # Cross-validated model comparison
 
-> Fold-by-fold scores of several models, with means and corrected 95% intervals.
+> Fold-by-fold R² of six models predicting California school districts' maths results, with means and corrected 95% intervals.
 
 ![Cross-validated model comparison](plot.png)
 
@@ -11,19 +11,25 @@ mean and the bar its 95% interval. Fold scores are not independent — the
 training sets overlap — so the interval uses the **Nadeau–Bengio corrected**
 variance rather than the naive standard error, which would be far too narrow.
 
-Data are the 442 diabetes patients bundled with **scikit-learn**
-(`load_diabetes`), the outcome a measure of disease progression after one
-year; the score is the out-of-sample R². Scores come from `cross_val_score`
-with `RepeatedKFold`; the linear models are standardised in a `Pipeline`.
+Data are the 303 California school districts of the 1998 STAR test bundled
+with **statsmodels** (`sm.datasets.star98`): the outcome is the share of
+students scoring above the national median in maths, predicted from ten
+district characteristics (share of low-income students, ethnic composition,
+teacher experience and salary, spending per pupil, pupils per teacher,
+college-prep enrolment, year-round schools). The score is the out-of-sample
+R². Scores come from `cross_val_score` with `RepeatedKFold`; the linear models
+are standardised in a `Pipeline`. Here plain linear regression does as well
+as the tree ensembles: flexibility buys nothing when the relationship is close
+to additive.
 
 **R equivalent:** `caret::resamples() + bwplot() / tune::autoplot()`  
-**Libraries:** Matplotlib, NumPy, SciPy, scikit-learn
+**Libraries:** Matplotlib, NumPy, SciPy, statsmodels, scikit-learn
 
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy import stats
-from sklearn.datasets import load_diabetes
+import statsmodels.api as sm
 from sklearn.ensemble import GradientBoostingRegressor, RandomForestRegressor
 from sklearn.linear_model import LassoCV, LinearRegression, RidgeCV
 from sklearn.model_selection import RepeatedKFold, cross_val_score
@@ -31,7 +37,15 @@ from sklearn.neighbors import KNeighborsRegressor
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
-X, y = load_diabetes(return_X_y=True)
+# Data: 303 California school districts; outcome = % of students above the national median in maths
+d = sm.datasets.star98.load_pandas().data
+y = 100 * d["NABOVE"] / (d["NABOVE"] + d["NBELOW"])
+names = {"LOWINC": "% low-income students", "PERASIAN": "% Asian students", "PERBLACK": "% Black students",
+         "PERHISP": "% Hispanic students", "AVYRSEXP": "Teacher experience (years)",
+         "AVSALK": "Teacher salary ($000)", "PERSPENK": "Spending per pupil ($000)",
+         "PTRATIO": "Pupils per teacher", "PCTAF": "% in college-prep courses",
+         "PCTYRRND": "% year-round schools"}
+X = d[list(names)]
 k, reps = 5, 10
 cv = RepeatedKFold(n_splits=k, n_repeats=reps, random_state=0)
 models = {
@@ -62,12 +76,14 @@ for i, name in enumerate(order):
     lo, hi = corrected_ci(s)
     ax.plot([lo, hi], [i, i], color=c, lw=3, solid_capstyle="round")
     ax.scatter(s.mean(), i, s=80, color=c, edgecolor="white", lw=1.5, zorder=4)
-    ax.text(hi + 0.012, i, f"{s.mean():.3f}", va="center", fontsize=9.5, color=c, fontweight="semibold")
+    ax.text(hi + 0.012, i, f"{s.mean():.3f}", va="center", fontsize=9.5, color=c, fontweight="semibold",
+            bbox=dict(fc="white", ec="none", pad=1), zorder=5)
 ax.set_yticks(range(len(order)), order)
 ax.set_xlabel("Out-of-sample R² (one dot per fold)")
 ax.grid(axis="x"); ax.grid(axis="y", visible=False)
-ax.set_title("No clear winner: plain linear regression does as well as boosting", pad=26)
-ax.text(0, 1.02, f"Diabetes progression · n = {len(y)} · {k}-fold CV × {reps} repeats · "
+lin = scores["Linear regression"].mean()
+ax.set_title(f"No clear winner: plain linear regression (R² = {lin:.2f}) matches the tree ensembles", pad=26)
+ax.text(0, 1.02, f"School districts' maths results · n = {len(y)} · {k}-fold CV × {reps} repeats · "
         "bars = Nadeau–Bengio corrected 95% CI", transform=ax.transAxes, fontsize=9.5, color="#6E6E73")
 plt.show()
 ```

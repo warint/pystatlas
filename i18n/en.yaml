@@ -53,7 +53,7 @@ ui:
   about_h1: "About {name}"
   about_p1: "{name} starts from the questions researchers ask, not from the code. It was first written for social-science students who know their field and need to answer a question with data: do these groups differ, do two variables move together, what does the model predict and why? Each chart puts the relevant statistics on the figure and comes with a short, self-contained script built on the scientific Python stack — in the spirit of <code>ggstats</code> and <code>ggstatsplot</code> in R."
   principles_h: Principles
-  principle_1: "<strong>Self‑contained.</strong> Every script runs as is. Data comes from bundled datasets (statsmodels, scikit‑learn, lifelines) or a seeded simulation — no downloads."
+  principle_1: "<strong>Self‑contained.</strong> Every script runs as is. Data are real social‑science datasets bundled with statsmodels and lifelines (elections, schools, crime, fertility, regimes, recidivism…), a small published table typed in, or — rarely — a labelled, seeded simulation. No downloads."
   principle_2: "<strong>Statistics first.</strong> Each chart carries the numbers that matter: estimates, intervals, test statistics, effect sizes."
   principle_3: "<strong>Folder = page.</strong> The repository tree mirrors the site. Every example lives in <code>gallery/&lt;family&gt;/&lt;chart&gt;/plot.py</code> with a rendered <code>plot.png</code> and README."
   families_h: Families

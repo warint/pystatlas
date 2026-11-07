@@ -1,6 +1,6 @@
 # Confusion matrix with metrics
 
-> Out-of-fold confusion matrix with counts and row shares, and bootstrap intervals for the headline metrics.
+> How well a logistic regression predicts who voted Dole in 1996 — out-of-fold confusion matrix with counts and row shares, and bootstrap intervals for the headline metrics.
 
 ![Confusion matrix with metrics](plot.png)
 
@@ -12,18 +12,22 @@ cross-validation, which is what the matrix would look like on new data.
 
 The side panel reports accuracy, precision, recall, F1 and the Matthews
 correlation coefficient (MCC), each with a 95% bootstrap interval — a single
-number hides how much it would move with another sample. Data are the 569
-breast-cancer biopsies bundled with **scikit-learn**; the model is a
-standardised logistic regression, the predictions come from
-`cross_val_predict` and the metrics from `sklearn.metrics`.
+number hides how much it would move with another sample. Data are the 944
+respondents of the 1996 American National Election Study who voted for
+Clinton or Dole, bundled with **statsmodels** (`sm.datasets.anes96`). The
+model predicts a Dole vote from party identification, left–right
+self-placement, age, education, income, days watching TV news and the
+population of the respondent's place of residence (log). It is a standardised
+logistic regression; the predictions come from `cross_val_predict` and the
+metrics from `sklearn.metrics`.
 
 **R equivalent:** `yardstick::conf_mat() + autoplot()`  
-**Libraries:** Matplotlib, NumPy, scikit-learn
+**Libraries:** Matplotlib, NumPy, statsmodels, scikit-learn
 
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
-from sklearn.datasets import load_breast_cancer
+import statsmodels.api as sm
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (accuracy_score, confusion_matrix, f1_score, matthews_corrcoef,
                              precision_score, recall_score)
@@ -31,10 +35,11 @@ from sklearn.model_selection import StratifiedKFold, cross_val_predict
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
-# Data: 569 biopsies; recode so that 1 = malignant (the class we want to catch)
-X, y = load_breast_cancer(return_X_y=True)
-y = 1 - y
-labels = ["Benign", "Malignant"]
+# Data: 944 voters in the 1996 US presidential election; 1 = voted Dole, 0 = voted Clinton
+d = sm.datasets.anes96.load_pandas().data
+X = d[["PID", "selfLR", "age", "educ", "income", "TVnews", "logpopul"]]
+y = d["vote"].to_numpy().astype(int)
+labels = ["Clinton", "Dole"]
 
 # Out-of-fold predictions from a 10-fold cross-validation
 model = make_pipeline(StandardScaler(), LogisticRegression(max_iter=1000))
@@ -67,8 +72,8 @@ for r in range(2):
                 fontweight="semibold", color="white" if share[r, c] > 0.5 else "#1d1d1f")
 ax.set_xticks([0, 1], labels)
 ax.set_yticks([0, 1], labels)
-ax.set_xlabel("Predicted class")
-ax.set_ylabel("True class")
+ax.set_xlabel("Predicted vote")
+ax.set_ylabel("Reported vote")
 ax.grid(False)
 for s in ax.spines.values():
     s.set_visible(False)
@@ -81,14 +86,15 @@ for j, k in enumerate(names):
     axm.text(ci[k][1] + 0.006, j, f"{point[k]:.3f}  [{ci[k][0]:.3f}, {ci[k][1]:.3f}]",
              va="center", fontsize=9.5, color="#3A3A3C")
 axm.set_yticks(range(len(names)), names)
-axm.set_xlim(0.85, 1.04)
+axm.set_xlim(0.75, 1.0)
 axm.set_xlabel("Score (out-of-fold, 95% bootstrap CI)")
 axm.grid(axis="x"); axm.grid(axis="y", visible=False)
 
 fn, pos = cm[1, 0], cm[1].sum()
-fig.suptitle(f"The model misses {fn} of {pos} malignant tumours — 1 in {round(pos / fn)}", x=0.02, y=0.97, ha="left")
-fig.text(0.02, 0.885, f"Logistic regression · 10-fold out-of-fold predictions · n = {len(y)} "
-         f"({y.sum()} malignant) · 2,000 bootstrap resamples", fontsize=9.5, color="#6E6E73")
+fig.suptitle(f"The model calls {point['Accuracy']:.0%} of votes right but misses {fn} of {pos} Dole voters",
+             x=0.02, y=0.97, ha="left")
+fig.text(0.02, 0.885, f"Logistic regression · 10-fold out-of-fold predictions · n = {len(y)} voters "
+         f"({y.sum()} for Dole) · ANES 1996 · 2,000 bootstrap resamples", fontsize=9.5, color="#6E6E73")
 plt.show()
 ```
 

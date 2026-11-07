@@ -2,7 +2,7 @@
 title: Raincloud plot
 summary: Half violin, box plot and raw points per group, drawn horizontally.
 r: ggdist::stat_halfeye() / ggrain::geom_rain()
-tags: [raincloud, violin, box plot, Kruskal-Wallis, distribution]
+tags: [raincloud, violin, box plot, Kruskal-Wallis, distribution, political science, regimes]
 description: |
   A raincloud plot stacks three views of the same data: a half violin (the
   "cloud") shows the density, a slim box plot gives the median and quartiles,
@@ -10,20 +10,24 @@ description: |
   observation. Nothing is hidden, so bimodality, outliers and small samples are
   all visible.
 
-  Data are the iris flowers bundled with **scikit-learn**: sepal length for three
-  species. The densities come from `scipy.stats.gaussian_kde`, and the subtitle
-  reports a Kruskal–Wallis test (`scipy.stats.kruskal`) with ε² as effect size.
+  Data are the 964 completed spells in office of heads of government between
+  1946 and 2008 under three regime types, from the Democracy and Dictatorship
+  data bundled with **lifelines** (`lifelines.datasets.load_dd()`); leaders still
+  in office at the end of the data (censored spells) are left out. The
+  densities come from `scipy.stats.gaussian_kde`, and the subtitle reports a
+  Kruskal–Wallis test (`scipy.stats.kruskal`) — a rank test, suited to skewed
+  durations — with ε² as effect size.
 """
 import matplotlib.pyplot as plt
 import numpy as np
+from lifelines.datasets import load_dd
 from scipy import stats
-from sklearn.datasets import load_iris
 
-# Data: sepal length of three iris species
-iris = load_iris(as_frame=True)
-df = iris.frame.assign(species=iris.target.map(dict(enumerate(iris.target_names))))
-groups = ["setosa", "versicolor", "virginica"]
-data = [df.loc[df.species == g, "sepal length (cm)"].to_numpy() for g in groups]
+# Data: years in office of leaders whose spell ended, by regime type
+df = load_dd().query("observed == 1")
+groups = {"Parliamentary Dem": "Parliamentary democracy",
+          "Presidential Dem": "Presidential democracy", "Military Dict": "Military dictatorship"}
+data = [df.loc[df.regime == g, "duration"].to_numpy() for g in groups]
 palette = ["#007AFF", "#FF9500", "#34C759"]
 
 # Kruskal–Wallis test + epsilon squared
@@ -35,7 +39,7 @@ fig, ax = plt.subplots(figsize=(8, 5.2))
 rng = np.random.default_rng(7)
 for i, (d, c) in enumerate(zip(data, palette)):
     # Cloud: half violin above the baseline, scaled to a fixed height
-    grid = np.linspace(d.min() - 0.2, d.max() + 0.2, 300)  # trim the cloud near the data
+    grid = np.linspace(d.min() - 0.5, d.max() + 0.5, 300)  # trim the cloud near the data
     dens = stats.gaussian_kde(d)(grid)
     ax.fill_between(grid, i, i + 0.55 * dens / dens.max(), color=c, alpha=0.3, lw=0)
     ax.plot(grid, i + 0.55 * dens / dens.max(), color=c, lw=1.4)
@@ -48,14 +52,16 @@ for i, (d, c) in enumerate(zip(data, palette)):
     ax.scatter(d, i - 0.3 + rng.uniform(-0.08, 0.08, len(d)),
                s=12, color=c, alpha=0.55, lw=0)
 
-ax.set_yticks(range(len(groups)), [f"I. {g}\nmedian {np.median(d):.1f} · n = {len(d)}"
-                                   for g, d in zip(groups, data)])
+ax.set_yticks(range(len(groups)), [f"{g}\nmedian {np.median(d):.0f} yrs · n = {len(d)}"
+                                   for g, d in zip(groups.values(), data)])
 ax.set_ylim(-0.5, len(groups) - 0.3)
-ax.set_xlim(4, 8.2)
+ax.set_xlim(0, 36)
 ax.grid(axis="x"); ax.grid(axis="y", visible=False)
-ax.set_xlabel("Sepal length (cm)")
-ax.set_title("Virginica irises have the longest sepals", pad=26)
-ax.text(0, 1.02, f"Kruskal–Wallis H(2) = {H:.1f}, p = {p:.1e}, ε² = {eps2:.2f} · "
-        "cloud = density, box = quartiles, rain = flowers", transform=ax.transAxes,
+ax.set_xlabel("Years in office")
+share = [np.mean(d > 10) for d in data]
+ax.set_title(f"{share[2]:.0%} of military rulers stay over 10 years, "
+             f"{share[1]:.1%} of presidents", pad=26)
+ax.text(0, 1.02, f"Kruskal–Wallis H(2) = {H:.1f}, p = {p:.3f}, ε² = {eps2:.2f} · "
+        "cloud = density, box = quartiles, rain = leaders", transform=ax.transAxes,
         fontsize=9.5, color="#6E6E73")
 plt.show()

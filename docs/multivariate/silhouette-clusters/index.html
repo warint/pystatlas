@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Silhouette plot for k-means · PyStatlas</title>
-<meta name="description" content="k-means clusters in PCA space next to the per-observation silhouette widths.">
+<meta name="description" content="Do US states fall into distinct social profiles? k-means clusters next to their silhouette widths.">
 <meta name="author" content="Thierry Warin">
 <link rel="author" href="https://www.warin.ca">
 <meta name="citation_title" content="Silhouette plot for k-means — PyStatlas: The Python Gallery of Statistical Graphics">
@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="x-default" href="https://warint.github.io/pystatlas/multivariate/silhouette-clusters/">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Silhouette plot for k-means — PyStatlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/pystatlas/multivariate/silhouette-clusters/", "inLanguage": "en", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "PyStatlas", "url": "https://warint.github.io/pystatlas/"}}</script>
 <meta property="og:title" content="Silhouette plot for k-means · PyStatlas">
-<meta property="og:description" content="k-means clusters in PCA space next to the per-observation silhouette widths.">
+<meta property="og:description" content="Do US states fall into distinct social profiles? k-means clusters next to their silhouette widths.">
 <meta property="og:locale" content="en">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
@@ -51,7 +51,7 @@
 <main>
 <article class="wrap ex">
   <div class="crumbs"><a href="../../index.html">Gallery</a><span>/</span><a href="../../multivariate/index.html">Multivariate &amp; clustering</a></div>
-  <header class="ex-head"><h1>Silhouette plot for k-means</h1><p class="lede">k-means clusters in PCA space next to the per-observation silhouette widths.</p>
+  <header class="ex-head"><h1>Silhouette plot for k-means</h1><p class="lede">Do US states fall into distinct social profiles? k-means clusters next to their silhouette widths.</p>
   <p class="byline">By <a href="https://www.warin.ca">Thierry Warin</a> · part of <a href="../../index.html">PyStatlas</a></p></header>
   <figure class="figure"><a href="../../multivariate/silhouette-clusters/plot.png" target="_blank" rel="noopener"><img src="../../multivariate/silhouette-clusters/plot.png" alt="Silhouette plot for k-means"></a></figure>
   <div class="ex-cols">
@@ -61,14 +61,22 @@ near 0 means on the border, negative means probably misassigned. The number of
 clusters k is the one with the highest average silhouette (2 to 8 tried).
 The left panel shows the clusters on the first two principal components; the
 right panel sorts the silhouette widths within each cluster, with the dashed
-line at the overall average.</p><p>Data are the 13 standardised chemical measurements of the <strong>scikit-learn</strong>
-wine dataset. <code>KMeans</code>, <code>silhouette_score</code> and <code>silhouette_samples</code> from
-<code>sklearn</code> do the work; <code>PCA</code> is only used to draw the clusters.</p></div>
-    <aside class="meta"><div class="meta-row"><span>R equivalent</span><code>factoextra::fviz_silhouette()</code></div><div class="meta-row"><span>Libraries</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>scikit-learn</i></div></div><div class="meta-row"><span>Topics</span><div class="pills"><i>clustering</i><i>k-means</i><i>silhouette</i><i>PCA</i><i>cluster validation</i></div></div></aside>
+line at the overall average.</p><p>Data are the 50 US states from the <strong>statsmodels</strong> <code>statecrime</code> dataset (2009
+figures), described by 7 standardised indicators: violent-crime and murder
+rates, % high-school graduates, % in poverty, % single-parent households,
+% white and % urban. The District of Columbia is left out: it is so extreme
+that k-means would give it a cluster of its own. The two clusters found are
+roughly a lower-crime, lower-poverty profile and a higher-crime,
+higher-poverty one, but an average silhouette around 0.35 is a <strong>weak</strong>
+structure by Kaufman &amp; Rousseeuw&#x27;s rule of thumb (0.26–0.50): states form a
+continuum more than separate types. <code>KMeans</code>, <code>silhouette_score</code> and
+<code>silhouette_samples</code> from <code>sklearn</code> do the work; <code>PCA</code> is only used to draw
+the clusters.</p></div>
+    <aside class="meta"><div class="meta-row"><span>R equivalent</span><code>factoextra::fviz_silhouette()</code></div><div class="meta-row"><span>Libraries</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>statsmodels</i><i>scikit-learn</i></div></div><div class="meta-row"><span>Topics</span><div class="pills"><i>clustering</i><i>k-means</i><i>silhouette</i><i>PCA</i><i>cluster validation</i><i>US states</i><i>crime</i></div></div></aside>
   </div>
   <section class="code-card" id="code">
     <div class="code-bar">
-      <span class="fname">silhouette-clusters.py · 56 lines</span>
+      <span class="fname">silhouette-clusters.py · 58 lines</span>
       <div class="code-actions">
         <a class="btn ghost" href="../../multivariate/silhouette-clusters/silhouette-clusters.py" download>Download</a>
         <a class="btn ghost" href="https://github.com/warint/pystatlas/tree/main/gallery/09-multivariate/03-silhouette-clusters">GitHub</a>
@@ -77,14 +85,15 @@ wine dataset. <code>KMeans</code>, <code>silhouette_score</code> and <code>silho
     </div>
     <pre class="code"><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">KMeans</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_wine</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">adjusted_rand_score</span><span class="p">,</span> <span class="n">silhouette_samples</span><span class="p">,</span> <span class="n">silhouette_score</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">silhouette_samples</span><span class="p">,</span> <span class="n">silhouette_score</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
 
-<span class="n">wine</span> <span class="o">=</span> <span class="n">load_wine</span><span class="p">()</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">wine</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="c1"># 7 social indicators of the 50 US states (DC, an extreme outlier, is left out)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">statecrime</span><span class="o">.</span><span class="n">load_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">"District of Columbia"</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 
 <span class="c1"># Choose k by the average silhouette width</span>
 <span class="n">fits</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">)}</span>
@@ -125,11 +134,12 @@ wine dataset. <code>KMeans</code>, <code>silhouette_score</code> and <code>silho
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Silhouette width"</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s2">"bottom"</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Silhouette picks k = </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">, recovering the three wine cultivars"</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Silhouette picks k = </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> state profiles, but they are only weakly separated"</span><span class="p">,</span>
+              <span class="n">pad</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="s2">"Average silhouette for k = 2…8: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">avg</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-         <span class="o">+</span> <span class="sa">f</span><span class="s2">" · agreement with cultivar: ARI = </span><span class="si">{</span><span class="n">adjusted_rand_score</span><span class="p">(</span><span class="n">wine</span><span class="o">.</span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span>
-         <span class="sa">f</span><span class="s2">" · n = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax1</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">,</span>
-         <span class="n">in_layout</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+         <span class="o">+</span> <span class="sa">f</span><span class="s2">" · </span><span class="si">{</span><span class="p">(</span><span class="n">sil</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> states misplaced (width &lt; 0) · n = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="si">}</span><span class="s2"> states, "</span>
+         <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> standardised indicators"</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax1</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span>
+         <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">,</span> <span class="n">in_layout</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre>
   </section>
@@ -153,17 +163,17 @@ wine dataset. <code>KMeans</code>, <code>silhouette_score</code> and <code>silho
 }">Copy BibTeX</button></div>
 </section>
   <div class="pager"><a href="../../multivariate/scree-plot/"><small>Previous</small>Scree plot</a><a class="next" href="../../multivariate/clustered-heatmap/"><small>Next</small>Clustered heatmap</a></div>
-  <h2 class="rel-h">More in Multivariate &amp; clustering</h2><div class="grid"><a class="card" href="../../multivariate/pca-biplot/" data-cat="multivariate" data-k="pca biplot observations and variable loadings on the first two principal components. pca biplot observations and variable loadings on the first two principal components. factoextra::fviz_pca_biplot() multivariate &amp; clustering multivariate &amp; clustering pca biplot loadings dimension reduction ellipse matplotlib numpy scipy scikit-learn">
+  <h2 class="rel-h">More in Multivariate &amp; clustering</h2><div class="grid"><a class="card" href="../../multivariate/pca-biplot/" data-cat="multivariate" data-k="pca biplot us states and their social indicators on the first two principal components. pca biplot us states and their social indicators on the first two principal components. factoextra::fviz_pca_biplot() multivariate &amp; clustering multivariate &amp; clustering pca biplot loadings dimension reduction ellipse us states crime poverty matplotlib numpy statsmodels scipy scikit-learn">
   <div class="card-img"><img src="../../multivariate/pca-biplot/thumb.webp" alt="PCA biplot" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><span class="kicker">Multivariate &amp; clustering</span><h3>PCA biplot</h3><p>Observations and variable loadings on the first two principal components.</p><span class="card-r">factoextra::fviz_pca_biplot()</span></div>
+  <div class="card-body"><span class="kicker">Multivariate &amp; clustering</span><h3>PCA biplot</h3><p>US states and their social indicators on the first two principal components.</p><span class="card-r">factoextra::fviz_pca_biplot()</span></div>
 </a>
-<a class="card" href="../../multivariate/scree-plot/" data-cat="multivariate" data-k="scree plot variance explained per component, cumulative share and a parallel-analysis cut-off. scree plot variance explained per component, cumulative share and a parallel-analysis cut-off. factoextra::fviz_eig() multivariate &amp; clustering multivariate &amp; clustering pca scree plot eigenvalues parallel analysis kaiser matplotlib numpy scikit-learn">
+<a class="card" href="../../multivariate/scree-plot/" data-cat="multivariate" data-k="scree plot how many dimensions describe 303 california school districts? variance per component and a parallel-analysis cut-off. scree plot how many dimensions describe 303 california school districts? variance per component and a parallel-analysis cut-off. factoextra::fviz_eig() multivariate &amp; clustering multivariate &amp; clustering pca scree plot eigenvalues parallel analysis kaiser education school districts matplotlib numpy statsmodels scikit-learn">
   <div class="card-img"><img src="../../multivariate/scree-plot/thumb.webp" alt="Scree plot" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><span class="kicker">Multivariate &amp; clustering</span><h3>Scree plot</h3><p>Variance explained per component, cumulative share and a parallel-analysis cut-off.</p><span class="card-r">factoextra::fviz_eig()</span></div>
+  <div class="card-body"><span class="kicker">Multivariate &amp; clustering</span><h3>Scree plot</h3><p>How many dimensions describe 303 California school districts? Variance per component and a parallel-analysis cut-off.</p><span class="card-r">factoextra::fviz_eig()</span></div>
 </a>
-<a class="card" href="../../multivariate/clustered-heatmap/" data-cat="multivariate" data-k="clustered heatmap z-scored heatmap with row and column dendrograms and a group colour bar. clustered heatmap z-scored heatmap with row and column dendrograms and a group colour bar. pheatmap::pheatmap() / complexheatmap::heatmap() multivariate &amp; clustering multivariate &amp; clustering heatmap hierarchical clustering dendrogram z-score clustermap matplotlib numpy pandas seaborn scipy scikit-learn">
+<a class="card" href="../../multivariate/clustered-heatmap/" data-cat="multivariate" data-k="clustered heatmap z-scored heatmap of us states&#x27; social indicators, with row and column dendrograms and a census-region colour bar. clustered heatmap z-scored heatmap of us states&#x27; social indicators, with row and column dendrograms and a census-region colour bar. pheatmap::pheatmap() / complexheatmap::heatmap() multivariate &amp; clustering multivariate &amp; clustering heatmap hierarchical clustering dendrogram z-score clustermap us states crime matplotlib numpy pandas seaborn scipy statsmodels scikit-learn">
   <div class="card-img"><img src="../../multivariate/clustered-heatmap/thumb.webp" alt="Clustered heatmap" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><span class="kicker">Multivariate &amp; clustering</span><h3>Clustered heatmap</h3><p>Z-scored heatmap with row and column dendrograms and a group colour bar.</p><span class="card-r">pheatmap::pheatmap() / ComplexHeatmap::Heatmap()</span></div>
+  <div class="card-body"><span class="kicker">Multivariate &amp; clustering</span><h3>Clustered heatmap</h3><p>Z-scored heatmap of US states&#x27; social indicators, with row and column dendrograms and a Census-region colour bar.</p><span class="card-r">pheatmap::pheatmap() / ComplexHeatmap::Heatmap()</span></div>
 </a></div>
 </article>
 </main>

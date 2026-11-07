@@ -9,7 +9,9 @@
    "KDE",
    "normality",
    "skewness",
-   "Shapiro-Wilk"
+   "Shapiro-Wilk",
+   "demography",
+   "fertility"
   ],
   "url": "distributions/histogram-density/"
  },
@@ -23,7 +25,9 @@
    "violin",
    "box plot",
    "Kruskal-Wallis",
-   "distribution"
+   "distribution",
+   "political science",
+   "regimes"
   ],
   "url": "distributions/raincloud/"
  },
@@ -36,8 +40,9 @@
    "ridgeline",
    "joy plot",
    "KDE",
-   "seasonality",
-   "Friedman"
+   "Friedman",
+   "demography",
+   "fertility"
   ],
   "url": "distributions/ridgeline/"
  },
@@ -50,7 +55,9 @@
    "ECDF",
    "Kolmogorov-Smirnov",
    "cumulative distribution",
-   "two-sample test"
+   "two-sample test",
+   "criminology",
+   "recidivism"
   ],
   "url": "distributions/ecdf-comparison/"
  },
@@ -76,9 +83,11 @@
   "tags": [
    "ANOVA",
    "Welch",
-   "Games-Howell",
+   "Holm",
    "effect size",
-   "violin"
+   "violin",
+   "education",
+   "inequality"
   ],
   "url": "group-comparisons/between-groups-violin/"
  },
@@ -92,7 +101,9 @@
    "paired t-test",
    "rm-ANOVA",
    "effect size",
-   "spaghetti plot"
+   "spaghetti plot",
+   "panel data",
+   "demography"
   ],
   "url": "group-comparisons/within-subjects/"
  },
@@ -106,7 +117,9 @@
    "bootstrap",
    "effect size",
    "mean difference",
-   "confidence interval"
+   "confidence interval",
+   "crime",
+   "poverty"
   ],
   "url": "group-comparisons/estimation-plot/"
  },
@@ -120,7 +133,10 @@
    "interaction",
    "means",
    "confidence interval",
-   "factorial"
+   "factorial",
+   "survey",
+   "elections",
+   "ideology"
   ],
   "url": "group-comparisons/means-with-ci/"
  },
@@ -222,7 +238,7 @@
  },
  {
   "title": "Scatterplot with statistics",
-  "summary": "Scatter, OLS line with 95% band and marginal histograms, with Pearson's r in the subtitle.",
+  "summary": "Low-income pupils vs math results in 303 California districts \u2014 scatter, OLS line with 95% band, marginal histograms and Pearson's r.",
   "r": "ggstatsplot::ggscatterstats()",
   "category": "Correlation & association",
   "tags": [
@@ -230,13 +246,14 @@
    "Pearson",
    "scatterplot",
    "regression line",
-   "marginal histogram"
+   "marginal histogram",
+   "education"
   ],
   "url": "correlation/scatter-with-stats/"
  },
  {
   "title": "Pairs plot with correlations",
-  "summary": "Scatter matrix with group KDEs on the diagonal and correlation coefficients above it.",
+  "summary": "Scatter matrix of four school-district variables, with group KDEs on the diagonal and pooled vs within-group correlations above it.",
   "r": "GGally::ggpairs()",
   "category": "Correlation & association",
   "tags": [
@@ -244,13 +261,15 @@
    "scatter matrix",
    "correlation",
    "KDE",
-   "Simpson's paradox"
+   "Simpson's paradox",
+   "confounding",
+   "education"
   ],
   "url": "correlation/pairs-plot/"
  },
  {
   "title": "Correlogram with clustering",
-  "summary": "Corrplot-style circles sized and coloured by r, ordered by hierarchical clustering.",
+  "summary": "Corrplot-style circles sized and coloured by r for 13 school-district indicators, ordered by hierarchical clustering.",
   "r": "corrplot::corrplot(order = \"hclust\", addrect = 3)",
   "category": "Correlation & association",
   "tags": [
@@ -258,7 +277,8 @@
    "correlogram",
    "hierarchical clustering",
    "heatmap",
-   "corrplot"
+   "corrplot",
+   "education"
   ],
   "url": "correlation/correlogram-bubble/"
  },
@@ -291,7 +311,7 @@
  },
  {
   "title": "Comparing nested models",
-  "summary": "Coefficients of three nested regressions side by side, to see how estimates shift.",
+  "summary": "Coefficients of three nested regressions of district math results side by side, to see how estimates shift as blocks are added.",
   "r": "ggstats::ggcoef_compare()",
   "category": "Regression models",
   "tags": [
@@ -299,7 +319,8 @@
    "model comparison",
    "nested models",
    "confidence interval",
-   "OLS"
+   "OLS",
+   "education"
   ],
   "url": "regression-models/compare-models/"
  },
@@ -319,7 +340,7 @@
  },
  {
   "title": "Interaction effects",
-  "summary": "Simple slopes at mean \u00b1 1 SD and a Johnson\u2013Neyman plot for two continuous predictors.",
+  "summary": "Simple slopes at mean \u00b1 1 SD and a Johnson\u2013Neyman plot for college-prep courses and math results, moderated by pupil poverty.",
   "r": "interactions::interact_plot() / interactions::johnson_neyman()",
   "category": "Regression models",
   "tags": [
@@ -327,7 +348,8 @@
    "moderation",
    "simple slopes",
    "Johnson-Neyman",
-   "marginal effect"
+   "marginal effect",
+   "education"
   ],
   "url": "regression-models/interaction-effects/"
  },
@@ -417,7 +439,7 @@
  },
  {
   "title": "Kaplan\u2013Meier curves",
-  "summary": "Survival curves with confidence bands, censoring marks, log-rank test and risk table.",
+  "summary": "How long political leaders stay in office, democracies vs non-democracies \u2014 survival curves with confidence bands, censoring marks, log-rank test and risk table.",
   "r": "survminer::ggsurvplot(risk.table = TRUE)",
   "category": "Survival analysis",
   "tags": [
@@ -425,7 +447,8 @@
    "log-rank",
    "survival",
    "censoring",
-   "risk table"
+   "risk table",
+   "political science"
   ],
   "url": "survival/kaplan-meier/"
  },
@@ -445,14 +468,15 @@
  },
  {
   "title": "Cumulative hazard",
-  "summary": "Nelson\u2013Aalen cumulative hazard curves with 95% bands for three tumour grades.",
+  "summary": "Nelson\u2013Aalen cumulative hazard of leaving office, with 95% bands, for four political regimes.",
   "r": "survminer::ggsurvplot(fun = \"cumhaz\")",
   "category": "Survival analysis",
   "tags": [
    "Nelson-Aalen",
    "cumulative hazard",
    "survival",
-   "log-rank"
+   "log-rank",
+   "political science"
   ],
   "url": "survival/cumulative-hazard/"
  },
@@ -472,7 +496,7 @@
  },
  {
   "title": "STL decomposition",
-  "summary": "A series split into trend, seasonal and remainder components in stacked panels.",
+  "summary": "A monthly industrial turnover series split into trend, seasonal and remainder components in stacked panels.",
   "r": "feasts::STL() + autoplot()",
   "category": "Time series",
   "tags": [
@@ -480,13 +504,14 @@
    "decomposition",
    "seasonality",
    "trend",
-   "time series"
+   "time series",
+   "economics"
   ],
   "url": "time-series/stl-decomposition/"
  },
  {
   "title": "ACF and PACF",
-  "summary": "Autocorrelation and partial autocorrelation lollipops with 95% significance bands.",
+  "summary": "Autocorrelation and partial autocorrelation of US quarterly unemployment, as lollipops with 95% significance bands.",
   "r": "forecast::ggtsdisplay()",
   "category": "Time series",
   "tags": [
@@ -494,13 +519,15 @@
    "ACF",
    "PACF",
    "Ljung-Box",
-   "time series"
+   "time series",
+   "economics",
+   "unemployment"
   ],
   "url": "time-series/acf-pacf/"
  },
  {
   "title": "SARIMA forecast",
-  "summary": "Seasonal ARIMA forecast with 80% and 95% prediction intervals against held-out data.",
+  "summary": "Seasonal ARIMA forecast of industrial turnover with 80% and 95% prediction intervals against held-out data.",
   "r": "forecast::autoplot(forecast())",
   "category": "Time series",
   "tags": [
@@ -508,13 +535,14 @@
    "SARIMA",
    "forecast",
    "prediction interval",
-   "RMSE"
+   "RMSE",
+   "economics"
   ],
   "url": "time-series/arima-forecast/"
  },
  {
   "title": "Seasonal subseries plot",
-  "summary": "Each calendar month's values across the years, with the monthly mean as a reference.",
+  "summary": "Each calendar month's industrial turnover across the years, with the monthly mean as a reference.",
   "r": "feasts::gg_subseries()",
   "category": "Time series",
   "tags": [
@@ -522,13 +550,14 @@
    "subseries",
    "month plot",
    "ANOVA",
-   "time series"
+   "time series",
+   "economics"
   ],
   "url": "time-series/seasonal-subseries/"
  },
  {
   "title": "PCA biplot",
-  "summary": "Observations and variable loadings on the first two principal components.",
+  "summary": "US states and their social indicators on the first two principal components.",
   "r": "factoextra::fviz_pca_biplot()",
   "category": "Multivariate & clustering",
   "tags": [
@@ -536,13 +565,16 @@
    "biplot",
    "loadings",
    "dimension reduction",
-   "ellipse"
+   "ellipse",
+   "US states",
+   "crime",
+   "poverty"
   ],
   "url": "multivariate/pca-biplot/"
  },
  {
   "title": "Scree plot",
-  "summary": "Variance explained per component, cumulative share and a parallel-analysis cut-off.",
+  "summary": "How many dimensions describe 303 California school districts? Variance per component and a parallel-analysis cut-off.",
   "r": "factoextra::fviz_eig()",
   "category": "Multivariate & clustering",
   "tags": [
@@ -550,13 +582,15 @@
    "scree plot",
    "eigenvalues",
    "parallel analysis",
-   "Kaiser"
+   "Kaiser",
+   "education",
+   "school districts"
   ],
   "url": "multivariate/scree-plot/"
  },
  {
   "title": "Silhouette plot for k-means",
-  "summary": "k-means clusters in PCA space next to the per-observation silhouette widths.",
+  "summary": "Do US states fall into distinct social profiles? k-means clusters next to their silhouette widths.",
   "r": "factoextra::fviz_silhouette()",
   "category": "Multivariate & clustering",
   "tags": [
@@ -564,13 +598,15 @@
    "k-means",
    "silhouette",
    "PCA",
-   "cluster validation"
+   "cluster validation",
+   "US states",
+   "crime"
   ],
   "url": "multivariate/silhouette-clusters/"
  },
  {
   "title": "Clustered heatmap",
-  "summary": "Z-scored heatmap with row and column dendrograms and a group colour bar.",
+  "summary": "Z-scored heatmap of US states' social indicators, with row and column dendrograms and a Census-region colour bar.",
   "r": "pheatmap::pheatmap() / ComplexHeatmap::Heatmap()",
   "category": "Multivariate & clustering",
   "tags": [
@@ -578,7 +614,9 @@
    "hierarchical clustering",
    "dendrogram",
    "z-score",
-   "clustermap"
+   "clustermap",
+   "US states",
+   "crime"
   ],
   "url": "multivariate/clustered-heatmap/"
  },
@@ -598,15 +636,17 @@
  },
  {
   "title": "What a 95% confidence interval means",
-  "summary": "100 simulated 95% CIs for a mean; the ones that miss the true value are in red.",
+  "summary": "100 surveys of 30 people drawn from 944 ANES respondents; the 95% CIs for mean age that miss the true value are in red.",
   "r": "teaching classic (e.g. TeachingDemos::ci.examp())",
   "category": "Inference & uncertainty",
   "tags": [
    "confidence interval",
    "coverage",
-   "simulation",
+   "sampling",
    "t-interval",
-   "teaching"
+   "teaching",
+   "survey",
+   "ANES"
   ],
   "url": "inference-uncertainty/confidence-intervals/"
  },
@@ -626,7 +666,7 @@
  },
  {
   "title": "Bland\u2013Altman plot",
-  "summary": "Agreement between two measurement methods, with bias and 95% limits of agreement.",
+  "summary": "Do two coders place party manifestos on the left\u2013right scale the same way? Bias and 95% limits of agreement.",
   "r": "BlandAltmanLeh::bland.altman.plot() / blandr::blandr.draw()",
   "category": "Inference & uncertainty",
   "tags": [
@@ -634,13 +674,15 @@
    "Bland-Altman",
    "limits of agreement",
    "method comparison",
-   "bias"
+   "bias",
+   "content analysis",
+   "coding"
   ],
   "url": "inference-uncertainty/bland-altman/"
  },
  {
   "title": "Meta-analysis forest plot",
-  "summary": "Study risk ratios with CIs, random-effects pooled diamond and heterogeneity statistics.",
+  "summary": "Do teacher expectations raise pupils' IQ? 19 \"Pygmalion\" experiments, a random-effects pooled diamond and heterogeneity statistics.",
   "r": "meta::forest() / metafor::forest()",
   "category": "Inference & uncertainty",
   "tags": [
@@ -648,13 +690,15 @@
    "forest plot",
    "random effects",
    "heterogeneity",
-   "risk ratio"
+   "standardised mean difference",
+   "education",
+   "Pygmalion effect"
   ],
   "url": "inference-uncertainty/meta-analysis-forest/"
  },
  {
   "title": "Funnel plot",
-  "summary": "Study effects against their standard error, with a pseudo 95% funnel and Egger's test.",
+  "summary": "Are small \"Pygmalion\" studies more optimistic? 19 teacher-expectancy effects against their standard error, with a pseudo 95% funnel and Egger's test.",
   "r": "metafor::funnel() + metafor::regtest()",
   "category": "Inference & uncertainty",
   "tags": [
@@ -662,13 +706,15 @@
    "funnel plot",
    "publication bias",
    "Egger test",
-   "small-study effects"
+   "small-study effects",
+   "education",
+   "Pygmalion effect"
   ],
   "url": "inference-uncertainty/funnel-plot/"
  },
  {
   "title": "Confusion matrix with metrics",
-  "summary": "Out-of-fold confusion matrix with counts and row shares, and bootstrap intervals for the headline metrics.",
+  "summary": "How well a logistic regression predicts who voted Dole in 1996 \u2014 out-of-fold confusion matrix with counts and row shares, and bootstrap intervals for the headline metrics.",
   "r": "yardstick::conf_mat() + autoplot()",
   "category": "Machine learning",
   "tags": [
@@ -678,13 +724,15 @@
    "recall",
    "F1",
    "cross-validation",
-   "bootstrap"
+   "bootstrap",
+   "elections",
+   "voting"
   ],
   "url": "machine-learning/confusion-matrix/"
  },
  {
   "title": "Precision\u2013recall curves",
-  "summary": "Out-of-fold precision\u2013recall curves for two classifiers, with average precision and the no-skill baseline.",
+  "summary": "Out-of-fold precision\u2013recall curves for two classifiers predicting which married women report an affair, with average precision and the no-skill baseline.",
   "r": "yardstick::pr_curve() + autoplot()",
   "category": "Machine learning",
   "tags": [
@@ -693,13 +741,15 @@
    "recall",
    "average precision",
    "imbalanced data",
-   "threshold"
+   "threshold",
+   "survey data",
+   "family"
   ],
   "url": "machine-learning/precision-recall/"
  },
  {
   "title": "Learning curve",
-  "summary": "Training and cross-validated score as the training set grows, with fold-to-fold spread.",
+  "summary": "Training and cross-validated accuracy as the training set grows, for two models predicting which married women report an affair.",
   "r": "caret::learning_curve_dat() + ggplot()",
   "category": "Machine learning",
   "tags": [
@@ -707,13 +757,15 @@
    "overfitting",
    "bias-variance",
    "cross-validation",
-   "sample size"
+   "sample size",
+   "survey data",
+   "family"
   ],
   "url": "machine-learning/learning-curve/"
  },
  {
   "title": "Cross-validated model comparison",
-  "summary": "Fold-by-fold scores of several models, with means and corrected 95% intervals.",
+  "summary": "Fold-by-fold R\u00b2 of six models predicting California school districts' maths results, with means and corrected 95% intervals.",
   "r": "caret::resamples() + bwplot() / tune::autoplot()",
   "category": "Machine learning",
   "tags": [
@@ -721,13 +773,14 @@
    "cross-validation",
    "repeated k-fold",
    "Nadeau-Bengio",
-   "R\u00b2"
+   "R\u00b2",
+   "education"
   ],
   "url": "machine-learning/model-comparison/"
  },
  {
   "title": "Permutation importance",
-  "summary": "Drop in test-set R\u00b2 when each feature is shuffled, over 50 repeats per feature.",
+  "summary": "Which district characteristics a random forest relies on to predict maths results \u2014 drop in test-set R\u00b2 when each one is shuffled.",
   "r": "vip::vip(method = \"permute\")",
   "category": "Machine learning",
   "tags": [
@@ -735,13 +788,15 @@
    "permutation",
    "model-agnostic",
    "interpretability",
-   "random forest"
+   "random forest",
+   "education",
+   "poverty"
   ],
   "url": "machine-learning/permutation-importance/"
  },
  {
   "title": "Partial dependence with ICE curves",
-  "summary": "Average model response to one feature (PDP) over the individual curves (ICE) of every patient.",
+  "summary": "How predicted maths results change with poverty and with spending per pupil \u2014 the average (PDP) over one curve per school district (ICE).",
   "r": "pdp::partial(ice = TRUE) + autoplot() / iml::FeatureEffect",
   "category": "Machine learning",
   "tags": [
@@ -749,13 +804,15 @@
    "ICE",
    "interpretability",
    "non-linearity",
-   "gradient boosting"
+   "gradient boosting",
+   "education",
+   "poverty"
   ],
   "url": "machine-learning/partial-dependence/"
  },
  {
   "title": "SHAP summary (beeswarm)",
-  "summary": "Every patient's SHAP value for every feature, coloured by the feature's value, with mean |SHAP| importance.",
+  "summary": "Every school district's SHAP value for every characteristic, coloured by the characteristic's value, with mean |SHAP| importance.",
   "r": "shapviz::sv_importance(kind = \"beeswarm\")",
   "category": "Machine learning",
   "tags": [
@@ -764,13 +821,15 @@
    "beeswarm",
    "feature importance",
    "interpretability",
-   "gradient boosting"
+   "gradient boosting",
+   "education",
+   "poverty"
   ],
   "url": "machine-learning/shap-beeswarm/"
  },
  {
   "title": "SHAP dependence plot",
-  "summary": "SHAP value of one feature against its value, coloured by its strongest interaction partner, with a smooth trend.",
+  "summary": "How the share of low-income students feeds into each district's predicted maths results, coloured by its strongest interaction partner, with a smooth trend.",
   "r": "shapviz::sv_dependence()",
   "category": "Machine learning",
   "tags": [
@@ -779,13 +838,15 @@
    "interaction",
    "non-linearity",
    "LOWESS",
-   "interpretability"
+   "interpretability",
+   "education",
+   "poverty"
   ],
   "url": "machine-learning/shap-dependence/"
  },
  {
   "title": "SHAP waterfall for one prediction",
-  "summary": "How each feature moves one patient's prediction from the average to the model's output.",
+  "summary": "How each characteristic moves one struggling school district's predicted maths results from the average to the model's output.",
   "r": "shapviz::sv_waterfall()",
   "category": "Machine learning",
   "tags": [
@@ -793,7 +854,8 @@
    "waterfall",
    "local explanation",
    "individual prediction",
-   "interpretability"
+   "interpretability",
+   "education"
   ],
   "url": "machine-learning/shap-waterfall/"
  }

@@ -1,8 +1,8 @@
 """
 title: Silhouette plot for k-means
-summary: k-means clusters in PCA space next to the per-observation silhouette widths.
+summary: Do US states fall into distinct social profiles? k-means clusters next to their silhouette widths.
 r: factoextra::fviz_silhouette()
-tags: [clustering, k-means, silhouette, PCA, cluster validation]
+tags: [clustering, k-means, silhouette, PCA, cluster validation, US states, crime]
 description: |
   The silhouette width compares how close each observation is to its own cluster
   with how close it is to the nearest other cluster: near 1 means well placed,
@@ -12,20 +12,29 @@ description: |
   right panel sorts the silhouette widths within each cluster, with the dashed
   line at the overall average.
 
-  Data are the 13 standardised chemical measurements of the **scikit-learn**
-  wine dataset. `KMeans`, `silhouette_score` and `silhouette_samples` from
-  `sklearn` do the work; `PCA` is only used to draw the clusters.
+  Data are the 50 US states from the **statsmodels** `statecrime` dataset (2009
+  figures), described by 7 standardised indicators: violent-crime and murder
+  rates, % high-school graduates, % in poverty, % single-parent households,
+  % white and % urban. The District of Columbia is left out: it is so extreme
+  that k-means would give it a cluster of its own. The two clusters found are
+  roughly a lower-crime, lower-poverty profile and a higher-crime,
+  higher-poverty one, but an average silhouette around 0.35 is a **weak**
+  structure by Kaufman & Rousseeuw's rule of thumb (0.26–0.50): states form a
+  continuum more than separate types. `KMeans`, `silhouette_score` and
+  `silhouette_samples` from `sklearn` do the work; `PCA` is only used to draw
+  the clusters.
 """
 import matplotlib.pyplot as plt
 import numpy as np
+import statsmodels.api as sm
 from sklearn.cluster import KMeans
-from sklearn.datasets import load_wine
 from sklearn.decomposition import PCA
-from sklearn.metrics import adjusted_rand_score, silhouette_samples, silhouette_score
+from sklearn.metrics import silhouette_samples, silhouette_score
 from sklearn.preprocessing import StandardScaler
 
-wine = load_wine()
-X = StandardScaler().fit_transform(wine.data)
+# 7 social indicators of the 50 US states (DC, an extreme outlier, is left out)
+df = sm.datasets.statecrime.load_pandas().data.drop("District of Columbia")
+X = StandardScaler().fit_transform(df)
 
 # Choose k by the average silhouette width
 fits = {k: KMeans(k, n_init=20, random_state=1).fit(X) for k in range(2, 9)}
@@ -66,9 +75,10 @@ ax2.set_ylim(-0.18, max(sil) + 0.08)
 ax2.set_ylabel("Silhouette width")
 ax2.spines["bottom"].set_visible(False)
 
-ax1.set_title(f"Silhouette picks k = {k}, recovering the three wine cultivars", pad=26)
+ax1.set_title(f"Silhouette picks k = {k} state profiles, but they are only weakly separated",
+              pad=26)
 ax1.text(0, 1.02, "Average silhouette for k = 2…8: " + ", ".join(f"{v:.2f}" for v in avg.values())
-         + f" · agreement with cultivar: ARI = {adjusted_rand_score(wine.target, labels):.2f}"
-         f" · n = {len(X)}", transform=ax1.transAxes, fontsize=9.5, color="#6E6E73",
-         in_layout=False)
+         + f" · {(sil < 0).sum()} states misplaced (width < 0) · n = {len(X)} states, "
+         f"{X.shape[1]} standardised indicators", transform=ax1.transAxes, fontsize=9.5,
+         color="#6E6E73", in_layout=False)
 plt.show()

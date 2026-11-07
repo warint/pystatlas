@@ -10,11 +10,15 @@ mean highlighted. The subtitle reports Welch's one-way ANOVA — robust to
 unequal variances — together with ω² as effect size, and brackets show the
 Holm-corrected pairwise Welch t-tests.
 
-Data are the classic wine recognition measurements bundled with
-**scikit-learn**: alcohol content for three cultivars.
+Data are the 303 California school districts of the 1998 STAR test bundled
+with **statsmodels** (`sm.datasets.star98`). The outcome is the share of
+students scoring above the national median in mathematics,
+`NABOVE / (NABOVE + NBELOW)`, and the groups are terciles of the percentage
+of low-income students in the district (`LOWINC`), cut with `pandas.qcut`
+into three groups of 101 districts.
 
 **R equivalent:** `ggstatsplot::ggbetweenstats()`  
-**Libraries:** Matplotlib, NumPy, pandas, SciPy, scikit-learn, statsmodels
+**Libraries:** Matplotlib, NumPy, pandas, statsmodels, SciPy
 
 ```python
 from itertools import combinations
@@ -22,15 +26,17 @@ from itertools import combinations
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import statsmodels.api as sm
 from scipy import stats
-from sklearn.datasets import load_wine
 from statsmodels.stats.multitest import multipletests
 from statsmodels.stats.oneway import anova_oneway
 
-wine = load_wine(as_frame=True)
-df = wine.frame.assign(cultivar=wine.target.map({0: "Barolo", 1: "Grignolino", 2: "Barbera"}))
-groups = ["Barolo", "Grignolino", "Barbera"]
-data = [df.loc[df.cultivar == g, "alcohol"].to_numpy() for g in groups]
+# Data: % of students above the national math median, by district low-income tercile
+df = sm.datasets.star98.load_pandas().data
+df["above"] = 100 * df.NABOVE / (df.NABOVE + df.NBELOW)
+groups = ["Least poor third", "Middle third", "Poorest third"]
+df["poverty"] = pd.qcut(df.LOWINC, 3, labels=groups)
+data = [df.loc[df.poverty == g, "above"].to_numpy() for g in groups]
 palette = ["#007AFF", "#FF9500", "#34C759"]
 
 # Welch's ANOVA + omega squared
@@ -55,21 +61,25 @@ for i, (d, c) in enumerate(zip(data, palette)):
                whiskerprops=dict(color="#3A3A3C"), capprops=dict(visible=False))
     ax.scatter(i + rng.uniform(-0.22, 0.22, len(d)) * 0.9, d, s=14, color=c, alpha=0.55, lw=0)
     ax.scatter(i, d.mean(), s=90, color=c, edgecolor="white", lw=2, zorder=5)
-    ax.annotate(f"μ = {d.mean():.2f}", (i + 0.09, d.mean()), xytext=(10, 0), textcoords="offset points",
+    ax.annotate(f"μ = {d.mean():.0f}%", (i + 0.09, d.mean()), xytext=(10, 0), textcoords="offset points",
                 va="center", bbox=dict(boxstyle="round,pad=0.25", fc="white", ec="none", alpha=0.9), fontsize=9.5, fontweight="semibold", color=c)
 
 # Significance brackets
-top, step = max(map(np.max, data)), 0.42
+top, step = max(map(np.max, data)), 8
 for h, ((i, j), p) in enumerate(sorted(zip(pairs, adj_p), key=lambda t: t[0][1] - t[0][0])):
-    y = top + 0.3 + h * step
-    ax.plot([i, i, j, j], [y - 0.08, y, y, y - 0.08], color="#8E8E93", lw=1)
+    y = top + 4 + h * step
+    ax.plot([i, i, j, j], [y - 1.5, y, y, y - 1.5], color="#8E8E93", lw=1)
     label = "p < .001" if p < 0.001 else f"p = {p:.3f}"
-    ax.text((i + j) / 2, y + 0.04, label, ha="center", va="bottom", fontsize=9, color="#3A3A3C")
+    ax.text((i + j) / 2, y + 0.8, label, ha="center", va="bottom", fontsize=9, color="#3A3A3C")
 
-ax.set_xticks(range(k), [f"{g}\n(n = {len(d)})" for g, d in zip(groups, data)])
-ax.set_ylabel("Alcohol (% vol)")
-ax.set_ylim(top=top + 0.3 + len(pairs) * step + 0.1)
-ax.set_title("Alcohol content differs across wine cultivars", pad=26)
+lowinc = df.groupby("poverty", observed=True).LOWINC.agg(["min", "max"])
+ax.set_xticks(range(k), [f"{g}\n{lowinc.loc[g, 'min']:.0f}–{lowinc.loc[g, 'max']:.0f}% low-income"
+                         f"\n(n = {len(d)})" for g, d in zip(groups, data)])
+ax.set_ylabel("Students above the national\nmath median (% of district)")
+ax.set_ylim(top=top + 4 + len(pairs) * step + 2)
+ax.set_yticks(range(0, 101, 20))
+ax.set_title(f"The poorer the district, the fewer students above the math median "
+             f"({data[0].mean():.0f}% vs {data[-1].mean():.0f}%)", pad=26)
 ax.text(0, 1.02, f"Welch's F({res.df_num:.0f}, {res.df_denom:.1f}) = {res.statistic:.1f}, "
         f"p = {res.pvalue:.1e}, ω² = {omega2:.2f}  ·  pairwise: Welch t-tests, Holm-adjusted",
         transform=ax.transAxes, fontsize=9.5, color="#6E6E73")

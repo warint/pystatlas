@@ -1,8 +1,8 @@
 """
 title: Cumulative hazard
-summary: Nelson–Aalen cumulative hazard curves with 95% bands for three tumour grades.
+summary: Nelson–Aalen cumulative hazard of leaving office, with 95% bands, for four political regimes.
 r: survminer::ggsurvplot(fun = "cumhaz")
-tags: [Nelson-Aalen, cumulative hazard, survival, log-rank]
+tags: [Nelson-Aalen, cumulative hazard, survival, log-rank, political science]
 description: |
   The cumulative hazard H(t) adds up the instantaneous risk of the event over
   time; it is the "risk accumulated so far" and relates to survival through
@@ -10,41 +10,50 @@ description: |
   **slope** is the hazard itself — a straight line means a constant risk, a
   curve that bends upward means risk that grows with time.
 
-  Data are the German Breast Cancer Study Group 2 trial
-  (`lifelines.datasets.load_gbsg2`): recurrence-free survival of 686 women by
-  tumour grade. Curves come from `lifelines.NelsonAalenFitter`, and the subtitle
-  reports a log-rank test across the three grades (`multivariate_logrank_test`).
-  The x-axis stops at five years, after which too few women remain at risk.
+  Data are the Democracy and Dictatorship dataset of Cheibub, Gandhi & Vreeland
+  bundled with **lifelines** (`lifelines.datasets.load_dd`): years in office of
+  heads of government, 1946–2008, for the four largest regime types (1,478 of
+  1,808 spells; mixed democracies and monarchies are left out). Curves come from
+  `lifelines.NelsonAalenFitter`, and the subtitle reports a log-rank test across
+  the four regimes (`multivariate_logrank_test`). The democratic curves climb
+  steeply, and the presidential one in large steps — the footprint of fixed
+  terms and term limits — while the dictatorship curves stay low and nearly
+  straight, a lower and roughly constant risk. The x-axis stops at ten years,
+  after which only a handful of presidents remain at risk.
 """
 import matplotlib.pyplot as plt
 from lifelines import NelsonAalenFitter
-from lifelines.datasets import load_gbsg2
+from lifelines.datasets import load_dd
 from lifelines.statistics import multivariate_logrank_test
 
-# Data: years to recurrence or death, by tumour grade
-df = load_gbsg2()
-df["years"] = df.time / 365.25
-grades = ["I", "II", "III"]
-colors = ["#34C759", "#FF9500", "#FF3B30"]
+# Data: years in office of political leaders, four regime types
+regimes = {"Presidential Dem": "Presidential democracy", "Parliamentary Dem": "Parliamentary democracy",
+           "Civilian Dict": "Civilian dictatorship", "Military Dict": "Military dictatorship"}
+df = load_dd()
+df = df[df.regime.isin(regimes)]
+colors = ["#007AFF", "#34C759", "#FF9500", "#FF3B30"]
 
 fig, ax = plt.subplots(figsize=(8, 5))
 
-# Nelson–Aalen estimate with 95% CI, one curve per grade
-for g, c in zip(grades, colors):
-    d = df[df.tgrade == g]
-    naf = NelsonAalenFitter().fit(d.years, d.cens, label=g)
-    # Show the first 5 years only: beyond that fewer than ~10% remain at risk
-    H, ci = naf.cumulative_hazard_[g].loc[:5], naf.confidence_interval_.loc[:5]
-    H.loc[5], ci.loc[5] = H.iloc[-1], ci.iloc[-1]
-    ax.step(H.index, H, where="post", color=c, lw=2, label=f"Grade {g}  (n = {len(d)}, {d.cens.sum()} events)")
+# Nelson–Aalen estimate with 95% CI, one curve per regime
+for g, c in zip(regimes, colors):
+    d = df[df.regime == g]
+    naf = NelsonAalenFitter().fit(d.duration, d.observed, label=g)
+    # Show the first 10 years only: beyond that only a handful of presidents remain at risk
+    H, ci = naf.cumulative_hazard_[g].loc[:10], naf.confidence_interval_.loc[:10]
+    H.loc[10], ci.loc[10] = H.iloc[-1], ci.iloc[-1]
+    ax.step(H.index, H, where="post", color=c, lw=2,
+            label=f"{regimes[g]}  (n = {len(d)}, {d.observed.sum()} exits)")
     ax.fill_between(ci.index, ci.iloc[:, 0], ci.iloc[:, 1], step="post", color=c, alpha=0.13, lw=0)
 
 # Log-rank test across grades
-lr = multivariate_logrank_test(df.years, df.tgrade, df.cens)
+lr = multivariate_logrank_test(df.duration, df.regime, df.observed)
+p_txt = "p < .001" if lr.p_value < 0.001 else f"p = {lr.p_value:.3f}"
 ax.legend(loc="upper left")
-ax.set(xlabel="Years since surgery", ylabel="Cumulative hazard  H(t)", xlim=(0, 5), xticks=range(6), ylim=(0, None))
-ax.set_title("Recurrence risk accumulates fastest for high-grade tumours", pad=26)
+ax.set(xlabel="Years in office", ylabel="Cumulative hazard of leaving office  H(t)", xlim=(0, 10),
+       xticks=range(11), ylim=(0, None))
+ax.set_title("Democratic leaders accumulate the risk of losing office fastest", pad=26)
 ax.text(0, 1.02, f"Nelson–Aalen with 95% CI  ·  log-rank χ²({lr.degrees_of_freedom}) = "
-        f"{lr.test_statistic:.1f}, p < .001  ·  n = {len(df)}, {df.cens.sum()} events",
+        f"{lr.test_statistic:.1f}, {p_txt}  ·  n = {len(df):,} leaders, {df.observed.sum():,} exits",
         transform=ax.transAxes, fontsize=9.5, color="#6E6E73")
 plt.show()

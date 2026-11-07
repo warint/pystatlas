@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>带聚类的相关图 · PyStatlas</title>
-<meta name="description" content="corrplot 风格的圆圈，大小与颜色由 r 决定，按层次聚类排序。">
+<meta name="description" content="13 个学区指标的 corrplot 风格圆圈图，圆圈大小和颜色由 r 决定，并按层次聚类排序。">
 <meta name="author" content="Thierry Warin">
 <link rel="author" href="https://www.warin.ca">
 <meta name="citation_title" content="Correlogram with clustering — PyStatlas: The Python Gallery of Statistical Graphics">
@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="x-default" href="https://warint.github.io/pystatlas/correlation/correlogram-bubble/">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Correlogram with clustering — PyStatlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/pystatlas/zh/correlation/correlogram-bubble/", "inLanguage": "zh-Hans", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "PyStatlas", "url": "https://warint.github.io/pystatlas/"}}</script>
 <meta property="og:title" content="带聚类的相关图 · PyStatlas">
-<meta property="og:description" content="corrplot 风格的圆圈，大小与颜色由 r 决定，按层次聚类排序。">
+<meta property="og:description" content="13 个学区指标的 corrplot 风格圆圈图，圆圈大小和颜色由 r 决定，并按层次聚类排序。">
 <meta property="og:locale" content="zh-Hans">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
@@ -51,16 +51,16 @@
 <main>
 <article class="wrap ex">
   <div class="crumbs"><a href="../../index.html">图库</a><span>/</span><a href="../../correlation/index.html">相关与关联</a></div>
-  <header class="ex-head"><h1>带聚类的相关图</h1><p class="lede">corrplot 风格的圆圈，大小与颜色由 r 决定，按层次聚类排序。</p>
+  <header class="ex-head"><h1>带聚类的相关图</h1><p class="lede">13 个学区指标的 corrplot 风格圆圈图，圆圈大小和颜色由 r 决定，并按层次聚类排序。</p>
   <p class="byline">作者 <a href="https://www.warin.ca">Thierry Warin</a> · 隶属于 <a href="../../index.html">PyStatlas</a></p></header>
   <figure class="figure"><a href="../../../correlation/correlogram-bubble/plot.png" target="_blank" rel="noopener"><img src="../../../correlation/correlogram-bubble/plot.png" alt="带聚类的相关图"></a></figure>
   <div class="ex-cols">
-    <div class="prose"><p><code>corrplot(method = &quot;circle&quot;, order = &quot;hclust&quot;)</code> 的 Python 版本。每个圆圈的<strong>面积</strong>随 |<em>r</em>| 增大，颜色表示符号，因此强相关十分醒目，弱相关则逐渐淡去。变量按<strong>层次聚类</strong>（以 1 − <em>r</em> 为距离的完全连接法）重新排序，使正相关的变量沿对角线聚成块；方框勾勒出三个聚类，效果同 <code>addrect = 3</code>。</p><p>数据为 <strong>scikit-learn</strong> 自带的 178 种意大利葡萄酒的 13 项化学测量（<code>load_wine</code>）。排序来自 <code>scipy.cluster.hierarchy.linkage</code> 和 <code>leaves_list</code>，方框来自 <code>fcluster</code>。</p><p class="note">代码及图中文字均为英文。</p></div>
-    <aside class="meta"><div class="meta-row"><span>R 中的对应函数</span><code>corrplot::corrplot(order = &quot;hclust&quot;, addrect = 3)</code></div><div class="meta-row"><span>依赖库</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>SciPy</i><i>scikit-learn</i></div></div><div class="meta-row"><span>主题</span><div class="pills"><i>correlation</i><i>correlogram</i><i>hierarchical clustering</i><i>heatmap</i><i>corrplot</i></div></div></aside>
+    <div class="prose"><p><code>corrplot(method = &quot;circle&quot;, order = &quot;hclust&quot;)</code> 的 Python 版本。每个圆圈的<strong>面积</strong>随 |<em>r</em>| 增大，颜色表示符号，因此强相关十分醒目，弱相关则逐渐淡去。变量按<strong>层次聚类</strong>（以 1 − <em>r</em> 为距离的完全连接法）重新排序，使正相关的变量沿对角线聚成块；方框勾勒出三个聚类，效果同 <code>addrect = 3</code>。在这里，低收入学生、西班牙裔学生和少数族裔教师构成一个块，而数学成绩与这三者均呈负相关。</p><p>数据为 <strong>statsmodels</strong> 自带的 STAR98 测试中加州 303 个学区（<code>sm.datasets.star98</code>）的 13 个指标：数学成绩（高于全国中位数的学生比例）、学生构成（低收入、西班牙裔、黑人和亚裔学生）、教师（少数族裔比例、从教年数、薪资）、资源（生均支出、生师比）以及学校组织（大学预备课程、特许学校和全年制学校）。排序来自 <code>scipy.cluster.hierarchy.linkage</code> 和 <code>leaves_list</code>，方框来自 <code>fcluster</code>。</p><p class="note">代码及图中文字均为英文。</p></div>
+    <aside class="meta"><div class="meta-row"><span>R 中的对应函数</span><code>corrplot::corrplot(order = &quot;hclust&quot;, addrect = 3)</code></div><div class="meta-row"><span>依赖库</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>statsmodels</i><i>SciPy</i></div></div><div class="meta-row"><span>主题</span><div class="pills"><i>correlation</i><i>correlogram</i><i>hierarchical clustering</i><i>heatmap</i><i>corrplot</i><i>education</i></div></div></aside>
   </div>
   <section class="code-card" id="code">
     <div class="code-bar">
-      <span class="fname">correlogram-bubble.py · 58 行</span>
+      <span class="fname">correlogram-bubble.py · 66 行</span>
       <div class="code-actions">
         <a class="btn ghost" href="../../../correlation/correlogram-bubble/correlogram-bubble.py" download>下载</a>
         <a class="btn ghost" href="https://github.com/warint/pystatlas/tree/main/gallery/04-correlation/04-correlogram-bubble">GitHub</a>
@@ -69,15 +69,22 @@
     </div>
     <pre class="code"><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">Rectangle</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.cluster.hierarchy</span><span class="w"> </span><span class="kn">import</span> <span class="n">fcluster</span><span class="p">,</span> <span class="n">leaves_list</span><span class="p">,</span> <span class="n">linkage</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial.distance</span><span class="w"> </span><span class="kn">import</span> <span class="n">squareform</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_wine</span>
 
-<span class="c1"># Data: 13 chemical measurements of 178 wines (bundled with scikit-learn)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">load_wine</span><span class="p">(</span><span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
-<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"_"</span><span class="p">,</span> <span class="s2">" "</span><span class="p">)</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"Od280/od315 of diluted wines"</span><span class="p">:</span> <span class="s2">"OD280/OD315"</span><span class="p">})</span>
+<span class="c1"># Data: 13 indicators for 303 California school districts (STAR98, bundled with statsmodels)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">star98</span><span class="o">.</span><span class="n">load_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"MATH"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">df</span><span class="o">.</span><span class="n">NABOVE</span> <span class="o">/</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">NABOVE</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">NBELOW</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"MATH"</span><span class="p">:</span> <span class="s2">"Math above median"</span><span class="p">,</span> <span class="s2">"LOWINC"</span><span class="p">:</span> <span class="s2">"Low-income pupils"</span><span class="p">,</span>
+          <span class="s2">"PERHISP"</span><span class="p">:</span> <span class="s2">"Hispanic pupils"</span><span class="p">,</span> <span class="s2">"PERBLACK"</span><span class="p">:</span> <span class="s2">"Black pupils"</span><span class="p">,</span>
+          <span class="s2">"PERASIAN"</span><span class="p">:</span> <span class="s2">"Asian pupils"</span><span class="p">,</span> <span class="s2">"PERMINTE"</span><span class="p">:</span> <span class="s2">"Minority teachers"</span><span class="p">,</span>
+          <span class="s2">"AVYRSEXP"</span><span class="p">:</span> <span class="s2">"Teacher experience"</span><span class="p">,</span> <span class="s2">"AVSALK"</span><span class="p">:</span> <span class="s2">"Teacher salary"</span><span class="p">,</span>
+          <span class="s2">"PERSPENK"</span><span class="p">:</span> <span class="s2">"Spending per pupil"</span><span class="p">,</span> <span class="s2">"PTRATIO"</span><span class="p">:</span> <span class="s2">"Pupil–teacher ratio"</span><span class="p">,</span>
+          <span class="s2">"PCTAF"</span><span class="p">:</span> <span class="s2">"College-prep courses"</span><span class="p">,</span> <span class="s2">"PCTCHRT"</span><span class="p">:</span> <span class="s2">"Charter schools"</span><span class="p">,</span>
+          <span class="s2">"PCTYRRND"</span><span class="p">:</span> <span class="s2">"Year-round schools"</span><span class="p">}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">labels</span><span class="p">)]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
 <span class="n">corr</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
 
 <span class="c1"># Hierarchical clustering on the distance 1 - r, then reorder the matrix</span>
@@ -121,8 +128,9 @@
                   <span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <span class="n">cb</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s2">"Pearson r"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#3A3A3C"</span><span class="p">)</span>
 <span class="n">cb</span><span class="o">.</span><span class="n">outline</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Phenolic compounds form the tightest block in wine chemistry"</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Pearson r · n = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2"> wines · complete-linkage clustering on 1 − r · "</span>
+<span class="n">r_pov</span> <span class="o">=</span> <span class="n">corr</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"Math above median"</span><span class="p">,</span> <span class="s2">"Low-income pupils"</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Math results run against the poverty block (r = </span><span class="si">{</span><span class="n">r_pov</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> with low income)"</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Pearson r · n = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2"> school districts · complete-linkage clustering on 1 − r · "</span>
         <span class="s2">"circle area grows with |r|"</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre>
@@ -151,13 +159,13 @@
   <div class="card-img"><img src="../../../correlation/correlation-matrix/thumb.webp" alt="相关矩阵" loading="lazy" width="720" height="450"></div>
   <div class="card-body"><span class="kicker">相关与关联</span><h3>相关矩阵</h3><p>下三角 Pearson 相关热图；不显著的单元格（Holm 校正）以叉号划去。</p><span class="card-r">ggstatsplot::ggcorrmat()</span></div>
 </a>
-<a class="card" href="../../correlation/scatter-with-stats/" data-cat="correlation" data-k="附统计量的散点图 散点、ols 回归线及 95% 置信带和边际直方图，副标题给出 pearson r。 scatterplot with statistics scatter, ols line with 95% band and marginal histograms, with pearson&#x27;s r in the subtitle. ggstatsplot::ggscatterstats() 相关与关联 correlation &amp; association correlation pearson scatterplot regression line marginal histogram matplotlib numpy statsmodels scipy scikit-learn">
+<a class="card" href="../../correlation/scatter-with-stats/" data-cat="correlation" data-k="附统计量的散点图 加州 303 个学区的低收入学生比例与数学成绩——散点图、附 95% 置信带的 ols 回归线、边际直方图和 pearson r。 scatterplot with statistics low-income pupils vs math results in 303 california districts — scatter, ols line with 95% band, marginal histograms and pearson&#x27;s r. ggstatsplot::ggscatterstats() 相关与关联 correlation &amp; association correlation pearson scatterplot regression line marginal histogram education matplotlib numpy statsmodels scipy">
   <div class="card-img"><img src="../../../correlation/scatter-with-stats/thumb.webp" alt="附统计量的散点图" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><span class="kicker">相关与关联</span><h3>附统计量的散点图</h3><p>散点、OLS 回归线及 95% 置信带和边际直方图，副标题给出 Pearson r。</p><span class="card-r">ggstatsplot::ggscatterstats()</span></div>
+  <div class="card-body"><span class="kicker">相关与关联</span><h3>附统计量的散点图</h3><p>加州 303 个学区的低收入学生比例与数学成绩——散点图、附 95% 置信带的 OLS 回归线、边际直方图和 Pearson r。</p><span class="card-r">ggstatsplot::ggscatterstats()</span></div>
 </a>
-<a class="card" href="../../correlation/pairs-plot/" data-cat="correlation" data-k="附相关系数的配对图 散点矩阵，对角线为分组 kde，上三角为相关系数。 pairs plot with correlations scatter matrix with group kdes on the diagonal and correlation coefficients above it. ggally::ggpairs() 相关与关联 correlation &amp; association pairs plot scatter matrix correlation kde simpson&#x27;s paradox matplotlib numpy scipy scikit-learn">
+<a class="card" href="../../correlation/pairs-plot/" data-cat="correlation" data-k="附相关系数的配对图 四个学区变量的散点图矩阵，对角线为分组密度，上方为合并相关与组内相关。 pairs plot with correlations scatter matrix of four school-district variables, with group kdes on the diagonal and pooled vs within-group correlations above it. ggally::ggpairs() 相关与关联 correlation &amp; association pairs plot scatter matrix correlation kde simpson&#x27;s paradox confounding education matplotlib numpy pandas statsmodels scipy">
   <div class="card-img"><img src="../../../correlation/pairs-plot/thumb.webp" alt="附相关系数的配对图" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><span class="kicker">相关与关联</span><h3>附相关系数的配对图</h3><p>散点矩阵，对角线为分组 KDE，上三角为相关系数。</p><span class="card-r">GGally::ggpairs()</span></div>
+  <div class="card-body"><span class="kicker">相关与关联</span><h3>附相关系数的配对图</h3><p>四个学区变量的散点图矩阵，对角线为分组密度，上方为合并相关与组内相关。</p><span class="card-r">GGally::ggpairs()</span></div>
 </a></div>
 </article>
 </main>

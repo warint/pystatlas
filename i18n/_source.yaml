@@ -63,8 +63,9 @@ ui:
     the relevant statistics on the figure and comes with a short, self-contained script built on the scientific
     Python stack — in the spirit of <code>ggstats</code> and <code>ggstatsplot</code> in R.'
   principles_h: Principles
-  principle_1: <strong>Self‑contained.</strong> Every script runs as is. Data comes from bundled datasets
-    (statsmodels, scikit‑learn, lifelines) or a seeded simulation — no downloads.
+  principle_1: <strong>Self‑contained.</strong> Every script runs as is. Data are real social‑science
+    datasets bundled with statsmodels and lifelines (elections, schools, crime, fertility, regimes, recidivism…),
+    a small published table typed in, or — rarely — a labelled, seeded simulation. No downloads.
   principle_2: '<strong>Statistics first.</strong> Each chart carries the numbers that matter: estimates,
     intervals, test statistics, effect sizes.'
   principle_3: <strong>Folder = page.</strong> The repository tree mirrors the site. Every example lives
@@ -141,12 +142,18 @@ examples:
 
       standard deviation. When the two curves disagree, the data are not normal —
 
-      here the long right tail pulls the **mean** above the **median**.
+      here the long right tail of high-fertility countries pulls the **mean** above
+
+      the **median**.
 
 
-      Data are the mean tumour area of 569 breast-cancer biopsies bundled with
+      Data are the World Bank total fertility rate (births per woman) of 198
 
-      **scikit-learn**. `scipy.stats.gaussian_kde` draws the density,
+      countries and territories in 2011, the latest year available in
+
+      `sm.datasets.fertility` (**statsmodels**); the five regional aggregates are
+
+      dropped. `scipy.stats.gaussian_kde` draws the density,
 
       `scipy.stats.skew` / `kurtosis` describe the shape and `scipy.stats.shapiro`
 
@@ -165,34 +172,50 @@ examples:
       all visible.
 
 
-      Data are the iris flowers bundled with **scikit-learn**: sepal length for three
+      Data are the 964 completed spells in office of heads of government between
 
-      species. The densities come from `scipy.stats.gaussian_kde`, and the subtitle
+      1946 and 2008 under three regime types, from the Democracy and Dictatorship
 
-      reports a Kruskal–Wallis test (`scipy.stats.kruskal`) with ε² as effect size.'
+      data bundled with **lifelines** (`lifelines.datasets.load_dd()`); leaders still
+
+      in office at the end of the data (censored spells) are left out. The
+
+      densities come from `scipy.stats.gaussian_kde`, and the subtitle reports a
+
+      Kruskal–Wallis test (`scipy.stats.kruskal`) — a rank test, suited to skewed
+
+      durations — with ε² as effect size.'
   distributions/ridgeline:
     title: Ridgeline plot
     summary: Overlapping density curves to compare one distribution across many groups.
     description: 'A ridgeline (or "joy") plot stacks one density curve per group, letting them
 
-      overlap slightly so that a dozen distributions fit in one compact figure.
+      overlap slightly so that many distributions fit in one compact figure.
 
-      Here each ridge is a calendar month and shows how sea-surface temperature
+      Here each ridge is one year, every ten years from 1960 to 2010, and shows how
 
-      varied over 61 years; the white tick marks the median and the colour encodes
+      fertility was spread across the world''s countries; the white tick marks the
 
-      it, so the seasonal cycle and the year-to-year spread read together.
+      median and the colour encodes it (darker = more births), so the demographic
+
+      transition — the slide from high to low fertility, through a two-humped
+
+      world in the 1970s and 1980s — reads at a glance.
 
 
-      Data are the monthly El Niño sea-surface temperatures (1950–2010) bundled with
+      Data are the World Bank total fertility rate (births per woman) bundled with
 
-      **statsmodels** (`sm.datasets.elnino`). Densities come from
+      **statsmodels** (`sm.datasets.fertility`), for the 189 countries with a value
 
-      `scipy.stats.gaussian_kde`; because every year contributes one value per
+      in each of 1960, 1970, 1980, 1990, 2000 and 2010 (regional aggregates
 
-      month, the subtitle reports a Friedman test (`scipy.stats.friedmanchisquare`)
+      dropped). Densities come from `scipy.stats.gaussian_kde`; because every
 
-      with Kendall''s W as effect size.'
+      country contributes one value per year, the subtitle reports a Friedman test
+
+      (`scipy.stats.friedmanchisquare`, countries as blocks) with Kendall''s W as
+
+      effect size.'
   distributions/ecdf-comparison:
     title: ECDF comparison
     summary: Empirical cumulative distributions of two groups, with the Kolmogorov–Smirnov gap.
@@ -209,13 +232,17 @@ examples:
       red segment.
 
 
-      Data are the 442 patients of the diabetes study bundled with
+      Data are the 432 men released from Maryland state prisons in the 1970s and
 
-      **scikit-learn** (`load_diabetes(scaled=False)`): body-mass index by sex.
+      followed for one year (Rossi, Berk & Lenihan''s experiment), bundled with
 
-      `scipy.stats.ecdf` builds the curves and `scipy.stats.ks_2samp` returns D, its
+      **lifelines** (`lifelines.datasets.load_rossi()`): age at release, for men
 
-      location and the p-value.'
+      rearrested within the year versus those who were not. `scipy.stats.ecdf`
+
+      builds the curves and `scipy.stats.ks_2samp` returns D, its location and the
+
+      p-value.'
   distributions/qq-plot:
     title: Q–Q plot with confidence band
     summary: Normal quantile–quantile plots with a 95% envelope, for a raw and a logged variable.
@@ -253,32 +280,44 @@ examples:
       Holm-corrected pairwise Welch t-tests.
 
 
-      Data are the classic wine recognition measurements bundled with
+      Data are the 303 California school districts of the 1998 STAR test bundled
 
-      **scikit-learn**: alcohol content for three cultivars.'
+      with **statsmodels** (`sm.datasets.star98`). The outcome is the share of
+
+      students scoring above the national median in mathematics,
+
+      `NABOVE / (NABOVE + NBELOW)`, and the groups are terciles of the percentage
+
+      of low-income students in the district (`LOWINC`), cut with `pandas.qcut`
+
+      into three groups of 101 districts.'
   group-comparisons/within-subjects:
     title: Within-subjects comparison
     summary: Repeated measures with one line per subject, means, rm-ANOVA and paired tests.
-    description: 'When the same subjects are measured under every condition, the interesting
+    description: 'When the same units are measured under every condition, the interesting
 
-      variation is *within* each person. Thin grey lines join each subject''s
+      variation is *within* each unit. Thin grey lines join each country''s
 
-      measurements, so you can see whether almost everybody moves in the same
+      measurements, so you can see whether almost every country moves in the same
 
-      direction; violins show the distribution per condition and the large dots
+      direction; violins show the distribution per year and the large dots
 
-      (joined by a coloured line) are the condition means.
+      (joined by a dark line) are the yearly means.
 
 
-      Data are simulated: 24 participants whose reaction time is recorded after a
+      Data are the World Bank total fertility rate (births per woman) bundled with
 
-      placebo, a low and a high dose of caffeine, with a random subject effect.
+      **statsmodels** (`sm.datasets.fertility`): the 190 countries with a value in
 
-      The subtitle reports a one-way repeated-measures ANOVA
+      1970, 1990 and 2010 (regional aggregates dropped), so each country is
+
+      measured three times. The subtitle reports a one-way repeated-measures ANOVA
 
       (`statsmodels.stats.anova.AnovaRM`) with partial η², and the brackets show
 
-      Holm-corrected paired t-tests (`scipy.stats.ttest_rel`) with Cohen''s d_z.'
+      Holm-corrected paired t-tests (`scipy.stats.ttest_rel`) with Cohen''s d_z
+
+      (negative = fertility fell).'
   group-comparisons/estimation-plot:
     title: Estimation plot
     summary: Raw data of two groups plus the mean difference and its bootstrap 95% CI.
@@ -286,7 +325,7 @@ examples:
 
       the centre. The left axis shows every observation of both groups; the right,
 
-      floating axis is anchored so that its zero sits at the control-group mean.
+      floating axis is anchored so that its zero sits at the reference-group mean.
 
       On it, the bootstrap distribution of the mean difference is drawn as a half
 
@@ -295,15 +334,25 @@ examples:
       a bar.
 
 
-      Data are simulated: 40 patients on placebo and 40 on a new drug, outcome is
+      Data are the 50 US states plus the District of Columbia in 2009, bundled with
 
-      the drop in systolic blood pressure after eight weeks. The 95% CI is a
+      **statsmodels** (`sm.datasets.statecrime`): the violent-crime rate per
 
-      bias-corrected and accelerated (BCa) bootstrap from `scipy.stats.bootstrap`;
+      100,000 residents, for the 23 states whose poverty rate is above the median
 
-      the vertical line beside each swarm is the group mean ± 1 SD,
+      state (14.2%) versus the 28 at or below it. The comparison is
 
-      and the swarm comes from `seaborn.swarmplot`.'
+      observational, not an experiment: it measures how large the gap is, not
+
+      what causes it. The 95% CI is a bias-corrected and accelerated (BCa)
+
+      bootstrap from `scipy.stats.bootstrap`, and the subtitle adds Welch''s
+
+      t-test (`scipy.stats.ttest_ind`); the vertical line beside each swarm is the
+
+      group mean ± 1 SD, and the swarm comes from `seaborn.swarmplot`. The lone
+
+      point above 1,300 is the District of Columbia.'
   group-comparisons/means-with-ci:
     title: Interaction plot
     summary: Group means with 95% confidence intervals for two factors, with a two-way ANOVA.
@@ -318,15 +367,21 @@ examples:
       signal an interaction.
 
 
-      Data are the 442 patients of the diabetes study bundled with
+      Data are the 944 voters of the 1996 American National Election Study bundled
 
-      **scikit-learn** (`load_diabetes(scaled=False)`): disease progression after
+      with **statsmodels** (`sm.datasets.anes96`): self-placement on a 7-point
 
-      one year, by BMI class and sex. The two-way ANOVA (type II sums of squares)
+      liberal–conservative scale (1 = extremely liberal, 7 = extremely
 
-      comes from `statsmodels.formula.api.ols` and `statsmodels.stats.anova.anova_lm`,
+      conservative), by education (the seven survey codes grouped into four
 
-      with partial η² for each term; the intervals use the t distribution.'
+      levels) and by presidential vote, Clinton or Dole. The two-way ANOVA (type
+
+      II sums of squares) comes from `statsmodels.formula.api.ols` and
+
+      `statsmodels.stats.anova.anova_lm`, with partial η² for each term; the
+
+      intervals use the t distribution.'
   group-comparisons/tukey-hsd:
     title: Tukey HSD intervals
     summary: Simultaneous 95% confidence intervals for every pairwise difference in means.
@@ -486,7 +541,8 @@ examples:
       `statsmodels.stats.multitest.multipletests(method="holm")`.'
   correlation/scatter-with-stats:
     title: Scatterplot with statistics
-    summary: Scatter, OLS line with 95% band and marginal histograms, with Pearson's r in the subtitle.
+    summary: Low-income pupils vs math results in 303 California districts — scatter, OLS line with 95%
+      band, marginal histograms and Pearson's r.
     description: 'The Python counterpart of `ggscatterstats()`. The central panel shows every
 
       observation with the least-squares line and its 95% confidence band (uncertainty
@@ -497,21 +553,30 @@ examples:
 
       correlation coefficient silently assumes is reasonable. The subtitle reports
 
-      Pearson''s *r* with its 95% confidence interval, the t-test and the sample size.
+      Pearson''s *r* with its 95% confidence interval, the t-test, the OLS slope and
+
+      the sample size.
 
 
-      Data are the diabetes study bundled with **scikit-learn**
+      Data are the 303 California school districts of the STAR98 test bundled with
 
-      (`load_diabetes(scaled=False)`): body-mass index against a quantitative measure
+      **statsmodels** (`sm.datasets.star98`): the share of low-income pupils against
 
-      of disease progression one year later, for 442 patients. The test comes from
+      the share of tested pupils scoring above the national median in mathematics,
+
+      computed as `NABOVE / (NABOVE + NBELOW)`. The slope of −0.75 means about
+
+      7.5 points fewer pupils above the median for every 10 points more low-income
+
+      pupils — an association between districts, not an effect. The test comes from
 
       `scipy.stats.pearsonr`, the line and band from **statsmodels** OLS
 
       `get_prediction().conf_int()`.'
   correlation/pairs-plot:
     title: Pairs plot with correlations
-    summary: Scatter matrix with group KDEs on the diagonal and correlation coefficients above it.
+    summary: Scatter matrix of four school-district variables, with group KDEs on the diagonal and pooled
+      vs within-group correlations above it.
     description: 'The Python counterpart of `GGally::ggpairs()`. Every pair of variables gets a
 
       scatterplot below the diagonal, coloured by group; the diagonal shows each
@@ -525,14 +590,27 @@ examples:
       sharply — even in sign — when groups sit in different regions of the plot.
 
 
-      Data are Fisher''s iris measurements bundled with **scikit-learn** (`load_iris`),
+      Data are the 303 California school districts of the STAR98 test bundled with
 
-      150 flowers from three species. Densities use `scipy.stats.gaussian_kde` and
+      **statsmodels** (`sm.datasets.star98`): the share of pupils above the national
 
-      correlations `scipy.stats.pearsonr`; the grid is a plain `plt.subplots(4, 4)`.'
+      median in math, the shares of Hispanic pupils and of pupils in college-prep
+
+      (UC/CSU) courses, and teachers'' average years of experience. Districts are
+
+      grouped into thirds of their share of low-income pupils (`pd.qcut`, 101 each),
+
+      so the within-group coefficients hold poverty roughly constant: the link
+
+      between Hispanic share and math results, −0.71 overall, is weaker inside every
+
+      poverty group. Densities use `scipy.stats.gaussian_kde` and correlations
+
+      `scipy.stats.pearsonr`; the grid is a plain `plt.subplots(4, 4)`.'
   correlation/correlogram-bubble:
     title: Correlogram with clustering
-    summary: Corrplot-style circles sized and coloured by r, ordered by hierarchical clustering.
+    summary: Corrplot-style circles sized and coloured by r for 13 school-district indicators, ordered
+      by hierarchical clustering.
     description: 'The Python counterpart of `corrplot(method = "circle", order = "hclust")`. Each
 
       circle''s **area** grows with |*r*| and its colour gives the sign, so strong
@@ -543,12 +621,24 @@ examples:
 
       pulls positively correlated variables into blocks along the diagonal; the boxes
 
-      outline the three clusters, like `addrect = 3`.
+      outline the three clusters, like `addrect = 3`. Here low-income, Hispanic pupils
+
+      and minority teachers form one block, and math results correlate negatively with
+
+      all three.
 
 
-      Data are the 13 chemical measurements of 178 Italian wines bundled with
+      Data are 13 indicators for the 303 California school districts of the STAR98
 
-      **scikit-learn** (`load_wine`). The ordering comes from
+      test bundled with **statsmodels** (`sm.datasets.star98`): math results (share
+
+      of pupils above the national median), pupil composition (low-income, Hispanic,
+
+      Black and Asian pupils), teachers (minority share, experience, salary), resources
+
+      (spending per pupil, pupil–teacher ratio) and school organisation (college-prep
+
+      courses, charter and year-round schools). The ordering comes from
 
       `scipy.cluster.hierarchy.linkage` and `leaves_list`, the boxes from `fcluster`.'
   regression-models/coefficient-plot:
@@ -595,7 +685,8 @@ examples:
       odds ratios are `np.exp()` of `params` and `conf_int()`.'
   regression-models/compare-models:
     title: Comparing nested models
-    summary: Coefficients of three nested regressions side by side, to see how estimates shift.
+    summary: Coefficients of three nested regressions of district math results side by side, to see how
+      estimates shift as blocks are added.
     description: 'When covariates are added one block at a time, the interesting question is often
 
       not *which* terms are significant but *how the estimates move*. Here each term
@@ -607,15 +698,25 @@ examples:
       subtitle compares the models with R² and F-tests of the added blocks.
 
 
-      Data are the 442 diabetes patients bundled with **scikit-learn**
+      Data are the 303 California school districts of the STAR98 test bundled with
 
-      (`load_diabetes`): one-year disease progression explained by body mass index,
+      **statsmodels** (`sm.datasets.star98`). The outcome is the share of pupils above
 
-      blood pressure and serum measurements. Predictors are standardised, so every
+      the national median in math, `NABOVE / (NABOVE + NBELOW)`, in percent. M1 holds
 
-      coefficient is the change in progression per standard deviation. Models are fitted
+      pupil composition (low-income and Hispanic pupils), M2 adds teachers
 
-      with `smf.ols()` and compared with `anova_lm()`.'
+      (pupil–teacher ratio, average experience) and M3 adds programmes (college-prep
+
+      courses, year-round schools). Predictors are standardised, so every coefficient
+
+      is the change in percentage points per standard deviation. The blocks are
+
+      jointly significant, yet R² barely moves and the low-income coefficient stays
+
+      near −12 in every model. Models are fitted with `smf.ols()` and compared with
+
+      `anova_lm()`.'
   regression-models/predicted-probabilities:
     title: Predicted probabilities
     summary: Model-based probability curves with 95% CI ribbons across a predictor, by group.
@@ -643,7 +744,8 @@ examples:
       curves come from `get_prediction().summary_frame()`.'
   regression-models/interaction-effects:
     title: Interaction effects
-    summary: Simple slopes at mean ± 1 SD and a Johnson–Neyman plot for two continuous predictors.
+    summary: Simple slopes at mean ± 1 SD and a Johnson–Neyman plot for college-prep courses and math
+      results, moderated by pupil poverty.
     description: 'An interaction term says that the slope of one predictor depends on another.
 
       The **left panel** draws that slope at three values of the moderator — its mean
@@ -659,13 +761,25 @@ examples:
       Johnson–Neyman point.
 
 
-      Data are the 442 diabetes patients bundled with **scikit-learn**
+      Data are the 303 California school districts of the STAR98 test bundled with
 
-      (`load_diabetes`): disease progression after one year, modelled with
+      **statsmodels** (`sm.datasets.star98`). The outcome is the share of pupils above
 
-      `smf.ols("target ~ age * bmi")`. The marginal-effect variance is computed by hand
+      the national median in math (%); the focal predictor is the share of pupils in
 
-      from `cov_params()`: Var(β₁) + 2m·Cov(β₁, β₃) + m²·Var(β₃).'
+      college-prep (UC/CSU) courses and the moderator the share of low-income pupils,
+
+      in `smf.ols("math ~ prep * lowinc")`. College-prep enrolment goes with better
+
+      math results in better-off districts, but the association fades as poverty
+
+      rises — and turns significantly negative only in the two poorest districts,
+
+      hence a second Johnson–Neyman point at the far right. The marginal-effect
+
+      variance is computed by hand from `cov_params()`:
+
+      Var(β₁) + 2m·Cov(β₁, β₃) + m²·Var(β₃).'
   regression-models/quantile-regression:
     title: Quantile regression process
     summary: How a slope changes across the conditional distribution, against the single OLS estimate.
@@ -809,23 +923,36 @@ examples:
       computed with one auxiliary OLS fit per axis; each panel reports β, its t and p.'
   survival/kaplan-meier:
     title: Kaplan–Meier curves
-    summary: Survival curves with confidence bands, censoring marks, log-rank test and risk table.
+    summary: How long political leaders stay in office, democracies vs non-democracies — survival curves
+      with confidence bands, censoring marks, log-rank test and risk table.
     description: 'The Kaplan–Meier estimator turns follow-up times — some ending in an event, some
 
-      censored — into a step curve of the probability of surviving beyond each day.
+      censored — into a step curve of the probability of "surviving" beyond each time.
 
       Shaded bands are pointwise 95% confidence intervals, small ticks mark censored
 
-      patients, and dashed lines drop from 50% to the **median survival** of each group.
+      spells, and dashed lines drop from 50% to the **median survival** of each group.
 
       The table underneath gives the number still at risk, which tells you how much
 
       data supports the tail of each curve.
 
 
-      Data are the NCCTG advanced lung-cancer trial (`lifelines.datasets.load_lung`).
+      Data are the Democracy and Dictatorship dataset of Cheibub, Gandhi & Vreeland
 
-      Curves come from `KaplanMeierFitter`, the comparison from `logrank_test`.'
+      bundled with **lifelines** (`lifelines.datasets.load_dd`): 1,808 spells in
+
+      office of heads of government in 202 countries, 1946–2008, timed in years.
+
+      The event is leaving office; spells without an observed exit — for instance
+
+      those still running when the data end — are censored. Democratic leaders reach
+
+      their median tenure twice as fast as non-democratic ones. The x-axis stops at
+
+      30 years; no democratic spell lasts beyond 23. Curves come from
+
+      `KaplanMeierFitter`, the comparison from `logrank_test`.'
   survival/cox-hazard-ratios:
     title: Cox hazard ratios
     summary: Forest plot of a Cox proportional hazards model with HR, 95% CI and p-values.
@@ -849,7 +976,7 @@ examples:
       index and the likelihood-ratio test of the whole model.'
   survival/cumulative-hazard:
     title: Cumulative hazard
-    summary: Nelson–Aalen cumulative hazard curves with 95% bands for three tumour grades.
+    summary: Nelson–Aalen cumulative hazard of leaving office, with 95% bands, for four political regimes.
     description: 'The cumulative hazard H(t) adds up the instantaneous risk of the event over
 
       time; it is the "risk accumulated so far" and relates to survival through
@@ -861,15 +988,25 @@ examples:
       curve that bends upward means risk that grows with time.
 
 
-      Data are the German Breast Cancer Study Group 2 trial
+      Data are the Democracy and Dictatorship dataset of Cheibub, Gandhi & Vreeland
 
-      (`lifelines.datasets.load_gbsg2`): recurrence-free survival of 686 women by
+      bundled with **lifelines** (`lifelines.datasets.load_dd`): years in office of
 
-      tumour grade. Curves come from `lifelines.NelsonAalenFitter`, and the subtitle
+      heads of government, 1946–2008, for the four largest regime types (1,478 of
 
-      reports a log-rank test across the three grades (`multivariate_logrank_test`).
+      1,808 spells; mixed democracies and monarchies are left out). Curves come from
 
-      The x-axis stops at five years, after which too few women remain at risk.'
+      `lifelines.NelsonAalenFitter`, and the subtitle reports a log-rank test across
+
+      the four regimes (`multivariate_logrank_test`). The democratic curves climb
+
+      steeply, and the presidential one in large steps — the footprint of fixed
+
+      terms and term limits — while the dictatorship curves stay low and nearly
+
+      straight, a lower and roughly constant risk. The x-axis stops at ten years,
+
+      after which only a handful of presidents remain at risk.'
   survival/adjusted-survival:
     title: Adjusted survival curves
     summary: Cox model–predicted survival for several ages, other covariates held at their mean.
@@ -893,7 +1030,8 @@ examples:
       sample is drawn in grey for reference.'
   time-series/stl-decomposition:
     title: STL decomposition
-    summary: A series split into trend, seasonal and remainder components in stacked panels.
+    summary: A monthly industrial turnover series split into trend, seasonal and remainder components
+      in stacked panels.
     description: 'STL (Seasonal–Trend decomposition using Loess) writes a series as
 
       **observed = trend + seasonal + remainder**. Each panel shares the time axis but
@@ -905,18 +1043,27 @@ examples:
       a short bar means a component that dominates, a long one a component that is small.
 
 
-      Data are the Mauna Loa atmospheric CO₂ measurements bundled with
+      Data are Eurostat''s monthly turnover index for the manufacture of electrical
 
-      **statsmodels** (`sm.datasets.co2`), resampled from weekly to monthly means with
+      equipment in the euro area (2010 = 100), January 1995 to May 2016, working-day
 
-      gaps interpolated. The decomposition uses `statsmodels.tsa.seasonal.STL` with a
+      adjusted but **not** seasonally adjusted — 257 months bundled with
 
-      12-month period and robust fitting; the subtitle gives the strength of trend and
+      **statsmodels** (`statsmodels.datasets.elec_equip`). The trend shows the
 
-      seasonality as defined by Wang, Smith & Hyndman (2006).'
+      2008–09 collapse in industrial activity; the seasonal component shows the
+
+      August shutdown and the end-of-quarter peaks. The decomposition uses
+
+      `statsmodels.tsa.seasonal.STL` with a 12-month period and robust fitting; the
+
+      subtitle gives the strength of trend and seasonality as defined by Wang,
+
+      Smith & Hyndman (2006).'
   time-series/acf-pacf:
     title: ACF and PACF
-    summary: Autocorrelation and partial autocorrelation lollipops with 95% significance bands.
+    summary: Autocorrelation and partial autocorrelation of US quarterly unemployment, as lollipops with
+      95% significance bands.
     description: 'The autocorrelation function (ACF) measures how strongly a series correlates
 
       with itself k steps earlier; the partial autocorrelation (PACF) does the same
@@ -925,40 +1072,57 @@ examples:
 
       grey band (±1.96/√n) are larger than white noise would produce. Together the two
 
-      panels suggest a model: here the ACF oscillates with the **11-year solar cycle**,
+      panels suggest a model: here the ACF decays slowly over several years — high
 
-      while the PACF cuts off after a few lags — the signature of an autoregressive process.
+      unemployment today means high unemployment next year — while the PACF cuts off
+
+      after **two lags**, the signature of an AR(2) process.
 
 
-      Data are the yearly Wolf sunspot numbers 1700–2008 bundled with **statsmodels**
+      Data are the US civilian unemployment rate, quarterly 1959Q1–2009Q3 (203
 
-      (`sm.datasets.sunspots`). Correlations come from `statsmodels.tsa.stattools.acf`
+      quarters), from the macroeconomic dataset bundled with **statsmodels**
 
-      and `pacf`, and the subtitle reports a Ljung–Box test of no autocorrelation.'
+      (`sm.datasets.macrodata`, column `unemp`). Correlations come from
+
+      `statsmodels.tsa.stattools.acf` and `pacf`, and the subtitle reports a
+
+      Ljung–Box test of no autocorrelation.'
   time-series/arima-forecast:
     title: SARIMA forecast
-    summary: Seasonal ARIMA forecast with 80% and 95% prediction intervals against held-out data.
+    summary: Seasonal ARIMA forecast of industrial turnover with 80% and 95% prediction intervals against
+      held-out data.
     description: 'A forecast is only honest with its uncertainty. The dark fan is the 80%
 
       prediction interval, the light fan the 95% interval; both widen as the horizon
 
-      grows. The last four years were **held out** from the fit, so the dots show what
+      grows. The last two years were **held out** from the fit, so the dots show what
 
       actually happened and the subtitle reports the out-of-sample RMSE and how many
 
       of those months fell inside the 95% interval.
 
 
-      Data are the Mauna Loa CO₂ measurements bundled with **statsmodels**
+      Data are Eurostat''s monthly turnover index for the manufacture of electrical
 
-      (`sm.datasets.co2`), aggregated to monthly means. The model is a seasonal
+      equipment in the euro area (2010 = 100), January 1995 to May 2016, working-day
 
-      ARIMA(1,1,1)(0,1,1)₁₂ — the classic "airline" structure — fitted with
+      adjusted but not seasonally adjusted (`statsmodels.datasets.elec_equip`,
 
-      `statsmodels.tsa.statespace.SARIMAX`; intervals come from `get_forecast().conf_int()`.'
+      bundled with **statsmodels**). The model is fitted on data up to May 2014 and
+
+      forecasts June 2014 – May 2016. It is a seasonal ARIMA(1,1,1)(0,1,1)₁₂ — the
+
+      classic "airline" structure — fitted with `statsmodels.tsa.statespace.SARIMAX`;
+
+      intervals come from `get_forecast().conf_int()`. Every held-out month falls
+
+      inside the 95% interval, but the forecast sits below the actual values on
+
+      average.'
   time-series/seasonal-subseries:
     title: Seasonal subseries plot
-    summary: Each calendar month's values across the years, with the monthly mean as a reference.
+    summary: Each calendar month's industrial turnover across the years, with the monthly mean as a reference.
     description: 'A seasonal subseries plot (or month plot) cuts a monthly series into twelve
 
       mini time series, one per calendar month, each running across all the years.
@@ -970,18 +1134,26 @@ examples:
       drifting or swinging from year to year.
 
 
-      Data are monthly sea-surface temperatures in the Niño 1+2 region of the eastern
+      Data are Eurostat''s monthly turnover index for the manufacture of electrical
 
-      Pacific, 1950–2010 (`sm.datasets.elnino`, bundled with **statsmodels**). The
+      equipment in the euro area (2010 = 100), not seasonally adjusted, for the 21
 
-      subtitle reports a one-way ANOVA of temperature on month (`scipy.stats.f_oneway`)
+      complete years 1995–2015 (`statsmodels.datasets.elec_equip`, bundled with
 
-      with η², the share of all variation explained by the season. The El Niño winter
+      **statsmodels**). Turnover dips every August, when factories close for the
 
-      of 1997–98 is highlighted.'
+      summer, and rises at the end of each quarter. The subtitle reports a one-way
+
+      ANOVA of turnover on month (`scipy.stats.f_oneway`) with η², the share of all
+
+      variation explained by the season — modest here, because the long-run trend
+
+      inside each panel accounts for much of the rest. The 2009 recession is
+
+      highlighted.'
   multivariate/pca-biplot:
     title: PCA biplot
-    summary: Observations and variable loadings on the first two principal components.
+    summary: US states and their social indicators on the first two principal components.
     description: 'A biplot overlays two things on the same principal-component plane: the
 
       **scores** (one dot per observation, coloured by group, with a 68% normal
@@ -993,16 +1165,23 @@ examples:
       two components shown; groups sit on the side of the variables they are high on.
 
 
-      Data are the 178 wines of the **scikit-learn** wine dataset (13 chemical
+      Data are the 50 US states and the District of Columbia from the **statsmodels**
 
-      measurements, three cultivars). Variables are standardised, then
+      `statecrime` dataset (2009 figures): violent-crime and murder rates per
 
-      `sklearn.decomposition.PCA` gives scores, loadings and the share of variance
+      100,000, % high-school graduates, % below the poverty line, % single-parent
 
-      printed on each axis.'
+      households, % white and % urban population. States are coloured by US Census
+
+      region, and the six most extreme ones are named. Variables are standardised,
+
+      then `sklearn.decomposition.PCA` gives scores, loadings and the share of
+
+      variance printed on each axis.'
   multivariate/scree-plot:
     title: Scree plot
-    summary: Variance explained per component, cumulative share and a parallel-analysis cut-off.
+    summary: How many dimensions describe 303 California school districts? Variance per component and
+      a parallel-analysis cut-off.
     description: 'How many principal components are worth keeping? Bars show the share of
 
       variance carried by each component, the orange line the running total. The
@@ -1016,14 +1195,27 @@ examples:
       line marks the older Kaiser rule (eigenvalue > 1).
 
 
-      Data are the 13 standardised chemical measurements of the **scikit-learn**
+      Data are 303 California school districts from the **statsmodels** `star98`
 
-      wine dataset. Eigenvalues of the correlation matrix (the PCA variances) come from
+      dataset (1998 Standardized Testing and Reporting programme): 12 district
 
-      `numpy.linalg.eigvalsh`; the parallel analysis is 500 seeded simulations.'
+      characteristics — % low-income pupils, % Asian, Black and Hispanic pupils,
+
+      % minority teachers, teachers'' average experience and salary, per-pupil
+
+      spending, pupil–teacher ratio, % taking college-prep courses, % charter and
+
+      % year-round schools — each standardised. Eigenvalues of the correlation
+
+      matrix (the PCA variances) come from `numpy.linalg.eigvalsh`; the parallel
+
+      analysis is 500 seeded simulations. Note that parallel analysis keeps fewer
+
+      components than the Kaiser rule here.'
   multivariate/silhouette-clusters:
     title: Silhouette plot for k-means
-    summary: k-means clusters in PCA space next to the per-observation silhouette widths.
+    summary: Do US states fall into distinct social profiles? k-means clusters next to their silhouette
+      widths.
     description: 'The silhouette width compares how close each observation is to its own cluster
 
       with how close it is to the nearest other cluster: near 1 means well placed,
@@ -1039,14 +1231,31 @@ examples:
       line at the overall average.
 
 
-      Data are the 13 standardised chemical measurements of the **scikit-learn**
+      Data are the 50 US states from the **statsmodels** `statecrime` dataset (2009
 
-      wine dataset. `KMeans`, `silhouette_score` and `silhouette_samples` from
+      figures), described by 7 standardised indicators: violent-crime and murder
 
-      `sklearn` do the work; `PCA` is only used to draw the clusters.'
+      rates, % high-school graduates, % in poverty, % single-parent households,
+
+      % white and % urban. The District of Columbia is left out: it is so extreme
+
+      that k-means would give it a cluster of its own. The two clusters found are
+
+      roughly a lower-crime, lower-poverty profile and a higher-crime,
+
+      higher-poverty one, but an average silhouette around 0.35 is a **weak**
+
+      structure by Kaufman & Rousseeuw''s rule of thumb (0.26–0.50): states form a
+
+      continuum more than separate types. `KMeans`, `silhouette_score` and
+
+      `silhouette_samples` from `sklearn` do the work; `PCA` is only used to draw
+
+      the clusters.'
   multivariate/clustered-heatmap:
     title: Clustered heatmap
-    summary: Z-scored heatmap with row and column dendrograms and a group colour bar.
+    summary: Z-scored heatmap of US states' social indicators, with row and column dendrograms and a Census-region
+      colour bar.
     description: 'Each row is an observation, each column a variable, and each cell its z-score
 
       (blue below the variable''s mean, red above). Rows and columns are reordered by
@@ -1060,13 +1269,21 @@ examples:
       rediscovers it — and which variables drive the split.
 
 
-      Data are the 178 wines of the **scikit-learn** wine dataset (three cultivars,
+      Data are the 50 US states and the District of Columbia from the **statsmodels**
 
-      13 measurements). `seaborn.clustermap` does the clustering and drawing;
+      `statecrime` dataset (2009 figures): violent-crime and murder rates per
 
-      `scipy.cluster.hierarchy` cuts the row tree into three clusters to compute
+      100,000, % high-school graduates, % in poverty, % single-parent households,
 
-      the adjusted Rand index against the true cultivars.'
+      % white and % urban population. The colour bar is the US Census region.
+
+      `seaborn.clustermap` does the clustering and drawing;
+
+      `scipy.cluster.hierarchy` cuts the row tree into four clusters to compute
+
+      the adjusted Rand index against the four regions: geography only partly
+
+      explains which states look alike.'
   inference-uncertainty/bootstrap-distribution:
     title: Bootstrap distribution
     summary: Resampled correlation with percentile and BCa 95% confidence intervals.
@@ -1092,23 +1309,30 @@ examples:
       `scipy.stats.bootstrap` (paired, 9,999 resamples) provides both intervals.'
   inference-uncertainty/confidence-intervals:
     title: What a 95% confidence interval means
-    summary: 100 simulated 95% CIs for a mean; the ones that miss the true value are in red.
+    summary: 100 surveys of 30 people drawn from 944 ANES respondents; the 95% CIs for mean age that miss
+      the true value are in red.
     description: '"95% confidence" is a property of the *procedure*, not of one interval. Here
 
-      the same study — a sample of 25 from a population with known mean 100 — is
+      the 944 respondents of the 1996 American National Election Study (**statsmodels**
 
-      repeated 100 times, and each horizontal line is the resulting 95% t-interval
+      `anes96`) are treated as the whole population, so their mean age is the known
 
-      around the sample mean. About 95 of them cover the true mean (dashed line);
+      true value. The same small survey — 30 respondents drawn at random, without
 
-      the few that miss it are drawn in red. Interval widths vary too, because each
+      replacement — is repeated 100 times, and each horizontal line is the resulting
 
-      sample estimates its own standard deviation.
+      95% t-interval around the sample mean age. About 95 of them cover the true
+
+      mean (dashed line); the few that miss it are drawn in red. Interval widths
+
+      vary too, because each sample estimates its own standard deviation.
 
 
-      The data are simulated with `numpy` (seeded, normal population, μ = 100,
+      The draws are seeded with `numpy` and the intervals use
 
-      σ = 15) and the intervals use `scipy.stats.t.interval`.'
+      `scipy.stats.t.interval`. Age is right-skewed (19 to 91), and one run of 100
+
+      surveys can land a few points above or below 95% by chance alone.'
   inference-uncertainty/power-curve:
     title: Power curve
     summary: Power of a two-sample t-test against sample size for small, medium and large effects.
@@ -1132,10 +1356,11 @@ examples:
       group sizes).'
   inference-uncertainty/bland-altman:
     title: Bland–Altman plot
-    summary: Agreement between two measurement methods, with bias and 95% limits of agreement.
-    description: 'When two instruments measure the same thing, a high correlation says nothing
+    summary: Do two coders place party manifestos on the left–right scale the same way? Bias and 95% limits
+      of agreement.
+    description: 'When two instruments — or two coders — measure the same thing, a high
 
-      about whether they **agree**. The Bland–Altman plot puts the difference
+      correlation says nothing about whether they **agree**. The Bland–Altman plot puts the difference
 
       between methods on the y-axis and their average on the x-axis. The middle
 
@@ -1150,14 +1375,19 @@ examples:
       signal a proportional bias.
 
 
-      Data are simulated with `numpy` (seeded): systolic blood pressure of 80
+      Data are **simulated** with `numpy` (seeded) to mimic a classic
 
-      patients read by a reference cuff and a new wrist device. Bias and
+      content-analysis check: two trained coders each place the same 80 party
 
-      intervals use `scipy.stats.t`; the slope test is an OLS fit from **statsmodels**.'
+      manifestos on a 0–10 left–right scale, and coder B is built to sit about 0.4
+
+      points to the right of coder A. Bias and intervals use `scipy.stats.t`; the
+
+      slope test is an OLS fit from **statsmodels**.'
   inference-uncertainty/meta-analysis-forest:
     title: Meta-analysis forest plot
-    summary: Study risk ratios with CIs, random-effects pooled diamond and heterogeneity statistics.
+    summary: Do teacher expectations raise pupils' IQ? 19 "Pygmalion" experiments, a random-effects pooled
+      diamond and heterogeneity statistics.
     description: 'A forest plot lays out every study of a meta-analysis on one line: the square
 
       is the study''s estimate (its area proportional to the study''s weight), the
@@ -1171,42 +1401,63 @@ examples:
       due to real between-study differences) and τ² (their variance).
 
 
-      Data are the 13 classic BCG-vaccine trials against tuberculosis (Colditz et
+      Data are the 19 teacher-expectancy ("Pygmalion") experiments synthesised by
 
-      al., 1994; `dat.bcg` in R''s **metafor**), typed in as counts. Log risk ratios
+      Raudenbush (1984): in each, teachers were told that some pupils were about to
 
-      come from `effectsize_2proportions` and pooling from `combine_effects` in
+      "bloom", and pupils'' IQ was later compared with that of a control group. The
 
-      `statsmodels.stats.meta_analysis`.'
+      effect sizes are standardised mean differences (d > 0: the "bloomers" scored
+
+      higher) and their sampling variances, typed in as published in
+
+      `dat.raudenbush1985` of R''s **metafor**. Pooling uses `combine_effects` from
+
+      `statsmodels.stats.meta_analysis`. The average effect is small and its CI
+
+      includes zero, while the studies vary more than chance allows; Raudenbush
+
+      traced much of that variation to how long teachers had known their pupils
+
+      before the expectancy was induced.'
   inference-uncertainty/funnel-plot:
     title: Funnel plot
-    summary: Study effects against their standard error, with a pseudo 95% funnel and Egger's test.
+    summary: Are small "Pygmalion" studies more optimistic? 19 teacher-expectancy effects against their
+      standard error, with a pseudo 95% funnel and Egger's test.
     description: 'Each dot is a study: its effect size on the x-axis, its standard error on the
 
       (inverted) y-axis, so large precise studies sit at the top. Without bias the
 
       dots form a symmetric funnel around the pooled effect, 95% of them inside the
 
-      pseudo-confidence region (± 1.96 SE). Here the bottom-left is empty: small
+      pseudo-confidence region (± 1.96 SE). If small studies with null or negative
 
-      studies with null results are missing. **Egger''s regression test** (standard
+      results are missing — publication bias — the bottom of the funnel is lopsided.
 
-      normal deviate on precision) quantifies that asymmetry; its fitted line is
+      **Egger''s regression test** (standard normal deviate on precision) quantifies
 
-      dashed.
+      that asymmetry; its fitted line is dashed.
 
 
-      The meta-analysis is simulated with `numpy` (seeded): 100 trials of a true
+      Data are the 19 teacher-expectancy ("Pygmalion") experiments of Raudenbush
 
-      standardised effect of 0.2, where small non-significant trials mostly stay in
+      (1984): standardised mean differences in pupils'' IQ and their sampling
 
-      the file drawer (hollow grey — never observable in real life). Egger''s test is
+      variances, typed in as published in `dat.raudenbush1985` of R''s **metafor**.
 
-      an OLS fit from **statsmodels**.'
+      The least precise studies report the largest effects, and Egger''s intercept
+
+      is borderline. Asymmetry is not proof of publication bias: here the small
+
+      studies are mostly those in which teachers had known their pupils for a week
+
+      or less, which Raudenbush showed produces genuinely larger effects. Egger''s
+
+      test is an OLS fit from **statsmodels**.'
   machine-learning/confusion-matrix:
     title: Confusion matrix with metrics
-    summary: Out-of-fold confusion matrix with counts and row shares, and bootstrap intervals for the
-      headline metrics.
+    summary: How well a logistic regression predicts who voted Dole in 1996 — out-of-fold confusion matrix
+      with counts and row shares, and bootstrap intervals for the headline metrics.
     description: 'A confusion matrix crosses the true class with the predicted class. Each cell
 
       shows a count and its share of the true class (the row), so the diagonal reads
@@ -1222,20 +1473,28 @@ examples:
 
       correlation coefficient (MCC), each with a 95% bootstrap interval — a single
 
-      number hides how much it would move with another sample. Data are the 569
+      number hides how much it would move with another sample. Data are the 944
 
-      breast-cancer biopsies bundled with **scikit-learn**; the model is a
+      respondents of the 1996 American National Election Study who voted for
 
-      standardised logistic regression, the predictions come from
+      Clinton or Dole, bundled with **statsmodels** (`sm.datasets.anes96`). The
 
-      `cross_val_predict` and the metrics from `sklearn.metrics`.'
+      model predicts a Dole vote from party identification, left–right
+
+      self-placement, age, education, income, days watching TV news and the
+
+      population of the respondent''s place of residence (log). It is a standardised
+
+      logistic regression; the predictions come from `cross_val_predict` and the
+
+      metrics from `sklearn.metrics`.'
   machine-learning/precision-recall:
     title: Precision–recall curves
-    summary: Out-of-fold precision–recall curves for two classifiers, with average precision and the no-skill
-      baseline.
-    description: 'When the positive class is rare, a ROC curve can look excellent while most
+    summary: Out-of-fold precision–recall curves for two classifiers predicting which married women report
+      an affair, with average precision and the no-skill baseline.
+    description: 'When the positive class is a minority, a ROC curve can look excellent while
 
-      alarms are false. The precision–recall curve answers the operational question
+      many alarms are false. The precision–recall curve answers the operational question
 
       instead: if I want to catch this share of positives (**recall**), how many of
 
@@ -1248,20 +1507,31 @@ examples:
       precision** (AP).
 
 
-      Data are the 1,797 handwritten digits bundled with **scikit-learn**, recast as
+      Data are the 6,366 married women of the 1974 *Redbook* magazine survey analysed
 
-      a rare-event problem: detect the digit 9 (about 10% of images). Scores are
+      by Fair (1978), bundled with **statsmodels** (`sm.datasets.fair`). The outcome
 
-      out-of-fold probabilities from a 5-fold cross-validation
+      is whether a woman reports any extramarital affair — a minority class, about
 
-      (`cross_val_predict(method="predict_proba")`); curves and AP come from
+      one in three. The predictors are her rating of the marriage, age, years
 
-      `precision_recall_curve` and `average_precision_score`. The marker shows the
+      married, number of children, religiousness, education and her own and her
 
-      default 0.5 threshold on each curve.'
+      husband''s occupation. Scores are out-of-fold probabilities from a 5-fold
+
+      cross-validation (`cross_val_predict(method="predict_proba")`); curves and AP
+
+      come from `precision_recall_curve` and `average_precision_score`. The marker
+
+      shows the default 0.5 threshold on each curve. Here the logistic regression
+
+      ranks women better than the random forest (higher AP), yet at the 0.5
+
+      threshold it flags only about a third of those who report an affair.'
   machine-learning/learning-curve:
     title: Learning curve
-    summary: Training and cross-validated score as the training set grows, with fold-to-fold spread.
+    summary: Training and cross-validated accuracy as the training set grows, for two models predicting
+      which married women report an affair.
     description: 'A learning curve answers two questions before anyone collects more data: is
 
       the model **overfitting** (a wide gap between the training score and the
@@ -1279,16 +1549,31 @@ examples:
 
       Two models are compared on the same task: a deep decision tree, which
 
-      memorises its training set, and a k-nearest-neighbours classifier. Data are
+      memorises its training set, and a standardised logistic regression. Data are
 
-      the 1,797 handwritten digits bundled with **scikit-learn**; the curves come
+      the 6,366 married women of the 1974 *Redbook* magazine survey analysed by Fair
 
-      from `sklearn.model_selection.learning_curve` with a 5 × 2 repeated stratified
+      (1978), bundled with **statsmodels** (`sm.datasets.fair`); the outcome is
 
-      split.'
+      whether a woman reports any extramarital affair (about one in three), predicted
+
+      from her rating of the marriage, age, years married, children, religiousness,
+
+      education and occupations. The curves come from
+
+      `sklearn.model_selection.learning_curve` with a 5 × 2 repeated stratified
+
+      split. The verdict is sobering: the tree''s cross-validated accuracy stays
+
+      below the majority-class baseline, while the logistic regression''s two curves
+
+      are flat and joined — more respondents would not help; better predictors
+
+      would.'
   machine-learning/model-comparison:
     title: Cross-validated model comparison
-    summary: Fold-by-fold scores of several models, with means and corrected 95% intervals.
+    summary: Fold-by-fold R² of six models predicting California school districts' maths results, with
+      means and corrected 95% intervals.
     description: '"Model B scores 0.47, model A 0.46" says nothing until we know how much the
 
       score moves from one split to the next. Here every model is evaluated on the
@@ -1302,16 +1587,29 @@ examples:
       variance rather than the naive standard error, which would be far too narrow.
 
 
-      Data are the 442 diabetes patients bundled with **scikit-learn**
+      Data are the 303 California school districts of the 1998 STAR test bundled
 
-      (`load_diabetes`), the outcome a measure of disease progression after one
+      with **statsmodels** (`sm.datasets.star98`): the outcome is the share of
 
-      year; the score is the out-of-sample R². Scores come from `cross_val_score`
+      students scoring above the national median in maths, predicted from ten
 
-      with `RepeatedKFold`; the linear models are standardised in a `Pipeline`.'
+      district characteristics (share of low-income students, ethnic composition,
+
+      teacher experience and salary, spending per pupil, pupils per teacher,
+
+      college-prep enrolment, year-round schools). The score is the out-of-sample
+
+      R². Scores come from `cross_val_score` with `RepeatedKFold`; the linear models
+
+      are standardised in a `Pipeline`. Here plain linear regression does as well
+
+      as the tree ensembles: flexibility buys nothing when the relationship is close
+
+      to additive.'
   machine-learning/permutation-importance:
     title: Permutation importance
-    summary: Drop in test-set R² when each feature is shuffled, over 50 repeats per feature.
+    summary: Which district characteristics a random forest relies on to predict maths results — drop
+      in test-set R² when each one is shuffled.
     description: 'Permutation importance asks a simple, model-agnostic question: how much worse
 
       does the model predict on **held-out** data when one feature is shuffled,
@@ -1333,14 +1631,27 @@ examples:
 
       **model** uses, not causal effects, and correlated features share (and can
 
-      hide) each other''s importance. Data are the 442 diabetes patients bundled with
+      hide) each other''s importance. Data are the 303 California school districts of
 
-      **scikit-learn**; the model is a random forest; importances come from
+      the 1998 STAR test bundled with **statsmodels** (`sm.datasets.star98`); the
 
-      `sklearn.inspection.permutation_importance`.'
+      outcome is the share of students scoring above the national median in maths,
+
+      predicted from ten district characteristics (poverty, ethnic composition,
+
+      teachers, spending, class size, college-prep enrolment). The model is a random
+
+      forest; importances come from `sklearn.inspection.permutation_importance`.
+
+      Here the share of low-income students dominates, while teacher pay, spending
+
+      and class size add nothing once it is known — a statement about the model''s
+
+      predictions, not proof that resources do not matter.'
   machine-learning/partial-dependence:
     title: Partial dependence with ICE curves
-    summary: Average model response to one feature (PDP) over the individual curves (ICE) of every patient.
+    summary: How predicted maths results change with poverty and with spending per pupil — the average
+      (PDP) over one curve per school district (ICE).
     description: 'A partial dependence plot (PDP) shows how the model''s prediction changes, on
 
       average, as one feature varies while all others keep their observed values.
@@ -1358,17 +1669,25 @@ examples:
       since the model extrapolates elsewhere.
 
 
-      Data are the 442 diabetes patients bundled with **scikit-learn**; the model is
+      Data are the 303 California school districts of the 1998 STAR test bundled
 
-      a gradient-boosting regressor, and the curves come from
+      with **statsmodels** (`sm.datasets.star98`); the outcome is the share of
 
-      `sklearn.inspection.partial_dependence(kind="both")`. A PDP describes the
+      students scoring above the national median in maths, predicted from ten
 
-      model, not the world: it is causal only if the model is.'
+      district characteristics. The two panels contrast the share of low-income
+
+      students, along which predictions fall steeply, with spending per pupil,
+
+      along which they barely move. The model is a gradient-boosting regressor, and
+
+      the curves come from `sklearn.inspection.partial_dependence(kind="both")`. A
+
+      PDP describes the model, not the world: it is causal only if the model is.'
   machine-learning/shap-beeswarm:
     title: SHAP summary (beeswarm)
-    summary: Every patient's SHAP value for every feature, coloured by the feature's value, with mean
-      |SHAP| importance.
+    summary: Every school district's SHAP value for every characteristic, coloured by the characteristic's
+      value, with mean |SHAP| importance.
     description: 'SHAP (SHapley Additive exPlanations; Lundberg and Lee, 2017) splits each
 
       prediction into additive contributions, one per feature, so that
@@ -1380,9 +1699,9 @@ examples:
       effect over all orders in which features could be added.
 
 
-      The beeswarm shows one dot per patient and feature. Position is the SHAP
+      The beeswarm shows one dot per school district and feature. Position is the
 
-      value — how far that feature pushed this patient''s prediction up or down —
+      SHAP value — how far that feature pushed this district''s prediction up or down —
 
       and colour is the feature''s own value, from low (blue) to high (red). Features
 
@@ -1393,51 +1712,68 @@ examples:
       signal non-linearity or interactions.
 
 
-      Data are the 442 diabetes patients bundled with **scikit-learn**; the model is
+      Data are the 303 California school districts of the 1998 STAR test bundled
 
-      a gradient-boosting regressor and the exact tree SHAP values come from
+      with **statsmodels** (`sm.datasets.star98`); the outcome is the share of
+
+      students scoring above the national median in maths, in percentage points,
+
+      predicted from ten district characteristics. The model is a gradient-boosting
+
+      regressor and the exact tree SHAP values come from
 
       `shap.TreeExplainer`. The figure is drawn with Matplotlib so it matches the
 
       gallery style; `shap.plots.beeswarm` gives a similar view in one line.'
   machine-learning/shap-dependence:
     title: SHAP dependence plot
-    summary: SHAP value of one feature against its value, coloured by its strongest interaction partner,
-      with a smooth trend.
-    description: 'A SHAP dependence plot zooms in on one feature. Each dot is a patient: the
+    summary: How the share of low-income students feeds into each district's predicted maths results,
+      coloured by its strongest interaction partner, with a smooth trend.
+    description: 'A SHAP dependence plot zooms in on one feature. Each dot is a school district:
 
-      horizontal axis is the feature''s value, the vertical axis its SHAP value —
+      the horizontal axis is the feature''s value, the vertical axis its SHAP value —
 
-      its contribution to that patient''s prediction. The trend line (a LOWESS
+      its contribution to that district''s prediction. The trend line (a LOWESS
 
       smooth) is close to a partial-dependence curve, but the cloud around it is
 
-      informative: at the same body-mass index, contributions differ from patient
+      informative: at the same share of low-income students, contributions differ
 
-      to patient because of **interactions** with other features.
+      from district to district because of **interactions** with other features.
 
 
       Colour shows the feature that best explains that vertical spread, chosen here
 
-      as the feature whose SHAP **interaction** values with body-mass index are
+      as the feature whose SHAP **interaction** values with the share of low-income
 
-      largest on average (`shap.TreeExplainer.shap_interaction_values`). Data are the
+      students are largest on average (`shap.TreeExplainer.shap_interaction_values`).
 
-      442 diabetes patients bundled with **scikit-learn**; the model is a
+      Here it is the share of Hispanic students, which is also strongly correlated
 
-      gradient-boosting regressor; the smooth comes from
+      with poverty (r ≈ 0.7), so the colour gradient partly reflects that
 
-      `statsmodels.nonparametric.lowess`.'
+      correlation rather than an interaction. Data are the
+
+      303 California school districts of the 1998 STAR test bundled with
+
+      **statsmodels** (`sm.datasets.star98`); the outcome is the share of students
+
+      scoring above the national median in maths, predicted from ten district
+
+      characteristics. The model is a gradient-boosting regressor; the smooth comes
+
+      from `statsmodels.nonparametric.lowess`.'
   machine-learning/shap-waterfall:
     title: SHAP waterfall for one prediction
-    summary: How each feature moves one patient's prediction from the average to the model's output.
+    summary: How each characteristic moves one struggling school district's predicted maths results from
+      the average to the model's output.
     description: 'Global charts describe the model; a waterfall explains **one** prediction.
 
       It starts from the base value — the model''s average prediction over the
 
       data — and adds each feature''s SHAP value in turn, largest first, until it
 
-      reaches this patient''s prediction. Red bars push the prediction up, blue bars
+      reaches this district''s prediction. Red bars push the prediction up, blue bars
 
       pull it down; the smallest contributions are pooled into one bar so the chart
 
@@ -1446,16 +1782,20 @@ examples:
       to the gap between the base value and the prediction.
 
 
-      This is the chart to show when a single decision must be justified — a loan,
+      This is the chart to show when a single case must be explained — a district
 
-      a diagnosis, a flagged transaction. It explains what the **model** did, not
+      flagged for support, a loan, a benefit claim. It explains what the **model**
 
-      why the outcome happens. Data are the 442 diabetes patients bundled with
+      did, not why the outcome happens. Data are the 303 California school districts
 
-      **scikit-learn**; the model is a gradient-boosting regressor; SHAP values come
+      of the 1998 STAR test bundled with **statsmodels** (`sm.datasets.star98`); the
 
-      from `shap.TreeExplainer`. The patient shown is a high-risk case (more than
+      outcome is the share of students scoring above the national median in maths,
 
-      60 points above the base value) chosen because its explanation pulls in both
+      predicted from ten district characteristics. The model is a gradient-boosting
 
-      directions.'
+      regressor; SHAP values come from `shap.TreeExplainer`. The district shown is a
+
+      struggling one (predicted more than 20 points below the base value) chosen
+
+      because its explanation pulls in both directions.'

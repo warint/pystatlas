@@ -1,19 +1,23 @@
 """
 title: Scatterplot with statistics
-summary: Scatter, OLS line with 95% band and marginal histograms, with Pearson's r in the subtitle.
+summary: Low-income pupils vs math results in 303 California districts — scatter, OLS line with 95% band, marginal histograms and Pearson's r.
 r: ggstatsplot::ggscatterstats()
-tags: [correlation, Pearson, scatterplot, regression line, marginal histogram]
+tags: [correlation, Pearson, scatterplot, regression line, marginal histogram, education]
 description: |
   The Python counterpart of `ggscatterstats()`. The central panel shows every
   observation with the least-squares line and its 95% confidence band (uncertainty
   about the mean of *y* at each *x*, not about individual points). Marginal
   histograms on the top and right reveal the shape of each variable, which a
   correlation coefficient silently assumes is reasonable. The subtitle reports
-  Pearson's *r* with its 95% confidence interval, the t-test and the sample size.
+  Pearson's *r* with its 95% confidence interval, the t-test, the OLS slope and
+  the sample size.
 
-  Data are the diabetes study bundled with **scikit-learn**
-  (`load_diabetes(scaled=False)`): body-mass index against a quantitative measure
-  of disease progression one year later, for 442 patients. The test comes from
+  Data are the 303 California school districts of the STAR98 test bundled with
+  **statsmodels** (`sm.datasets.star98`): the share of low-income pupils against
+  the share of tested pupils scoring above the national median in mathematics,
+  computed as `NABOVE / (NABOVE + NBELOW)`. The slope of −0.75 means about
+  7.5 points fewer pupils above the median for every 10 points more low-income
+  pupils — an association between districts, not an effect. The test comes from
   `scipy.stats.pearsonr`, the line and band from **statsmodels** OLS
   `get_prediction().conf_int()`.
 """
@@ -21,11 +25,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 import statsmodels.api as sm
 from scipy import stats
-from sklearn.datasets import load_diabetes
 
-# Data: BMI and disease progression for 442 diabetes patients
-data = load_diabetes(as_frame=True, scaled=False).frame
-x, y = data["bmi"].to_numpy(), data["target"].to_numpy()
+# Data: low-income pupils and math results in 303 California school districts
+data = sm.datasets.star98.load_pandas().data
+x = data["LOWINC"].to_numpy()
+y = (100 * data["NABOVE"] / (data["NABOVE"] + data["NBELOW"])).to_numpy()
 n = len(x)
 
 # Pearson correlation with its 95% CI
@@ -46,8 +50,8 @@ ax_right = fig.add_subplot(gs[1, 1], sharey=ax)
 ax.scatter(x, y, s=22, color="#007AFF", alpha=0.45, lw=0)
 ax.fill_between(grid, band[:, 0], band[:, 1], color="#FF9500", alpha=0.25, lw=0)
 ax.plot(grid, fit.params[0] + fit.params[1] * grid, color="#FF9500", lw=2.2)
-ax.set_xlabel("Body-mass index (kg/m²)")
-ax.set_ylabel("Disease progression after one year")
+ax.set_xlabel("Low-income pupils (%)")
+ax.set_ylabel("Pupils above national median in math (%)")
 ax.grid(axis="x")
 
 # Marginal histograms
@@ -56,9 +60,9 @@ ax_right.hist(y, bins=30, color="#007AFF", alpha=0.35, edgecolor="white", orient
 for a in (ax_top, ax_right):
     a.axis("off")
 
-ax_top.set_title("Heavier patients progress faster", pad=26)
+ax_top.set_title("Districts with more low-income pupils do worse in math", pad=26)
 p_txt = "p < .001" if res.pvalue < 0.001 else f"p = {res.pvalue:.3f}"
 ax_top.text(0, 1.06, f"Pearson r = {res.statistic:.2f}, 95% CI [{ci.low:.2f}, {ci.high:.2f}], "
-            f"t({n - 2}) = {fit.tvalues[1]:.1f}, {p_txt} · n = {n}",
+            f"t({n - 2}) = {fit.tvalues[1]:.1f}, {p_txt} · slope = {fit.params[1]:.2f} · n = {n} districts",
             transform=ax_top.transAxes, fontsize=9.5, color="#6E6E73")
 plt.show()

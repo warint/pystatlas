@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Scatterplot with statistics · PyStatlas</title>
-<meta name="description" content="Scatter, OLS line with 95% band and marginal histograms, with Pearson&#x27;s r in the subtitle.">
+<meta name="description" content="Low-income pupils vs math results in 303 California districts — scatter, OLS line with 95% band, marginal histograms and Pearson&#x27;s r.">
 <meta name="author" content="Thierry Warin">
 <link rel="author" href="https://www.warin.ca">
 <meta name="citation_title" content="Scatterplot with statistics — PyStatlas: The Python Gallery of Statistical Graphics">
@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="x-default" href="https://warint.github.io/pystatlas/correlation/scatter-with-stats/">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Scatterplot with statistics — PyStatlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/pystatlas/correlation/scatter-with-stats/", "inLanguage": "en", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "PyStatlas", "url": "https://warint.github.io/pystatlas/"}}</script>
 <meta property="og:title" content="Scatterplot with statistics · PyStatlas">
-<meta property="og:description" content="Scatter, OLS line with 95% band and marginal histograms, with Pearson&#x27;s r in the subtitle.">
+<meta property="og:description" content="Low-income pupils vs math results in 303 California districts — scatter, OLS line with 95% band, marginal histograms and Pearson&#x27;s r.">
 <meta property="og:locale" content="en">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
@@ -51,7 +51,7 @@
 <main>
 <article class="wrap ex">
   <div class="crumbs"><a href="../../index.html">Gallery</a><span>/</span><a href="../../correlation/index.html">Correlation &amp; association</a></div>
-  <header class="ex-head"><h1>Scatterplot with statistics</h1><p class="lede">Scatter, OLS line with 95% band and marginal histograms, with Pearson&#x27;s r in the subtitle.</p>
+  <header class="ex-head"><h1>Scatterplot with statistics</h1><p class="lede">Low-income pupils vs math results in 303 California districts — scatter, OLS line with 95% band, marginal histograms and Pearson&#x27;s r.</p>
   <p class="byline">By <a href="https://www.warin.ca">Thierry Warin</a> · part of <a href="../../index.html">PyStatlas</a></p></header>
   <figure class="figure"><a href="../../correlation/scatter-with-stats/plot.png" target="_blank" rel="noopener"><img src="../../correlation/scatter-with-stats/plot.png" alt="Scatterplot with statistics"></a></figure>
   <div class="ex-cols">
@@ -60,12 +60,16 @@ observation with the least-squares line and its 95% confidence band (uncertainty
 about the mean of <em>y</em> at each <em>x</em>, not about individual points). Marginal
 histograms on the top and right reveal the shape of each variable, which a
 correlation coefficient silently assumes is reasonable. The subtitle reports
-Pearson&#x27;s <em>r</em> with its 95% confidence interval, the t-test and the sample size.</p><p>Data are the diabetes study bundled with <strong>scikit-learn</strong>
-(<code>load_diabetes(scaled=False)</code>): body-mass index against a quantitative measure
-of disease progression one year later, for 442 patients. The test comes from
+Pearson&#x27;s <em>r</em> with its 95% confidence interval, the t-test, the OLS slope and
+the sample size.</p><p>Data are the 303 California school districts of the STAR98 test bundled with
+<strong>statsmodels</strong> (<code>sm.datasets.star98</code>): the share of low-income pupils against
+the share of tested pupils scoring above the national median in mathematics,
+computed as <code>NABOVE / (NABOVE + NBELOW)</code>. The slope of −0.75 means about
+7.5 points fewer pupils above the median for every 10 points more low-income
+pupils — an association between districts, not an effect. The test comes from
 <code>scipy.stats.pearsonr</code>, the line and band from <strong>statsmodels</strong> OLS
 <code>get_prediction().conf_int()</code>.</p></div>
-    <aside class="meta"><div class="meta-row"><span>R equivalent</span><code>ggstatsplot::ggscatterstats()</code></div><div class="meta-row"><span>Libraries</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>statsmodels</i><i>SciPy</i><i>scikit-learn</i></div></div><div class="meta-row"><span>Topics</span><div class="pills"><i>correlation</i><i>Pearson</i><i>scatterplot</i><i>regression line</i><i>marginal histogram</i></div></div></aside>
+    <aside class="meta"><div class="meta-row"><span>R equivalent</span><code>ggstatsplot::ggscatterstats()</code></div><div class="meta-row"><span>Libraries</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>statsmodels</i><i>SciPy</i></div></div><div class="meta-row"><span>Topics</span><div class="pills"><i>correlation</i><i>Pearson</i><i>scatterplot</i><i>regression line</i><i>marginal histogram</i><i>education</i></div></div></aside>
   </div>
   <section class="code-card" id="code">
     <div class="code-bar">
@@ -80,11 +84,11 @@ of disease progression one year later, for 442 patients. The test comes from
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_diabetes</span>
 
-<span class="c1"># Data: BMI and disease progression for 442 diabetes patients</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">load_diabetes</span><span class="p">(</span><span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scaled</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">frame</span>
-<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"bmi"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">data</span><span class="p">[</span><span class="s2">"target"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="c1"># Data: low-income pupils and math results in 303 California school districts</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">star98</span><span class="o">.</span><span class="n">load_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"LOWINC"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="s2">"NABOVE"</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">"NABOVE"</span><span class="p">]</span> <span class="o">+</span> <span class="n">data</span><span class="p">[</span><span class="s2">"NBELOW"</span><span class="p">]))</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
 <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
 <span class="c1"># Pearson correlation with its 95% CI</span>
@@ -105,8 +109,8 @@ of disease progression one year later, for 442 patients. The test comes from
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#007AFF"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.45</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">band</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">band</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#FF9500"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">fit</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">fit</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">grid</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#FF9500"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">2.2</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Body-mass index (kg/m²)"</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Disease progression after one year"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Low-income pupils (%)"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Pupils above national median in math (%)"</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">"x"</span><span class="p">)</span>
 
 <span class="c1"># Marginal histograms</span>
@@ -115,10 +119,10 @@ of disease progression one year later, for 442 patients. The test comes from
 <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="p">(</span><span class="n">ax_top</span><span class="p">,</span> <span class="n">ax_right</span><span class="p">):</span>
     <span class="n">a</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">"off"</span><span class="p">)</span>
 
-<span class="n">ax_top</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Heavier patients progress faster"</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
+<span class="n">ax_top</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Districts with more low-income pupils do worse in math"</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
 <span class="n">p_txt</span> <span class="o">=</span> <span class="s2">"p &lt; .001"</span> <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">pvalue</span> <span class="o">&lt;</span> <span class="mf">0.001</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">"p = </span><span class="si">{</span><span class="n">res</span><span class="o">.</span><span class="n">pvalue</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span>
 <span class="n">ax_top</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.06</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Pearson r = </span><span class="si">{</span><span class="n">res</span><span class="o">.</span><span class="n">statistic</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, 95% CI [</span><span class="si">{</span><span class="n">ci</span><span class="o">.</span><span class="n">low</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">ci</span><span class="o">.</span><span class="n">high</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">], "</span>
-            <span class="sa">f</span><span class="s2">"t(</span><span class="si">{</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="n">fit</span><span class="o">.</span><span class="n">tvalues</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">p_txt</span><span class="si">}</span><span class="s2"> · n = </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">"t(</span><span class="si">{</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="n">fit</span><span class="o">.</span><span class="n">tvalues</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">p_txt</span><span class="si">}</span><span class="s2"> · slope = </span><span class="si">{</span><span class="n">fit</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> · n = </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> districts"</span><span class="p">,</span>
             <span class="n">transform</span><span class="o">=</span><span class="n">ax_top</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre>
@@ -147,13 +151,13 @@ of disease progression one year later, for 442 patients. The test comes from
   <div class="card-img"><img src="../../correlation/correlation-matrix/thumb.webp" alt="Correlation matrix" loading="lazy" width="720" height="450"></div>
   <div class="card-body"><span class="kicker">Correlation &amp; association</span><h3>Correlation matrix</h3><p>Lower-triangle Pearson correlation heatmap; non-significant cells (Holm) are crossed out.</p><span class="card-r">ggstatsplot::ggcorrmat()</span></div>
 </a>
-<a class="card" href="../../correlation/pairs-plot/" data-cat="correlation" data-k="pairs plot with correlations scatter matrix with group kdes on the diagonal and correlation coefficients above it. pairs plot with correlations scatter matrix with group kdes on the diagonal and correlation coefficients above it. ggally::ggpairs() correlation &amp; association correlation &amp; association pairs plot scatter matrix correlation kde simpson&#x27;s paradox matplotlib numpy scipy scikit-learn">
+<a class="card" href="../../correlation/pairs-plot/" data-cat="correlation" data-k="pairs plot with correlations scatter matrix of four school-district variables, with group kdes on the diagonal and pooled vs within-group correlations above it. pairs plot with correlations scatter matrix of four school-district variables, with group kdes on the diagonal and pooled vs within-group correlations above it. ggally::ggpairs() correlation &amp; association correlation &amp; association pairs plot scatter matrix correlation kde simpson&#x27;s paradox confounding education matplotlib numpy pandas statsmodels scipy">
   <div class="card-img"><img src="../../correlation/pairs-plot/thumb.webp" alt="Pairs plot with correlations" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><span class="kicker">Correlation &amp; association</span><h3>Pairs plot with correlations</h3><p>Scatter matrix with group KDEs on the diagonal and correlation coefficients above it.</p><span class="card-r">GGally::ggpairs()</span></div>
+  <div class="card-body"><span class="kicker">Correlation &amp; association</span><h3>Pairs plot with correlations</h3><p>Scatter matrix of four school-district variables, with group KDEs on the diagonal and pooled vs within-group correlations above it.</p><span class="card-r">GGally::ggpairs()</span></div>
 </a>
-<a class="card" href="../../correlation/correlogram-bubble/" data-cat="correlation" data-k="correlogram with clustering corrplot-style circles sized and coloured by r, ordered by hierarchical clustering. correlogram with clustering corrplot-style circles sized and coloured by r, ordered by hierarchical clustering. corrplot::corrplot(order = &quot;hclust&quot;, addrect = 3) correlation &amp; association correlation &amp; association correlation correlogram hierarchical clustering heatmap corrplot matplotlib numpy scipy scikit-learn">
+<a class="card" href="../../correlation/correlogram-bubble/" data-cat="correlation" data-k="correlogram with clustering corrplot-style circles sized and coloured by r for 13 school-district indicators, ordered by hierarchical clustering. correlogram with clustering corrplot-style circles sized and coloured by r for 13 school-district indicators, ordered by hierarchical clustering. corrplot::corrplot(order = &quot;hclust&quot;, addrect = 3) correlation &amp; association correlation &amp; association correlation correlogram hierarchical clustering heatmap corrplot education matplotlib numpy statsmodels scipy">
   <div class="card-img"><img src="../../correlation/correlogram-bubble/thumb.webp" alt="Correlogram with clustering" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><span class="kicker">Correlation &amp; association</span><h3>Correlogram with clustering</h3><p>Corrplot-style circles sized and coloured by r, ordered by hierarchical clustering.</p><span class="card-r">corrplot::corrplot(order = &quot;hclust&quot;, addrect = 3)</span></div>
+  <div class="card-body"><span class="kicker">Correlation &amp; association</span><h3>Correlogram with clustering</h3><p>Corrplot-style circles sized and coloured by r for 13 school-district indicators, ordered by hierarchical clustering.</p><span class="card-r">corrplot::corrplot(order = &quot;hclust&quot;, addrect = 3)</span></div>
 </a></div>
 </article>
 </main>

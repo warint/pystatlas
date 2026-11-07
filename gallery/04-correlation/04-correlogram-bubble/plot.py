@@ -1,31 +1,44 @@
 """
 title: Correlogram with clustering
-summary: Corrplot-style circles sized and coloured by r, ordered by hierarchical clustering.
+summary: Corrplot-style circles sized and coloured by r for 13 school-district indicators, ordered by hierarchical clustering.
 r: corrplot::corrplot(order = "hclust", addrect = 3)
-tags: [correlation, correlogram, hierarchical clustering, heatmap, corrplot]
+tags: [correlation, correlogram, hierarchical clustering, heatmap, corrplot, education]
 description: |
   The Python counterpart of `corrplot(method = "circle", order = "hclust")`. Each
   circle's **area** grows with |*r*| and its colour gives the sign, so strong
   correlations pop out and weak ones fade. The variables are reordered by
   **hierarchical clustering** (complete linkage on the distance 1 − *r*), which
   pulls positively correlated variables into blocks along the diagonal; the boxes
-  outline the three clusters, like `addrect = 3`.
+  outline the three clusters, like `addrect = 3`. Here low-income, Hispanic pupils
+  and minority teachers form one block, and math results correlate negatively with
+  all three.
 
-  Data are the 13 chemical measurements of 178 Italian wines bundled with
-  **scikit-learn** (`load_wine`). The ordering comes from
+  Data are 13 indicators for the 303 California school districts of the STAR98
+  test bundled with **statsmodels** (`sm.datasets.star98`): math results (share
+  of pupils above the national median), pupil composition (low-income, Hispanic,
+  Black and Asian pupils), teachers (minority share, experience, salary), resources
+  (spending per pupil, pupil–teacher ratio) and school organisation (college-prep
+  courses, charter and year-round schools). The ordering comes from
   `scipy.cluster.hierarchy.linkage` and `leaves_list`, the boxes from `fcluster`.
 """
 import matplotlib.pyplot as plt
 import numpy as np
+import statsmodels.api as sm
 from matplotlib.patches import Circle, Rectangle
 from scipy.cluster.hierarchy import fcluster, leaves_list, linkage
 from scipy.spatial.distance import squareform
-from sklearn.datasets import load_wine
 
-# Data: 13 chemical measurements of 178 wines (bundled with scikit-learn)
-df = load_wine(as_frame=True).data
-df.columns = [c.replace("_", " ").capitalize() for c in df.columns]
-df = df.rename(columns={"Od280/od315 of diluted wines": "OD280/OD315"})
+# Data: 13 indicators for 303 California school districts (STAR98, bundled with statsmodels)
+df = sm.datasets.star98.load_pandas().data
+df["MATH"] = 100 * df.NABOVE / (df.NABOVE + df.NBELOW)
+labels = {"MATH": "Math above median", "LOWINC": "Low-income pupils",
+          "PERHISP": "Hispanic pupils", "PERBLACK": "Black pupils",
+          "PERASIAN": "Asian pupils", "PERMINTE": "Minority teachers",
+          "AVYRSEXP": "Teacher experience", "AVSALK": "Teacher salary",
+          "PERSPENK": "Spending per pupil", "PTRATIO": "Pupil–teacher ratio",
+          "PCTAF": "College-prep courses", "PCTCHRT": "Charter schools",
+          "PCTYRRND": "Year-round schools"}
+df = df[list(labels)].rename(columns=labels)
 corr = df.corr()
 
 # Hierarchical clustering on the distance 1 - r, then reorder the matrix
@@ -69,7 +82,8 @@ cb = fig.colorbar(plt.cm.ScalarMappable(norm=norm, cmap=cmap), ax=ax, shrink=0.6
                   ticks=[-1, -0.5, 0, 0.5, 1])
 cb.set_label("Pearson r", color="#3A3A3C")
 cb.outline.set_visible(False)
-ax.set_title("Phenolic compounds form the tightest block in wine chemistry", pad=26)
-ax.text(0, 1.02, f"Pearson r · n = {len(df)} wines · complete-linkage clustering on 1 − r · "
+r_pov = corr.loc["Math above median", "Low-income pupils"]
+ax.set_title(f"Math results run against the poverty block (r = {r_pov:.2f} with low income)", pad=26)
+ax.text(0, 1.02, f"Pearson r · n = {len(df)} school districts · complete-linkage clustering on 1 − r · "
         "circle area grows with |r|", transform=ax.transAxes, fontsize=9.5, color="#6E6E73")
 plt.show()

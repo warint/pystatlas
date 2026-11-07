@@ -1,6 +1,6 @@
 # Scree plot
 
-> Variance explained per component, cumulative share and a parallel-analysis cut-off.
+> How many dimensions describe 303 California school districts? Variance per component and a parallel-analysis cut-off.
 
 ![Scree plot](plot.png)
 
@@ -11,21 +11,27 @@ same eigenvalues computed on random, uncorrelated data of the same size. A
 component is retained (blue) only if it beats that noise floor; the dotted
 line marks the older Kaiser rule (eigenvalue > 1).
 
-Data are the 13 standardised chemical measurements of the **scikit-learn**
-wine dataset. Eigenvalues of the correlation matrix (the PCA variances) come from
-`numpy.linalg.eigvalsh`; the parallel analysis is 500 seeded simulations.
+Data are 303 California school districts from the **statsmodels** `star98`
+dataset (1998 Standardized Testing and Reporting programme): 12 district
+characteristics — % low-income pupils, % Asian, Black and Hispanic pupils,
+% minority teachers, teachers' average experience and salary, per-pupil
+spending, pupil–teacher ratio, % taking college-prep courses, % charter and
+% year-round schools — each standardised. Eigenvalues of the correlation
+matrix (the PCA variances) come from `numpy.linalg.eigvalsh`; the parallel
+analysis is 500 seeded simulations. Note that parallel analysis keeps fewer
+components than the Kaiser rule here.
 
 **R equivalent:** `factoextra::fviz_eig()`  
-**Libraries:** Matplotlib, NumPy, scikit-learn
+**Libraries:** Matplotlib, NumPy, statsmodels, scikit-learn
 
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
-from sklearn.datasets import load_wine
+import statsmodels.api as sm
 from sklearn.preprocessing import StandardScaler
 
-# PCA on the standardised wine measurements
-X = StandardScaler().fit_transform(load_wine().data)
+# PCA on 12 standardised characteristics of California school districts
+X = StandardScaler().fit_transform(sm.datasets.star98.load_pandas().data.loc[:, "LOWINC":"PCTYRRND"])
 n, p = X.shape
 eig = np.sort(np.linalg.eigvalsh(np.corrcoef(X.T)))[::-1]  # PCA eigenvalues
 pct = 100 * eig / eig.sum()
@@ -58,8 +64,9 @@ ax.set_xticks(k, [f"PC{i}\n{v:.1f}%" for i, v in zip(k, pct)], fontsize=8.5)
 ax.set_xlim(0.4, p + 0.6)
 ax.set_ylim(0, 105)
 ax.set_ylabel("Variance explained (%)")
-ax.set_title(f"Parallel analysis retains {keep.sum()} of {p} components", pad=26)
-ax.text(0, 1.02, f"PCA of 13 standardised wine measurements · n = {n} · λ = "
+ax.set_title(f"Parallel analysis retains {keep.sum()} of {p} components; Kaiser would keep "
+             f"{(eig > 1).sum()}", pad=26)
+ax.text(0, 1.02, f"PCA of {p} standardised district variables · n = {n} districts · λ = "
         f"{', '.join(f'{e:.2f}' for e in eig[:4])}, … · Horn's PA: 500 simulations",
         transform=ax.transAxes, fontsize=9.5, color="#6E6E73")
 plt.show()

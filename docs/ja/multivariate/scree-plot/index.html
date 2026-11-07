@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>スクリープロット · PyStatlas</title>
-<meta name="description" content="成分ごとの寄与率、累積寄与率、平行分析による基準を示します。">
+<meta name="description" content="カリフォルニア州の 303 学区を記述するには何次元が必要か？成分ごとの分散と平行分析による基準。">
 <meta name="author" content="Thierry Warin">
 <link rel="author" href="https://www.warin.ca">
 <meta name="citation_title" content="Scree plot — PyStatlas: The Python Gallery of Statistical Graphics">
@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="x-default" href="https://warint.github.io/pystatlas/multivariate/scree-plot/">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Scree plot — PyStatlas: The Python Gallery of Statistical Graphics", "url": "https://warint.github.io/pystatlas/ja/multivariate/scree-plot/", "inLanguage": "ja", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "PyStatlas", "url": "https://warint.github.io/pystatlas/"}}</script>
 <meta property="og:title" content="スクリープロット · PyStatlas">
-<meta property="og:description" content="成分ごとの寄与率、累積寄与率、平行分析による基準を示します。">
+<meta property="og:description" content="カリフォルニア州の 303 学区を記述するには何次元が必要か？成分ごとの分散と平行分析による基準。">
 <meta property="og:locale" content="ja">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
@@ -51,16 +51,16 @@
 <main>
 <article class="wrap ex">
   <div class="crumbs"><a href="../../index.html">ギャラリー</a><span>/</span><a href="../../multivariate/index.html">多変量解析とクラスタリング</a></div>
-  <header class="ex-head"><h1>スクリープロット</h1><p class="lede">成分ごとの寄与率、累積寄与率、平行分析による基準を示します。</p>
+  <header class="ex-head"><h1>スクリープロット</h1><p class="lede">カリフォルニア州の 303 学区を記述するには何次元が必要か？成分ごとの分散と平行分析による基準。</p>
   <p class="byline">著者： <a href="https://www.warin.ca">Thierry Warin</a> · 収録： <a href="../../index.html">PyStatlas</a></p></header>
   <figure class="figure"><a href="../../../multivariate/scree-plot/plot.png" target="_blank" rel="noopener"><img src="../../../multivariate/scree-plot/plot.png" alt="スクリープロット"></a></figure>
   <div class="ex-cols">
-    <div class="prose"><p>主成分はいくつ残す価値があるでしょうか。棒は各成分が担う分散の割合を、オレンジの線はその累積を示しています。灰色の破線は <strong>ホーンの平行分析</strong> で、同じサイズの無相関なランダムデータから計算した同じ固有値の 95 パーセンタイルです。成分はこのノイズの水準を上回った場合にのみ採用され（青）、点線は従来のカイザー基準（固有値 &gt; 1）を示しています。</p><p>データは <strong>scikit-learn</strong> のワインデータセットに含まれる、標準化した 13 種類の化学的測定値です。相関行列の固有値（PCA の分散）は <code>numpy.linalg.eigvalsh</code> で求め、平行分析はシード固定の 500 回のシミュレーションによるものです。</p><p class="note">コードおよび図中のテキストは英語です。</p></div>
-    <aside class="meta"><div class="meta-row"><span>R での対応</span><code>factoextra::fviz_eig()</code></div><div class="meta-row"><span>ライブラリ</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>scikit-learn</i></div></div><div class="meta-row"><span>トピック</span><div class="pills"><i>PCA</i><i>scree plot</i><i>eigenvalues</i><i>parallel analysis</i><i>Kaiser</i></div></div></aside>
+    <div class="prose"><p>主成分はいくつ残す価値があるでしょうか。棒は各成分が担う分散の割合、オレンジの線はその累積です。灰色の破線は<strong>ホーンの平行分析</strong>で、同じ大きさの無相関な乱数データから計算した固有値の 95 パーセンタイルです。成分はこのノイズの床を上回る場合にのみ保持され（青）、点線は従来のカイザー基準（固有値 &gt; 1）を示します。</p><p>データは <strong>statsmodels</strong> の <code>star98</code> データセット（1998 年の Standardized Testing and Reporting プログラム）に含まれるカリフォルニア州の 303 学区です。学区の 12 の特性 — 低所得家庭の児童生徒の割合、アジア系・黒人・ヒスパニック系の児童生徒の割合、マイノリティ教員の割合、教員の平均経験年数と平均給与、生徒 1 人あたり支出、生徒対教員比、大学進学準備科目の履修者の割合、チャータースクールの割合、通年制学校の割合 — をそれぞれ標準化しています。相関行列の固有値（PCA の分散）は <code>numpy.linalg.eigvalsh</code> で求め、平行分析はシードを固定した 500 回のシミュレーションです。ここでは平行分析がカイザー基準より少ない成分を残す点に注意してください。</p><p class="note">コードおよび図中のテキストは英語です。</p></div>
+    <aside class="meta"><div class="meta-row"><span>R での対応</span><code>factoextra::fviz_eig()</code></div><div class="meta-row"><span>ライブラリ</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>statsmodels</i><i>scikit-learn</i></div></div><div class="meta-row"><span>トピック</span><div class="pills"><i>PCA</i><i>scree plot</i><i>eigenvalues</i><i>parallel analysis</i><i>Kaiser</i><i>education</i><i>school districts</i></div></div></aside>
   </div>
   <section class="code-card" id="code">
     <div class="code-bar">
-      <span class="fname">scree-plot.py · 44 行</span>
+      <span class="fname">scree-plot.py · 45 行</span>
       <div class="code-actions">
         <a class="btn ghost" href="../../../multivariate/scree-plot/scree-plot.py" download>ダウンロード</a>
         <a class="btn ghost" href="https://github.com/warint/pystatlas/tree/main/gallery/09-multivariate/02-scree-plot">GitHub</a>
@@ -69,11 +69,11 @@
     </div>
     <pre class="code"><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_wine</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
 
-<span class="c1"># PCA on the standardised wine measurements</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">load_wine</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="c1"># PCA on 12 standardised characteristics of California school districts</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">star98</span><span class="o">.</span><span class="n">load_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">"LOWINC"</span><span class="p">:</span><span class="s2">"PCTYRRND"</span><span class="p">])</span>
 <span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
 <span class="n">eig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvalsh</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">)))[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># PCA eigenvalues</span>
 <span class="n">pct</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">eig</span> <span class="o">/</span> <span class="n">eig</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -106,8 +106,9 @@
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">p</span> <span class="o">+</span> <span class="mf">0.6</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">105</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Variance explained (%)"</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Parallel analysis retains </span><span class="si">{</span><span class="n">keep</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> components"</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"PCA of 13 standardised wine measurements · n = </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> · λ = "</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Parallel analysis retains </span><span class="si">{</span><span class="n">keep</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> components; Kaiser would keep "</span>
+             <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="p">(</span><span class="n">eig</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"PCA of </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> standardised district variables · n = </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> districts · λ = "</span>
         <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="s1">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">e</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">'</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">eig</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span><span class="si">}</span><span class="s2">, … · Horn's PA: 500 simulations"</span><span class="p">,</span>
         <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -133,17 +134,17 @@
 }">BibTeX をコピー</button></div>
 </section>
   <div class="pager"><a href="../../multivariate/pca-biplot/"><small>前へ</small>PCA バイプロット</a><a class="next" href="../../multivariate/silhouette-clusters/"><small>次へ</small>k-means のシルエットプロット</a></div>
-  <h2 class="rel-h">多変量解析とクラスタリングのその他のグラフ</h2><div class="grid"><a class="card" href="../../multivariate/pca-biplot/" data-cat="multivariate" data-k="pca バイプロット 第1・第2主成分上に、観測値と変数の負荷量を示します。 pca biplot observations and variable loadings on the first two principal components. factoextra::fviz_pca_biplot() 多変量解析とクラスタリング multivariate &amp; clustering pca biplot loadings dimension reduction ellipse matplotlib numpy scipy scikit-learn">
+  <h2 class="rel-h">多変量解析とクラスタリングのその他のグラフ</h2><div class="grid"><a class="card" href="../../multivariate/pca-biplot/" data-cat="multivariate" data-k="pca バイプロット 米国の州とその社会指標を第 1・第 2 主成分の平面に配置します。 pca biplot us states and their social indicators on the first two principal components. factoextra::fviz_pca_biplot() 多変量解析とクラスタリング multivariate &amp; clustering pca biplot loadings dimension reduction ellipse us states crime poverty matplotlib numpy statsmodels scipy scikit-learn">
   <div class="card-img"><img src="../../../multivariate/pca-biplot/thumb.webp" alt="PCA バイプロット" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><span class="kicker">多変量解析とクラスタリング</span><h3>PCA バイプロット</h3><p>第1・第2主成分上に、観測値と変数の負荷量を示します。</p><span class="card-r">factoextra::fviz_pca_biplot()</span></div>
+  <div class="card-body"><span class="kicker">多変量解析とクラスタリング</span><h3>PCA バイプロット</h3><p>米国の州とその社会指標を第 1・第 2 主成分の平面に配置します。</p><span class="card-r">factoextra::fviz_pca_biplot()</span></div>
 </a>
-<a class="card" href="../../multivariate/silhouette-clusters/" data-cat="multivariate" data-k="k-means のシルエットプロット pca 空間上の k-means クラスターと、観測値ごとのシルエット幅を並べて示します。 silhouette plot for k-means k-means clusters in pca space next to the per-observation silhouette widths. factoextra::fviz_silhouette() 多変量解析とクラスタリング multivariate &amp; clustering clustering k-means silhouette pca cluster validation matplotlib numpy scikit-learn">
+<a class="card" href="../../multivariate/silhouette-clusters/" data-cat="multivariate" data-k="k-means のシルエットプロット 米国の州ははっきり異なる社会的プロファイルに分かれるか？k-means のクラスターとシルエット幅。 silhouette plot for k-means do us states fall into distinct social profiles? k-means clusters next to their silhouette widths. factoextra::fviz_silhouette() 多変量解析とクラスタリング multivariate &amp; clustering clustering k-means silhouette pca cluster validation us states crime matplotlib numpy statsmodels scikit-learn">
   <div class="card-img"><img src="../../../multivariate/silhouette-clusters/thumb.webp" alt="k-means のシルエットプロット" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><span class="kicker">多変量解析とクラスタリング</span><h3>k-means のシルエットプロット</h3><p>PCA 空間上の k-means クラスターと、観測値ごとのシルエット幅を並べて示します。</p><span class="card-r">factoextra::fviz_silhouette()</span></div>
+  <div class="card-body"><span class="kicker">多変量解析とクラスタリング</span><h3>k-means のシルエットプロット</h3><p>米国の州ははっきり異なる社会的プロファイルに分かれるか？k-means のクラスターとシルエット幅。</p><span class="card-r">factoextra::fviz_silhouette()</span></div>
 </a>
-<a class="card" href="../../multivariate/clustered-heatmap/" data-cat="multivariate" data-k="クラスター化ヒートマップ 行と列のデンドログラム、群のカラーバーを付けた z スコアのヒートマップです。 clustered heatmap z-scored heatmap with row and column dendrograms and a group colour bar. pheatmap::pheatmap() / complexheatmap::heatmap() 多変量解析とクラスタリング multivariate &amp; clustering heatmap hierarchical clustering dendrogram z-score clustermap matplotlib numpy pandas seaborn scipy scikit-learn">
+<a class="card" href="../../multivariate/clustered-heatmap/" data-cat="multivariate" data-k="クラスター化ヒートマップ 米国各州の社会指標の z スコアのヒートマップ。行と列のデンドログラム、国勢調査地域のカラーバー付き。 clustered heatmap z-scored heatmap of us states&#x27; social indicators, with row and column dendrograms and a census-region colour bar. pheatmap::pheatmap() / complexheatmap::heatmap() 多変量解析とクラスタリング multivariate &amp; clustering heatmap hierarchical clustering dendrogram z-score clustermap us states crime matplotlib numpy pandas seaborn scipy statsmodels scikit-learn">
   <div class="card-img"><img src="../../../multivariate/clustered-heatmap/thumb.webp" alt="クラスター化ヒートマップ" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><span class="kicker">多変量解析とクラスタリング</span><h3>クラスター化ヒートマップ</h3><p>行と列のデンドログラム、群のカラーバーを付けた Z スコアのヒートマップです。</p><span class="card-r">pheatmap::pheatmap() / ComplexHeatmap::Heatmap()</span></div>
+  <div class="card-body"><span class="kicker">多変量解析とクラスタリング</span><h3>クラスター化ヒートマップ</h3><p>米国各州の社会指標の z スコアのヒートマップ。行と列のデンドログラム、国勢調査地域のカラーバー付き。</p><span class="card-r">pheatmap::pheatmap() / ComplexHeatmap::Heatmap()</span></div>
 </a></div>
 </article>
 </main>

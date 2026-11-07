@@ -1,8 +1,8 @@
 """
 title: Permutation importance
-summary: Drop in test-set R² when each feature is shuffled, over 50 repeats per feature.
+summary: Which district characteristics a random forest relies on to predict maths results — drop in test-set R² when each one is shuffled.
 r: vip::vip(method = "permute")
-tags: [feature importance, permutation, model-agnostic, interpretability, random forest]
+tags: [feature importance, permutation, model-agnostic, interpretability, random forest, education, poverty]
 description: |
   Permutation importance asks a simple, model-agnostic question: how much worse
   does the model predict on **held-out** data when one feature is shuffled,
@@ -15,22 +15,32 @@ description: |
   importance is computed on test data, is comparable across model types and is
   not biased towards features with many distinct values. It measures what the
   **model** uses, not causal effects, and correlated features share (and can
-  hide) each other's importance. Data are the 442 diabetes patients bundled with
-  **scikit-learn**; the model is a random forest; importances come from
-  `sklearn.inspection.permutation_importance`.
+  hide) each other's importance. Data are the 303 California school districts of
+  the 1998 STAR test bundled with **statsmodels** (`sm.datasets.star98`); the
+  outcome is the share of students scoring above the national median in maths,
+  predicted from ten district characteristics (poverty, ethnic composition,
+  teachers, spending, class size, college-prep enrolment). The model is a random
+  forest; importances come from `sklearn.inspection.permutation_importance`.
+  Here the share of low-income students dominates, while teacher pay, spending
+  and class size add nothing once it is known — a statement about the model's
+  predictions, not proof that resources do not matter.
 """
 import matplotlib.pyplot as plt
 import numpy as np
-from sklearn.datasets import load_diabetes
+import statsmodels.api as sm
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.inspection import permutation_importance
 from sklearn.model_selection import train_test_split
 
-data = load_diabetes(as_frame=True, scaled=False)
-X, y = data.data, data.target
-names = {"age": "Age", "sex": "Sex", "bmi": "Body-mass index", "bp": "Blood pressure",
-         "s1": "Total cholesterol", "s2": "LDL", "s3": "HDL", "s4": "Chol. / HDL",
-         "s5": "Triglycerides (log)", "s6": "Blood sugar"}
+# Data: 303 California school districts; outcome = % of students above the national median in maths
+d = sm.datasets.star98.load_pandas().data
+y = 100 * d["NABOVE"] / (d["NABOVE"] + d["NBELOW"])
+names = {"LOWINC": "% low-income students", "PERASIAN": "% Asian students", "PERBLACK": "% Black students",
+         "PERHISP": "% Hispanic students", "AVYRSEXP": "Teacher experience (years)",
+         "AVSALK": "Teacher salary ($000)", "PERSPENK": "Spending per pupil ($000)",
+         "PTRATIO": "Pupils per teacher", "PCTAF": "% in college-prep courses",
+         "PCTYRRND": "% year-round schools"}
+X = d[list(names)]
 X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.3, random_state=0)
 
 model = RandomForestRegressor(n_estimators=500, min_samples_leaf=3, random_state=0).fit(X_tr, y_tr)
@@ -50,8 +60,9 @@ ax.axvline(0, color="#3A3A3C", lw=0.8)
 ax.set_yticks(range(len(order)), [names[X.columns[j]] for j in order])
 ax.set_xlabel("Drop in test-set R² when the feature is shuffled")
 ax.grid(axis="x"); ax.grid(axis="y", visible=False)
-ax.set_title("Triglycerides and body-mass index carry most of the predictive power", pad=26)
-ax.text(0, 1.02, f"Random forest · test R² = {r2:.2f} · n = {len(X_te)} held-out patients · "
+drop = imp.importances_mean[list(X.columns).index("LOWINC")]
+ax.set_title(f"Poverty dominates: shuffling it costs {drop:.2f} of R², school resources add nothing", pad=26)
+ax.text(0, 1.02, f"Random forest · test R² = {r2:.2f} · n = {len(X_te)} held-out districts · "
         "50 shuffles per feature · grey = interval includes 0", transform=ax.transAxes,
         fontsize=9.5, color="#6E6E73")
 plt.show()
