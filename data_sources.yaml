@@ -4,6 +4,7 @@
 # the chart README. Keep `cite` in the form a reader would paste into a bibliography.
 # `note` says how the data reach the example (distributor, subset, permission).
 # `topics` are search keywords: what the data are about, so the home-page search finds them.
+# Their French, Japanese and Chinese versions are under `sources:` in i18n/<lang>.yaml.
 
 anes96:
   label: "American National Election Study, 1996"

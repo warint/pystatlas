@@ -551,3 +551,34 @@ examples:
       Le I de Moran calculé avec les voisins d'ordre 1 mesure le regroupement à la plus courte portée. Un corrélogramme spatial répète le calcul pour les voisins d'ordre 2 (voisins de voisins, sans les plus proches), 3, et ainsi de suite. La courbe montre l'**échelle spatiale** d'un phénomène : à combien d'étapes deux zones peuvent-elles encore se ressembler, et les zones éloignées deviennent-elles *opposées* — I négatif — comme lorsqu'un pays se partage en deux grandes régions ? C'est l'équivalent spatial de la fonction d'autocorrélation d'une série chronologique.
 
       La bande grise est l'intervalle à 95 % de I sous l'hypothèse d'aléa spatial, tiré de 999 permutations à chaque ordre ; les points hors de la bande sont peu probables en l'absence de structure spatiale. Deux variables des statistiques morales de Guerry (1833) pour 85 départements sont comparées : l'alphabétisation, et la population par crime contre les personnes (plus elle est élevée, moins il y a de crimes). Les pondérations sont des contiguïtés de type reine d'ordre supérieur, tirées de `libpysal.weights.higher_order` et standardisées par ligne ; I vient de `esda.Moran`.
+
+# Search topics of each data source (keys of data_sources.yaml), in this language.
+sources:
+  anes96:
+    topics: [élections, vote, idéologie politique, identification partisane, opinion publique, politique américaine]
+  star98:
+    topics: [éducation, écoles, résultats aux tests, pauvreté, districts scolaires, Californie]
+  statecrime:
+    topics: [criminalité, crimes violents, pauvreté, urbanisation, familles monoparentales, États américains]
+  fair:
+    topics: [mariage, infidélité, relations extraconjugales, religion, femmes, enquête]
+  fertility:
+    topics: [fécondité, naissances, démographie, population, développement, pays]
+  engel:
+    topics: [budgets des ménages, dépenses alimentaires, revenu, consommation, loi d'Engel, Belgique]
+  spector:
+    topics: [éducation, méthodes d'enseignement, enseignement de l'économie, notes, expérience]
+  macrodata:
+    topics: [macroéconomie, PIB, inflation, chômage, taux d'intérêt, États-Unis]
+  elec_equip:
+    topics: [industrie manufacturière, production industrielle, chiffre d'affaires, zone euro, Europe]
+  dd:
+    topics: [démocratie, dictature, dirigeants politiques, régimes, survie politique, pays]
+  rossi:
+    topics: [récidive, criminalité, prison, aide financière, justice pénale, expérience]
+  raudenbush:
+    topics: [attentes des enseignants, effet Pygmalion, QI, éducation, méta-analyse]
+  simulation:
+    topics: [données simulées]
+  guerry:
+    topics: [criminalité, alphabétisation, suicide, statistique morale, France, XIXe siècle, départements]

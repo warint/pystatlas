@@ -220,7 +220,8 @@ def load_lang(lang: str) -> None:
         data = yaml.safe_load((I18N / f"{lang}.yaml").read_text()) or {}
     TR = {"ui": {**EN["ui"], **(data.get("ui") or {})},
           "categories": data.get("categories") or {},
-          "examples": data.get("examples") or {}}
+          "examples": data.get("examples") or {},
+          "sources": data.get("sources") or {}}
 
 
 def t(key: str, **kw) -> str:
@@ -287,6 +288,9 @@ def search_doc(ex: "Example") -> dict:
     for k in sources_of(ex):
         d = DATA_SOURCES[k]
         fields.append(["data", f'{d["label"]}. {d["cite"]}'])
+        local = (TR["sources"].get(k) or {}).get("topics")
+        if local:   # topics in the page's language first, then in English
+            fields.append(["topic", f'{d["label"]}: ' + ", ".join(local)])
         fields.append(["topic", f'{d["label"]}: ' + ", ".join(d.get("topics") or [])])
     pkgs = set(re.findall(r"([A-Za-z][A-Za-z0-9.]*)::", ex.r))
     for ins in CONFIG["thanks"]["inspiration"]:

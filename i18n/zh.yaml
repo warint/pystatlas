@@ -551,3 +551,34 @@ examples:
       用一阶邻居计算的莫兰 I 衡量最短距离上的聚集。空间相关图对二阶邻居（邻居的邻居，不含更近者）、三阶邻居等重复同样的计算。曲线显示现象的**空间尺度**：两个地区相隔多少步仍然相似，以及相距较远的地区是否变得*相反*——即 I 为负——当一个国家分成两大区域时就会如此。它是时间序列自相关函数在空间上的对应物。
 
       灰色带是空间随机性下 I 的 95% 范围，由每一阶的 999 次置换得到；带外的点在不存在空间结构时不太可能出现。比较的是盖里（1833 年）道德统计中 85 个省的两个变量：识字率，以及每起针对人身犯罪所对应的人口（数值越高，犯罪越少）。权重为 `libpysal.weights.higher_order` 给出的高阶后式邻接并经行标准化；I 来自 `esda.Moran`。
+
+# Search topics of each data source (keys of data_sources.yaml), in this language.
+sources:
+  anes96:
+    topics: [选举, 投票, 政治意识形态, 政党认同, 公众舆论, 美国政治]
+  star98:
+    topics: [教育, 学校, 考试成绩, 贫困, 学区, 加利福尼亚]
+  statecrime:
+    topics: [犯罪, 暴力犯罪, 贫困, 城市化, 单亲家庭, 美国各州]
+  fair:
+    topics: [婚姻, 不忠, 婚外情, 宗教, 女性, 调查]
+  fertility:
+    topics: [生育率, 出生, 人口学, 人口, 发展, 国家]
+  engel:
+    topics: [家庭预算, 食品支出, 收入, 消费, 恩格尔定律, 比利时]
+  spector:
+    topics: [教育, 教学方法, 经济学教育, 成绩, 实验]
+  macrodata:
+    topics: [宏观经济, GDP, 通货膨胀, 失业, 利率, 美国]
+  elec_equip:
+    topics: [制造业, 工业生产, 营业额, 欧元区, 欧洲]
+  dd:
+    topics: [民主, 独裁, 政治领导人, 政体, 政治存续, 国家]
+  rossi:
+    topics: [再犯, 犯罪, 监狱, 经济援助, 刑事司法, 实验]
+  raudenbush:
+    topics: [教师期望, 皮格马利翁效应, 智商, 教育, 元分析]
+  simulation:
+    topics: [模拟数据]
+  guerry:
+    topics: [犯罪, 识字率, 自杀, 道德统计, 法国, 19世纪, 省]
