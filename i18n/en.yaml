@@ -3,19 +3,19 @@
 ui:
   lang_name: English
   tagline: The Python gallery of statistical graphics
-  lede: "Statistical charts for Python, organised by the question they answer. Every figure reports the statistics behind it — estimates, confidence intervals, tests, effect sizes — from distributions and group comparisons to regression, survival and machine learning."
+  lede: "Statistical charts for Python, built on real social-science data and organised by the question they answer. Every figure reports the statistics behind it — estimates, confidence intervals, tests, effect sizes — from distributions and group comparisons to regression, survival and machine learning."
   approach: "Most Python resources teach the code first and leave the questions for later. This gallery works the other way round. It was first written for social-science students, and it serves anyone who knows their field and has a question to answer — do these groups differ, do these two variables move together, why did the model predict this? Start from the question, find the chart that answers it, read the statistics it reports, and take only the code you need."
   nav_gallery: Gallery
   nav_style: Style
   nav_about: About
   nav_cite: Cite
   eyebrow: "{n} statistical charts · {k} families · 100% Python"
-  hero_1: Statistical graphics.
-  hero_2: Beautifully Pythonic.
+  hero_1: "Social-science statistics."
+  hero_2: "Beautifully Pythonic."
   by: By
   part_of: part of
-  search_placeholder: "Search charts, methods or R functions — try “likert”"
-  empty: "No chart matches your search. Try “regression”, “proportion” or an R function name."
+  search_placeholder: "Search by question, method or R function — try “confidence interval” or “survey”"
+  empty: "No chart matches your search. Try “regression”, “survey”, “confidence interval” or an R function name."
   all: All
   n_charts: "{n} charts"
   gallery: Gallery

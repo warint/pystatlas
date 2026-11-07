@@ -1,19 +1,19 @@
 ui:
   lang_name: 中文
   tagline: Python 统计图形库
-  lede: "按所回答的问题组织的 Python 统计图表。从分布与组间比较，到回归、生存分析和机器学习，每张图都给出其背后的统计量——估计值、置信区间、检验和效应量。"
+  lede: "基于真实社会科学数据、按所回答的问题组织的 Python 统计图表。从分布与组间比较，到回归、生存分析和机器学习，每张图都给出其背后的统计量——估计值、置信区间、检验和效应量。"
   approach: "大多数 Python 学习资源先教代码，把问题留到以后。本图库反其道而行之。它最初是为社会科学专业的学生编写的，也适合所有熟悉自己领域、手头有问题要回答的人：这些组之间有差异吗？这两个变量是否同步变化？模型为什么作出这样的预测？从问题出发，找到能回答它的图表，读懂图上给出的统计量，只取你需要的代码。"
   nav_gallery: 图库
   nav_style: 样式
   nav_about: 关于
   nav_cite: 引用
   eyebrow: '{n} 张统计图表 · {k} 个类别 · 100% Python'
-  hero_1: 统计之美，
-  hero_2: 尽在 Python。
+  hero_1: "社会科学统计，"
+  hero_2: "尽在 Python。"
   by: 作者
   part_of: 隶属于
-  search_placeholder: 搜索图表、方法或 R 函数——试试“likert”
-  empty: 没有与搜索匹配的图表。试试“regression”“proportion”或某个 R 函数名。
+  search_placeholder: "按问题、方法或 R 函数搜索——试试“置信区间”或“调查”"
+  empty: "没有与搜索匹配的图表。试试“回归”“调查”“置信区间”或某个 R 函数名。"
   all: 全部
   n_charts: '{n} 张图表'
   gallery: 图库
