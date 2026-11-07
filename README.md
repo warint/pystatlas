@@ -4,7 +4,7 @@
 
 <h1 align="center">PyStatlas</h1>
 
-<p align="center"><b>The Python gallery of statistical graphics.</b><br>
+<p align="center"><b>The Python gallery of statistical graphics for the social sciences.</b><br>
 57 charts · 11 families · copy‑paste Python code · inspired by the R Graph Gallery, <code>ggstats</code> and <code>ggstatsplot</code>.</p>
 
 <p align="center">
@@ -71,12 +71,12 @@ The website in `docs/` is served by GitHub Pages.
 
 If PyStatlas helped your research, teaching or work, please cite it:
 
-> Warin, T. (2026). *PyStatlas: The Python Gallery of Statistical Graphics*. https://warint.github.io/pystatlas/
+> Warin, T. (2026). *PyStatlas: The Python Gallery of Statistical Graphics for the Social Sciences*. https://warint.github.io/pystatlas/
 
 ```bibtex
 @misc{warin2026statlas,
   author       = {Warin, Thierry},
-  title        = {PyStatlas: The Python Gallery of Statistical Graphics},
+  title        = {PyStatlas: The Python Gallery of Statistical Graphics for the Social Sciences},
   year         = {2026},
   howpublished = {\url{https://warint.github.io/pystatlas/}},
   note         = {Source code: https://github.com/warint/pystatlas}

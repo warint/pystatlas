@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use PyStatlas, please cite it as below."
-title: "PyStatlas: The Python Gallery of Statistical Graphics"
-abstract: "A curated, open-source atlas of statistical charts for Python — regression models, Likert scales, survival curves, diagnostics, meta-analysis and more — with self-contained, copy-paste code."
+title: "PyStatlas: The Python Gallery of Statistical Graphics for the Social Sciences"
+abstract: "An open-source gallery of statistical charts for Python, written first for social-science students. Charts are organised by the question they answer and built on real social-science data; every figure reports the statistics behind it (estimates, confidence intervals, tests, effect sizes) and comes with a short, self-contained script."
 type: software
 authors:
   - family-names: Warin
@@ -17,5 +17,6 @@ keywords:
   - statistics
   - data visualization
   - statistical graphics
+  - social sciences
   - matplotlib
   - statsmodels

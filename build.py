@@ -316,7 +316,7 @@ def page(title: str, body: str, depth: int, path: str, description: str = "", ac
     """depth = folder depth of the page inside its language; path = page path inside a language."""
     home = "../" * depth
     root = "../" * (depth + (LANG != "en"))
-    cite_title = cite_title or "PyStatlas: The Python Gallery of Statistical Graphics"
+    cite_title = cite_title or "PyStatlas: The Python Gallery of Statistical Graphics for the Social Sciences"
     url = CONFIG["site_url"] + prefix(LANG) + path
     alternates = "\n".join(
         f'<link rel="alternate" hreflang="{HTML_LANG[l]}" href="{CONFIG["site_url"]}{prefix(l)}{path}">' for l in LANGS)
@@ -414,14 +414,14 @@ def card(ex: "Example", home: str, root: str) -> str:
 def cite_text(ex: "Example | None" = None) -> str:
     y, site = CONFIG["year"], CONFIG["site_url"]
     if ex:
-        return f"Warin, T. ({y}). {ex.title}. In PyStatlas: The Python Gallery of Statistical Graphics. {site}{ex.url}"
-    return f"Warin, T. ({y}). PyStatlas: The Python Gallery of Statistical Graphics. {site}"
+        return f"Warin, T. ({y}). {ex.title}. In PyStatlas: The Python Gallery of Statistical Graphics for the Social Sciences. {site}{ex.url}"
+    return f"Warin, T. ({y}). PyStatlas: The Python Gallery of Statistical Graphics for the Social Sciences. {site}"
 
 
 def bibtex() -> str:
     return f"""@misc{{warin{CONFIG['year']}statlas,
   author       = {{Warin, Thierry}},
-  title        = {{PyStatlas: The Python Gallery of Statistical Graphics}},
+  title        = {{PyStatlas: The Python Gallery of Statistical Graphics for the Social Sciences}},
   year         = {{{CONFIG['year']}}},
   howpublished = {{\\url{{{CONFIG['site_url']}}}}},
   note         = {{Source code: {CONFIG['repo_url']}}}
@@ -606,7 +606,7 @@ def example_page(ex: "Example", prev_ex: "Example | None", next_ex: "Example | N
   {f'<h2 class="rel-h">{esc(t("more_in", cat=ctitle(c)))}</h2><div class="grid">{rel}</div>' if rel else ''}
 </article>"""
     return page(f"{etitle(ex)} · {CONFIG['name']}", body, 2, ex.url, esummary(ex), "gallery",
-                cite_title=f"{ex.title} — PyStatlas: The Python Gallery of Statistical Graphics")
+                cite_title=f"{ex.title} — PyStatlas: The Python Gallery of Statistical Graphics for the Social Sciences")
 
 
 def style_page(rootp: str) -> str:

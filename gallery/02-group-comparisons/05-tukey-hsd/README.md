@@ -72,4 +72,4 @@ plt.show()
 
 **PyStatlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/group-comparisons/tukey-hsd/) · [← Group comparisons](../README.md)
 
-**Cite:** Warin, T. (2026). Tukey HSD intervals. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/group-comparisons/tukey-hsd/
+**Cite:** Warin, T. (2026). Tukey HSD intervals. In PyStatlas: The Python Gallery of Statistical Graphics for the Social Sciences. https://warint.github.io/pystatlas/group-comparisons/tukey-hsd/

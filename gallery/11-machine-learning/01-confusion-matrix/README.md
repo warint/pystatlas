@@ -105,4 +105,4 @@ plt.show()
 
 **PyStatlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/machine-learning/confusion-matrix/) · [← Machine learning](../README.md)
 
-**Cite:** Warin, T. (2026). Confusion matrix with metrics. In PyStatlas: The Python Gallery of Statistical Graphics. https://warint.github.io/pystatlas/machine-learning/confusion-matrix/
+**Cite:** Warin, T. (2026). Confusion matrix with metrics. In PyStatlas: The Python Gallery of Statistical Graphics for the Social Sciences. https://warint.github.io/pystatlas/machine-learning/confusion-matrix/

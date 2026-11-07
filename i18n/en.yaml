@@ -2,7 +2,7 @@
 # Keep {placeholders} and HTML tags exactly as they are.
 ui:
   lang_name: English
-  tagline: The Python gallery of statistical graphics
+  tagline: "The Python gallery of statistical graphics for the social sciences"
   lede: "Statistical charts for Python, built on real social-science data and organised by the question they answer. Every figure reports the statistics behind it — estimates, confidence intervals, tests, effect sizes — from distributions and group comparisons to regression, survival and machine learning."
   approach: "Most Python resources teach the code first and leave the questions for later. This gallery works the other way round. It was first written for social-science students, and it serves anyone who knows their field and has a question to answer — do these groups differ, do these two variables move together, why did the model predict this? Start from the question, find the chart that answers it, read the statistics it reports, and take only the code you need."
   nav_gallery: Gallery
