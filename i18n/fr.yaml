@@ -76,9 +76,9 @@ ui:
   thanks_r: "Paquets R dont les exemples reprennent les graphiques"
   thanks_site: "Construction du site"
   data_h: "Source des données"
-  data_sources_h: "Sources des données"
-  data_intro: "Presque tous les exemples reposent sur des données publiées, reproduites telles que les distribuent statsmodels, lifelines ou le paquet R metafor ; les deux exemples simulés sont signalés comme tels. Chaque entrée donne la référence originale, la façon dont les données arrivent dans la galerie et les graphiques qui les utilisent."
-  data_disclaimer: "Les exemples illustrent des méthodes statistiques. Leurs titres décrivent ce que chaque figure montre dans ces données précises — souvent un échantillon restreint, daté ou partiel —, et non la position de l'auteur sur la question de fond. Pour l'interprétation, le contexte et la qualité des données, reportez-vous aux sources originales citées ici."
+  data_sources_h: "Travaux de recherche et sources des données"
+  data_intro: "Presque tous les exemples s'inscrivent dans le contexte d'un article publié de l'auteur, ou du GVCdtLab du CIRANO pour les graphiques spatiaux, et reposent sur une petite simulation à graine fixe construite pour l'exemple — jamais sur les données ni les résultats de l'article. Chaque entrée donne la référence complète et les graphiques qui s'en inspirent. La méta-analyse et le graphique en entonnoir font exception : ils utilisent une vraie table publiée, saisie à la main."
+  data_disclaimer: "Les exemples illustrent des méthodes statistiques. Leurs chiffres sont simulés, sauf mention contraire dans l'entrée, et leurs titres décrivent ce que chaque figure montre dans ces données simulées — ni les résultats des articles cités, ni la position de l'auteur sur la question de fond. Pour les résultats, le contexte et les données, reportez-vous aux articles cités ici."
   data_used_in: "Utilisé dans :"
 categories:
   distributions:

@@ -28,7 +28,7 @@ thanks:
     esda: https://pysal.org/esda/
     Shapely: https://shapely.readthedocs.io
   datasets:
-    - name: "All data sources, with full references — see “Data sources” below"
+    - name: "All research and data sources, with full references — see “Research and data sources” below"
       url: "#data"
   inspiration:   # `pkgs`: the functions of these R packages that the gallery mirrors are listed automatically
     - name: The R Graph Gallery (Yan Holtz)

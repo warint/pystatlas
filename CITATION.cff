@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use PyStatlas, please cite it as below."
 title: "PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences"
-abstract: "An open-source gallery of statistical charts for Python, written first for social-science students. Charts are organised by the question they answer and built on real social-science data; every figure reports the statistics behind it (estimates, confidence intervals, tests, effect sizes) and comes with a short, self-contained script."
+abstract: "An open-source gallery of statistical charts for Python, written first for social-science students. Charts are organised by the question they answer; nearly every example is set in one of the author's published papers (or in the CIRANO GVCdtLab digital twin of the Great Lakes–St. Lawrence corridor) and runs on a small, labelled simulation, not the papers' data. Every figure reports the statistics behind it (estimates, confidence intervals, tests, effect sizes) and comes with a short, self-contained script."
 type: software
 authors:
   - family-names: Warin
@@ -10,13 +10,16 @@ authors:
 repository-code: "https://github.com/warint/pystatlas"
 url: "https://warint.github.io/pystatlas/"
 license: MIT
-version: "1.0.0"
-date-released: "2026-11-06"
+version: "1.1.0"
+date-released: "2026-11-08"
 keywords:
   - python
   - statistics
   - data visualization
   - statistical graphics
   - social sciences
+  - machine learning
+  - spatial data
+  - teaching
   - matplotlib
   - statsmodels

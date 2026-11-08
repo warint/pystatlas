@@ -713,7 +713,7 @@ def sources_section(cats: list["Category"]) -> str:
         source_html(k).replace("</li>", f'<br><span class="src-used">{esc(t("data_used_in"))} '
                                          + ", ".join(f'<a href="{e.url}">{esc(etitle(e))}</a>' for e in v)
                                          + "</span></li>")
-        for k, v in used.items() if v)
+        for k, v in used.items() if v and k != "simulation")
     return (f'<section class="data-src" id="data"><h2>{esc(t("data_sources_h"))}</h2>'
             f'<p>{esc(t("data_intro"))}</p><ul>{items}</ul>'
             f'<p class="src-disclaimer">{esc(t("data_disclaimer"))}</p></section>')
