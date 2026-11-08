@@ -1,8 +1,8 @@
 """
 title: Comparing nested models
-summary: Coefficients of three nested regressions of district math results side by side, to see how estimates shift as blocks are added.
+summary: Coefficients of three nested FDI regressions side by side, to see how estimates shift as an EU block is added.
 r: ggstats::ggcoef_compare()
-tags: [regression, model comparison, nested models, confidence interval, OLS, education]
+tags: [regression, model comparison, nested models, confidence interval, OLS, FDI]
 description: |
   When covariates are added one block at a time, the interesting question is often
   not *which* terms are significant but *how the estimates move*. Here each term
@@ -10,43 +10,52 @@ description: |
   coefficient as the model grows. Hollow markers are not significant at 5%. The
   subtitle compares the models with R² and F-tests of the added blocks.
 
-  Data are the 303 California school districts of the STAR98 test bundled with
-  **statsmodels** (`sm.datasets.star98`). The outcome is the share of pupils above
-  the national median in math, `NABOVE / (NABOVE + NBELOW)`, in percent. M1 holds
-  pupil composition (low-income and Hispanic pupils), M2 adds teachers
-  (pupil–teacher ratio, average experience) and M3 adds programmes (college-prep
-  courses, year-round schools). Predictors are standardised, so every coefficient
-  is the change in percentage points per standard deviation. The blocks are
-  jointly significant, yet R² barely moves and the low-income coefficient stays
-  near −12 in every model. Models are fitted with `smf.ols()` and compared with
-  `anova_lm()`.
+  The setting is Stojkov & Warin (2018, *Journal of East-West Business*): EU
+  membership and foreign direct investment in transition economies. The data are
+  **simulated** for illustration — they are not the paper's data or results:
+  n = 180 country-years (10 economies × 18 years), with FDI inflows in % of GDP.
+  M1 holds market factors (market size, GDP growth, unit labour cost), M2 adds
+  policy (institutional quality, trade openness) and M3 adds the EU block
+  (candidate status, membership, both 0/1). Continuous predictors are
+  standardised. Institutions improve as countries approach the EU, so their
+  coefficient shrinks once the EU block enters. Models are fitted with `smf.ols()`
+  and compared with `anova_lm()`.
 """
 import matplotlib.pyplot as plt
 import numpy as np
-import statsmodels.api as sm
+import pandas as pd
 import statsmodels.formula.api as smf
 from statsmodels.stats.anova import anova_lm
+# Simulated data, set in the context of Stojkov & Warin (2018) [stojkov2018fdi]
 
-# Data: math results in 303 California school districts; standardise predictors (z-scores)
-df = sm.datasets.star98.load_pandas().data
-df["math"] = 100 * df.NABOVE / (df.NABOVE + df.NBELOW)
-X = ["LOWINC", "PERHISP", "PTRATIO", "AVYRSEXP", "PCTAF", "PCTYRRND"]
+# Data: 10 transition economies × 18 years; EU candidate status precedes membership
+rng = np.random.default_rng(2018)
+year = np.tile(np.arange(18), 10)
+entry = np.repeat(rng.integers(8, 14, 10), 18)              # year of EU entry per country
+df = pd.DataFrame({"candidate": ((year >= entry - 5) & (year < entry)).astype(int),
+                   "member": (year >= entry).astype(int)})
+df["size"], df["growth"], df["ulc"], df["openness"] = rng.normal(size=(4, 180))
+df["institutions"] = 0.8 * df.candidate + 1.4 * df.member + rng.normal(0, 0.8, 180)
+df["fdi"] = (4 + 0.8 * df["size"] + 0.6 * df.growth - 0.5 * df.ulc + 0.4 * df.openness
+             + 0.3 * df.institutions + 1.0 * df.candidate + 1.8 * df.member
+             + rng.normal(0, 1.8, 180))
+X = ["size", "growth", "ulc", "institutions", "openness"]
 df[X] = (df[X] - df[X].mean()) / df[X].std()
 
 # Three nested models, each adding a block of predictors
-formulas = {"M1 · pupils": "math ~ LOWINC + PERHISP",
-            "M2 · + teachers": "math ~ LOWINC + PERHISP + PTRATIO + AVYRSEXP",
-            "M3 · + programmes": "math ~ LOWINC + PERHISP + PTRATIO + AVYRSEXP + PCTAF + PCTYRRND"}
+formulas = {"M1 · market": "fdi ~ size + growth + ulc",
+            "M2 · + policy": "fdi ~ size + growth + ulc + institutions + openness",
+            "M3 · + EU block": "fdi ~ size + growth + ulc + institutions + openness + candidate + member"}
 fits = {name: smf.ols(f, data=df).fit() for name, f in formulas.items()}
 f_tests = anova_lm(*fits.values())
 
-labels = {"LOWINC": "Low-income pupils", "PERHISP": "Hispanic pupils",
-          "PTRATIO": "Pupil–teacher ratio", "AVYRSEXP": "Teacher experience",
-          "PCTAF": "College-prep courses", "PCTYRRND": "Year-round schools"}
+labels = {"size": "Market size", "growth": "GDP growth", "ulc": "Unit labour cost",
+          "institutions": "Institutional quality", "openness": "Trade openness",
+          "candidate": "EU candidate (0/1)", "member": "EU member (0/1)"}
 terms = list(labels)[::-1]
 palette = ["#007AFF", "#FF9500", "#34C759"]
 
-fig, ax = plt.subplots(figsize=(8, 5.4))
+fig, ax = plt.subplots(figsize=(8, 5.6))
 ax.axvline(0, color="#8E8E93", lw=1, ls="--", zorder=1)
 for k, ((name, m), c) in enumerate(zip(fits.items(), palette)):
     offset = (1 - k) * 0.22                      # dodge: first model on top
@@ -66,13 +75,12 @@ for i in range(len(terms) - 1):                  # thin separators between terms
 ax.set_yticks(range(len(terms)), [labels[t] for t in terms])
 ax.set_ylim(-0.6, len(terms) - 0.4)
 ax.grid(axis="x"); ax.grid(axis="y", visible=False)
-ax.set_xlabel("Change in pupils above median in math, points per 1 SD (95% CI)")
-ax.legend(loc="lower left", handlelength=1.6, borderaxespad=0.2)
-r2 = [m.rsquared for m in fits.values()]
-ax.set_title(f"School factors add little once pupil poverty is known (R² from {r2[0]:.2f} to {r2[-1]:.2f})", pad=26)
+ax.set_xlabel("Change in FDI inflows, % of GDP per 1 SD or from 0 to 1 (95% CI)")
+ax.legend(loc="center right", bbox_to_anchor=(1, 0.65), handlelength=1.6, borderaxespad=0.2)
+ax.set_title("Institutions lose weight once EU status enters the model", pad=26)
 fmt_p = lambda p: "p < .001" if p < .001 else f"p = {p:.3f}".replace("0.", ".")
 blocks = [f"M{j} vs M{j + 1}: F({f_tests.df_diff[j]:.0f}, {f_tests.df_resid[j]:.0f}) = "
           f"{f_tests.F[j]:.1f}, {fmt_p(f_tests['Pr(>F)'][j])}" for j in (1, 2)]
-ax.text(0, 1.02, f"OLS · n = {int(fits['M1 · pupils'].nobs)} · " + " · ".join(blocks)
+ax.text(0, 1.02, f"OLS · n = {int(fits['M1 · market'].nobs)} (simulated) · " + " · ".join(blocks)
         + " · hollow = p ≥ .05", transform=ax.transAxes, fontsize=9.5, color="#6E6E73")
 plt.show()

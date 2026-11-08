@@ -1,6 +1,6 @@
 # Partial dependence with ICE curves
 
-> How predicted maths results change with poverty and with spending per pupil — the average (PDP) over one curve per school district (ICE).
+> How a batch's predicted waste rate changes with machine speed and with days since maintenance — the average (PDP) over one curve per batch (ICE).
 
 ![Partial dependence with ICE curves](plot.png)
 
@@ -13,66 +13,81 @@ average hides. ICE curves are centred at the left edge so that their shapes,
 not their levels, can be compared; the rug marks where the data actually are,
 since the model extrapolates elsewhere.
 
-Data are the 303 California school districts of the 1998 STAR test bundled
-with **statsmodels** (`sm.datasets.star98`); the outcome is the share of
-students scoring above the national median in maths, predicted from ten
-district characteristics. The two panels contrast the share of low-income
-students, along which predictions fall steeply, with spending per pupil,
-along which they barely move. The model is a gradient-boosting regressor, and
-the curves come from `sklearn.inspection.partial_dependence(kind="both")`. A
-PDP describes the model, not the world: it is causal only if the model is.
+The example is set in the context of Warin, d'Anglade and de Marcellis-Warin
+(2025, *International Journal of Sustainable Engineering*) on data science for
+waste reduction in manufacturing. The data are **simulated** for illustration
+and are *not* the paper's data or results: the same n = 600 production
+batches as in the model comparison. The left panel shows a threshold effect —
+waste is flat at low machine speeds and climbs steeply at high speeds, with
+nearly parallel curves for all batches. The right panel shows days since maintenance, whose ICE
+curves fan out because its effect was built to depend on humidity. The model
+is a gradient-boosting regressor, and the curves come from
+`sklearn.inspection.partial_dependence(kind="both")`. A PDP describes the
+model, not the world: it is causal only if the model is.
 
 **R equivalent:** `pdp::partial(ice = TRUE) + autoplot() / iml::FeatureEffect`  
-**Libraries:** Matplotlib, NumPy, statsmodels, scikit-learn
+**Libraries:** Matplotlib, NumPy, pandas, scikit-learn
 
-**Data:** Gill, J. (2001). Generalized Linear Models: A Unified Approach (Quantitative Applications in the Social Sciences, No. 134). Sage. https://www.statsmodels.org/stable/datasets/generated/star98.html — Original data from the California Department of Education's Standardized Testing and Reporting (STAR) program, 1998. Subset distributed with statsmodels (sm.datasets.star98) with the author's permission.
+**Data:** Simulated data with a fixed random seed, created for this example. — No real respondents, documents or measurements: the numbers only illustrate how the chart and its statistics work.
+
+**Data:** Warin, T., d'Anglade, P. M., & de Marcellis-Warin, N. (2025). Optimising industrial efficiency: Integrating K-means clustering and data science for sustainable manufacturing and waste reduction. International Journal of Sustainable Engineering, 18(1), 2527300. https://doi.org/10.1080/19397038.2025.2527300 — The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results.
 
 
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
-import statsmodels.api as sm
+import pandas as pd
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.inspection import partial_dependence
+# Simulated data, set in the context of Warin, d'Anglade & de Marcellis-Warin (2025) [warin2025waste]
 
-# Data: 303 California school districts; outcome = % of students above the national median in maths
-d = sm.datasets.star98.load_pandas().data
-y = 100 * d["NABOVE"] / (d["NABOVE"] + d["NBELOW"])
-names = {"LOWINC": "% low-income students", "PERASIAN": "% Asian students", "PERBLACK": "% Black students",
-         "PERHISP": "% Hispanic students", "AVYRSEXP": "Teacher experience (years)",
-         "AVSALK": "Teacher salary ($000)", "PERSPENK": "Spending per pupil ($000)",
-         "PTRATIO": "Pupils per teacher", "PCTAF": "% in college-prep courses",
-         "PCTYRRND": "% year-round schools"}
-X = d[list(names)]
+# Data: 600 production batches; outcome = waste rate (% of material scrapped)
+rng = np.random.default_rng(2025)
+n = 600
+names = {"speed": "Machine speed (units/min)", "temperature": "Temperature (°C)",
+         "humidity": "Humidity (%)", "experience": "Operator experience (years)",
+         "maintenance": "Days since maintenance", "grade": "Material grade (1 = best)",
+         "batch_size": "Batch size (kg)"}
+X = pd.DataFrame({"speed": rng.uniform(80, 160, n), "temperature": rng.uniform(195, 225, n),
+                  "humidity": rng.uniform(30, 75, n), "experience": rng.gamma(2, 4, n),
+                  "maintenance": rng.uniform(0, 120, n), "grade": rng.integers(1, 4, n),
+                  "batch_size": rng.uniform(200, 1000, n)})       # batch size has no effect
+y = (2 + 0.002 * np.clip(X.speed - 110, 0, None) ** 2            # waste climbs above 110 units/min
+     + 0.025 * (X.temperature - 210) ** 2                        # U-shape around the 210 °C set point
+     + 3 * np.exp(-X.experience / 3)                             # novices waste more, gains fade
+     + 4 * (X.humidity - 30) / 45 * X.maintenance / 120          # humidity hurts worn machines most
+     + 0.6 * (X.grade - 1) + rng.normal(0, 0.7, n))
 model = GradientBoostingRegressor(learning_rate=0.05, n_estimators=300, max_depth=2,
                                   subsample=0.8, random_state=0).fit(X, y)
 
-features = {"LOWINC": "Low-income students (% of pupils)", "PERSPENK": "Spending per pupil ($ thousands)"}
-change = {}
+features = ["speed", "maintenance"]
+change, spread = {}, {}
 plt.rcParams["figure.constrained_layout.use"] = False   # manual margins leave room for the subtitle
 fig, axes = plt.subplots(1, 2, figsize=(10, 5), sharey=True)
 fig.subplots_adjust(left=0.10, right=0.97, top=0.80, bottom=0.12, wspace=0.08)
-for ax, (f, label) in zip(axes, features.items()):
+for ax, f in zip(axes, features):
     pd_res = partial_dependence(model, X, [f], kind="both", grid_resolution=40)
     grid = pd_res["grid_values"][0]
     ice = pd_res["individual"][0]
     ice_c = ice - ice[:, [0]]                      # centred ICE
     pdp_c = pd_res["average"][0] - pd_res["average"][0][0]
-    change[f] = np.ptp(pdp_c)                      # range of the average effect
+    change[f] = pdp_c[-1]                          # average effect over the whole range
+    lo, hi = np.percentile(ice_c, [10, 90], axis=0)
+    spread[f] = (lo[-1], hi[-1])
     ax.plot(grid, ice_c.T, color="#007AFF", alpha=0.07, lw=0.8)
     ax.plot(grid, pdp_c, color="#FF9500", lw=3, label="Average (PDP)")
-    lo, hi = np.percentile(ice_c, [10, 90], axis=0)
     ax.plot(grid, lo, color="#007AFF", lw=1, ls="--")
     ax.plot(grid, hi, color="#007AFF", lw=1, ls="--", label="10th / 90th percentile of ICE")
-    ax.plot(X[f], np.full(len(X), -46), "|", color="#3A3A3C", ms=8, alpha=0.4)   # rug
-    ax.set_xlabel(label)
-    ax.set_title(f"Effect of {label.split(' (')[0].lower()}")
-axes[0].set_ylim(-50, 12)
-axes[0].set_ylabel("Change in predicted % above median\n(points, relative to the lowest value)")
-axes[1].legend(loc="center", fontsize=9)
-fig.suptitle(f"Poverty lowers predicted maths results by {change['LOWINC']:.0f} points; "
-             f"spending per pupil moves them by {change['PERSPENK']:.0f}", x=0.02, y=0.97, ha="left")
-fig.text(0.02, 0.885, f"Gradient boosting · n = {len(X)} school districts · thin lines = one district (centred ICE) · "
+    ax.plot(X[f], np.full(len(X), -1.3), "|", color="#3A3A3C", ms=8, alpha=0.4)   # rug
+    ax.set_xlabel(names[f])
+    ax.set_title(f"Effect of {names[f].split(' (')[0].lower()}")
+axes[0].set_ylim(-1.6, 6.5)
+axes[0].set_ylabel("Change in predicted waste rate\n(points, relative to the lowest value)")
+axes[0].legend(loc="upper left", fontsize=9)
+m_lo, m_hi = spread["maintenance"]
+fig.suptitle(f"Speed adds {change['speed']:.1f} points of waste for every batch; {grid[-1]:.0f} days without "
+             f"maintenance add {m_lo:.1f} to {m_hi:.1f}", x=0.02, y=0.97, ha="left")
+fig.text(0.02, 0.885, f"Gradient boosting · n = {n} batches (simulated) · thin lines = one batch (centred ICE) · "
          "ticks = observed values", fontsize=9.5, color="#6E6E73")
 plt.show()
 ```

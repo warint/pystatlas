@@ -1,8 +1,8 @@
 """
 title: Interaction effects
-summary: Simple slopes at mean ± 1 SD and a Johnson–Neyman plot for college-prep courses and math results, moderated by pupil poverty.
+summary: Simple slopes at mean ± 1 SD and a Johnson–Neyman plot for capital inflows and credit growth, moderated by exchange-rate flexibility.
 r: interactions::interact_plot() / interactions::johnson_neyman()
-tags: [interaction, moderation, simple slopes, Johnson-Neyman, marginal effect, education]
+tags: [interaction, moderation, simple slopes, Johnson-Neyman, marginal effect, capital flows]
 description: |
   An interaction term says that the slope of one predictor depends on another.
   The **left panel** draws that slope at three values of the moderator — its mean
@@ -12,82 +12,84 @@ description: |
   Where the band excludes zero the effect is significant; the switch-over is the
   Johnson–Neyman point.
 
-  Data are the 303 California school districts of the STAR98 test bundled with
-  **statsmodels** (`sm.datasets.star98`). The outcome is the share of pupils above
-  the national median in math (%); the focal predictor is the share of pupils in
-  college-prep (UC/CSU) courses and the moderator the share of low-income pupils,
-  in `smf.ols("math ~ prep * lowinc")`. College-prep enrolment goes with better
-  math results in better-off districts, but the association fades as poverty
-  rises — and turns significantly negative only in the two poorest districts,
-  hence a second Johnson–Neyman point at the far right. The marginal-effect
-  variance is computed by hand from `cov_params()`:
+  The setting is Stojkov & Warin (2021, *Global Economy Journal*): foreign capital
+  and domestic funding conditions from a Mundellian trilemma perspective. The data
+  are **simulated** for illustration — they are not the paper's data or results:
+  n = 400 country-years, with domestic credit growth (%) as the outcome, net
+  capital inflows (% of GDP) as the focal predictor and an exchange-rate
+  flexibility index (0 = hard peg, 1 = free float) as the moderator, in
+  `smf.ols("credit ~ inflows * flex")`. Inflows go with faster credit growth under
+  pegs, and the association fades as the exchange rate floats more freely. The
+  marginal-effect variance is computed by hand from `cov_params()`:
   Var(β₁) + 2m·Cov(β₁, β₃) + m²·Var(β₃).
 """
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import statsmodels.api as sm
 import statsmodels.formula.api as smf
 from scipy import stats
+# Simulated data, set in the context of Stojkov & Warin (2021) [stojkov2021credit]
 
-# Data: math results, college-prep enrolment and low-income pupils in 303 California districts
-raw = sm.datasets.star98.load_pandas().data
-df = pd.DataFrame({"math": 100 * raw.NABOVE / (raw.NABOVE + raw.NBELOW),
-                   "prep": raw.PCTAF, "lowinc": raw.LOWINC})
-model = smf.ols("math ~ prep * lowinc", data=df).fit()
+# Data: 400 country-years; inflows raise credit growth less as flexibility rises
+rng = np.random.default_rng(2021)
+n = 400
+df = pd.DataFrame({"inflows": rng.normal(4, 3, n), "flex": rng.beta(1.5, 1.5, n)})
+df["credit"] = (5 + 1.2 * df.inflows + 1.5 * df.flex - 1.3 * df.inflows * df.flex
+                + rng.normal(0, 5, n))
+model = smf.ols("credit ~ inflows * flex", data=df).fit()
 b, V = model.params, model.cov_params()
 t_crit = stats.t.ppf(0.975, model.df_resid)
 
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11, 5))
 
-# Left: simple slopes of college prep at low income = mean − 1 SD, mean, mean + 1 SD
-ax1.scatter(df.prep, df.math, s=12, color="#C7C7CC", alpha=0.6, lw=0)
-prep = np.linspace(df.prep.min(), df.prep.max(), 100)
-m, s = df.lowinc.mean(), df.lowinc.std()
-for low, lab, c in [(m - s, "−1 SD", "#5AC8FA"), (m, "Mean", "#007AFF"), (m + s, "+1 SD", "#AF52DE")]:
-    pred = model.get_prediction(pd.DataFrame({"prep": prep, "lowinc": low})).summary_frame()
-    ax1.fill_between(prep, pred.mean_ci_lower, pred.mean_ci_upper, color=c, alpha=0.15, lw=0)
-    ax1.plot(prep, pred["mean"], color=c, lw=2.2,
-             label=f"{lab} ({low:.0f}%): slope {b['prep'] + b['prep:lowinc'] * low:+.2f}")
-ax1.legend(title="Low-income pupils", loc="upper left", alignment="left")
-ax1.set_ylim(0, 115)
-ax1.set_xlabel("Pupils in college-prep courses (%)")
-ax1.set_ylabel("Pupils above national median in math (%)")
-ax1.set_title("Simple slopes of college prep at three poverty levels", fontsize=12)
+# Left: simple slopes of inflows at flexibility = mean − 1 SD, mean, mean + 1 SD
+ax1.scatter(df.inflows, df.credit, s=12, color="#C7C7CC", alpha=0.6, lw=0)
+x = np.linspace(df.inflows.min(), df.inflows.max(), 100)
+m, s = df.flex.mean(), df.flex.std()
+for f, lab, c in [(m - s, "−1 SD", "#5AC8FA"), (m, "Mean", "#007AFF"), (m + s, "+1 SD", "#AF52DE")]:
+    pred = model.get_prediction(pd.DataFrame({"inflows": x, "flex": f})).summary_frame()
+    ax1.fill_between(x, pred.mean_ci_lower, pred.mean_ci_upper, color=c, alpha=0.15, lw=0)
+    ax1.plot(x, pred["mean"], color=c, lw=2.2,
+             label=f"{lab} ({f:.2f}): slope {b['inflows'] + b['inflows:flex'] * f:+.2f}")
+ax1.legend(title="Exchange-rate flexibility", loc="upper left", alignment="left")
+ax1.set_ylim(top=df.credit.max() + 14)
+ax1.set_xlabel("Net capital inflows (% of GDP)")
+ax1.set_ylabel("Domestic credit growth (%)")
+ax1.set_title("Simple slopes of inflows at three regimes", fontsize=12)
 
-# Right: Johnson–Neyman — marginal effect of college prep across low income, with 95% CI
-lowinc = np.linspace(df.lowinc.min(), df.lowinc.max(), 400)
-eff = b["prep"] + b["prep:lowinc"] * lowinc
-se = np.sqrt(V.loc["prep", "prep"] + 2 * lowinc * V.loc["prep", "prep:lowinc"]
-             + lowinc**2 * V.loc["prep:lowinc", "prep:lowinc"])
+# Right: Johnson–Neyman — marginal effect of inflows across flexibility, with 95% CI
+flex = np.linspace(df.flex.min(), df.flex.max(), 400)
+eff = b["inflows"] + b["inflows:flex"] * flex
+se = np.sqrt(V.loc["inflows", "inflows"] + 2 * flex * V.loc["inflows", "inflows:flex"]
+             + flex**2 * V.loc["inflows:flex", "inflows:flex"])
 lo, hi = eff - t_crit * se, eff + t_crit * se
 sig = (lo > 0) | (hi < 0)
 ax2.axhline(0, color="#8E8E93", lw=1, ls="--")
-ax2.fill_between(lowinc, lo, hi, where=sig, color="#007AFF", alpha=0.18, lw=0, label="p < .05")
-ax2.fill_between(lowinc, lo, hi, where=~sig, color="#AEAEB2", alpha=0.3, lw=0, label="n.s.")
-ax2.plot(lowinc, eff, color="#1D1D1F", lw=2)
-jns = lowinc[1:][np.diff(sig.astype(int)) != 0]     # where significance switches
+ax2.fill_between(flex, lo, hi, where=sig, color="#007AFF", alpha=0.18, lw=0, label="p < .05")
+ax2.fill_between(flex, lo, hi, where=~sig, color="#AEAEB2", alpha=0.3, lw=0, label="n.s.")
+ax2.plot(flex, eff, color="#1D1D1F", lw=2)
+jns = flex[1:][np.diff(sig.astype(int)) != 0]       # where significance switches
 for jn in jns:
     ax2.axvline(jn, color="#007AFF", lw=1, ls=":")
-    ax2.annotate(f"Johnson–Neyman point\n{jn:.0f}% low-income", (jn, 0.97), xytext=(-8, 0),
+    ax2.annotate(f"Johnson–Neyman point\nflexibility = {jn:.2f}", (jn, 0.97), xytext=(-8, 0),
                  xycoords=ax2.get_xaxis_transform(), textcoords="offset points",
                  fontsize=9.5, color="#007AFF", va="top", ha="right")
 # Rug of the observed moderator values
-ax2.plot(df.lowinc, np.full(len(df), 0.015), "|", ms=7, color="#8E8E93", alpha=0.4,
+ax2.plot(df.flex, np.full(len(df), 0.015), "|", ms=7, color="#8E8E93", alpha=0.4,
          transform=ax2.get_xaxis_transform())
-share = (df.lowinc < jns[0]).mean()
+share = (df.flex < jns[0]).mean()
 ax2.legend(loc="lower left", bbox_to_anchor=(0, 0.06))
-ax2.set_xlabel("Low-income pupils (moderator, %)")
-ax2.set_ylabel("Math points per +1 point of college prep")
-ax2.set_title(f"Significantly positive below {jns[0]:.0f}% low-income ({share:.0%} of districts)", fontsize=12)
+ax2.set_xlabel("Exchange-rate flexibility (moderator, 0 = peg, 1 = float)")
+ax2.set_ylabel("Credit growth points per +1 pp of inflows")
+ax2.set_title(f"Significantly positive below {jns[0]:.2f} ({share:.0%} of country-years)", fontsize=12)
 
 # Figure title and statistical subtitle above both panels
-p_int = model.pvalues["prep:lowinc"]
+p_int = model.pvalues["inflows:flex"]
 p_txt = "p < .001" if p_int < 0.001 else f"p = {p_int:.3f}"
-fig.text(0.01, 1.07, "College-prep courses go with better math results, but not in poorer districts",
+fig.text(0.01, 1.07, "Capital inflows feed credit growth under pegs, much less under floats",
          fontsize=15, fontweight="semibold", va="bottom")
-fig.text(0.01, 1.02, f"OLS · n = {int(model.nobs)} districts · college prep × low income: β = {b['prep:lowinc']:.4f}, "
-         f"t({model.df_resid:.0f}) = {model.tvalues['prep:lowinc']:.2f}, "
+fig.text(0.01, 1.02, f"OLS · n = {int(model.nobs)} country-years (simulated) · inflows × flexibility: "
+         f"β = {b['inflows:flex']:.2f}, t({model.df_resid:.0f}) = {model.tvalues['inflows:flex']:.2f}, "
          f"{p_txt} · R² = {model.rsquared:.2f} · bands = 95% CI",
          fontsize=9.5, color="#6E6E73", va="bottom")
 plt.show()

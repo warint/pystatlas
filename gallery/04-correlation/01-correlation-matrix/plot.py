@@ -2,7 +2,7 @@
 title: Correlation matrix
 summary: Lower-triangle Pearson correlation heatmap; non-significant cells (Holm) are crossed out.
 r: ggstatsplot::ggcorrmat()
-tags: [correlation, Pearson, heatmap, Holm, multiple testing]
+tags: [correlation, Pearson, heatmap, Holm, multiple testing, trilemma]
 description: |
   The Python counterpart of `ggcorrmat()`. Only the lower triangle is drawn, since
   a correlation matrix is symmetric; each tile shows Pearson's *r*, coloured on a
@@ -10,24 +10,35 @@ description: |
   at once, the p-values are **Holm-adjusted**, and pairs that are not significant
   at α = .05 after adjustment are greyed out and crossed, so the eye skips them.
 
-  Data are the US state crime statistics bundled with **statsmodels**
-  (`sm.datasets.statecrime`, 50 states + DC). Correlations and p-values come from
-  `scipy.stats.pearsonr`, the adjustment from
+  The setting is Stojkov & Warin (2019, *Data in Brief*), a four-decade dataset on
+  the Mundellian trilemma. The data are **simulated** for illustration and are
+  *not* the dataset's values: 120 countries with the three trilemma indices
+  (exchange-rate stability, monetary independence, financial openness), built so
+  that they roughly sum to 2, plus four macro variables. Correlations and p-values
+  come from `scipy.stats.pearsonr`, the adjustment from
   `statsmodels.stats.multitest.multipletests(method="holm")`.
 """
 from itertools import combinations
 
 import matplotlib.pyplot as plt
 import numpy as np
-import statsmodels.api as sm
+import pandas as pd
 from scipy import stats
 from statsmodels.stats.multitest import multipletests
 
-# Data: US state crime statistics (bundled with statsmodels)
-df = sm.datasets.statecrime.load_pandas().data
-names = {"violent": "Violent crime", "murder": "Murder", "poverty": "Poverty",
-         "single": "Single parents", "hs_grad": "HS graduates", "urban": "Urban", "white": "White"}
-df = df[list(names)].rename(columns=names)
+# Simulated data, set in the context of Stojkov & Warin (2019) [stojkov2019trilemma]
+
+# Simulated cross-section: 120 countries; the trilemma indices share a budget of about 2
+rng = np.random.default_rng(1999)
+n = 120
+share = rng.dirichlet([2, 2, 2], n)                    # how each country "gives up" the budget
+ers, mi, ka = (np.clip(1 - share + rng.normal(0, 0.08, (n, 3)), 0, 1)).T
+df = pd.DataFrame({"Exch.-rate stability": ers, "Monetary independence": mi,
+                   "Financial openness": ka,
+                   "Reserves (% GDP)": 8 + 25 * ers + rng.normal(0, 7, n),
+                   "Trade openness (% GDP)": 50 + 60 * ka + rng.normal(0, 25, n),
+                   "Inflation (%)": 6 - 4 * mi + rng.gamma(2, 1.5, n),
+                   "GDP growth (%)": 3 + rng.normal(0, 2, n)})
 k = df.shape[1]
 
 # Pearson r and Holm-adjusted p-values for every pair
@@ -63,8 +74,8 @@ cb = fig.colorbar(plt.cm.ScalarMappable(norm=norm, cmap=cmap), ax=ax, shrink=0.7
                   ticks=[-1, -0.5, 0, 0.5, 1])
 cb.set_label("Pearson r", color="#3A3A3C")
 cb.outline.set_visible(False)
-ax.set_title("Violent crime tracks single parenthood more than poverty", pad=26)
-ax.text(0, 1.02, f"Pearson correlations · n = {len(df)} (50 states + DC) · "
+ax.set_title("The three trilemma indices pull against each other", pad=26)
+ax.text(0, 1.02, f"Pearson correlations · n = {len(df)} countries (simulated) · "
         f"× = not significant (Holm-adjusted p ≥ .05)", transform=ax.transAxes,
         fontsize=9.5, color="#6E6E73")
 plt.show()

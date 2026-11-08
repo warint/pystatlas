@@ -3,7 +3,7 @@
 ui:
   lang_name: English
   tagline: "A Python gallery of statistical graphics for the social sciences"
-  lede: "Statistical charts for Python, built on real social-science data and organised by the question they answer. Machine learning — how well a model predicts and why — and spatial data — maps and spatial autocorrelation — sit alongside distributions, group comparisons, regression and survival, and every figure reports the statistics behind it: estimates, confidence intervals, tests, effect sizes."
+  lede: "Statistical charts for Python, set in real research questions from the social sciences and organised by the question they answer. Machine learning — how well a model predicts and why — and spatial data — maps and spatial autocorrelation — sit alongside distributions, group comparisons, regression and survival, and every figure reports the statistics behind it: estimates, confidence intervals, tests, effect sizes."
   approach: "Most Python resources teach the code first and leave the questions for later. This gallery works the other way round. It was first written for social-science students, and it serves anyone who knows their field and has a question to answer — do these groups differ, do these two variables move together, why did the model predict this? Start from the question, find the chart that answers it, read the statistics it reports, and take only the code you need."
   nav_gallery: Gallery
   nav_style: Style
@@ -59,7 +59,7 @@ ui:
   about_h1: "About {name}"
   about_p1: "{name} starts from the questions researchers ask, not from the code. It was first written for social-science students who know their field and need to answer a question with data: do these groups differ, do two variables move together, what does the model predict and why? Each chart puts the relevant statistics on the figure and comes with a short, self-contained script built on the scientific Python stack — in the spirit of <code>ggstats</code> and <code>ggstatsplot</code> in R."
   principles_h: Principles
-  principle_1: "<strong>Self‑contained.</strong> Every script runs as is. Data are real social‑science datasets bundled with statsmodels and lifelines (elections, schools, crime, fertility, regimes, recidivism…), a small published table typed in, or — rarely — a labelled, seeded simulation. The spatial examples fetch Guerry's map of France once through libpysal, then use the cached copy."
+  principle_1: "<strong>Self‑contained.</strong> Every script runs as is. Most examples are set in the context of one of the author's published papers, cited under the chart, and run on a small seeded simulation — just enough data to show the method, never the paper's data or results. A few use real data: a published meta-analysis table typed in, and Guerry's map of France, which the spatial examples fetch once through libpysal and then use from the cached copy."
   principle_2: "<strong>Statistics first.</strong> Each chart carries the numbers that matter: estimates, intervals, test statistics, effect sizes."
   principle_3: "<strong>Folder = page.</strong> The repository tree mirrors the site. Every example lives in <code>gallery/&lt;family&gt;/&lt;chart&gt;/plot.py</code> with a rendered <code>plot.png</code> and README."
   families_h: Families

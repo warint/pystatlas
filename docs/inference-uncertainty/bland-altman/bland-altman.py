@@ -1,8 +1,8 @@
 """
 title: Bland–Altman plot
-summary: Do two coders place party manifestos on the left–right scale the same way? Bias and 95% limits of agreement.
+summary: Do AI-assisted and expert scores of IPCC scenario passages agree? Bias and 95% limits of agreement.
 r: BlandAltmanLeh::bland.altman.plot() / blandr::blandr.draw()
-tags: [agreement, Bland-Altman, limits of agreement, method comparison, bias, content analysis, coding]
+tags: [agreement, Bland-Altman, limits of agreement, method comparison, bias, AI-assisted coding]
 description: |
   When two instruments — or two coders — measure the same thing, a high
   correlation says nothing about whether they **agree**. The Bland–Altman plot puts the difference
@@ -13,26 +13,28 @@ description: |
   using the Bland & Altman (1986) standard errors; a slope in the cloud would
   signal a proportional bias.
 
-  Data are **simulated** with `numpy` (seeded) to mimic a classic
-  content-analysis check: two trained coders each place the same 80 party
-  manifestos on a 0–10 left–right scale, and coder B is built to sit about 0.4
-  points to the right of coder A. Bias and intervals use `scipy.stats.t`; the
-  slope test is an OLS fit from **statsmodels**.
+  The setting is Bisson & Warin (2026), "AI-assisted longitudinal comparison of
+  scenario knowledge representation in IPCC synthesis reports" (*PLOS Climate*):
+  90 scenario passages from IPCC synthesis reports, each scored on a 0–10 scale
+  by a human expert and by an AI-assisted pipeline. The scores are **simulated**
+  with `numpy` (seeded), with the AI built to score about 0.3 points higher and
+  a little noisier; they are *not* the paper's data or results. Bias and
+  intervals use `scipy.stats.t`; the slope test is an OLS fit from **statsmodels**.
 """
 import matplotlib.pyplot as plt
 import numpy as np
 import statsmodels.api as sm
 from scipy import stats
 
-# Simulated coding: 80 manifestos placed on a 0–10 left–right scale by two coders;
-# coder B leans ~0.4 points to the right and is a little noisier
-rng = np.random.default_rng(11)
-n = 80
-position = rng.uniform(1.5, 8.5, n)
-coder_a = position + rng.normal(0, 0.35, n)
-coder_b = position + 0.4 + rng.normal(0, 0.45, n)
+# Simulated data, set in the context of Bisson & Warin (2026) [bisson2026]
+# 90 IPCC scenario passages scored 0–10 by a human expert and an AI-assisted pipeline
+rng = np.random.default_rng(65)
+n = 90
+detail = rng.uniform(1.5, 8.5, n)
+expert = detail + rng.normal(0, 0.35, n)
+ai = detail + 0.3 + rng.normal(0, 0.5, n)
 
-mean, diff = (coder_a + coder_b) / 2, coder_b - coder_a
+mean, diff = (expert + ai) / 2, ai - expert
 bias, sd = diff.mean(), diff.std(ddof=1)
 loa = bias + np.array([-1.96, 1.96]) * sd
 t = stats.t.ppf(0.975, n - 1)
@@ -55,11 +57,11 @@ for y0, name, c in [(loa[1], "+1.96 SD", "#FF9500"), (bias, "Bias", "#007AFF"),
             color=c, fontweight="semibold", linespacing=1.3)
 
 ax.set_xlim(mean.min() - 0.2, mean.max() + 1.3)
-ax.set_xlabel("Mean left–right position of the two coders (0–10 scale)")
-ax.set_ylabel("Coder B − coder A (points)")
-ax.set_title(f"Coder B sits {bias:.2f} points further right; single codings differ "
+ax.set_xlabel("Mean of AI-assisted and expert scores (0–10 scale)")
+ax.set_ylabel("AI-assisted − expert score (points)")
+ax.set_title(f"AI-assisted scores run {bias:.2f} points higher; single passages differ "
              f"by up to ±{1.96 * sd:.1f}", pad=26)
-ax.text(0, 1.02, f"Simulated · n = {n} manifestos · bias {bias:.2f} [95% CI {bias - ci_bias:.2f}, "
-        f"{bias + ci_bias:.2f}] · LoA {loa[0]:.2f} to {loa[1]:.2f} · proportional bias: slope = {slope.params[1]:.3f}, "
+ax.text(0, 1.02, f"n = {n} passages (simulated) · bias {bias:.2f} [95% CI {bias - ci_bias:.2f}, "
+        f"{bias + ci_bias:.2f}] · LoA {loa[0]:.2f} to {loa[1]:.2f} · slope test: b = {slope.params[1]:.3f}, "
         f"p = {slope.pvalues[1]:.2f}", transform=ax.transAxes, fontsize=9.5, color="#6E6E73")
 plt.show()

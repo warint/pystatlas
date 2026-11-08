@@ -1,8 +1,8 @@
 """
 title: PCA biplot
-summary: US states and their social indicators on the first two principal components.
+summary: European countries on institutional and economic indicators, Western Balkans highlighted.
 r: factoextra::fviz_pca_biplot()
-tags: [PCA, biplot, loadings, dimension reduction, ellipse, US states, crime, poverty]
+tags: [PCA, biplot, loadings, dimension reduction, ellipse, Western Balkans]
 description: |
   A biplot overlays two things on the same principal-component plane: the
   **scores** (one dot per observation, coloured by group, with a 68% normal
@@ -10,35 +10,38 @@ description: |
   point the same way are positively correlated; long arrows weigh heavily on the
   two components shown; groups sit on the side of the variables they are high on.
 
-  Data are the 50 US states and the District of Columbia from the **statsmodels**
-  `statecrime` dataset (2009 figures): violent-crime and murder rates per
-  100,000, % high-school graduates, % below the poverty line, % single-parent
-  households, % white and % urban population. States are coloured by US Census
-  region, and the six most extreme ones are named. Variables are standardised,
-  then `sklearn.decomposition.PCA` gives scores, loadings and the share of
-  variance printed on each axis.
+  The setting is Stojkov & Warin (2025), *Western Balkans and the Future of
+  Europe* (Springer): 33 European countries — 14 Western EU members, 13 newer
+  Central and Eastern EU members and the six Western Balkan candidates (named) —
+  described by six indicators: rule of law, GDP per capita, unemployment,
+  emigration, trade openness and public debt.
+  The data are **simulated** with `numpy` (seeded) from two latent factors for
+  illustration; they are *not* the book's data or results. Variables are
+  standardised, then `sklearn.decomposition.PCA` gives scores, loadings and the
+  share of variance printed on each axis.
 """
 import matplotlib.pyplot as plt
 import numpy as np
-import statsmodels.api as sm
+import pandas as pd
 from matplotlib.patches import Ellipse
 from scipy import stats
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
-# Data: 7 social indicators of 51 US states (incl. DC), standardised
-df = sm.datasets.statecrime.load_pandas().data
-states = df.index.str.strip()
-X = StandardScaler().fit_transform(df)
-regions = {"Northeast": ["Connecticut", "Maine", "Massachusetts", "New Hampshire", "New Jersey",
-                         "New York", "Pennsylvania", "Rhode Island", "Vermont"],
-           "Midwest": ["Illinois", "Indiana", "Iowa", "Kansas", "Michigan", "Minnesota", "Missouri",
-                       "Nebraska", "North Dakota", "Ohio", "South Dakota", "Wisconsin"],
-           "West": ["Alaska", "Arizona", "California", "Colorado", "Hawaii", "Idaho", "Montana",
-                    "Nevada", "New Mexico", "Oregon", "Utah", "Washington", "Wyoming"]}
-groups = np.array([next((r for r, s in regions.items() if st in s), "South") for st in states])
-names = ["violent crime", "murder", "high-school grad.", "poverty", "single parent",
-         "white", "urban"]
+# Simulated data, set in the context of Stojkov & Warin (2025) [stojkov2025balkans]
+rng = np.random.default_rng(25)
+wb = ["Albania", "Bosnia and Herz.", "Kosovo", "Montenegro", "North Macedonia", "Serbia"]
+groups = np.repeat(["Western EU", "Central & Eastern EU", "Western Balkans"], [14, 13, 6])
+# Two latent factors: institutional/economic development and openness
+dev = pd.Series(groups).map({"Western EU": 1.2, "Central & Eastern EU": 0.0,
+                             "Western Balkans": -1.5}).to_numpy() + rng.normal(0, 0.45, 33)
+opn = rng.normal(0, 1, 33) + 0.6 * (groups == "Central & Eastern EU")
+names = ["rule of law", "GDP per capita", "unemployment", "emigration", "trade openness",
+         "public debt"]
+load = np.array([[0.85, -0.25], [0.8, 0.3], [-0.7, 0.15], [-0.55, 0.55], [0.15, 0.85],
+                 [0.35, -0.65]])
+X = StandardScaler().fit_transform(np.c_[dev, opn] @ load.T + rng.normal(0, 0.4, (33, 6)))
+states = np.array([""] * 27 + wb, dtype=object)
 
 pca = PCA(n_components=2).fit(X)
 scores = pca.transform(X)
@@ -48,7 +51,8 @@ var = pca.explained_variance_ratio_ * 100
 fig, ax = plt.subplots(figsize=(8, 6.4))
 ax.axhline(0, color="#C7C7CC", lw=0.8); ax.axvline(0, color="#C7C7CC", lw=0.8)
 r68 = np.sqrt(stats.chi2.ppf(0.68, df=2))
-for g, c in zip(["Northeast", "Midwest", "South", "West"], ["#007AFF", "#FF9500", "#FF3B30", "#34C759"]):
+for g, c in zip(["Western EU", "Central & Eastern EU", "Western Balkans"],
+                ["#007AFF", "#34C759", "#FF9500"]):
     s = scores[groups == g]
     ax.scatter(*s.T, s=26, color=c, alpha=0.6, lw=0, label=f"{g} (n = {len(s)})")
     # 68% normal-theory ellipse from the group covariance
@@ -57,8 +61,8 @@ for g, c in zip(["Northeast", "Midwest", "South", "West"], ["#007AFF", "#FF9500"
     ax.add_patch(Ellipse(s.mean(0), *(2 * r68 * np.sqrt(vals[::-1])), angle=angle,
                          facecolor=c, alpha=0.12, edgecolor=c, lw=1.2))
 
-# Name the six states farthest from the centre
-for i in np.argsort(-np.hypot(*scores.T))[:6]:
+# Name the six Western Balkan countries
+for i in np.flatnonzero(groups == "Western Balkans"):
     ax.annotate(states[i], scores[i], xytext=(0, -6), textcoords="offset points", fontsize=8.5,
                 color="#6E6E73", ha="center", va="top")
 
@@ -78,10 +82,9 @@ ax.set_xlabel(f"PC1 ({var[0]:.1f}% of variance)")
 ax.set_ylabel(f"PC2 ({var[1]:.1f}% of variance)")
 ax.grid(False)
 ax.set_aspect("equal", adjustable="datalim")
-ax.legend(loc="lower left", markerscale=1.5, handletextpad=0.3)
-ax.set_title(f"Crime and single parenthood rise together along PC1 ({var[0]:.0f}% of variance)",
-             pad=26)
-ax.text(0, 1.02, f"PCA on {X.shape[1]} standardised indicators · n = {len(X)} (50 states + DC) · "
-        f"PC1 + PC2 = {var.sum():.1f}% of variance · ellipses: 68% normal", transform=ax.transAxes,
-        fontsize=9.5, color="#6E6E73")
+ax.legend(loc="lower right", markerscale=1.5, handletextpad=0.3)
+ax.set_title("The Western Balkans sit at the low-institution end of PC1", pad=26)
+ax.text(0, 1.02, f"PCA on {X.shape[1]} standardised indicators · n = {len(X)} countries (simulated) · "
+        f"PC1 + PC2 = {var.sum():.1f}% of variance · 68% ellipses",
+        transform=ax.transAxes, fontsize=9.5, color="#6E6E73")
 plt.show()

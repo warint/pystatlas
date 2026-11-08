@@ -1,7 +1,7 @@
 [
  {
   "title": "Confusion matrix with metrics",
-  "summary": "How well a logistic regression predicts who voted Dole in 1996 \u2014 out-of-fold confusion matrix with counts and row shares, and bootstrap intervals for the headline metrics.",
+  "summary": "How well a classifier sorts tweets into Environmental, Social and Governance topics \u2014 out-of-fold 3 \u00d7 3 confusion matrix with bootstrap intervals for the metrics.",
   "r": "yardstick::conf_mat() + autoplot()",
   "category": "Machine learning",
   "tags": [
@@ -9,17 +9,14 @@
    "confusion matrix",
    "precision",
    "recall",
-   "F1",
    "cross-validation",
-   "bootstrap",
-   "elections",
-   "voting"
+   "ESG"
   ],
   "url": "machine-learning/confusion-matrix/"
  },
  {
   "title": "Precision\u2013recall curves",
-  "summary": "Out-of-fold precision\u2013recall curves for two classifiers predicting which married women report an affair, with average precision and the no-skill baseline.",
+  "summary": "Out-of-fold precision\u2013recall curves for two classifiers predicting which Facebook users share COVID-19 fake news, with average precision and the no-skill baseline.",
   "r": "yardstick::pr_curve() + autoplot()",
   "category": "Machine learning",
   "tags": [
@@ -28,15 +25,13 @@
    "recall",
    "average precision",
    "imbalanced data",
-   "threshold",
-   "survey data",
-   "family"
+   "misinformation"
   ],
   "url": "machine-learning/precision-recall/"
  },
  {
   "title": "Learning curve",
-  "summary": "Training and cross-validated accuracy as the training set grows, for two models predicting which married women report an affair.",
+  "summary": "Training and cross-validated accuracy as the training set grows, for two models predicting which Facebook users share COVID-19 fake news.",
   "r": "caret::learning_curve_dat() + ggplot()",
   "category": "Machine learning",
   "tags": [
@@ -45,14 +40,13 @@
    "bias-variance",
    "cross-validation",
    "sample size",
-   "survey data",
-   "family"
+   "misinformation"
   ],
   "url": "machine-learning/learning-curve/"
  },
  {
   "title": "Cross-validated model comparison",
-  "summary": "Fold-by-fold R\u00b2 of six models predicting California school districts' maths results, with means and corrected 95% intervals.",
+  "summary": "Fold-by-fold R\u00b2 of six models predicting the waste rate of production batches, with means and corrected 95% intervals.",
   "r": "caret::resamples() + bwplot() / tune::autoplot()",
   "category": "Machine learning",
   "tags": [
@@ -61,13 +55,13 @@
    "repeated k-fold",
    "Nadeau-Bengio",
    "R\u00b2",
-   "education"
+   "manufacturing"
   ],
   "url": "machine-learning/model-comparison/"
  },
  {
   "title": "Permutation importance",
-  "summary": "Which district characteristics a random forest relies on to predict maths results \u2014 drop in test-set R\u00b2 when each one is shuffled.",
+  "summary": "Which process features a random forest relies on to predict a batch's waste rate \u2014 drop in test-set R\u00b2 when each one is shuffled.",
   "r": "vip::vip(method = \"permute\")",
   "category": "Machine learning",
   "tags": [
@@ -76,14 +70,13 @@
    "model-agnostic",
    "interpretability",
    "random forest",
-   "education",
-   "poverty"
+   "manufacturing"
   ],
   "url": "machine-learning/permutation-importance/"
  },
  {
   "title": "Partial dependence with ICE curves",
-  "summary": "How predicted maths results change with poverty and with spending per pupil \u2014 the average (PDP) over one curve per school district (ICE).",
+  "summary": "How a batch's predicted waste rate changes with machine speed and with days since maintenance \u2014 the average (PDP) over one curve per batch (ICE).",
   "r": "pdp::partial(ice = TRUE) + autoplot() / iml::FeatureEffect",
   "category": "Machine learning",
   "tags": [
@@ -92,14 +85,13 @@
    "interpretability",
    "non-linearity",
    "gradient boosting",
-   "education",
-   "poverty"
+   "manufacturing"
   ],
   "url": "machine-learning/partial-dependence/"
  },
  {
   "title": "SHAP summary (beeswarm)",
-  "summary": "Every school district's SHAP value for every characteristic, coloured by the characteristic's value, with mean |SHAP| importance.",
+  "summary": "Every production batch's SHAP value for every process feature, coloured by the feature's value, with mean |SHAP| importance.",
   "r": "shapviz::sv_importance(kind = \"beeswarm\")",
   "category": "Machine learning",
   "tags": [
@@ -108,32 +100,28 @@
    "beeswarm",
    "feature importance",
    "interpretability",
-   "gradient boosting",
-   "education",
-   "poverty"
+   "manufacturing"
   ],
   "url": "machine-learning/shap-beeswarm/"
  },
  {
   "title": "SHAP dependence plot",
-  "summary": "How the share of low-income students feeds into each district's predicted maths results, coloured by its strongest interaction partner, with a smooth trend.",
+  "summary": "How days since maintenance feed into each batch's predicted waste rate, coloured by its strongest interaction partner, with a smooth trend.",
   "r": "shapviz::sv_dependence()",
   "category": "Machine learning",
   "tags": [
    "SHAP",
    "dependence plot",
    "interaction",
-   "non-linearity",
    "LOWESS",
    "interpretability",
-   "education",
-   "poverty"
+   "manufacturing"
   ],
   "url": "machine-learning/shap-dependence/"
  },
  {
   "title": "SHAP waterfall for one prediction",
-  "summary": "How each characteristic moves one struggling school district's predicted maths results from the average to the model's output.",
+  "summary": "How each process feature moves one high-waste batch's predicted waste rate from the average to the model's output.",
   "r": "shapviz::sv_waterfall()",
   "category": "Machine learning",
   "tags": [
@@ -142,7 +130,7 @@
    "local explanation",
    "individual prediction",
    "interpretability",
-   "education"
+   "manufacturing"
   ],
   "url": "machine-learning/shap-waterfall/"
  },
@@ -221,8 +209,7 @@
    "normality",
    "skewness",
    "Shapiro-Wilk",
-   "demography",
-   "fertility"
+   "text similarity"
   ],
   "url": "distributions/histogram-density/"
  },
@@ -237,8 +224,7 @@
    "box plot",
    "Kruskal-Wallis",
    "distribution",
-   "political science",
-   "regimes"
+   "sentiment"
   ],
   "url": "distributions/raincloud/"
  },
@@ -252,8 +238,8 @@
    "joy plot",
    "KDE",
    "Friedman",
-   "demography",
-   "fertility"
+   "macroeconomics",
+   "current account"
   ],
   "url": "distributions/ridgeline/"
  },
@@ -267,8 +253,8 @@
    "Kolmogorov-Smirnov",
    "cumulative distribution",
    "two-sample test",
-   "criminology",
-   "recidivism"
+   "sport",
+   "golf"
   ],
   "url": "distributions/ecdf-comparison/"
  },
@@ -282,7 +268,8 @@
    "normality",
    "confidence band",
    "log transform",
-   "Shapiro-Wilk"
+   "Shapiro-Wilk",
+   "bibliometrics"
   ],
   "url": "distributions/qq-plot/"
  },
@@ -297,8 +284,7 @@
    "Holm",
    "effect size",
    "violin",
-   "education",
-   "inequality"
+   "climate risk"
   ],
   "url": "group-comparisons/between-groups-violin/"
  },
@@ -313,8 +299,7 @@
    "rm-ANOVA",
    "effect size",
    "spaghetti plot",
-   "panel data",
-   "demography"
+   "manufacturing"
   ],
   "url": "group-comparisons/within-subjects/"
  },
@@ -329,8 +314,7 @@
    "effect size",
    "mean difference",
    "confidence interval",
-   "crime",
-   "poverty"
+   "social media"
   ],
   "url": "group-comparisons/estimation-plot/"
  },
@@ -345,9 +329,7 @@
    "means",
    "confidence interval",
    "factorial",
-   "survey",
-   "elections",
-   "ideology"
+   "consumers"
   ],
   "url": "group-comparisons/means-with-ci/"
  },
@@ -361,7 +343,8 @@
    "post hoc",
    "multiple comparisons",
    "ANOVA",
-   "confidence interval"
+   "confidence interval",
+   "central banking"
   ],
   "url": "group-comparisons/tukey-hsd/"
  },
@@ -374,7 +357,8 @@
    "Likert",
    "survey",
    "diverging bar",
-   "Friedman test"
+   "Friedman test",
+   "misinformation"
   ],
   "url": "proportions-surveys/likert-diverging/"
  },
@@ -388,7 +372,8 @@
    "chi-squared",
    "Cram\u00e9r's V",
    "stacked bar",
-   "survey"
+   "sentiment",
+   "elections"
   ],
   "url": "proportions-surveys/stacked-proportions/"
  },
@@ -401,13 +386,15 @@
    "mosaic",
    "contingency table",
    "chi-squared",
-   "Pearson residuals"
+   "Pearson residuals",
+   "discourse",
+   "Twitter"
   ],
   "url": "proportions-surveys/mosaic-plot/"
  },
  {
   "title": "Proportions with confidence intervals",
-  "summary": "A sorted dot plot of group proportions with Wilson 95% confidence intervals.",
+  "summary": "A sorted dot plot of proportions with Wilson 95% confidence intervals.",
   "r": "ggstats::stat_prop() + geom_errorbar()",
   "category": "Proportions & surveys",
   "tags": [
@@ -415,7 +402,8 @@
    "Wilson interval",
    "confidence interval",
    "dot plot",
-   "chi-squared"
+   "Cochran's Q",
+   "climate transition plans"
   ],
   "url": "proportions-surveys/proportions-with-ci/"
  },
@@ -429,7 +417,8 @@
    "chi-squared",
    "standardized residuals",
    "heatmap",
-   "cross-tab"
+   "cross-tab",
+   "ESG"
   ],
   "url": "proportions-surveys/crosstab-residuals/"
  },
@@ -443,13 +432,14 @@
    "Pearson",
    "heatmap",
    "Holm",
-   "multiple testing"
+   "multiple testing",
+   "trilemma"
   ],
   "url": "correlation/correlation-matrix/"
  },
  {
   "title": "Scatterplot with statistics",
-  "summary": "Low-income pupils vs math results in 303 California districts \u2014 scatter, OLS line with 95% band, marginal histograms and Pearson's r.",
+  "summary": "Trade intensity vs business-cycle correlation for country pairs \u2014 scatter, OLS line with 95% band, marginal histograms and Pearson's r.",
   "r": "ggstatsplot::ggscatterstats()",
   "category": "Correlation & association",
   "tags": [
@@ -458,13 +448,13 @@
    "scatterplot",
    "regression line",
    "marginal histogram",
-   "education"
+   "optimum currency area"
   ],
   "url": "correlation/scatter-with-stats/"
  },
  {
   "title": "Pairs plot with correlations",
-  "summary": "Scatter matrix of four school-district variables, with group KDEs on the diagonal and pooled vs within-group correlations above it.",
+  "summary": "Scatter matrix of four regional growth variables, with group KDEs on the diagonal and pooled vs within-group correlations above it.",
   "r": "GGally::ggpairs()",
   "category": "Correlation & association",
   "tags": [
@@ -473,14 +463,13 @@
    "correlation",
    "KDE",
    "Simpson's paradox",
-   "confounding",
-   "education"
+   "convergence"
   ],
   "url": "correlation/pairs-plot/"
  },
  {
   "title": "Correlogram with clustering",
-  "summary": "Corrplot-style circles sized and coloured by r for 13 school-district indicators, ordered by hierarchical clustering.",
+  "summary": "Corrplot-style circles sized and coloured by r for 12 development indicators, ordered by hierarchical clustering.",
   "r": "corrplot::corrplot(order = \"hclust\", addrect = 3)",
   "category": "Correlation & association",
   "tags": [
@@ -489,7 +478,7 @@
    "hierarchical clustering",
    "heatmap",
    "corrplot",
-   "education"
+   "development"
   ],
   "url": "correlation/correlogram-bubble/"
  },
@@ -502,7 +491,8 @@
    "regression",
    "OLS",
    "confidence interval",
-   "dot-and-whisker"
+   "dot-and-whisker",
+   "economic growth"
   ],
   "url": "regression-models/coefficient-plot/"
  },
@@ -516,13 +506,13 @@
    "odds ratio",
    "forest plot",
    "confidence interval",
-   "GLM"
+   "migration"
   ],
   "url": "regression-models/odds-ratio-forest/"
  },
  {
   "title": "Comparing nested models",
-  "summary": "Coefficients of three nested regressions of district math results side by side, to see how estimates shift as blocks are added.",
+  "summary": "Coefficients of three nested FDI regressions side by side, to see how estimates shift as an EU block is added.",
   "r": "ggstats::ggcoef_compare()",
   "category": "Regression models",
   "tags": [
@@ -531,7 +521,7 @@
    "nested models",
    "confidence interval",
    "OLS",
-   "education"
+   "FDI"
   ],
   "url": "regression-models/compare-models/"
  },
@@ -545,13 +535,13 @@
    "predicted probability",
    "marginal effects",
    "confidence band",
-   "GLM"
+   "AI perception"
   ],
   "url": "regression-models/predicted-probabilities/"
  },
  {
   "title": "Interaction effects",
-  "summary": "Simple slopes at mean \u00b1 1 SD and a Johnson\u2013Neyman plot for college-prep courses and math results, moderated by pupil poverty.",
+  "summary": "Simple slopes at mean \u00b1 1 SD and a Johnson\u2013Neyman plot for capital inflows and credit growth, moderated by exchange-rate flexibility.",
   "r": "interactions::interact_plot() / interactions::johnson_neyman()",
   "category": "Regression models",
   "tags": [
@@ -560,7 +550,7 @@
    "simple slopes",
    "Johnson-Neyman",
    "marginal effect",
-   "education"
+   "capital flows"
   ],
   "url": "regression-models/interaction-effects/"
  },
@@ -574,7 +564,7 @@
    "heteroscedasticity",
    "OLS",
    "confidence interval",
-   "Engel curve"
+   "R&D"
   ],
   "url": "regression-models/quantile-regression/"
  },
@@ -588,7 +578,7 @@
    "Q-Q plot",
    "Cook's distance",
    "leverage",
-   "heteroscedasticity"
+   "gravity model"
   ],
   "url": "model-diagnostics/residual-diagnostics/"
  },
@@ -602,7 +592,8 @@
    "Cook's distance",
    "leverage",
    "outliers",
-   "studentized residuals"
+   "studentized residuals",
+   "banking"
   ],
   "url": "model-diagnostics/influence-plot/"
  },
@@ -616,7 +607,8 @@
    "AUC",
    "classification",
    "bootstrap",
-   "Youden index"
+   "Youden index",
+   "collusion"
   ],
   "url": "model-diagnostics/roc-curve/"
  },
@@ -630,7 +622,7 @@
    "reliability diagram",
    "Brier score",
    "classification",
-   "probability"
+   "supply chain"
   ],
   "url": "model-diagnostics/calibration-plot/"
  },
@@ -643,14 +635,14 @@
    "partial regression",
    "added-variable",
    "Frisch-Waugh-Lovell",
-   "influence",
-   "multiple regression"
+   "multiple regression",
+   "gravity model"
   ],
   "url": "model-diagnostics/partial-regression/"
  },
  {
   "title": "Kaplan\u2013Meier curves",
-  "summary": "How long political leaders stay in office, democracies vs non-democracies \u2014 survival curves with confidence bands, censoring marks, log-rank test and risk table.",
+  "summary": "Time from patent filing to grant, domestic vs foreign applicants, with log-rank test and risk table.",
   "r": "survminer::ggsurvplot(risk.table = TRUE)",
   "category": "Survival analysis",
   "tags": [
@@ -659,13 +651,13 @@
    "survival",
    "censoring",
    "risk table",
-   "political science"
+   "patents"
   ],
   "url": "survival/kaplan-meier/"
  },
  {
   "title": "Cox hazard ratios",
-  "summary": "Forest plot of a Cox proportional hazards model with HR, 95% CI and p-values.",
+  "summary": "Forest plot of a Cox model of time to patent grant, with HR, 95% CI and p-values.",
   "r": "survminer::ggforest()",
   "category": "Survival analysis",
   "tags": [
@@ -673,13 +665,14 @@
    "hazard ratio",
    "forest plot",
    "proportional hazards",
-   "survival"
+   "survival",
+   "patents"
   ],
   "url": "survival/cox-hazard-ratios/"
  },
  {
   "title": "Cumulative hazard",
-  "summary": "Nelson\u2013Aalen cumulative hazard of leaving office, with 95% bands, for four political regimes.",
+  "summary": "Nelson\u2013Aalen cumulative hazard of a drug's launch, with 95% bands, in four market groups.",
   "r": "survminer::ggsurvplot(fun = \"cumhaz\")",
   "category": "Survival analysis",
   "tags": [
@@ -687,13 +680,13 @@
    "cumulative hazard",
    "survival",
    "log-rank",
-   "political science"
+   "pharmaceuticals"
   ],
   "url": "survival/cumulative-hazard/"
  },
  {
   "title": "Adjusted survival curves",
-  "summary": "Cox model\u2013predicted survival for several ages, other covariates held at their mean.",
+  "summary": "Cox-predicted time to patent grant at four levels of relatedness, other covariates at their mean.",
   "r": "survminer::ggadjustedcurves()",
   "category": "Survival analysis",
   "tags": [
@@ -701,13 +694,14 @@
    "adjusted survival",
    "prediction",
    "survival",
-   "covariates"
+   "covariates",
+   "patents"
   ],
   "url": "survival/adjusted-survival/"
  },
  {
   "title": "STL decomposition",
-  "summary": "A monthly industrial turnover series split into trend, seasonal and remainder components in stacked panels.",
+  "summary": "Monthly manufacturing sales split into trend, seasonal and remainder components.",
   "r": "feasts::STL() + autoplot()",
   "category": "Time series",
   "tags": [
@@ -716,13 +710,13 @@
    "seasonality",
    "trend",
    "time series",
-   "economics"
+   "Statistics Canada"
   ],
   "url": "time-series/stl-decomposition/"
  },
  {
   "title": "ACF and PACF",
-  "summary": "Autocorrelation and partial autocorrelation of US quarterly unemployment, as lollipops with 95% significance bands.",
+  "summary": "ACF and PACF of a monthly sovereign bond spread over the Bund, with 95% significance bands.",
   "r": "forecast::ggtsdisplay()",
   "category": "Time series",
   "tags": [
@@ -731,14 +725,13 @@
    "PACF",
    "Ljung-Box",
    "time series",
-   "economics",
-   "unemployment"
+   "sovereign bonds"
   ],
   "url": "time-series/acf-pacf/"
  },
  {
   "title": "SARIMA forecast",
-  "summary": "Seasonal ARIMA forecast of industrial turnover with 80% and 95% prediction intervals against held-out data.",
+  "summary": "Seasonal ARIMA forecast of monthly manufacturing sales, with 80% and 95% intervals vs held-out data.",
   "r": "forecast::autoplot(forecast())",
   "category": "Time series",
   "tags": [
@@ -747,13 +740,13 @@
    "forecast",
    "prediction interval",
    "RMSE",
-   "economics"
+   "Statistics Canada"
   ],
   "url": "time-series/arima-forecast/"
  },
  {
   "title": "Seasonal subseries plot",
-  "summary": "Each calendar month's industrial turnover across the years, with the monthly mean as a reference.",
+  "summary": "Each calendar month's manufacturing sales across the years, with the monthly mean.",
   "r": "feasts::gg_subseries()",
   "category": "Time series",
   "tags": [
@@ -762,13 +755,13 @@
    "month plot",
    "ANOVA",
    "time series",
-   "economics"
+   "Statistics Canada"
   ],
   "url": "time-series/seasonal-subseries/"
  },
  {
   "title": "PCA biplot",
-  "summary": "US states and their social indicators on the first two principal components.",
+  "summary": "European countries on institutional and economic indicators, Western Balkans highlighted.",
   "r": "factoextra::fviz_pca_biplot()",
   "category": "Multivariate & clustering",
   "tags": [
@@ -777,15 +770,13 @@
    "loadings",
    "dimension reduction",
    "ellipse",
-   "US states",
-   "crime",
-   "poverty"
+   "Western Balkans"
   ],
   "url": "multivariate/pca-biplot/"
  },
  {
   "title": "Scree plot",
-  "summary": "How many dimensions describe 303 California school districts? Variance per component and a parallel-analysis cut-off.",
+  "summary": "How many dimensions describe digital skills in 300 occupations? Variance per component and a parallel-analysis cut-off.",
   "r": "factoextra::fviz_eig()",
   "category": "Multivariate & clustering",
   "tags": [
@@ -794,14 +785,13 @@
    "eigenvalues",
    "parallel analysis",
    "Kaiser",
-   "education",
-   "school districts"
+   "digital skills"
   ],
   "url": "multivariate/scree-plot/"
  },
  {
   "title": "Silhouette plot for k-means",
-  "summary": "Do US states fall into distinct social profiles? k-means clusters next to their silhouette widths.",
+  "summary": "Do industries fall into clusters of growth co-movement? k-means clusters next to their silhouette widths.",
   "r": "factoextra::fviz_silhouette()",
   "category": "Multivariate & clustering",
   "tags": [
@@ -810,30 +800,28 @@
    "silhouette",
    "PCA",
    "cluster validation",
-   "US states",
-   "crime"
+   "industrial clusters"
   ],
   "url": "multivariate/silhouette-clusters/"
  },
  {
   "title": "Clustered heatmap",
-  "summary": "Z-scored heatmap of US states' social indicators, with row and column dendrograms and a Census-region colour bar.",
+  "summary": "Jaccard similarity between 24 party manifestos, with dendrograms and party-family colour bars.",
   "r": "pheatmap::pheatmap() / ComplexHeatmap::Heatmap()",
   "category": "Multivariate & clustering",
   "tags": [
    "heatmap",
    "hierarchical clustering",
    "dendrogram",
-   "z-score",
+   "similarity matrix",
    "clustermap",
-   "US states",
-   "crime"
+   "party manifestos"
   ],
   "url": "multivariate/clustered-heatmap/"
  },
  {
   "title": "Bootstrap distribution",
-  "summary": "Resampled correlation with percentile and BCa 95% confidence intervals.",
+  "summary": "Online sellers and price dispersion across 20 products \u2014 resampled correlation with percentile and BCa 95% CIs.",
   "r": "boot::boot() + boot::boot.ci()",
   "category": "Inference & uncertainty",
   "tags": [
@@ -841,13 +829,14 @@
    "BCa",
    "percentile interval",
    "correlation",
-   "resampling"
+   "resampling",
+   "price dispersion"
   ],
   "url": "inference-uncertainty/bootstrap-distribution/"
  },
  {
   "title": "What a 95% confidence interval means",
-  "summary": "100 surveys of 30 people drawn from 944 ANES respondents; the 95% CIs for mean age that miss the true value are in red.",
+  "summary": "100 surveys of 30 firms out of 2,000; the 95% CIs for the mean climate-risk score that miss are in red.",
   "r": "teaching classic (e.g. TeachingDemos::ci.examp())",
   "category": "Inference & uncertainty",
   "tags": [
@@ -856,8 +845,7 @@
    "sampling",
    "t-interval",
    "teaching",
-   "survey",
-   "ANES"
+   "climate risk"
   ],
   "url": "inference-uncertainty/confidence-intervals/"
  },
@@ -877,7 +865,7 @@
  },
  {
   "title": "Bland\u2013Altman plot",
-  "summary": "Do two coders place party manifestos on the left\u2013right scale the same way? Bias and 95% limits of agreement.",
+  "summary": "Do AI-assisted and expert scores of IPCC scenario passages agree? Bias and 95% limits of agreement.",
   "r": "BlandAltmanLeh::bland.altman.plot() / blandr::blandr.draw()",
   "category": "Inference & uncertainty",
   "tags": [
@@ -886,8 +874,7 @@
    "limits of agreement",
    "method comparison",
    "bias",
-   "content analysis",
-   "coding"
+   "AI-assisted coding"
   ],
   "url": "inference-uncertainty/bland-altman/"
  },

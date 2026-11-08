@@ -2,7 +2,7 @@
 title: Diverging Likert chart
 summary: Five-point Likert items as diverging stacked bars centred on the neutral answer.
 r: ggstats::gglikert()
-tags: [Likert, survey, diverging bar, Friedman test]
+tags: [Likert, survey, diverging bar, Friedman test, misinformation]
 description: |
   The Python counterpart of `gglikert()`. Each row is one survey item; the bar is
   split into the five answer levels and shifted so that the **neutral** answer sits
@@ -10,8 +10,10 @@ description: |
   sorted by total agreement, and the side columns give the total share who
   disagree (left) and agree (right), so rows can be compared without reading segments.
 
-  Data are a seeded simulation of 600 employees answering six workplace statements.
-  Percentages come from `pd.crosstab(normalize="index")`; the subtitle reports a
+  The setting is Melchior, Warin & Oliveira (2026, *Data in Brief*), a survey on
+  sharing COVID-19 news and fake news on Facebook. The data are **simulated** for
+  illustration and are *not* the survey's data or results: 600 respondents answer
+  six statements about how they read and share COVID-19 news. Percentages come from `pd.crosstab(normalize="index")`; the subtitle reports a
   **Friedman test** (`scipy.stats.friedmanchisquare`) asking whether the items
   receive the same distribution of answers from the same respondents.
 """
@@ -19,12 +21,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from scipy import stats
+# Simulated data, set in the context of Melchior, Warin & Oliveira (2026) [melchior2026survey]
 
-# Simulated survey: 600 respondents, 6 items, answers 1-5 driven by a shared latent mood
+# Simulated survey: 600 Facebook users, 6 items, answers 1-5 driven by a shared latent attitude
 rng = np.random.default_rng(42)
-items = {"My workload is manageable": -0.6, "I have the tools I need": 0.4,
-         "My manager supports me": 0.8, "I feel fairly paid": -1.0,
-         "I would recommend this employer": 0.2, "I see a future for myself here": -0.2}
+items = {"I check the source before sharing": 0.8, "I trust COVID-19 news on Facebook": -0.9,
+         "I share news without reading it": -1.1, "Friends' posts shape my views": 0.1,
+         "I can spot fake COVID-19 news": 0.4, "I report false posts I see": -0.4}
 mood = rng.normal(0, 0.8, 600)
 answers = pd.DataFrame({item: np.digitize(shift + mood + rng.normal(0, 1, 600),
                                           [-1.6, -0.5, 0.5, 1.6]) + 1
@@ -66,7 +69,7 @@ ax.set_xticks(range(-60, 61, 20), [f"{abs(t)}%" for t in range(-60, 61, 20)])
 ax.grid(axis="x"); ax.grid(axis="y", visible=False)
 ax.legend(ncols=5, loc="upper center", bbox_to_anchor=(0.5, -0.08), fontsize=9,
           handlelength=1, columnspacing=1.2)
-ax.set_title("Staff back their managers but not their pay", pad=26)
+ax.set_title("Most say they check sources; few trust COVID-19 news on Facebook", pad=26)
 ax.text(0, 1.02, f"n = {len(answers)} respondents (simulated) · Friedman χ²({answers.shape[1] - 1}) = "
         f"{fr.statistic:.0f}, p < .001 · bar labels in %", transform=ax.transAxes,
         fontsize=9.5, color="#6E6E73")

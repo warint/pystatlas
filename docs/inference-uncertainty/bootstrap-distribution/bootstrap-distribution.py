@@ -1,8 +1,8 @@
 """
 title: Bootstrap distribution
-summary: Resampled correlation with percentile and BCa 95% confidence intervals.
+summary: Online sellers and price dispersion across 20 products — resampled correlation with percentile and BCa 95% CIs.
 r: boot::boot() + boot::boot.ci()
-tags: [bootstrap, BCa, percentile interval, correlation, resampling]
+tags: [bootstrap, BCa, percentile interval, correlation, resampling, price dispersion]
 description: |
   The bootstrap re-estimates a statistic on thousands of samples drawn with
   replacement from the data; the spread of those estimates is its sampling
@@ -10,20 +10,26 @@ description: |
   the orange line the value observed in the full sample. Two 95% intervals are
   drawn above it: the simple **percentile** interval and the **BCa**
   (bias-corrected and accelerated) interval, which shifts to account for the
-  bias and skew visible here — the distribution is far from symmetric.
+  bias and skew visible here — with only 20 products the distribution is far
+  from symmetric.
 
-  Data are the 50 US states + DC from the **statsmodels** `statecrime` dataset:
-  the share of single-parent households vs the violent-crime rate.
+  The setting is Leiter & Warin (2012), "Homogenous goods markets: An empirical
+  study of price dispersion on the internet" (*International Journal of
+  Economics and Business Research*): for each of 20 homogeneous products, the
+  number of online sellers and the price dispersion (coefficient of variation of
+  posted prices, %). The data are **simulated** with `numpy` (seeded) for
+  illustration; they are *not* the paper's data or results.
   `scipy.stats.bootstrap` (paired, 9,999 resamples) provides both intervals.
 """
 import matplotlib.pyplot as plt
 import numpy as np
-import statsmodels.api as sm
 from scipy import stats
 
-# Data: violent crime vs single-parent households, 51 states
-df = sm.datasets.statecrime.load_pandas().data
-x, y = df["single"].to_numpy(), df["violent"].to_numpy()
+# Simulated data, set in the context of Leiter & Warin (2012) [leiter2012]
+# 20 products: number of online sellers and price dispersion (CV of prices, %)
+rng = np.random.default_rng(2012)
+x = np.round(rng.lognormal(np.log(15), 0.6, 20))
+y = np.clip(14 - 2.8 * np.log(x) + rng.normal(0, 1.6, 20), 1, None)
 r_obs = stats.pearsonr(x, y)[0]
 
 # Paired bootstrap of Pearson's r: percentile and BCa intervals from the same resamples
@@ -49,18 +55,18 @@ for i, (m, c, name) in enumerate([("percentile", "#8E8E93", "Percentile"),
     yy = top * (1.12 + 0.12 * i)
     ax.plot([a, b], [yy, yy], color=c, lw=3, solid_capstyle="butt")
     ax.vlines([a, b], yy - top * 0.03, yy + top * 0.03, color=c, lw=2)
-    ax.text(a - 0.01, yy, f"{name} 95% CI  [{a:.2f}, {b:.2f}]", ha="right", va="center",
+    ax.text(b + 0.015, yy, f"{name} 95% CI  [{a:.2f}, {b:.2f}]", ha="left", va="center",
             fontsize=9.5, color=c, fontweight="semibold")
 
 ax.vlines(r_obs, 0, top * 1.34, color="#FF9500", lw=2, zorder=3)
 ax.text(r_obs, top * 1.36, f"observed r = {r_obs:.2f}", ha="center", va="bottom",
         fontsize=9.5, color="#FF9500", fontweight="semibold")
-ax.set_xlim(0.15, 1)
+ax.set_xlim(-1, 0)
 ax.set_ylim(0, top * 1.46)
 ax.set_xlabel("Bootstrap estimate of Pearson's r")
 ax.set_ylabel("Resamples")
-ax.set_title("Crime and single parenthood: a strong but skewed correlation", pad=26)
-ax.text(0, 1.02, f"Paired bootstrap, B = 9,999 · n = {len(x)} states · bias = "
-        f"{dist.mean() - r_obs:+.3f} · Fisher-z 95% CI [{fisher[0]:.2f}, {fisher[1]:.2f}] for comparison",
+ax.set_title("More sellers, less price dispersion: a skewed bootstrap distribution", pad=26)
+ax.text(0, 1.02, f"Paired bootstrap, B = 9,999 · n = {len(x)} products (simulated) · bias = "
+        f"{dist.mean() - r_obs:+.3f} · Fisher-z CI [{fisher[0]:.2f}, {fisher[1]:.2f}]",
         transform=ax.transAxes, fontsize=9.5, color="#6E6E73")
 plt.show()

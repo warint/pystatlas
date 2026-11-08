@@ -43,6 +43,12 @@ plt.show()
   macrodata, nile, sunspots, star98, anes96, …), `sklearn.datasets.load_*` (wine, iris,
   diabetes, breast_cancer), `lifelines.datasets.load_*` (rossi, lung, gbsg2, waltons, …) —
   or a simulation seeded with `np.random.default_rng(<int>)`.
+- **Set in a paper.** Most charts are set in the context of one of the author's papers, listed in
+  `data_sources.yaml` under a short key. Put one comment line after the imports —
+  `# Simulated data, set in the context of Sanger & Warin (2019) [sanger2019]` — and keep the
+  simulation just large enough for the chart. The description must say the data are simulated and
+  are not the paper's data or results, and the grey subtitle must contain "simulated". Real values
+  are typed in only from a published table: `# Data typed in from <Authors (year)>, Table N [<key>]`.
 - **Libraries:** numpy, pandas, matplotlib, seaborn, scipy, statsmodels, scikit-learn, lifelines.
 - **Statistics on the chart.** Report the test, statistic, p-value, effect size or interval that
   makes the chart *statistical*. Use a grey subtitle line under the title:

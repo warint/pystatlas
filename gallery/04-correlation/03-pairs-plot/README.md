@@ -1,6 +1,6 @@
 # Pairs plot with correlations
 
-> Scatter matrix of four school-district variables, with group KDEs on the diagonal and pooled vs within-group correlations above it.
+> Scatter matrix of four regional growth variables, with group KDEs on the diagonal and pooled vs within-group correlations above it.
 
 ![Pairs plot with correlations](plot.png)
 
@@ -11,36 +11,46 @@ Pearson's *r*, overall (bold) and within each group, with significance stars.
 Comparing the two is the point: pooled and within-group correlations can differ
 sharply — even in sign — when groups sit in different regions of the plot.
 
-Data are the 303 California school districts of the STAR98 test bundled with
-**statsmodels** (`sm.datasets.star98`): the share of pupils above the national
-median in math, the shares of Hispanic pupils and of pupils in college-prep
-(UC/CSU) courses, and teachers' average years of experience. Districts are
-grouped into thirds of their share of low-income pupils (`pd.qcut`, 101 each),
-so the within-group coefficients hold poverty roughly constant: the link
-between Hispanic share and math results, −0.71 overall, is weaker inside every
-poverty group. Densities use `scipy.stats.gaussian_kde` and correlations
+The setting is Hadengue & Warin (2014, *Management international*) on
+specialisation and (un)conditional convergence in Brazil, China and India. The
+data are **simulated** for illustration and are *not* the paper's data or
+results: 86 regions (27 Brazilian states, 31 Chinese provinces, 28 Indian
+states) with average growth, log initial income per head, a specialisation index
+and an export-diversification index. Within each country poorer regions grow
+faster (conditional convergence), while the pooled correlation mixes in the gaps
+between countries. Densities use `scipy.stats.gaussian_kde` and correlations
 `scipy.stats.pearsonr`; the grid is a plain `plt.subplots(4, 4)`.
 
 **R equivalent:** `GGally::ggpairs()`  
-**Libraries:** Matplotlib, NumPy, pandas, statsmodels, SciPy
+**Libraries:** Matplotlib, NumPy, pandas, SciPy
 
-**Data:** Gill, J. (2001). Generalized Linear Models: A Unified Approach (Quantitative Applications in the Social Sciences, No. 134). Sage. https://www.statsmodels.org/stable/datasets/generated/star98.html — Original data from the California Department of Education's Standardized Testing and Reporting (STAR) program, 1998. Subset distributed with statsmodels (sm.datasets.star98) with the author's permission.
+**Data:** Simulated data with a fixed random seed, created for this example. — No real respondents, documents or measurements: the numbers only illustrate how the chart and its statistics work.
+
+**Data:** Hadengue, M., & Warin, T. (2014). Patterns of specialization and (un)conditional convergence: The cases of Brazil, China and India. Management international, 18, 123–141. https://doi.org/10.7202/1027869ar — The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results.
 
 
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import statsmodels.api as sm
 from scipy import stats
 
-# Data: 303 California school districts (STAR98), grouped by thirds of low-income pupils
-raw = sm.datasets.star98.load_pandas().data
-df = pd.DataFrame({"Math above median (%)": 100 * raw.NABOVE / (raw.NABOVE + raw.NBELOW),
-                   "Hispanic pupils (%)": raw.PERHISP, "College-prep (%)": raw.PCTAF,
-                   "Teacher experience (yrs)": raw.AVYRSEXP})
-groups = ["Low poverty", "Middle", "High poverty"]
-df["group"] = pd.qcut(raw.LOWINC, 3, labels=groups).astype(str)
+# Simulated data, set in the context of Hadengue & Warin (2014) [hadengue2014]
+
+# Simulated regions: country means differ; within a country, poorer regions grow faster
+rng = np.random.default_rng(2014)
+groups = ["Brazil", "China", "India"]
+setup = {"Brazil": (27, 9.2, 2.5), "China": (31, 9.0, 9.0), "India": (28, 7.4, 6.0)}
+parts = []
+for g, (n, inc0, gr0) in setup.items():
+    dev = rng.normal(0, 0.45, n)                       # region's income gap to its country mean
+    spec = 0.30 - 0.12 * dev + rng.normal(0, 0.05, n)
+    parts.append(pd.DataFrame({"Growth (% per yr)": gr0 - 2.2 * dev + rng.normal(0, 0.7, n),
+                               "Initial income (log)": inc0 + dev,
+                               "Specialisation index": spec,
+                               "Export diversification": 3.4 - 4 * spec + rng.normal(0, 0.25, n),
+                               "group": g}))
+df = pd.concat(parts, ignore_index=True)
 cols = df.columns[:4]
 palette = ["#007AFF", "#FF9500", "#34C759"]
 stars = lambda p: "***" if p < .001 else "**" if p < .01 else "*" if p < .05 else ""
@@ -86,10 +96,10 @@ for i, yv in enumerate(cols):
         if j == 0:
             ax.set_ylabel(yv)
 
-fig.text(0.01, 0.985, "Part of the pooled correlations runs through poverty", fontsize=13,
+fig.text(0.01, 0.985, "Within each country, poorer regions grow faster", fontsize=13,
          fontweight="semibold", va="top")
-fig.text(0.01, 0.945, f"Pearson r, overall (bold) and within thirds of low-income pupils · n = {len(df)} "
-         "districts, 101 per group · * p<.05  ** p<.01  *** p<.001", fontsize=9.5, color="#6E6E73", va="top")
+fig.text(0.01, 0.945, f"Pearson r, overall (bold) and within country · n = {len(df)} regions "
+         "(simulated) · * p<.05  ** p<.01  *** p<.001", fontsize=9.5, color="#6E6E73", va="top")
 plt.show()
 ```
 

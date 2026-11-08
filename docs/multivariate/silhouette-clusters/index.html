@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Silhouette plot for k-means · PyStatlas</title>
-<meta name="description" content="Do US states fall into distinct social profiles? k-means clusters next to their silhouette widths.">
+<meta name="description" content="Do industries fall into clusters of growth co-movement? k-means clusters next to their silhouette widths.">
 <meta name="author" content="Thierry Warin">
 <link rel="author" href="https://www.warin.ca">
 <meta name="citation_title" content="Silhouette plot for k-means — PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences">
@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="x-default" href="https://warint.github.io/pystatlas/multivariate/silhouette-clusters/">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Silhouette plot for k-means — PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences", "url": "https://warint.github.io/pystatlas/multivariate/silhouette-clusters/", "inLanguage": "en", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "PyStatlas", "url": "https://warint.github.io/pystatlas/"}}</script>
 <meta property="og:title" content="Silhouette plot for k-means · PyStatlas">
-<meta property="og:description" content="Do US states fall into distinct social profiles? k-means clusters next to their silhouette widths.">
+<meta property="og:description" content="Do industries fall into clusters of growth co-movement? k-means clusters next to their silhouette widths.">
 <meta property="og:locale" content="en">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
@@ -51,7 +51,7 @@
 <main>
 <article class="wrap ex">
   <div class="crumbs"><a href="../../index.html">Gallery</a><span>/</span><a href="../../multivariate/index.html">Multivariate &amp; clustering</a></div>
-  <header class="ex-head"><h1>Silhouette plot for k-means</h1><p class="lede">Do US states fall into distinct social profiles? k-means clusters next to their silhouette widths.</p>
+  <header class="ex-head"><h1>Silhouette plot for k-means</h1><p class="lede">Do industries fall into clusters of growth co-movement? k-means clusters next to their silhouette widths.</p>
   <p class="byline">By <a href="https://www.warin.ca">Thierry Warin</a> · part of <a href="../../index.html">PyStatlas</a></p></header>
   <figure class="figure"><a href="../../multivariate/silhouette-clusters/plot.png" target="_blank" rel="noopener"><img src="../../multivariate/silhouette-clusters/plot.png" alt="Silhouette plot for k-means"></a></figure>
   <div class="ex-cols">
@@ -61,22 +61,22 @@ near 0 means on the border, negative means probably misassigned. The number of
 clusters k is the one with the highest average silhouette (2 to 8 tried).
 The left panel shows the clusters on the first two principal components; the
 right panel sorts the silhouette widths within each cluster, with the dashed
-line at the overall average.</p><p>Data are the 50 US states from the <strong>statsmodels</strong> <code>statecrime</code> dataset (2009
-figures), described by 7 standardised indicators: violent-crime and murder
-rates, % high-school graduates, % in poverty, % single-parent households,
-% white and % urban. The District of Columbia is left out: it is so extreme
-that k-means would give it a cluster of its own. The two clusters found are
-roughly a lower-crime, lower-poverty profile and a higher-crime,
-higher-poverty one, but an average silhouette around 0.35 is a <strong>weak</strong>
-structure by Kaufman &amp; Rousseeuw&#x27;s rule of thumb (0.26–0.50): states form a
-continuum more than separate types. <code>KMeans</code>, <code>silhouette_score</code> and
-<code>silhouette_samples</code> from <code>sklearn</code> do the work; <code>PCA</code> is only used to draw
-the clusters.</p></div>
-    <aside class="meta"><div class="meta-row"><span>R equivalent</span><code>factoextra::fviz_silhouette()</code></div><div class="meta-row"><span>Libraries</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>statsmodels</i><i>scikit-learn</i></div></div><div class="meta-row"><span>Topics</span><div class="pills"><i>clustering</i><i>k-means</i><i>silhouette</i><i>PCA</i><i>cluster validation</i><i>US states</i><i>crime</i></div></div></aside>
+line at the overall average.</p><p>The setting is Chaffa &amp; Warin (2026), &quot;Identifying industrial clusters through
+growth co-movement with unsupervised learning methods&quot; (<em>GeoJournal</em>): 90
+industries, each described by 5 standardised co-movement features — the
+correlation of its output growth with national GDP, US demand, commodity
+prices and housing starts, and its growth volatility. The data are
+<strong>simulated</strong> with <code>numpy</code> (seeded) around three profiles (domestic cycle,
+export-oriented, resource-based) for illustration; they are <em>not</em> the paper&#x27;s
+data or results. An average width near 0.5 sits at the border between a
+weak and a reasonable structure by Kaufman &amp; Rousseeuw&#x27;s rule of thumb.
+<code>KMeans</code>, <code>silhouette_score</code> and <code>silhouette_samples</code> from
+<code>sklearn</code> do the work; <code>PCA</code> is only used to draw the clusters.</p></div>
+    <aside class="meta"><div class="meta-row"><span>R equivalent</span><code>factoextra::fviz_silhouette()</code></div><div class="meta-row"><span>Libraries</span><div class="pills"><i>Matplotlib</i><i>NumPy</i><i>scikit-learn</i></div></div><div class="meta-row"><span>Topics</span><div class="pills"><i>clustering</i><i>k-means</i><i>silhouette</i><i>PCA</i><i>cluster validation</i><i>industrial clusters</i></div></div></aside>
   </div>
   <section class="code-card" id="code">
     <div class="code-bar">
-      <span class="fname">silhouette-clusters.py · 58 lines</span>
+      <span class="fname">silhouette-clusters.py · 63 lines</span>
       <div class="code-actions">
         <a class="btn ghost" href="../../multivariate/silhouette-clusters/silhouette-clusters.py" download>Download</a>
         <a class="btn ghost" href="https://github.com/warint/pystatlas/tree/main/gallery/09-multivariate/03-silhouette-clusters">GitHub</a>
@@ -85,15 +85,20 @@ the clusters.</p></div>
     </div>
     <pre class="code"><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">KMeans</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">silhouette_samples</span><span class="p">,</span> <span class="n">silhouette_score</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
 
-<span class="c1"># 7 social indicators of the 50 US states (DC, an extreme outlier, is left out)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">statecrime</span><span class="o">.</span><span class="n">load_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">"District of Columbia"</span><span class="p">)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="c1"># Simulated data, set in the context of Chaffa &amp; Warin (2026) [chaffa2026]</span>
+<span class="c1"># 90 industries x 5 growth co-movement features around three profiles</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">91</span><span class="p">)</span>
+<span class="n">centres</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">],</span>    <span class="c1"># domestic cycle</span>
+                    <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">],</span>    <span class="c1"># export-oriented</span>
+                    <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">]])</span>   <span class="c1"># resource-based</span>
+<span class="n">profile</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.22</span><span class="p">])</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">centres</span><span class="p">[</span><span class="n">profile</span><span class="p">]</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">],</span>
+                                                                 <span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="mi">5</span><span class="p">)))</span>
 
 <span class="c1"># Choose k by the average silhouette width</span>
 <span class="n">fits</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">)}</span>
@@ -134,17 +139,17 @@ the clusters.</p></div>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Silhouette width"</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s2">"bottom"</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Silhouette picks k = </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> state profiles, but they are only weakly separated"</span><span class="p">,</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Silhouette picks k = </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> co-movement clusters of industries"</span><span class="p">,</span>
               <span class="n">pad</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="s2">"Average silhouette for k = 2…8: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">avg</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-         <span class="o">+</span> <span class="sa">f</span><span class="s2">" · </span><span class="si">{</span><span class="p">(</span><span class="n">sil</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> states misplaced (width &lt; 0) · n = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="si">}</span><span class="s2"> states, "</span>
-         <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> standardised indicators"</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax1</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span>
+         <span class="o">+</span> <span class="sa">f</span><span class="s2">" · </span><span class="si">{</span><span class="p">(</span><span class="n">sil</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> industries with width &lt; 0 · n = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="si">}</span><span class="s2"> industries (simulated), "</span>
+         <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> features"</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax1</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span>
          <span class="n">color</span><span class="o">=</span><span class="s2">"#6E6E73"</span><span class="p">,</span> <span class="n">in_layout</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre>
   </section>
   <p class="hint">Figures use the optional <a href="../../style.html">PyStatlas style</a>: add <code>plt.style.use("pystatlas.mplstyle")</code> to match the look exactly.</p>
-  <section class="data-src" id="data"><h2>Data source</h2><ul><li><strong>US state crime and social indicators, 2009.</strong> U.S. Census Bureau. Statistical Abstract of the United States, state tables for 2009 (crime rates from the FBI Uniform Crime Reporting program). <a href="https://www.statsmodels.org/stable/datasets/generated/statecrime.html">https://www.statsmodels.org/stable/datasets/generated/statecrime.html</a><br><span class="src-note">Compiled for statsmodels (sm.datasets.statecrime); public domain. See the statsmodels page for each variable&#x27;s table and footnotes.</span></li></ul><p class="src-disclaimer">The examples illustrate statistical methods. Their titles describe what each figure shows in these particular data — often a small, dated or partial sample — not the author&#x27;s position on the substantive question. For interpretation, context and data quality, rely on the original sources cited here.</p></section>
+  <section class="data-src" id="data"><h2>Data source</h2><ul><li><strong>Simulated data.</strong> Simulated data with a fixed random seed, created for this example.<br><span class="src-note">No real respondents, documents or measurements: the numbers only illustrate how the chart and its statistics work.</span></li><li><strong>Chaffa &amp; Warin (2026), industrial clusters from growth co-movement.</strong> Chaffa, L., &amp; Warin, T. (2026). Identifying industrial clusters through growth co-movement with unsupervised learning methods. GeoJournal, 91(1), 16. <a href="https://doi.org/10.1007/s10708-025-11564-6">https://doi.org/10.1007/s10708-025-11564-6</a><br><span class="src-note">The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper&#x27;s data or results.</span></li></ul><p class="src-disclaimer">The examples illustrate statistical methods. Their titles describe what each figure shows in these particular data — often a small, dated or partial sample — not the author&#x27;s position on the substantive question. For interpretation, context and data quality, rely on the original sources cited here.</p></section>
   <section class="cite" id="cite">
   <div class="cite-head"><h2>How to cite</h2>
   <p>PyStatlas is created and maintained by <a href="https://www.warin.ca">Thierry Warin</a>. If it helped your work, please cite it.</p></div>
@@ -164,17 +169,17 @@ the clusters.</p></div>
 }">Copy BibTeX</button></div>
 </section>
   <div class="pager"><a href="../../multivariate/scree-plot/"><small>Previous</small>Scree plot</a><a class="next" href="../../multivariate/clustered-heatmap/"><small>Next</small>Clustered heatmap</a></div>
-  <h2 class="rel-h">More in Multivariate &amp; clustering</h2><div class="grid"><a class="card" href="../../multivariate/pca-biplot/" data-cat="multivariate" data-id="multivariate/pca-biplot/" data-k="pca biplot us states and their social indicators on the first two principal components. pca biplot us states and their social indicators on the first two principal components. factoextra::fviz_pca_biplot() multivariate &amp; clustering multivariate &amp; clustering pca biplot loadings dimension reduction ellipse us states crime poverty matplotlib numpy statsmodels scipy scikit-learn">
+  <h2 class="rel-h">More in Multivariate &amp; clustering</h2><div class="grid"><a class="card" href="../../multivariate/pca-biplot/" data-cat="multivariate" data-id="multivariate/pca-biplot/" data-k="pca biplot european countries on institutional and economic indicators, western balkans highlighted. pca biplot european countries on institutional and economic indicators, western balkans highlighted. factoextra::fviz_pca_biplot() multivariate &amp; clustering multivariate &amp; clustering pca biplot loadings dimension reduction ellipse western balkans matplotlib numpy pandas scipy scikit-learn">
   <div class="card-img"><img src="../../multivariate/pca-biplot/thumb.webp" alt="PCA biplot" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><span class="kicker">Multivariate &amp; clustering</span><h3>PCA biplot</h3><p>US states and their social indicators on the first two principal components.</p><span class="card-r">factoextra::fviz_pca_biplot()</span></div>
+  <div class="card-body"><span class="kicker">Multivariate &amp; clustering</span><h3>PCA biplot</h3><p>European countries on institutional and economic indicators, Western Balkans highlighted.</p><span class="card-r">factoextra::fviz_pca_biplot()</span></div>
 </a>
-<a class="card" href="../../multivariate/scree-plot/" data-cat="multivariate" data-id="multivariate/scree-plot/" data-k="scree plot how many dimensions describe 303 california school districts? variance per component and a parallel-analysis cut-off. scree plot how many dimensions describe 303 california school districts? variance per component and a parallel-analysis cut-off. factoextra::fviz_eig() multivariate &amp; clustering multivariate &amp; clustering pca scree plot eigenvalues parallel analysis kaiser education school districts matplotlib numpy statsmodels scikit-learn">
+<a class="card" href="../../multivariate/scree-plot/" data-cat="multivariate" data-id="multivariate/scree-plot/" data-k="scree plot how many dimensions describe digital skills in 300 occupations? variance per component and a parallel-analysis cut-off. scree plot how many dimensions describe digital skills in 300 occupations? variance per component and a parallel-analysis cut-off. factoextra::fviz_eig() multivariate &amp; clustering multivariate &amp; clustering pca scree plot eigenvalues parallel analysis kaiser digital skills matplotlib numpy scikit-learn">
   <div class="card-img"><img src="../../multivariate/scree-plot/thumb.webp" alt="Scree plot" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><span class="kicker">Multivariate &amp; clustering</span><h3>Scree plot</h3><p>How many dimensions describe 303 California school districts? Variance per component and a parallel-analysis cut-off.</p><span class="card-r">factoextra::fviz_eig()</span></div>
+  <div class="card-body"><span class="kicker">Multivariate &amp; clustering</span><h3>Scree plot</h3><p>How many dimensions describe digital skills in 300 occupations? Variance per component and a parallel-analysis cut-off.</p><span class="card-r">factoextra::fviz_eig()</span></div>
 </a>
-<a class="card" href="../../multivariate/clustered-heatmap/" data-cat="multivariate" data-id="multivariate/clustered-heatmap/" data-k="clustered heatmap z-scored heatmap of us states&#x27; social indicators, with row and column dendrograms and a census-region colour bar. clustered heatmap z-scored heatmap of us states&#x27; social indicators, with row and column dendrograms and a census-region colour bar. pheatmap::pheatmap() / complexheatmap::heatmap() multivariate &amp; clustering multivariate &amp; clustering heatmap hierarchical clustering dendrogram z-score clustermap us states crime matplotlib numpy pandas seaborn scipy statsmodels scikit-learn">
+<a class="card" href="../../multivariate/clustered-heatmap/" data-cat="multivariate" data-id="multivariate/clustered-heatmap/" data-k="clustered heatmap jaccard similarity between 24 party manifestos, with dendrograms and party-family colour bars. clustered heatmap jaccard similarity between 24 party manifestos, with dendrograms and party-family colour bars. pheatmap::pheatmap() / complexheatmap::heatmap() multivariate &amp; clustering multivariate &amp; clustering heatmap hierarchical clustering dendrogram similarity matrix clustermap party manifestos matplotlib numpy pandas seaborn scipy scikit-learn">
   <div class="card-img"><img src="../../multivariate/clustered-heatmap/thumb.webp" alt="Clustered heatmap" loading="lazy" width="720" height="450"></div>
-  <div class="card-body"><span class="kicker">Multivariate &amp; clustering</span><h3>Clustered heatmap</h3><p>Z-scored heatmap of US states&#x27; social indicators, with row and column dendrograms and a Census-region colour bar.</p><span class="card-r">pheatmap::pheatmap() / ComplexHeatmap::Heatmap()</span></div>
+  <div class="card-body"><span class="kicker">Multivariate &amp; clustering</span><h3>Clustered heatmap</h3><p>Jaccard similarity between 24 party manifestos, with dendrograms and party-family colour bars.</p><span class="card-r">pheatmap::pheatmap() / ComplexHeatmap::Heatmap()</span></div>
 </a></div>
 </article>
 </main>

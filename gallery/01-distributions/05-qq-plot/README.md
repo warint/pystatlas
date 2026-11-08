@@ -10,27 +10,34 @@ diagonal; a curved, banana-shaped pattern means skewness. The shaded band is
 a 95% pointwise envelope built from the Beta distribution of normal order
 statistics, so points outside it are more extreme than chance allows.
 
-Data are household incomes of 235 Belgian working-class families (Engel's
-food-expenditure data, bundled with **statsmodels**). The left panel shows
-raw income, the right panel its logarithm. Quantiles come from
+The setting is Warin (2021, *JMIR Medical Informatics*), a metadata-based
+analysis of global research on coronaviruses. The numbers here are
+**simulated** for illustration — citation counts of n = 300 coronavirus
+papers, drawn as Poisson counts around a log-normal mean — and are not the
+paper's data or results. The left panel shows raw citations, the right
+panel log(1 + citations), computed with `numpy.log1p`. Quantiles come from
 `scipy.stats.norm.ppf`, the envelope from `scipy.stats.beta.ppf`, and each
 panel reports a Shapiro–Wilk test.
 
 **R equivalent:** `qqplotr::stat_qq_band()`  
-**Libraries:** Matplotlib, NumPy, statsmodels, SciPy
+**Libraries:** Matplotlib, NumPy, SciPy
 
-**Data:** Koenker, R., & Bassett, G. (1982). Robust tests for heteroscedasticity based on regression quantiles. Econometrica, 50(1), 43–61. https://doi.org/10.2307/1912528 — Engel's (1857) household budget data as used by Koenker and Bassett and distributed with R's quantreg; in statsmodels as sm.datasets.engel; public domain.
+**Data:** Simulated data with a fixed random seed, created for this example. — No real respondents, documents or measurements: the numbers only illustrate how the chart and its statistics work.
+
+**Data:** Warin, T. (2021). Global research on coronaviruses: Metadata-based analysis for public health policies. JMIR Medical Informatics, 9(11), e31510. https://doi.org/10.2196/31510 — The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results.
 
 
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
-import statsmodels.api as sm
 from scipy import stats
 
-# Data: household income, raw and log-transformed
-income = sm.datasets.engel.load_pandas().data["income"].to_numpy()
-samples = {"Raw income": income, "Log income": np.log(income)}
+# Simulated data, set in the context of Warin (2021) [warin2021corona]
+
+# Data: citations per paper, raw and log(1 + x)
+rng = np.random.default_rng(2021)
+citations = rng.poisson(rng.lognormal(2.5, 1.0, 300))
+samples = {"Raw citations": citations, "log(1 + citations)": np.log1p(citations)}
 palette = ["#FF9500", "#007AFF"]
 
 fig, axes = plt.subplots(1, 2, figsize=(10, 5), sharex=True, sharey=True)
@@ -54,7 +61,7 @@ for ax, (name, x), c in zip(axes, samples.items(), palette):
 
     W, p = stats.shapiro(x)
     ax.set_title(name, pad=20, fontsize=12)
-    ax.text(0, 1.02, f"Shapiro–Wilk W = {W:.3f}, p = {p:.1e} · n = {n}",
+    ax.text(0, 1.02, f"Shapiro–Wilk W = {W:.3f}, p = {p:.1e} · n = {n} papers (simulated)",
             transform=ax.transAxes, fontsize=9.5, color="#6E6E73")
     ax.legend(loc="upper left")
     ax.grid(axis="x")
@@ -62,8 +69,8 @@ for ax, (name, x), c in zip(axes, samples.items(), palette):
 
 axes[0].set_ylabel("Standardised sample quantiles")
 axes[0].set_xlim(-3.2, 3.2)
-axes[0].set_ylim(-3.3, 4.6)
-fig.suptitle("Taking logs brings household income much closer to normal",
+axes[0].set_ylim(-3.3, 8.3)  # room for the most-cited papers
+fig.suptitle("Citation counts are heavily right-skewed; log(1 + x) brings them close to normal",
              x=0.01, ha="left", fontsize=14)
 plt.show()
 ```

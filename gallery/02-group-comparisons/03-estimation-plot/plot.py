@@ -2,89 +2,91 @@
 title: Estimation plot
 summary: Raw data of two groups plus the mean difference and its bootstrap 95% CI.
 r: dabestr::dabest() + plot()
-tags: [estimation, bootstrap, effect size, mean difference, confidence interval, crime, poverty]
+tags: [estimation, bootstrap, effect size, mean difference, confidence interval, social media]
 description: |
   The Gardner–Altman estimation plot puts the effect size, not the p-value, at
   the centre. The left axis shows every observation of both groups; the right,
   floating axis is anchored so that its zero sits at the reference-group mean.
   On it, the bootstrap distribution of the mean difference is drawn as a half
   violin, with the point estimate and its 95% confidence interval as a dot and
-  a bar.
+  a bar. Engagement counts are very skewed, so the comparison is made on a
+  log10 scale: a difference of 0.3 means about twice as many engagements.
 
-  Data are the 50 US states plus the District of Columbia in 2009, bundled with
-  **statsmodels** (`sm.datasets.statecrime`): the violent-crime rate per
-  100,000 residents, for the 23 states whose poverty rate is above the median
-  state (14.2%) versus the 28 at or below it. The comparison is
-  observational, not an experiment: it measures how large the gap is, not
-  what causes it. The 95% CI is a bias-corrected and accelerated (BCa)
-  bootstrap from `scipy.stats.bootstrap`, and the subtitle adds Welch's
-  t-test (`scipy.stats.ttest_ind`); the vertical line beside each swarm is the
-  group mean ± 1 SD, and the swarm comes from `seaborn.swarmplot`. The lone
-  point above 1,300 is the District of Columbia.
+  The setting is Warin, Melchior & de Marcellis-Warin (2025, *Journal of
+  Medical Internet Research*), on public engagement with the WHO on X before
+  and after COVID-19. The numbers here are **simulated** for illustration —
+  engagements (likes, reposts and replies) per WHO post for n = 100 posts,
+  50 before and 50 after the pandemic began — and are not the paper's data or
+  results. The 95% CI is a bias-corrected and accelerated (BCa) bootstrap from
+  `scipy.stats.bootstrap`, the subtitle adds Welch's t-test
+  (`scipy.stats.ttest_ind`), the vertical line beside each swarm is the group
+  mean ± 1 SD, and the swarm comes from `seaborn.swarmplot`.
 """
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 import seaborn as sns
-import statsmodels.api as sm
 from scipy import stats
 
-# Data: violent crimes per 100,000 residents in 2009, by state poverty rate
-df = sm.datasets.statecrime.load_pandas().data
-cut = df.poverty.median()
-df["group"] = np.where(df.poverty > cut, "High poverty", "Low poverty")
-low = df.loc[df.group == "Low poverty", "violent"].to_numpy()
-high = df.loc[df.group == "High poverty", "violent"].to_numpy()
+# Simulated data, set in the context of Warin, Melchior & de Marcellis-Warin (2025) [warin2025who]
+
+# Data: log10 of engagements per WHO post, before and after the start of COVID-19
+rng = np.random.default_rng(2025)
+pre, post = rng.normal(2.6, 0.38, 50), rng.normal(3.15, 0.45, 50)
+df = pd.DataFrame({"group": ["Pre-COVID"] * 50 + ["Post-COVID"] * 50,
+                   "log_eng": np.r_[pre, post]})
 
 # Mean difference with a BCa bootstrap 95% CI, and the bootstrap distribution
 diff = lambda a, b, axis=-1: np.mean(b, axis=axis) - np.mean(a, axis=axis)
-boot = stats.bootstrap((low, high), diff, n_resamples=5000, method="BCa",
+boot = stats.bootstrap((pre, post), diff, n_resamples=5000, method="BCa",
                        random_state=np.random.default_rng(1))
 lo, hi = boot.confidence_interval
-delta = high.mean() - low.mean()
-t = stats.ttest_ind(high, low, equal_var=False)
+delta = post.mean() - pre.mean()
+t = stats.ttest_ind(post, pre, equal_var=False)
 
 # Manual layout (the long subtitle would otherwise squeeze the panels apart)
 fig, (ax, ax2) = plt.subplots(1, 2, figsize=(8, 5.2), width_ratios=[2.2, 1], layout="none")
 fig.subplots_adjust(wspace=0.12)
 palette = ["#8E8E93", "#007AFF"]
-sns.swarmplot(data=df, x="group", y="violent", hue="group", palette=palette, size=5,
-              order=["Low poverty", "High poverty"], hue_order=["Low poverty", "High poverty"],
+sns.swarmplot(data=df, x="group", y="log_eng", hue="group", palette=palette, size=5,
+              order=["Pre-COVID", "Post-COVID"], hue_order=["Pre-COVID", "Post-COVID"],
               legend=False, ax=ax)
-for i, d in enumerate([low, high]):            # mean ± SD as a gapped line beside the swarm
+for i, d in enumerate([pre, post]):            # mean ± SD as a gapped line beside the swarm
     m, s = d.mean(), d.std(ddof=1)
     ax.vlines(i + 0.32, m - s, m + s, color="#3A3A3C", lw=1.5)
     ax.scatter(i + 0.32, m, s=30, color="white", edgecolor="#3A3A3C", lw=1.5, zorder=3)
 ax.set_xlabel("")
-ax.set_ylabel("Violent crimes per 100,000 residents")
-ax.set_xticks([0, 1], [f"Poverty ≤ {cut:.1f}%\n(n = {len(low)} states)",
-                      f"Poverty > {cut:.1f}%\n(n = {len(high)} states)"])
+ax.set_ylabel("Engagements per post (log10 scale)")
+ax.set_yticks([2, 2.5, 3, 3.5, 4], ["100", "316", "1,000", "3,162", "10,000"])
+ax.set_xticks([0, 1], [f"Before COVID-19\n(n = {len(pre)} posts)",
+                      f"After COVID-19\n(n = {len(post)} posts)"])
 
-# Floating difference axis: zero aligned with the low-poverty mean
+# Floating difference axis: zero aligned with the pre-COVID mean
 ax.set_xlim(-0.55, 1.6)
 ymin, ymax = ax.get_ylim()
-ax2.set_ylim(ymin - low.mean(), ymax - low.mean())
+ax2.set_ylim(ymin - pre.mean(), ymax - pre.mean())
 ax2.axhline(0, color="#3A3A3C", lw=1)
 ax2.axhline(delta, color="#3A3A3C", lw=1, ls=":")
-ax.plot([0.32, 1.6], [low.mean()] * 2, color="#3A3A3C", lw=0.8)
-ax.plot([1.32, 1.6], [high.mean()] * 2, color="#3A3A3C", lw=0.8, ls=":")
+ax.plot([0.32, 1.6], [pre.mean()] * 2, color="#3A3A3C", lw=0.8)
+ax.plot([1.32, 1.6], [post.mean()] * 2, color="#3A3A3C", lw=0.8, ls=":")
 v = ax2.violinplot(boot.bootstrap_distribution, positions=[0], widths=0.8,
                    showextrema=False, side="high")
 v["bodies"][0].set(facecolor="#007AFF", alpha=0.3, edgecolor="none")
 ax2.vlines(0, lo, hi, color="#1D1D1F", lw=2.5)
 ax2.scatter(0, delta, s=70, color="#1D1D1F", zorder=3)
-ax2.annotate(f"Δ = {delta:+.0f}\n[{lo:.0f}, {hi:.0f}]", (0, hi), xytext=(-6, 8),
+ax2.annotate(f"Δ = {delta:+.2f}\n[{lo:.2f}, {hi:.2f}]", (0, hi), xytext=(-6, 8),
              textcoords="offset points", ha="right", va="bottom", fontsize=9.5,
              fontweight="semibold", color="#007AFF")
 ax2.set_xlim(-0.6, 0.6)
-ax2.set_xticks([0], ["High − Low"])
+ax2.set_xticks([0], ["After − Before"])
 ax2.yaxis.tick_right(); ax2.yaxis.set_label_position("right")
 ax2.spines[["left"]].set_visible(False); ax2.spines["right"].set_visible(True)
-ax2.set_ylabel("Mean difference (crimes per 100,000)")
+ax2.set_ylabel("Mean difference (log10 engagements)")
 ax2.grid(False)
 
-ax.set_title(f"High-poverty states record {delta:.0f} more violent crimes per 100,000 on average",
+ax.set_title(f"WHO posts draw about {10 ** delta:.1f} times more engagement after COVID-19 began",
              pad=26)
-ax.text(0, 1.02, f"BCa bootstrap 95% CI [{lo:.0f}, {hi:.0f}] (5,000 resamples) · "
-        f"Welch's t({t.df:.1f}) = {t.statistic:.2f}, p = {t.pvalue:.3f} · 2009 data",
+ax.text(0, 1.02, f"n = {len(df)} posts (simulated) · BCa bootstrap 95% CI [{lo:.2f}, {hi:.2f}] · "
+        f"Welch's t({t.df:.1f}) = {t.statistic:.2f}, p = {t.pvalue:.1e}",
         transform=ax.transAxes, fontsize=9.5, color="#6E6E73")
 plt.show()

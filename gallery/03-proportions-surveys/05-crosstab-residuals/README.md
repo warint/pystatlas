@@ -11,31 +11,39 @@ Under independence these residuals are roughly standard normal, so cells beyond
 ±2 (marked in bold) are the ones that make the χ² test significant. Each cell
 prints the count and its row percentage; the margins give the totals.
 
-Data are the 1974 *Redbook* survey bundled with **statsmodels**
-(`sm.datasets.fair`): religiousness against self-rated marriage quality for 6,366
-women. Expected counts come from `scipy.stats.chi2_contingency`; the residual is
+The setting is Kouloukoui, de Marcellis-Warin, Gomes & Warin (2023, *Journal of
+Cleaner Production*) on Twitter conversations about ESG topics. The data are
+**simulated** for illustration and are *not* the paper's data or results: 4,000
+tweets, each with one ESG sub-topic and the world region of its author. Expected
+counts come from `scipy.stats.chi2_contingency`; the residual is
 (O − E) / √(E · (1 − row share) · (1 − column share)).
 
 **R equivalent:** `ggstats::ggtable() / stat_cross()`  
-**Libraries:** Matplotlib, NumPy, pandas, statsmodels, SciPy
+**Libraries:** Matplotlib, NumPy, pandas, SciPy
 
-**Data:** Fair, R. C. (1978). A theory of extramarital affairs. Journal of Political Economy, 86(1), 45–61. https://doi.org/10.1086/260646 — Data from the 1974 Redbook magazine survey; distributed with statsmodels (sm.datasets.fair) with the author's permission.
+**Data:** Simulated data with a fixed random seed, created for this example. — No real respondents, documents or measurements: the numbers only illustrate how the chart and its statistics work.
+
+**Data:** Kouloukoui, D., de Marcellis-Warin, N., Gomes, S. M. S., & Warin, T. (2023). Mapping global conversations on twitter about environmental, social, and governance topics through natural language processing. Journal of Cleaner Production, 414, 137369. https://doi.org/10.1016/j.jclepro.2023.137369 — The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results.
 
 
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import statsmodels.api as sm
 from matplotlib.colors import TwoSlopeNorm
 from scipy import stats
+# Simulated data, set in the context of Kouloukoui et al. (2023) [kouloukoui2023esg]
 
-# Data: religiousness (rows) × marriage rating (columns)
-df = sm.datasets.fair.load_pandas().data
-rel = df.religious.map({1: "Not religious", 2: "Mildly", 3: "Fairly", 4: "Strongly"})
-rate = df.rate_marriage.map({1: "Very poor", 2: "Poor", 3: "Fair", 4: "Good", 5: "Very good"})
-table = pd.crosstab(pd.Categorical(rel, ["Not religious", "Mildly", "Fairly", "Strongly"]),
-                    pd.Categorical(rate, ["Very poor", "Poor", "Fair", "Good", "Very good"]))
+# Simulated tweets: ESG sub-topic (rows) × world region (columns), topic mix varies by region
+rng = np.random.default_rng(2023)
+topics = ["E · Climate change", "E · Pollution & waste", "S · Labour & human rights",
+          "S · Diversity & inclusion", "G · Board & executive pay", "G · Corruption & ethics"]
+mix = {"North America": ([.30, .10, .12, .22, .18, .08], 1400), "Europe": ([.38, .14, .12, .14, .14, .08], 1200),
+       "Asia-Pacific": ([.28, .24, .14, .10, .14, .10], 800), "Latin America": ([.24, .16, .20, .10, .08, .22], 350),
+       "Africa": ([.22, .14, .24, .10, .08, .22], 250)}
+df = pd.DataFrame([(t, r) for r, (pr, n) in mix.items() for t in rng.choice(topics, n, p=pr)],
+                  columns=["topic", "region"])
+table = pd.crosstab(pd.Categorical(df.topic, topics), pd.Categorical(df.region, list(mix)))
 obs = table.to_numpy()
 n = obs.sum()
 
@@ -64,18 +72,19 @@ ax.set_yticks(np.arange(-0.5, obs.shape[0]), minor=True)
 ax.grid(which="minor", color="white", lw=3)
 ax.grid(which="major", visible=False)
 ax.tick_params(which="minor", length=0)
-ax.set_xticks(range(obs.shape[1]), [f"{c}\n(n = {t:,})" for c, t in zip(table.columns, obs.sum(0))])
+regions = [c.replace(" ", "\n") for c in table.columns]          # two-word regions on two lines
+ax.set_xticks(range(obs.shape[1]), [f"{c}\n(n = {t:,})" for c, t in zip(regions, obs.sum(0))])
 ax.set_yticks(range(obs.shape[0]), [f"{r}  (n = {t:,})" for r, t in zip(table.index, obs.sum(1))])
 for s in ax.spines.values():
     s.set_visible(False)
-ax.set_xlabel("Self-rated marriage quality")
-ax.set_ylabel("Religiousness")
+ax.set_xlabel("World region of the tweet")
+ax.set_ylabel("ESG sub-topic")
 
 cb = fig.colorbar(im, ax=ax, shrink=0.85, pad=0.02, ticks=[-6, -4, -2, 0, 2, 4, 6])
 cb.set_label("Standardized residual", color="#3A3A3C")
 cb.outline.set_visible(False)
-ax.set_title("Strongly religious women report the happiest marriages", pad=26)
-ax.text(0, 1.02, f"Pearson χ²({dof}) = {chi2:.1f}, p < .001, Cramér's V = {v:.2f} · n = {n:,} · "
+ax.set_title("Each region tweets about a different side of ESG", pad=26)
+ax.text(0, 1.02, f"Pearson χ²({dof}) = {chi2:.0f}, p < .001, V = {v:.2f} · n = {n:,} tweets (simulated) · "
         "count & row % · bold: |resid.| ≥ 2", transform=ax.transAxes,
         fontsize=9.5, color="#6E6E73")
 plt.show()

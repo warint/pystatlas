@@ -1,8 +1,8 @@
 """
 title: Pairs plot with correlations
-summary: Scatter matrix of four school-district variables, with group KDEs on the diagonal and pooled vs within-group correlations above it.
+summary: Scatter matrix of four regional growth variables, with group KDEs on the diagonal and pooled vs within-group correlations above it.
 r: GGally::ggpairs()
-tags: [pairs plot, scatter matrix, correlation, KDE, Simpson's paradox, confounding, education]
+tags: [pairs plot, scatter matrix, correlation, KDE, Simpson's paradox, convergence]
 description: |
   The Python counterpart of `GGally::ggpairs()`. Every pair of variables gets a
   scatterplot below the diagonal, coloured by group; the diagonal shows each
@@ -11,29 +11,37 @@ description: |
   Comparing the two is the point: pooled and within-group correlations can differ
   sharply — even in sign — when groups sit in different regions of the plot.
 
-  Data are the 303 California school districts of the STAR98 test bundled with
-  **statsmodels** (`sm.datasets.star98`): the share of pupils above the national
-  median in math, the shares of Hispanic pupils and of pupils in college-prep
-  (UC/CSU) courses, and teachers' average years of experience. Districts are
-  grouped into thirds of their share of low-income pupils (`pd.qcut`, 101 each),
-  so the within-group coefficients hold poverty roughly constant: the link
-  between Hispanic share and math results, −0.71 overall, is weaker inside every
-  poverty group. Densities use `scipy.stats.gaussian_kde` and correlations
+  The setting is Hadengue & Warin (2014, *Management international*) on
+  specialisation and (un)conditional convergence in Brazil, China and India. The
+  data are **simulated** for illustration and are *not* the paper's data or
+  results: 86 regions (27 Brazilian states, 31 Chinese provinces, 28 Indian
+  states) with average growth, log initial income per head, a specialisation index
+  and an export-diversification index. Within each country poorer regions grow
+  faster (conditional convergence), while the pooled correlation mixes in the gaps
+  between countries. Densities use `scipy.stats.gaussian_kde` and correlations
   `scipy.stats.pearsonr`; the grid is a plain `plt.subplots(4, 4)`.
 """
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import statsmodels.api as sm
 from scipy import stats
 
-# Data: 303 California school districts (STAR98), grouped by thirds of low-income pupils
-raw = sm.datasets.star98.load_pandas().data
-df = pd.DataFrame({"Math above median (%)": 100 * raw.NABOVE / (raw.NABOVE + raw.NBELOW),
-                   "Hispanic pupils (%)": raw.PERHISP, "College-prep (%)": raw.PCTAF,
-                   "Teacher experience (yrs)": raw.AVYRSEXP})
-groups = ["Low poverty", "Middle", "High poverty"]
-df["group"] = pd.qcut(raw.LOWINC, 3, labels=groups).astype(str)
+# Simulated data, set in the context of Hadengue & Warin (2014) [hadengue2014]
+
+# Simulated regions: country means differ; within a country, poorer regions grow faster
+rng = np.random.default_rng(2014)
+groups = ["Brazil", "China", "India"]
+setup = {"Brazil": (27, 9.2, 2.5), "China": (31, 9.0, 9.0), "India": (28, 7.4, 6.0)}
+parts = []
+for g, (n, inc0, gr0) in setup.items():
+    dev = rng.normal(0, 0.45, n)                       # region's income gap to its country mean
+    spec = 0.30 - 0.12 * dev + rng.normal(0, 0.05, n)
+    parts.append(pd.DataFrame({"Growth (% per yr)": gr0 - 2.2 * dev + rng.normal(0, 0.7, n),
+                               "Initial income (log)": inc0 + dev,
+                               "Specialisation index": spec,
+                               "Export diversification": 3.4 - 4 * spec + rng.normal(0, 0.25, n),
+                               "group": g}))
+df = pd.concat(parts, ignore_index=True)
 cols = df.columns[:4]
 palette = ["#007AFF", "#FF9500", "#34C759"]
 stars = lambda p: "***" if p < .001 else "**" if p < .01 else "*" if p < .05 else ""
@@ -79,8 +87,8 @@ for i, yv in enumerate(cols):
         if j == 0:
             ax.set_ylabel(yv)
 
-fig.text(0.01, 0.985, "Part of the pooled correlations runs through poverty", fontsize=13,
+fig.text(0.01, 0.985, "Within each country, poorer regions grow faster", fontsize=13,
          fontweight="semibold", va="top")
-fig.text(0.01, 0.945, f"Pearson r, overall (bold) and within thirds of low-income pupils · n = {len(df)} "
-         "districts, 101 per group · * p<.05  ** p<.01  *** p<.001", fontsize=9.5, color="#6E6E73", va="top")
+fig.text(0.01, 0.945, f"Pearson r, overall (bold) and within country · n = {len(df)} regions "
+         "(simulated) · * p<.05  ** p<.01  *** p<.001", fontsize=9.5, color="#6E6E73", va="top")
 plt.show()

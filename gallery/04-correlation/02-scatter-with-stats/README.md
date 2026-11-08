@@ -1,6 +1,6 @@
 # Scatterplot with statistics
 
-> Low-income pupils vs math results in 303 California districts — scatter, OLS line with 95% band, marginal histograms and Pearson's r.
+> Trade intensity vs business-cycle correlation for country pairs — scatter, OLS line with 95% band, marginal histograms and Pearson's r.
 
 ![Scatterplot with statistics](plot.png)
 
@@ -12,19 +12,21 @@ correlation coefficient silently assumes is reasonable. The subtitle reports
 Pearson's *r* with its 95% confidence interval, the t-test, the OLS slope and
 the sample size.
 
-Data are the 303 California school districts of the STAR98 test bundled with
-**statsmodels** (`sm.datasets.star98`): the share of low-income pupils against
-the share of tested pupils scoring above the national median in mathematics,
-computed as `NABOVE / (NABOVE + NBELOW)`. The slope of −0.75 means about
-7.5 points fewer pupils above the median for every 10 points more low-income
-pupils — an association between districts, not an effect. The test comes from
-`scipy.stats.pearsonr`, the line and band from **statsmodels** OLS
-`get_prediction().conf_int()`.
+The setting is Janicki, Warin & Wunnava (2009, *Review of International
+Economics*), which tests Mundell's intuition that trade integration makes
+business cycles move together. The data are **simulated** for illustration and
+are *not* the paper's data or results: 190 country pairs (all pairs of 20
+countries), with the log of bilateral trade intensity and the correlation of the
+two countries' detrended output. The fitted line describes an association between
+pairs, not an effect. The test comes from `scipy.stats.pearsonr`, the line and
+band from **statsmodels** OLS `get_prediction().conf_int()`.
 
 **R equivalent:** `ggstatsplot::ggscatterstats()`  
 **Libraries:** Matplotlib, NumPy, statsmodels, SciPy
 
-**Data:** Gill, J. (2001). Generalized Linear Models: A Unified Approach (Quantitative Applications in the Social Sciences, No. 134). Sage. https://www.statsmodels.org/stable/datasets/generated/star98.html — Original data from the California Department of Education's Standardized Testing and Reporting (STAR) program, 1998. Subset distributed with statsmodels (sm.datasets.star98) with the author's permission.
+**Data:** Simulated data with a fixed random seed, created for this example. — No real respondents, documents or measurements: the numbers only illustrate how the chart and its statistics work.
+
+**Data:** Janicki, H., Warin, T., & Wunnava, P. (2009). Testing Mundell's intuition of endogenous OCA theory. Review of International Economics, 17(1), 74–86. https://doi.org/10.1111/j.1467-9396.2008.00802.x — The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results.
 
 
 ```python
@@ -33,10 +35,12 @@ import numpy as np
 import statsmodels.api as sm
 from scipy import stats
 
-# Data: low-income pupils and math results in 303 California school districts
-data = sm.datasets.star98.load_pandas().data
-x = data["LOWINC"].to_numpy()
-y = (100 * data["NABOVE"] / (data["NABOVE"] + data["NBELOW"])).to_numpy()
+# Simulated data, set in the context of Janicki, Warin & Wunnava (2009) [janicki2009]
+
+# Simulated country pairs: 20 countries -> 190 pairs; cycles co-move more where trade is denser
+rng = np.random.default_rng(2009)
+x = rng.normal(-5.5, 1.1, 190)                        # log(bilateral trade / combined GDP)
+y = np.tanh(0.35 + 0.13 * (x + 5.5) + rng.normal(0, 0.28, 190))   # business-cycle correlation
 n = len(x)
 
 # Pearson correlation with its 95% CI
@@ -57,8 +61,8 @@ ax_right = fig.add_subplot(gs[1, 1], sharey=ax)
 ax.scatter(x, y, s=22, color="#007AFF", alpha=0.45, lw=0)
 ax.fill_between(grid, band[:, 0], band[:, 1], color="#FF9500", alpha=0.25, lw=0)
 ax.plot(grid, fit.params[0] + fit.params[1] * grid, color="#FF9500", lw=2.2)
-ax.set_xlabel("Low-income pupils (%)")
-ax.set_ylabel("Pupils above national median in math (%)")
+ax.set_xlabel("Bilateral trade intensity (log of trade / combined GDP)")
+ax.set_ylabel("Business-cycle correlation")
 ax.grid(axis="x")
 
 # Marginal histograms
@@ -67,10 +71,10 @@ ax_right.hist(y, bins=30, color="#007AFF", alpha=0.35, edgecolor="white", orient
 for a in (ax_top, ax_right):
     a.axis("off")
 
-ax_top.set_title("Districts with more low-income pupils do worse in math", pad=26)
+ax_top.set_title("Pairs that trade more have more synchronised business cycles", pad=26)
 p_txt = "p < .001" if res.pvalue < 0.001 else f"p = {res.pvalue:.3f}"
 ax_top.text(0, 1.06, f"Pearson r = {res.statistic:.2f}, 95% CI [{ci.low:.2f}, {ci.high:.2f}], "
-            f"t({n - 2}) = {fit.tvalues[1]:.1f}, {p_txt} · slope = {fit.params[1]:.2f} · n = {n} districts",
+            f"t({n - 2}) = {fit.tvalues[1]:.1f}, {p_txt} · slope = {fit.params[1]:.2f} · n = {n} pairs (simulated)",
             transform=ax_top.transAxes, fontsize=9.5, color="#6E6E73")
 plt.show()
 ```

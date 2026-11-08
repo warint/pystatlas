@@ -2,7 +2,7 @@
 title: Odds-ratio forest plot
 summary: Logistic regression odds ratios on a log scale, with a table of OR [95% CI] alongside.
 r: ggstats::ggcoef_model(exponentiate = TRUE)
-tags: [logistic regression, odds ratio, forest plot, confidence interval, GLM]
+tags: [logistic regression, odds ratio, forest plot, confidence interval, migration]
 description: |
   Logistic coefficients are log-odds; exponentiated, they become **odds ratios**.
   Each point is the multiplicative change in the odds of the outcome for a one-unit
@@ -11,31 +11,40 @@ description: |
   (0.5 is as strong as 2), the x-axis is logarithmic. The right-hand column repeats
   the numbers, just like the table in a paper.
 
-  Data are the 1974 *Redbook* survey of 6,366 married women bundled with
-  **statsmodels** (`sm.datasets.fair`). The outcome is whether the respondent
-  reported any extramarital affair; the model is fitted with `smf.logit()` and the
-  odds ratios are `np.exp()` of `params` and `conf_int()`.
+  The setting is Blakely & Warin (2012, *Global Economy Journal*): choice or
+  mimetism in the decision to migrate in Europe. The data are **simulated** for
+  illustration — they are not the paper's data or results: n = 2,500 survey
+  respondents, and the outcome is whether they intend to move abroad. Predictors
+  are age, tertiary education, unemployment, having family or friends abroad and
+  life satisfaction. The model is fitted with `smf.logit()` and the odds ratios are
+  `np.exp()` of `params` and `conf_int()`.
 """
 import matplotlib.pyplot as plt
 import numpy as np
-import statsmodels.api as sm
+import pandas as pd
 import statsmodels.formula.api as smf
 from matplotlib.ticker import FixedLocator, NullLocator
+# Simulated data, set in the context of Blakely & Warin (2012) [blakely2012]
 
-# Data: Fair's affairs survey; rescale a few predictors to meaningful units
-df = sm.datasets.fair.load_pandas().data
-df = df.assign(affair=(df.affairs > 0).astype(int), age10=df.age / 10,
-               yrs5=df.yrs_married / 5, educ4=df.educ / 4)
+# Data: 2,500 respondents; intention to migrate from a known logistic model
+rng = np.random.default_rng(2012)
+n = 2500
+df = pd.DataFrame({"age10": rng.uniform(1.8, 6.5, n), "tertiary": rng.binomial(1, 0.3, n),
+                   "unemployed": rng.binomial(1, 0.1, n), "network": rng.binomial(1, 0.35, n),
+                   "satisfaction": rng.integers(1, 11, n)})
+eta = (-0.2 - 0.45 * df.age10 + 0.35 * df.tertiary + 0.7 * df.unemployed
+       + 0.95 * df.network - 0.12 * df.satisfaction)
+df["migrate"] = rng.binomial(1, 1 / (1 + np.exp(-eta)))
 
-model = smf.logit("affair ~ rate_marriage + religious + age10 + yrs5 + children + educ4",
+model = smf.logit("migrate ~ age10 + tertiary + unemployed + network + satisfaction",
                   data=df).fit(disp=False)
 
 # Odds ratios with 95% CI (intercept dropped), sorted by effect
 tab = np.exp(model.conf_int().drop("Intercept")).rename(columns={0: "low", 1: "high"})
 tab = tab.assign(OR=np.exp(model.params), p=model.pvalues).sort_values("OR")
-labels = {"rate_marriage": "Marriage rating (1–5)", "religious": "Religiousness (1–4)",
-          "age10": "Age (per 10 years)", "yrs5": "Years married (per 5)",
-          "children": "Number of children", "educ4": "Education (per 4 years)"}
+labels = {"age10": "Age (per 10 years)", "tertiary": "Tertiary education",
+          "unemployed": "Unemployed", "network": "Family/friends abroad",
+          "satisfaction": "Life satisfaction (1–10)"}
 
 fig, ax = plt.subplots(figsize=(8.6, 4.6))
 y = np.arange(len(tab))
@@ -49,29 +58,30 @@ ax.scatter(tab["OR"], y, s=80, marker="s", color=colors, edgecolor="white", lw=1
 tr = ax.get_yaxis_transform()
 top = len(tab) - 0.15
 ax.text(1.04, top, "OR [95% CI]", transform=tr, fontsize=10, fontweight="semibold")
-ax.text(1.36, top, "p", transform=tr, fontsize=10, fontweight="semibold")
+ax.text(1.40, top, "p", transform=tr, fontsize=10, fontweight="semibold")
 for yi, (_, r) in zip(y, tab.iterrows()):
     ax.text(1.04, yi, f"{r.OR:.2f} [{r.low:.2f}, {r.high:.2f}]", transform=tr,
             va="center", fontsize=10, color="#3A3A3C", family="monospace")
-    ax.text(1.36, yi, "<.001" if r.p < .001 else f"{r.p:.3f}".lstrip("0"), transform=tr,
+    ax.text(1.40, yi, "<.001" if r.p < .001 else f"{r.p:.3f}".lstrip("0"), transform=tr,
             va="center", fontsize=10, color="#3A3A3C", family="monospace")
 
 ax.set_xscale("log")
-ax.xaxis.set_major_locator(FixedLocator([0.5, 0.67, 1, 1.5, 2]))
+ticks = [0.5, 0.67, 1, 1.5, 2, 3]
+ax.xaxis.set_major_locator(FixedLocator(ticks))
 ax.xaxis.set_minor_locator(NullLocator())
-ax.set_xticklabels(["0.5", "0.67", "1", "1.5", "2"])
-ax.set_xlim(0.45, 2.2)
+ax.set_xticklabels([f"{t:g}" for t in ticks])
+ax.set_xlim(0.45, 3.9)
 ax.set_yticks(y, [labels[t] for t in tab.index])
 ax.set_ylim(-1.2, len(tab) + 0.1)
 ax.grid(axis="x"); ax.grid(axis="y", visible=False)
-ax.set_xlabel("Odds ratio of having had an affair (log scale)")
+ax.set_xlabel("Odds ratio of intending to migrate (log scale)")
 # Direction hints along the bottom of the panel
 for x0, x1, txt, c in [(0.95, 0.75, "lower odds", "#007AFF"), (1.05, 1.33, "higher odds", "#FF9500")]:
     ax.annotate("", (x1, -0.85), (x0, -0.85), arrowprops=dict(arrowstyle="-|>", color=c, lw=1.2))
     ax.text(x1 * (0.97 if x1 < 1 else 1.03), -0.85, txt, color=c, fontsize=9, va="center",
             ha="right" if x1 < 1 else "left")
-ax.set_title("Happier, more religious marriages have lower odds of an affair", pad=26)
-ax.text(0, 1.02, f"Logistic regression · n = {int(model.nobs):,} · "
+ax.set_title("Family or friends abroad more than double the odds of planning to move", pad=26)
+ax.text(0, 1.02, f"Logistic regression · n = {int(model.nobs):,} respondents (simulated) · "
         f"McFadden pseudo-R² = {model.prsquared:.3f} · LR χ²({model.df_model:.0f}) = "
         f"{model.llr:.0f}, p < .001", transform=ax.transAxes, fontsize=9.5, color="#6E6E73")
 plt.show()

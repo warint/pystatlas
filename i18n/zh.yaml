@@ -1,7 +1,7 @@
 ui:
   lang_name: 中文
   tagline: "面向社会科学的 Python 统计图形库"
-  lede: "基于真实社会科学数据、按所回答的问题组织的 Python 统计图表。机器学习（模型预测得多好、为什么这样预测）和空间数据（地图与空间自相关）与分布、组间比较、回归和生存分析并列收录；每张图都给出其背后的统计量——估计值、置信区间、检验和效应量。"
+  lede: "以社会科学中的真实研究问题为背景、按所回答的问题组织的 Python 统计图表。机器学习（模型预测得多好、为什么这样预测）和空间数据（地图与空间自相关）与分布、组间比较、回归和生存分析并列收录；每张图都给出其背后的统计量——估计值、置信区间、检验和效应量。"
   approach: "大多数 Python 学习资源先教代码，把问题留到以后。本图库反其道而行之。它最初是为社会科学专业的学生编写的，也适合所有熟悉自己领域、手头有问题要回答的人：这些组之间有差异吗？这两个变量是否同步变化？模型为什么作出这样的预测？从问题出发，找到能回答它的图表，读懂图上给出的统计量，只取你需要的代码。"
   nav_gallery: 图库
   nav_style: 样式
@@ -57,7 +57,7 @@ ui:
   about_h1: '关于 {name}'
   about_p1: "{name} 从研究者提出的问题出发，而不是从代码出发。它最初是为社会科学专业的学生编写的：他们熟悉自己的领域，需要用数据回答问题——这些组之间有差异吗？两个变量是否同步变化？模型预测了什么，为什么？每张图都把相关统计量标在图上，并附有一段基于 Python 科学计算生态、简短且自包含的脚本——与 R 中 <code>ggstats</code> 和 <code>ggstatsplot</code> 的理念一致。"
   principles_h: 设计原则
-  principle_1: "<strong>自成一体。</strong>每个脚本都可直接运行。数据为 statsmodels 和 lifelines 自带的真实社会科学数据集（选举、学校、犯罪、生育率、政治体制、再犯等）、手工录入的已发表小型表格，或少数情况下明确标注、设定随机种子的模拟。空间数据示例通过 libpysal 下载一次盖里的法国地图，之后使用缓存副本。"
+  principle_1: "<strong>自成一体。</strong>每个脚本都可直接运行。大多数示例以作者一篇已发表论文为背景（论文引用见图下方），使用设定随机种子的小规模模拟数据——数据量刚好足以展示方法，绝非论文的数据或结果。少数示例使用真实数据：一张手工录入的已发表元分析表，以及盖里的法国地图——空间数据示例通过 libpysal 下载一次，之后使用缓存副本。"
   principle_2: <strong>统计优先。</strong>每张图表都标注了关键数字：估计值、区间、检验统计量和效应量。
   principle_3: <strong>文件夹即页面。</strong>代码仓库的目录树与网站结构一一对应。每个示例都位于 <code>gallery/&lt;family&gt;/&lt;chart&gt;/plot.py</code>，并附有渲染好的 <code>plot.png</code> 和 README。
   families_h: 图表类别
@@ -126,310 +126,310 @@ examples:
     title: "带密度曲线的直方图"
     summary: "直方图、核密度和拟合的正态曲线，并附形态统计量。"
     description: |
-      这是审视任何连续变量的第一步。柱形以密度刻度展示经验分布，实线是核密度估计（KDE），虚线是均值和标准差相同的正态分布。两条曲线不一致时，说明数据并非正态——此处高生育率国家构成的长长右尾把**均值**拉到了**中位数**之上。
+      这是审视任何连续变量的第一步。柱形以密度刻度展示经验分布，实线是核密度估计（KDE），虚线是均值和标准差相同的正态分布。两条曲线不一致时，说明数据并非正态——此处一个取值介于 0 和 1 之间的相似度指数堆积在零附近，其长长的右尾把**均值**拉到了**中位数**之上。
 
-      数据为世界银行的总和生育率（每名妇女生育的子女数），取自 `sm.datasets.fertility`（**statsmodels**）中可用的最新年份 2011 年，涵盖 198 个国家和地区；已剔除五个区域汇总值。`scipy.stats.gaussian_kde` 绘制密度，`scipy.stats.skew` / `kurtosis` 描述形态，`scipy.stats.shapiro` 检验正态性。
+      本例的背景是 Sanger 与 Warin（2019，*Data in Brief*）发布的欧洲政党竞选纲领之间 Jaccard 相似度指数数据集。此处的数字为说明而**模拟**（Beta 分布，n = 600 对纲领），并非论文的数据或结果。`scipy.stats.gaussian_kde` 绘制密度，`scipy.stats.skew` / `kurtosis` 描述形态，`scipy.stats.shapiro` 检验正态性。
   distributions/raincloud:
     title: "雨云图"
     summary: "按组横向绘制半边小提琴图、箱线图和原始数据点。"
     description: |
-      雨云图将同一数据的三种视图叠在一起：半边小提琴图（“云”）展示密度，细长的箱线图给出中位数和四分位数，下方抖动的散点（“雨”）则呈现每一个观测值。没有任何信息被隐藏，因此双峰、离群值和小样本都一目了然。
+      雨云图将同一数据的三种视图叠在一起：半边小提琴图（“云”）展示密度，细长的箱线图给出中位数和四分位数，下方抖动的散点（“雨”）则呈现每一个观测值。没有任何信息被隐藏，因此偏态、离群值和小样本都一目了然。
 
-      数据为 1946 年至 2008 年间三种政体下政府首脑已结束的 964 段任期，取自 **lifelines** 附带的 Democracy and Dictatorship 数据（`lifelines.datasets.load_dd()`）；数据截止时仍在任的领导人（删失任期）未纳入。密度由 `scipy.stats.gaussian_kde` 计算，副标题报告 Kruskal–Wallis 检验（`scipy.stats.kruskal`）——一种适用于偏态时长数据的秩检验——并以 ε² 作为效应量。
+      本例的背景是 de Marcellis-Warin、Kouloukoui 与 Warin（2025，*Data in Brief*）发布的人工智能相关推文大规模数据集。此处的数字为说明而**模拟**——四个 AI 话题下 n = 480 条推文的情感得分，取值从 −1（负面）到 +1（正面）——并非论文的数据或结果。密度由 `scipy.stats.gaussian_kde` 计算，副标题报告 Kruskal–Wallis 检验（`scipy.stats.kruskal`）——一种适用于有界、偏态得分的秩检验——并以 ε² 作为效应量。
   distributions/ridgeline:
     title: "山脊图"
     summary: "以相互重叠的密度曲线比较多个组的同一分布。"
     description: |
-      山脊图（又称“joy”图）为每组绘制一条密度曲线并纵向堆叠，曲线之间略有重叠，从而在一张紧凑的图中容纳许多分布。这里每条山脊代表一个年份，从 1960 年到 2010 年每十年一条，展示生育率在世界各国之间的分布；白色刻线标出中位数，颜色也编码中位数（越深表示生育越多），于是人口转变——从高生育率滑向低生育率，其间经历 20 世纪 70、80 年代的双峰世界——一眼即可读出。
+      山脊图（又称“joy”图）为每组绘制一条密度曲线并纵向堆叠，曲线之间略有重叠，从而在一张紧凑的图中容纳许多分布。这里每条山脊代表一个经合组织（OECD）国家，展示其经常账户余额在各年份间的分布；山脊按中位数排序，深色刻线标出中位数，颜色也编码中位数（红色 = 逆差，蓝色 = 顺差），于是长期顺差国和逆差国，以及各国波动幅度的大小，一眼即可读出。
 
-      数据为 **statsmodels** 附带的世界银行总和生育率（每名妇女生育的子女数，`sm.datasets.fertility`），涵盖在 1960、1970、1980、1990、2000 和 2010 年均有数值的 189 个国家（已剔除区域汇总值）。密度由 `scipy.stats.gaussian_kde` 计算；由于每个国家每年各贡献一个值，副标题报告 Friedman 检验（`scipy.stats.friedmanchisquare`，以国家为区组），并以 Kendall's W 作为效应量。
+      本例的背景是 Stojkov、Warin 与 Kjosevski（2026，*Acta Oeconomica*）关于经合组织国家经常账户的研究。此处的数字为说明而**模拟**（12 个国家 × 29 年，1995–2023 年，n = 348 个国家-年份，每个国家为一个均值加上 AR(1) 噪声），并非论文的数据或结果。密度由 `scipy.stats.gaussian_kde` 计算；由于每一年为每个国家各提供一个值，副标题报告 Friedman 检验（`scipy.stats.friedmanchisquare`，以年份为区组），并以 Kendall's W 作为效应量。
   distributions/ecdf-comparison:
     title: "ECDF 比较"
     summary: "两组的经验累积分布，并标出 Kolmogorov–Smirnov 最大差距。"
     description: |
       经验累积分布函数（ECDF）对 x 轴上的每个值，绘出小于或等于该值的观测所占的比例。与直方图不同，它无需分箱，任何分位数都可以直接读出。将两条 ECDF 画在一起时，二者之间的最大垂直距离正是双样本 **Kolmogorov–Smirnov** 统计量 D，图中以红色线段表示。
 
-      数据为 20 世纪 70 年代从马里兰州州立监狱获释并被追踪一年的 432 名男性（Rossi、Berk 与 Lenihan 的实验），随 **lifelines** 提供（`lifelines.datasets.load_rossi()`）：比较一年内再次被捕者与未被捕者获释时的年龄。`scipy.stats.ecdf` 构建曲线，`scipy.stats.ks_2samp` 返回 D、其所在位置及 p 值。
+      本例的背景是 Pastoriza Rivas 与 Warin（2022，*Data in Brief*）发布的老虎伍兹二十年新闻发布会与赛事成绩数据集。此处的数字为说明而**模拟**——n = 520 轮比赛相对标准杆的单轮成绩（整数杆数，越低越好），比较 1997–2009 年与 2010–2019 年——并非论文的数据或结果。`scipy.stats.ecdf` 构建曲线，`scipy.stats.ks_2samp` 给出 D、其位置以及 p 值（由于整数杆数存在大量结，此处的 p 值为近似值）。
   distributions/qq-plot:
-    title: 带置信带的 Q–Q 图
-    summary: 带 95% 包络带的正态 Q–Q 图，分别展示原始变量与对数变换后的变量。
+    title: "带置信带的 Q–Q 图"
+    summary: "带 95% 包络带的正态 Q–Q 图，分别展示原始变量与对数变换后的变量。"
     description: |
       分位数–分位数图将排序并标准化后的数据与正态分布对应的理论分位数相对照。正态数据落在对角线上；弯曲的香蕉形模式则意味着偏态。阴影带是基于正态次序统计量的 Beta 分布构建的 95% 逐点包络，落在其外的点比随机波动所能解释的更为极端。
 
-      数据为 235 个比利时工人家庭的收入（Engel 食品支出数据，**statsmodels** 自带）。左图为原始收入，右图为其对数。分位数由 `scipy.stats.norm.ppf` 计算，包络由 `scipy.stats.beta.ppf` 计算，每个子图均报告 Shapiro–Wilk 检验。
+      本例的背景是 Warin（2021，*JMIR Medical Informatics*）基于元数据对全球冠状病毒研究所做的分析。此处的数字为说明而**模拟**——n = 300 篇冠状病毒论文的被引次数，按围绕对数正态均值的泊松计数生成——并非论文的数据或结果。左图为原始被引次数，右图为用 `numpy.log1p` 计算的 log(1 + 被引次数)。分位数来自 `scipy.stats.norm.ppf`，包络来自 `scipy.stats.beta.ppf`，每个子图报告一次 Shapiro–Wilk 检验。
   group-comparisons/between-groups-violin:
     title: "组间比较"
     summary: "小提琴图 + 箱线图 + 散点，附 Welch 方差分析、效应量和两两检验。"
     description: |
       `ggbetweenstats()` 的 Python 版本：展示每一个观测值，外面包裹小提琴图（分布）和细长的箱线图（四分位数），并突出显示各组均值。副标题报告 Welch 单因素方差分析（对方差不齐稳健），以及作为效应量的 ω²；括号标注经 Holm 校正的两两 Welch t 检验结果。
 
-      数据为 **statsmodels** 附带的 1998 年 STAR 考试中加利福尼亚州的 303 个学区（`sm.datasets.star98`）。结局变量是数学成绩高于全国中位数的学生所占比例 `NABOVE / (NABOVE + NBELOW)`，分组依据是学区内低收入家庭学生百分比（`LOWINC`）的三分位数，用 `pandas.qcut` 切分为各含 101 个学区的三组。
+      本例的背景是 Kouloukoui 等（2021，*Journal of Cleaner Production*）对全球最大碳密集型行业中影响企业气候风险暴露感知之因素的研究。此处的数字为说明而**模拟**——三个行业 n = 125 家企业 0–100 分的感知暴露得分——并非论文的数据或结果。方差分析来自 `statsmodels.stats.oneway.anova_oneway`，两两检验来自 `scipy.stats.ttest_ind` 和 `statsmodels.stats.multitest.multipletests`。
   group-comparisons/within-subjects:
     title: "被试内比较"
     summary: "重复测量数据，每名被试一条线，附均值、重复测量方差分析和配对检验。"
     description: |
-      当同一批单位在每种条件下都接受测量时，值得关注的是每个单位*内部*的变化。细灰线连接每个国家的各次测量，便于看出是否几乎所有国家都朝同一方向变化；小提琴图展示各年份的分布，大圆点（以深色线相连）为各年份的均值。
+      当同一批单位在每种条件下都接受测量时，值得关注的是每个单位*内部*的变化。细灰线连接每条生产线的各次测量，便于看出是否几乎所有生产线都朝同一方向变化；小提琴图展示各阶段的分布，大圆点（以深色线相连）为各阶段的均值。
 
-      数据为 **statsmodels** 附带的世界银行总和生育率（每名妇女生育的子女数，`sm.datasets.fertility`）：在 1970、1990 和 2010 年均有数值的 190 个国家（已剔除区域汇总值），因此每个国家被测量了三次。副标题报告单因素重复测量方差分析（`statsmodels.stats.anova.AnovaRM`）及偏 η²，括号标注经 Holm 校正的配对 t 检验（`scipy.stats.ttest_rel`）及 Cohen's d_z（负值表示生育率下降）。
+      本例的背景是 Warin、d'Anglade 与 de Marcellis-Warin（2025，*International Journal of Sustainable Engineering*）结合 k-means 聚类与数据科学减少制造业废料的研究。此处的数字为说明而**模拟**——同样 n = 24 条生产线在基线、基于聚类的重组之后以及随访时的废品率——并非论文的数据或结果。副标题报告单因素重复测量方差分析（`statsmodels.stats.anova.AnovaRM`）及偏 η²，括号标注经 Holm 校正的配对 t 检验（`scipy.stats.ttest_rel`）及 Cohen's d_z（负值表示废料减少）。
   group-comparisons/estimation-plot:
     title: "估计图"
     summary: "两组原始数据，加上均值差及其自助法 95% 置信区间。"
     description: |
-      Gardner–Altman 估计图将效应量而非 p 值置于核心位置。左轴展示两组的全部观测值；右侧的浮动坐标轴经过对齐，使其零点正好位于参照组均值处。在这条轴上，均值差的自助法分布以半边小提琴图呈现，点估计及其 95% 置信区间分别以圆点和线段表示。
+      Gardner–Altman 估计图将效应量而非 p 值置于核心位置。左轴展示两组的全部观测值；右侧的浮动坐标轴经过对齐，使其零点正好位于参照组均值处。在这条轴上，均值差的自助法分布以半边小提琴图呈现，点估计及其 95% 置信区间分别以圆点和线段表示。互动数高度偏态，因此比较在 log10 刻度上进行：差值为 0.3 大约意味着互动数翻倍。
 
-      数据为 **statsmodels** 附带的 2009 年美国 50 个州加哥伦比亚特区（`sm.datasets.statecrime`）：比较贫困率高于中位州（14.2%）的 23 个州与等于或低于该水平的 28 个州每 10 万居民的暴力犯罪率。该比较属于观察性研究而非实验：它衡量差距有多大，而不说明差距的成因。95% 置信区间来自 `scipy.stats.bootstrap` 的偏差校正加速（BCa）自助法，副标题另附 Welch t 检验（`scipy.stats.ttest_ind`）；每组蜂群图旁的竖线表示组均值 ± 1 个标准差，蜂群图由 `seaborn.swarmplot` 绘制。高于 1,300 的那个孤立点是哥伦比亚特区。
+      本例的背景是 Warin、Melchior 与 de Marcellis-Warin（2025，*Journal of Medical Internet Research*）关于 COVID-19 前后公众在 X 上与世界卫生组织互动情况的研究。此处的数字为说明而**模拟**——n = 100 条世卫组织帖子（疫情开始前 50 条、开始后 50 条）每帖的互动数（点赞、转帖和回复）——并非论文的数据或结果。95% 置信区间是 `scipy.stats.bootstrap` 给出的偏差校正加速（BCa）自助法区间，副标题另附 Welch t 检验（`scipy.stats.ttest_ind`）；每簇散点旁的竖线为组均值 ± 1 个标准差，蜂群散点由 `seaborn.swarmplot` 绘制。
   group-comparisons/means-with-ci:
     title: "交互作用图"
     summary: "两个因素下各组均值及其 95% 置信区间，附双因素方差分析。"
     description: |
       交互作用图展示两个因素每种组合下的结局均值：一个因素置于 x 轴，另一个以彩色、略微错开的折线表示。每个均值都带有 95% 置信区间。折线平行意味着两个因素独立起作用；折线趋近、发散或交叉则提示存在交互作用。
 
-      数据为 **statsmodels** 附带的 1996 年美国全国选举研究中的 944 名选民（`sm.datasets.anes96`）：他们在 7 点自由–保守量表上的自我定位（1 = 极端自由，7 = 极端保守），按受教育程度（将调查的七个编码归并为四个等级）和总统选举投票对象（克林顿或多尔）分组。双因素方差分析（II 型平方和）由 `statsmodels.formula.api.ols` 和 `statsmodels.stats.anova.anova_lm` 计算，并为每一项给出偏 η²；置信区间基于 t 分布。
+      本例的背景是 de Marcellis-Warin、Marty、Thelisson 与 Warin（2022，*AI and Ethics*）关于人工智能与消费者操纵的论文。此处的数字为说明而**模拟**——n = 480 名消费者 1–7 分的易受操纵得分，按年龄组以及数字素养高低划分（每格 60 人）——并非论文的数据或结果。双因素方差分析（II 型平方和）来自 `statsmodels.formula.api.ols` 和 `statsmodels.stats.anova.anova_lm`，并为每一项给出偏 η²；区间基于 t 分布。
   group-comparisons/tukey-hsd:
-    title: Tukey HSD 区间
-    summary: 所有两两均值差的 95% 联合置信区间。
+    title: "Tukey HSD 区间"
+    summary: "所有两两均值差的 95% 联合置信区间。"
     description: |
-      方差分析表明“各组存在差异”之后，Tukey 真实显著差异（HSD）法进一步指出*哪些*组对之间存在差异。每一行是一组两两均值差，其置信区间经过放宽，使所有区间**同时**在 95% 水平上成立。不跨过零的区间会被着色：第一组年龄更大时为蓝色，更小时为橙色。
+      方差分析表明“各组存在差异”之后，Tukey 真实显著差异（HSD）法进一步指出*哪些*组对之间存在差异。每一行是一组两两均值差，其置信区间经过放宽，使所有区间**同时**在 95% 水平上成立。不跨过零的区间会被着色：第一组均值更高时为蓝色，更低时为橙色。
 
-      数据为 **statsmodels** 自带的 1996 年美国全国选举研究中的 944 名受访者（`sm.datasets.anes96`）：按政党认同（从坚定的民主党人到坚定的共和党人）比较年龄。区间由 `statsmodels.stats.multicomp.pairwise_tukeyhsd` 计算，总体检验由 `scipy.stats.f_oneway` 完成。
+      本例的背景是 Sanger 与 Warin（2020，*Global Economy Journal*）运用自然语言处理分析欧洲中央银行行长演讲的研究。此处的数字为说明而**模拟**——杜伊森贝赫、特里谢、德拉吉和拉加德 n = 290 篇演讲中每篇用于价格稳定的篇幅占比——并非论文的数据或结果。区间来自 `statsmodels.stats.multicomp.pairwise_tukeyhsd`，总体检验来自 `scipy.stats.f_oneway`。
   proportions-surveys/likert-diverging:
-    title: 发散式 Likert 图
-    summary: 以中性回答为中心的发散堆叠条形图，展示五点 Likert 题项。
+    title: "发散式 Likert 图"
+    summary: "以中性回答为中心的发散堆叠条形图，展示五点 Likert 题项。"
     description: |
       `gglikert()` 的 Python 版本。每一行是一道问卷题项；条形被分成五个回答等级，并经过平移，使**中性**回答横跨零点：不同意向左延伸，同意向右延伸。题项按总体同意程度排序，两侧的列分别给出不同意（左）和同意（右）的总比例，无需逐段阅读即可比较各行。
 
-      数据为设定了随机种子的模拟：600 名员工对六条职场陈述的回答。百分比由 `pd.crosstab(normalize="index")` 计算；副标题报告 **Friedman 检验**（`scipy.stats.friedmanchisquare`），检验同一批受访者对各题项的回答分布是否相同。
+      背景设定为 Melchior、Warin 与 Oliveira（2026，*Data in Brief*）关于在 Facebook 上分享 COVID-19 新闻与假新闻的调查。数据为用于说明的**模拟**数据，*并非*该调查的数据或结果：600 名受访者对六条关于如何阅读和分享 COVID-19 新闻的陈述作答。百分比由 `pd.crosstab(normalize="index")` 计算；副标题报告 **Friedman 检验**（`scipy.stats.friedmanchisquare`），检验同一批受访者对各题项的回答分布是否相同。
   proportions-surveys/stacked-proportions:
-    title: 按组堆叠的比例图
-    summary: 带百分比标签和每组 n 的 100% 堆叠条形图，附卡方检验和 Cramér's V。
+    title: "按组堆叠的比例图"
+    summary: "带百分比标签和每组 n 的 100% 堆叠条形图，附卡方检验和 Cramér's V。"
     description: |
       `ggbarstats()` 的 Python 版本。每根条形代表一组并缩放到 100%，因此各段展示的是该组内结局的**条件分布**；标签为行百分比，每根条形下方的数字为组的样本量。副标题报告 Pearson χ² 独立性检验以及 **Cramér's V**——将 χ² 缩放到 0–1 范围的效应量。
 
-      数据为 **statsmodels** 自带的 1996 年美国全国选举研究（`sm.datasets.anes96`）：944 名选民按受教育程度划分的政党认同。检验由 `scipy.stats.chi2_contingency` 完成，V 由 `scipy.stats.contingency.association` 计算。
+      背景设定为 Sanger 与 Warin（2018，*Canadian Journal of Communication*）关于 2014 年魁北克选举在 Twitter 上的研究。数据为用于说明的**模拟**数据，*并非*论文的数据或结果：2,400 条提及四个政党（PLQ、PQ、CAQ、QS）之一的推文，每条标注为负面、中性或正面。检验由 `scipy.stats.chi2_contingency` 完成，V 由 `scipy.stats.contingency.association` 计算。
   proportions-surveys/mosaic-plot:
-    title: 带 Pearson 残差的马赛克图
-    summary: 色块面积与单元格频数成正比，并按相对于独立性的 Pearson 残差着色。
+    title: "带 Pearson 残差的马赛克图"
+    summary: "色块面积与单元格频数成正比，并按相对于独立性的 Pearson 残差着色。"
     description: |
-      马赛克图将二维列联表画成一个被切分成若干色块的正方形。列的**宽度**是第一个变量的边际比例，色块的**高度**是第二个变量的条件比例，因此每个色块的面积与其频数成正比。与 `vcd::mosaic(shade = TRUE)` 一样，颜色表示 **Pearson 残差**（观测值 − 期望值）/ √期望值：蓝色色块的人数多于独立假设的预测，红色色块则较少；残差超过 ±2 或 ±4 的单元格正是驱动 χ² 的关键所在。
+      马赛克图将二维列联表画成一个被切分成若干色块的正方形。列的**宽度**是第一个变量的边际比例，色块的**高度**是第二个变量的条件比例，因此每个色块的面积与其频数成正比。与 `vcd::mosaic(shade = TRUE)` 一样，颜色表示 **Pearson 残差**（观测值 − 期望值）/ √期望值：蓝色色块的推文数多于独立假设的预测，红色色块则较少；残差超过 ±2 或 ±4 的单元格正是驱动 χ² 的关键所在。
 
-      数据为 **statsmodels** 自带的 1974 年 *Redbook* 对 6,366 名已婚女性的调查（`sm.datasets.fair`）：自评婚姻质量与婚外情所花时间。色块用 `ax.bar` 手工绘制；期望频数由 `scipy.stats.chi2_contingency` 计算。
+      背景设定为 Stojkov 与 Warin（2023，*Discourse & Communication*）关于欧洲难民危机 Twitter 话语的研究。数据为用于说明的**模拟**数据，*并非*论文的数据或结果：3,000 条与难民相关的推文，每条带有来源国和一个主导话语框架（人道、安全、经济、政治）。色块用 `ax.bar` 手工绘制；期望频数由 `scipy.stats.chi2_contingency` 计算。
   proportions-surveys/proportions-with-ci:
-    title: 带置信区间的比例
-    summary: 按大小排序的各组比例点图，附 Wilson 95% 置信区间。
+    title: "带置信区间的比例"
+    summary: "按大小排序的比例点图，附 Wilson 95% 置信区间。"
     description: |
-      当问题是“每组中有多大比例……？”时，每组一个点加上其置信区间，胜过条形图：眼睛比较的是位置，而区间宽度能立刻显示哪些组样本较小。这里使用 **Wilson 得分区间**而非教科书中的 Wald 区间，因为前者在小样本组以及比例接近 0 或 1 时仍能保持 95% 的覆盖率。虚线为总体比例。
+      当问题是“每组中有多大比例……？”时，每组一个点加上其置信区间，胜过条形图：眼睛比较的是位置，而区间宽度能立刻显示每个比例的精确程度。这里使用 **Wilson 得分区间**而非教科书中的 Wald 区间，因为前者在小样本以及比例接近 0 或 1 时仍能保持 95% 的覆盖率。虚线为各要素的平均比例。
 
-      数据为 **statsmodels** 自带的 1974 年 *Redbook* 已婚女性调查（`sm.datasets.fair`）：按受访者职业划分的报告有过婚外情的比例。区间由 `statsmodels.stats.proportion.proportion_confint(method="wilson")` 计算，副标题用 `scipy.stats.chi2_contingency` 检验所有比例是否相等。
+      背景设定为 Kouloukoui、de Marcellis-Warin 与 Warin（2025，*Climate*）关于企业气候转型计划的研究。数据为用于说明的**模拟**数据，*并非*论文的数据或结果：240 家企业，逐一编码其计划是否包含七个要素（目标、资本支出、治理、范围 3 等）。区间由 `statsmodels.stats.proportion.proportion_confint(method="wilson")` 计算。由于每家企业都在每个要素上编码，七个比例是否相等用 **Cochran Q 检验**（`statsmodels.stats.contingency_tables.cochrans_q`）检验。
   proportions-surveys/crosstab-residuals:
-    title: 带标准化残差的交叉表
-    summary: 以热图呈现的列联表，按相对于独立性的标准化残差着色。
+    title: "带标准化残差的交叉表"
+    summary: "以热图呈现的列联表，按相对于独立性的标准化残差着色。"
     description: |
       `ggstats::ggtable()` 的 Python 版本：熟悉的交叉表，但每个单元格按其**标准化（调整）残差**着色——即观测频数高于或低于独立假设预测值多少个标准误。在独立假设下，这些残差近似服从标准正态分布，因此超过 ±2 的单元格（以粗体标出）正是使 χ² 检验显著的那些。每个单元格显示频数及其行百分比；边际给出合计。
 
-      数据为 **statsmodels** 自带的 1974 年 *Redbook* 调查（`sm.datasets.fair`）：6,366 名女性的宗教虔诚度与自评婚姻质量。期望频数由 `scipy.stats.chi2_contingency` 计算；残差为 (O − E) / √(E · (1 − 行比例) · (1 − 列比例))。
+      背景设定为 Kouloukoui、de Marcellis-Warin、Gomes 与 Warin（2023，*Journal of Cleaner Production*）关于 Twitter 上 ESG 话题讨论的研究。数据为用于说明的**模拟**数据，*并非*论文的数据或结果：4,000 条推文，每条对应一个 ESG 子话题及作者所在的世界区域。期望频数由 `scipy.stats.chi2_contingency` 计算；残差为 (O − E) / √(E · (1 − 行占比) · (1 − 列占比))。
   correlation/correlation-matrix:
-    title: 相关矩阵
-    summary: 下三角 Pearson 相关热图；不显著的单元格（Holm 校正）以叉号划去。
+    title: "相关矩阵"
+    summary: "下三角 Pearson 相关热图；不显著的单元格（Holm 校正）以叉号划去。"
     description: |
       `ggcorrmat()` 的 Python 版本。由于相关矩阵是对称的，只绘制下三角；每个色块显示 Pearson *r*，并以从 −1（红）到 +1（蓝）的发散色阶着色。因为同时检验了 21 个相关系数，p 值经过 **Holm 校正**，校正后在 α = .05 水平上不显著的变量对会变灰并打叉，视线可以直接略过。
 
-      数据为 **statsmodels** 自带的美国各州犯罪统计（`sm.datasets.statecrime`，50 个州 + 哥伦比亚特区）。相关系数和 p 值由 `scipy.stats.pearsonr` 计算，校正由 `statsmodels.stats.multitest.multipletests(method="holm")` 完成。
+      背景设定为 Stojkov 与 Warin（2019，*Data in Brief*）关于蒙代尔三元悖论的四十年数据集。数据为用于说明的**模拟**数据，*并非*该数据集的数值：120 个国家的三项三元悖论指数（汇率稳定性、货币独立性、金融开放度），构造使其总和约为 2，另加四个宏观变量。相关系数和 p 值由 `scipy.stats.pearsonr` 计算，校正由 `statsmodels.stats.multitest.multipletests(method="holm")` 完成。
   correlation/scatter-with-stats:
     title: "附统计量的散点图"
-    summary: "加州 303 个学区的低收入学生比例与数学成绩——散点图、附 95% 置信带的 OLS 回归线、边际直方图和 Pearson r。"
+    summary: "国家对之间的双边贸易强度与经济周期相关性——散点图、附 95% 置信带的 OLS 回归线、边际直方图和 Pearson r。"
     description: |
       `ggscatterstats()` 的 Python 版本。中央面板展示所有观测值，以及最小二乘回归线和其 95% 置信带（反映的是每个 *x* 处 *y* 均值的不确定性，而非单个数据点的不确定性）。上方和右侧的边际直方图揭示了每个变量的分布形态——相关系数默认这一形态是合理的。副标题报告 Pearson *r* 及其 95% 置信区间、t 检验、OLS 斜率和样本量。
 
-      数据为 **statsmodels** 自带的 STAR98 测试中加州 303 个学区（`sm.datasets.star98`）：低收入家庭学生的比例，对比数学成绩高于全国中位数的受测学生比例，后者按 `NABOVE / (NABOVE + NBELOW)` 计算。斜率 −0.75 意味着低收入学生比例每高 10 个百分点，高于中位数的学生比例约低 7.5 个百分点——这是学区之间的关联，而非因果效应。检验来自 `scipy.stats.pearsonr`，回归线和置信带来自 **statsmodels** OLS 的 `get_prediction().conf_int()`。
+      背景设定为 Janicki、Warin 与 Wunnava（2009，*Review of International Economics*），该文检验了蒙代尔关于贸易一体化使经济周期趋于同步的直觉。数据为用于说明的**模拟**数据，*并非*论文的数据或结果：190 个国家对（20 个国家的所有两两组合），包括双边贸易强度的对数以及两国去趋势产出的相关系数。拟合线描述的是国家对之间的关联，而非因果效应。检验由 `scipy.stats.pearsonr` 完成，回归线和置信带来自 **statsmodels** OLS 的 `get_prediction().conf_int()`。
   correlation/pairs-plot:
     title: "附相关系数的配对图"
-    summary: "四个学区变量的散点图矩阵，对角线为分组密度，上方为合并相关与组内相关。"
+    summary: "四个地区增长变量的散点图矩阵，对角线为分组密度，上方为合并相关与组内相关。"
     description: |
       `GGally::ggpairs()` 的 Python 版本。对角线以下，每对变量都有一张按组着色的散点图；对角线展示每个变量在各组中的密度；对角线以上的对称单元格则给出 Pearson *r*，包括总体（粗体）和各组内的值，并附显著性星号。比较二者正是关键：当各组位于图中不同区域时，合并相关与组内相关可能差异悬殊——甚至符号相反。
 
-      数据为 **statsmodels** 自带的 STAR98 测试中加州 303 个学区（`sm.datasets.star98`）：数学成绩高于全国中位数的学生比例、西班牙裔学生比例、修读大学预备（UC/CSU）课程的学生比例，以及教师平均从教年数。学区按低收入学生比例分为三等份（`pd.qcut`，每组 101 个），因此组内系数大致控制了贫困水平：西班牙裔比例与数学成绩之间的关联总体为 −0.71，而在每个贫困组内都更弱。密度使用 `scipy.stats.gaussian_kde`，相关系数使用 `scipy.stats.pearsonr`；网格是简单的 `plt.subplots(4, 4)`。
+      背景设定为 Hadengue 与 Warin（2014，*Management international*）关于巴西、中国和印度的专业化与（无）条件收敛的研究。数据为用于说明的**模拟**数据，*并非*论文的数据或结果：86 个地区（巴西 27 个州、中国 31 个省、印度 28 个邦），包括平均增长率、初始人均收入的对数、专业化指数和出口多样化指数。在每个国家内部，较穷的地区增长更快（条件收敛），而合并相关则混入了国家之间的差距。密度使用 `scipy.stats.gaussian_kde`，相关系数使用 `scipy.stats.pearsonr`；网格是一个普通的 `plt.subplots(4, 4)`。
   correlation/correlogram-bubble:
     title: "带聚类的相关图"
-    summary: "13 个学区指标的 corrplot 风格圆圈图，圆圈大小和颜色由 r 决定，并按层次聚类排序。"
+    summary: "12 个发展指标的 corrplot 风格圆圈图，圆圈大小和颜色由 r 决定，并按层次聚类排序。"
     description: |
-      `corrplot(method = "circle", order = "hclust")` 的 Python 版本。每个圆圈的**面积**随 |*r*| 增大，颜色表示符号，因此强相关十分醒目，弱相关则逐渐淡去。变量按**层次聚类**（以 1 − *r* 为距离的完全连接法）重新排序，使正相关的变量沿对角线聚成块；方框勾勒出三个聚类，效果同 `addrect = 3`。在这里，低收入学生、西班牙裔学生和少数族裔教师构成一个块，而数学成绩与这三者均呈负相关。
+      `corrplot(method = "circle", order = "hclust")` 的 Python 版本。每个圆圈的**面积**随 |*r*| 增大，颜色表示符号，因此强相关十分醒目，弱相关则逐渐淡去。变量按**层次聚类**（以 1 − *r* 为距离的完全连接法）重新排序，使正相关的变量沿对角线聚成块；方框勾勒出三个聚类，效果同 `addrect = 3`。
 
-      数据为 **statsmodels** 自带的 STAR98 测试中加州 303 个学区（`sm.datasets.star98`）的 13 个指标：数学成绩（高于全国中位数的学生比例）、学生构成（低收入、西班牙裔、黑人和亚裔学生）、教师（少数族裔比例、从教年数、薪资）、资源（生均支出、生师比）以及学校组织（大学预备课程、特许学校和全年制学校）。排序来自 `scipy.cluster.hierarchy.linkage` 和 `leaves_list`，方框来自 `fcluster`。
+      背景设定为 Dedinec、Stojkov、Warin 与 Kocarev（2026，*Journal of Sustainable Development of Energy, Water and Environment Systems*）关于不均衡发展轨迹的研究。数据为用于说明的**模拟**数据，*并非*论文的数据或结果：150 个国家在收入、能源、排放、健康、教育和经济结构方面的 12 项指标，由三个相关的潜在因子生成，以便呈现出块状结构。排序来自 `scipy.cluster.hierarchy.linkage` 和 `leaves_list`，方框来自 `fcluster`。
   regression-models/coefficient-plot:
-    title: 系数图
-    summary: 回归估计值及其 95% 置信区间，每项一行。
+    title: "系数图"
+    summary: "回归估计值及其 95% 置信区间，每项一行。"
     description: |
       系数图（又称点须图）取代了回归结果表。每个点是一个估计值，每条线是其 95% 置信区间，虚线标示零点。置信区间跨过零的项以灰色绘制，显著效应因此一目了然。
 
-      模型使用 **statsmodels** 公式 API 解释美国 50 个州（+ 哥伦比亚特区）的暴力犯罪率。预测变量事先经过标准化，因此系数可以直接比较：表示预测变量变化一个标准差时，每 10 万人中犯罪数的变化。
+      背景设定为 Stojkov、Veljanovski 与 Warin (2024, *Post-Communist Economies*) 关于新兴欧洲经济增长与制度及政策因素的研究。数据为说明用途而**模拟**生成，并非论文的数据或结果：n = 220 个国家-年份（11 个经济体 × 20 年），用 **statsmodels** 公式 API（`smf.ols()`）以六个预测变量解释人均 GDP 年增长率。预测变量事先经过标准化，因此系数可以直接比较：表示预测变量变化一个标准差时增长率变化的百分点。
   regression-models/odds-ratio-forest:
-    title: 优势比森林图
-    summary: 对数刻度上的 logistic 回归优势比，并列附 OR [95% CI] 表格。
+    title: "优势比森林图"
+    summary: "对数刻度上的 logistic 回归优势比，并列附 OR [95% CI] 表格。"
     description: |
       Logistic 回归系数是对数优势；取指数后即为**优势比**。每个点表示预测变量变化一个单位时结局优势的倍数变化，线段为其 95% 置信区间，OR = 1 处的虚线表示“无效应”。由于比值在对数刻度上是对称的（0.5 与 2 强度相当），x 轴采用对数刻度。右侧一列重复列出这些数字，与论文中的表格如出一辙。
 
-      数据为 **statsmodels** 自带的 1974 年 *Redbook* 对 6,366 名已婚女性的调查（`sm.datasets.fair`）。结局为受访者是否报告有过婚外情；模型用 `smf.logit()` 拟合，优势比为 `params` 和 `conf_int()` 的 `np.exp()`。
+      背景设定为 Blakely 与 Warin (2012, *Global Economy Journal*) 关于欧洲移民决策——自主选择还是模仿——的研究。数据为说明用途而**模拟**生成，并非论文的数据或结果：n = 2,500 名调查受访者，结局为是否打算移居国外。预测变量为年龄、高等教育、失业、在国外有家人或朋友以及生活满意度。模型用 `smf.logit()` 拟合，优势比为 `params` 和 `conf_int()` 的 `np.exp()`。
   regression-models/compare-models:
     title: "嵌套模型比较"
-    summary: "并排展示学区数学成绩的三个嵌套回归的系数，观察逐块加入变量时估计值如何变化。"
+    summary: "并排展示 FDI 的三个嵌套回归的系数，观察加入欧盟变量块后估计值如何变化。"
     description: |
       当协变量逐块加入时，值得关注的往往不是*哪些*项显著，而是*估计值如何变化*。这里每项占一行，每个模型对应一个错开的点须，便于跟踪某个系数随模型扩展而发生的变化。空心标记表示在 5% 水平上不显著。副标题以 R² 和新增变量块的 F 检验对模型进行比较。
 
-      数据为 **statsmodels** 自带的 STAR98 测试中加州 303 个学区（`sm.datasets.star98`）。因变量为数学成绩高于全国中位数的学生比例 `NABOVE / (NABOVE + NBELOW)`，以百分比表示。M1 包含学生构成（低收入和西班牙裔学生），M2 加入教师（生师比、平均从教年数），M3 加入项目（大学预备课程、全年制学校）。预测变量经过标准化，因此每个系数是每个标准差对应的百分点变化。各变量块联合显著，但 R² 几乎不变，低收入的系数在每个模型中都保持在 −12 左右。模型用 `smf.ols()` 拟合，并用 `anova_lm()` 比较。
+      背景设定为 Stojkov 与 Warin (2018, *Journal of East-West Business*) 关于转型经济体中欧盟成员资格与外国直接投资的研究。数据为说明用途而**模拟**生成，并非论文的数据或结果：n = 180 个国家-年份（10 个经济体 × 18 年），因变量为 FDI 流入占 GDP 的百分比。M1 包含市场因素（市场规模、GDP 增长率、单位劳动成本），M2 加入政策（制度质量、贸易开放度），M3 加入欧盟变量块（候选国地位、成员国身份，均为 0/1）。连续预测变量经过标准化。随着各国向欧盟靠拢，制度不断改善，因此欧盟变量块加入后制度的系数随之缩小。模型用 `smf.ols()` 拟合，并用 `anova_lm()` 比较。
   regression-models/predicted-probabilities:
-    title: 预测概率
-    summary: 按组绘制随某一预测变量变化的模型预测概率曲线，附 95% 置信带。
+    title: "预测概率"
+    summary: "按组绘制随某一预测变量变化的模型预测概率曲线，附 95% 置信带。"
     description: |
-      优势比难以直观感受，概率则不然。这张图将 logistic 模型还原到结局尺度：每条曲线是某个因素水平下，成功的预测概率随一个连续预测变量取值范围的变化，其他协变量固定在均值。置信带是在 logit 尺度上计算后再反变换的 95% 置信区间，因此始终位于 [0, 1] 之内。地毯线标示观测到的学生——成绩提高者位于顶部，未提高者位于底部。
+      优势比难以直观感受，概率则不然。这张图将 logistic 模型还原到结局尺度：每条曲线是某个因素水平下，结局的预测概率随一个连续预测变量取值范围的变化，另一个协变量固定在均值。置信带是在 logit 尺度上计算后再反变换的 95% 置信区间，因此始终位于 [0, 1] 之内。地毯线标示观测到的受访者——作出该回答者位于顶部，其余位于底部。
 
-      数据为 **statsmodels** 自带的 Spector & Mazzeo（1980）实验（`sm.datasets.spector`）：在控制此前 GPA 和前测成绩（TUCE）后，一种新的教学方法（PSI）能否提高成绩？模型为二项 `smf.glm()`；曲线来自 `get_prediction().summary_frame()`。
+      背景设定为 Kouloukoui、de Marcellis-Warin 与 Warin (2025, *AI & Society*) 关于公众如何看待人工智能风险与收益的研究。数据为说明用途而**模拟**生成，并非论文的数据或结果：n = 600 名调查受访者，结局为是否认为 AI 风险大于收益，预测变量为年龄、大学学位和自评的 AI 熟悉程度（1–5）。模型为二项 `smf.glm()`；曲线来自 `get_prediction().summary_frame()`。
   regression-models/interaction-effects:
     title: "交互效应"
-    summary: "均值 ± 1 SD 处的简单斜率与 Johnson–Neyman 图：大学预备课程与数学成绩的关系，受学生贫困程度调节。"
+    summary: "均值 ± 1 SD 处的简单斜率与 Johnson–Neyman 图：资本流入与信贷增长的关系，受汇率弹性调节。"
     description: |
       交互项意味着一个预测变量的斜率取决于另一个变量。**左图**在调节变量的三个取值——均值及 ±1 个标准差——处分别画出该斜率，各附 95% 置信带。**右图**是 Johnson–Neyman 视图：焦点预测变量的边际效应 β₁ + β₃·moderator 在调节变量整个取值范围内的变化，附 95% 置信区间。置信带不包含零的区域效应显著；转折点即 Johnson–Neyman 点。
 
-      数据为 **statsmodels** 自带的 STAR98 测试中加州 303 个学区（`sm.datasets.star98`）。因变量为数学成绩高于全国中位数的学生比例（%）；焦点预测变量为修读大学预备（UC/CSU）课程的学生比例，调节变量为低收入学生比例，模型为 `smf.ols("math ~ prep * lowinc")`。在较富裕的学区，大学预备课程比例越高，数学成绩越好；但随着贫困程度上升，这一关联逐渐减弱——并且只在最贫困的两个学区变为显著为负，因此最右侧出现第二个 Johnson–Neyman 点。边际效应的方差由 `cov_params()` 手工计算：Var(β₁) + 2m·Cov(β₁, β₃) + m²·Var(β₃)。
+      背景设定为 Stojkov 与 Warin (2021, *Global Economy Journal*) 从蒙代尔三元悖论视角研究外国资本与国内融资条件。数据为说明用途而**模拟**生成，并非论文的数据或结果：n = 400 个国家-年份，因变量为国内信贷增长率（%），焦点预测变量为净资本流入（占 GDP 的 %），调节变量为汇率弹性指数（0 = 硬钉住，1 = 自由浮动），模型为 `smf.ols("credit ~ inflows * flex")`。在钉住汇率下，资本流入伴随更快的信贷增长；汇率浮动越自由，这种关联越弱。边际效应的方差由 `cov_params()` 手工计算：Var(β₁) + 2m·Cov(β₁, β₃) + m²·Var(β₃)。
   regression-models/quantile-regression:
-    title: 分位数回归过程
-    summary: 斜率如何随条件分布变化，并与单一的 OLS 估计相对照。
+    title: "分位数回归过程"
+    summary: "斜率如何随条件分布变化，并与单一的 OLS 估计相对照。"
     description: |
       OLS 只估计一个斜率：对条件**均值**的效应。分位数回归则为每个条件分位数 τ 估计一个斜率，从而可以看出某个预测变量是在拉伸分布，而不仅仅是平移分布。深色线是 τ = 0.05 … 0.95 时的分位数回归系数及其 95% 置信带；橙色线和虚线分别是 OLS 估计及其 95% 置信区间，按构造为常数。左图展示数据以及若干条拟合的分位数回归线。
 
-      数据为 Engel（1857）对 235 个比利时工人家庭的家庭预算调查，由 **statsmodels** 自带（`sm.datasets.engel`）。模型用 `smf.quantreg().fit(q=τ)` 和 `smf.ols()` 拟合。
+      背景设定为 Troadec 与 Warin (2015)，即 *L'économie du Québec 2015* 中探讨加拿大企业在全球研发中地位的一章。数据为说明用途而**模拟**生成，并非该章的数据或结果：n = 300 家企业，以研发投资的对数对销售额的对数（均以百万美元计）回归，因此每个斜率都是弹性。模型用 `smf.quantreg().fit(q=τ)` 和 `smf.ols()` 拟合。
   model-diagnostics/residual-diagnostics:
-    title: 残差诊断
-    summary: 线性模型经典的 2 × 2 诊断图——线性、正态性、方差与杠杆值。
+    title: "残差诊断"
+    summary: "线性模型经典的 2 × 2 诊断图——线性、正态性、方差与杠杆值。"
     description: |
       残差的四种视图回答四个问题。**残差与拟合值**：关系是否为线性（LOWESS 曲线是否平坦）？**正态 Q–Q 图**：残差是否近似正态（点是否落在直线上）？**尺度–位置图**：离散程度是否恒定（曲线是否平坦）？**残差与杠杆值**：是否有观测值在牵引拟合，即落在 Cook 距离虚线等值线之外？每个子图都标注了三个最极端的观测值，正式检验结果列于副标题。
 
-      模型是基于 `sm.datasets.statecrime` 中美国 50 个州 + 哥伦比亚特区的暴力犯罪回归。所有结果均来自 **statsmodels** 的 `get_influence()`，另用 `lowess()` 绘制平滑曲线，并使用 `het_breuschpagan()` 和 `scipy.stats.shapiro()`。
+      背景设定为 Tengia、Wandschneider、Warin 与 Wunnava (2011, *African Finance Journal*) 关于南部非洲贸易的扩展引力模型研究。数据为说明用途而**模拟**生成，并非论文的数据或结果：n = 210 个有向国家对，涉及 15 个非洲经济体，其中 10 个为 SADC 成员。以出口额的对数对出口国和进口国 GDP 的对数、距离的对数、共同边界以及双方同为 SADC 成员进行回归；误差取自厚尾分布，Q–Q 图捕捉到了这一点。所有结果均来自 **statsmodels** 的 `get_influence()`，平滑曲线使用 `lowess()`，另用 `het_breuschpagan()` 和 `scipy.stats.shapiro()`。
   model-diagnostics/influence-plot:
-    title: 影响图
-    summary: 学生化残差对杠杆值，气泡大小由 Cook 距离决定。
+    title: "影响图"
+    summary: "学生化残差对杠杆值，气泡大小由 Cook 距离决定。"
     description: |
       当一个观测值既在预测变量上不寻常（高杠杆值，x 轴），又拟合不佳（学生化残差大，y 轴）时，它就是**强影响点**。气泡面积随综合二者的 Cook 距离增大（∝ √D，使极端值依然清晰可读）。虚线标出常用的经验阈值——杠杆值 2p/n 和 3p/n、学生化残差 ±2——Cook's D 超过 4/n 的观测值会被标注名称并着色。
 
-      模型使用 **statsmodels** OLS 解释美国 50 个州 + 哥伦比亚特区的谋杀率（`sm.datasets.statecrime`）。学生化（删除）残差、帽子值和 Cook 距离均来自 `model.get_influence()`；副标题像 `car::outlierTest()` 一样，用 Bonferroni 离群值检验来检查最大残差。
+      背景设定为 Warin 与 Stojkov (2021, *Journal of Risk and Financial Management*) 关于 2008 年危机后银行对外债权的研究。数据为说明用途而**模拟**生成，并非论文的数据或结果：n = 36 个欧洲及 OECD 国家，以 GDP 的对数、金融深度、贸易开放度和欧元区成员身份解释外国银行对各国的债权（十亿美元的对数）。为让图中有可发现的对象，几个金融中心被赋予了异常的预测变量或债权值。学生化（删除）残差、杠杆值和 Cook 距离均来自 **statsmodels** 的 `model.get_influence()`；副标题像 `car::outlierTest()` 一样，用 Bonferroni 离群值检验检查最大的残差。
   model-diagnostics/roc-curve:
-    title: ROC 曲线
-    summary: 以 ROC 曲线、AUC 及其自助法 95% 置信区间和 Youden 点比较三个分类器。
+    title: "ROC 曲线"
+    summary: "以 ROC 曲线、AUC 及其自助法 95% 置信区间和 Youden 点比较三个分类器。"
     description: |
       ROC 曲线描绘随着决策阈值由严到宽变化时，灵敏度相对于 1 − 特异度的变化轨迹。对角线相当于抛硬币；曲线越贴近左上角越好。**AUC** 是随机抽取的一个阳性样本得分高于随机抽取的一个阴性样本的概率；其 95% 区间来自对测试集的 1,000 次自助重抽样，并用配对自助法比较最优和最弱的模型。每条曲线上的点是使 **Youden's J** = 灵敏度 + 特异度 − 1 最大化的阈值。
 
-      数据为 Fair 婚外情调查的 6,366 名受访者（`sm.datasets.fair`），按 70/30 划分为训练集和测试集。来自 **scikit-learn** 的 logistic 回归、随机森林和朴素贝叶斯模型预测受访者是否报告有过婚外情；曲线和 AUC 由 `roc_curve()` 和 `roc_auc_score()` 计算。
+      背景设定为 Marty 与 Warin (2025, *Journal of Economy and Technology*) 关于算法合谋及其对反垄断执法影响的研究。数据为说明用途而**模拟**生成，并非论文的数据或结果：n = 2,000 个市场-周，其中约 20% 存在合谋，以五个特征描述（价格水平、成本指数、价格波动率、同步调价的比例、对成本冲击的反应滞后），按 70/30 划分。合谋体现在价格与成本之差，以及价格既同步*又*僵化，而将特征视为相互独立的朴素贝叶斯无法把这些信息结合起来。**scikit-learn** 的 logistic 回归、随机森林和朴素贝叶斯模型用于识别合谋时段；曲线和 AUC 来自 `roc_curve()` 和 `roc_auc_score()`。
   model-diagnostics/calibration-plot:
-    title: 校准图
-    summary: 按十分位分组的预测风险与观测风险，附 Wilson 置信区间、预测值直方图和 Brier 分数。
+    title: "校准图"
+    summary: "按十分位分组的预测风险与观测风险，附 Wilson 置信区间、预测值直方图和 Brier 分数。"
     description: |
-      一个模型可以很好地对样本排序（AUC 高），却仍然给出错误的概率。可靠性图正是用来检验这一点的：测试样本按预测风险分为十个十分位组，每组的平均预测值与观测事件率相对照，并附 95% Wilson 区间。校准良好的模型落在对角线上；点位于对角线下方意味着模型过度自信。下方的直方图展示预测值的实际分布位置。
+      一个模型可以很好地对样本排序（AUC 高），却仍然给出错误的概率。可靠性图正是用来检验这一点的：测试样本按预测风险分为十个十分位组，每组的平均预测值与观测事件率相对照，并附 95% Wilson 区间。校准良好的模型落在对角线上；高风险端的点位于对角线下方（低风险端位于上方）意味着模型过度自信。下方的直方图展示预测值的实际分布位置。
 
-      数据为 Fair 婚外情调查（`sm.datasets.fair`），按 70/30 划分。比较来自 **scikit-learn** 的 logistic 回归和高斯朴素贝叶斯模型；**Brier 分数**（`brier_score_loss`，越低越好）概括概率预测的准确度，区间由 `proportion_confint(method="wilson")` 计算。
+      背景设定为 Zarea 等 (2026, *Journal of Information Technology Management*) 关于风险驱动的能力建设与供应链韧性的研究。数据为说明用途而**模拟**生成，并非论文的数据或结果：n = 3,000 家企业，结局为企业是否遭遇重大供应链中断，预测变量为供应商集中度、地理风险暴露、交货期波动（同一风险暴露的三个相关指标）以及数字化指数。数据按 70/30 划分。比较 **scikit-learn** 的 logistic 回归与高斯朴素贝叶斯模型；朴素贝叶斯把三个相关信号当作相互独立的证据重复计算。**Brier 分数**（`brier_score_loss`，越低越好）概括概率的准确性，区间来自 `proportion_confint(method="wilson")`。
   model-diagnostics/partial-regression:
-    title: 添加变量图
-    summary: 每个预测变量一张偏回归图；每条拟合斜率都等于对应的回归系数。
+    title: "添加变量图"
+    summary: "每个预测变量一张偏回归图；每条拟合斜率都等于对应的回归系数。"
     description: |
       在多元回归中，y 对单个预测变量的原始散点图会把该变量的效应与所有与之相关的因素混在一起。**添加变量图**消除了这种混杂：它将 y 对所有*其他*预测变量回归的残差，与焦点预测变量对同样这些预测变量回归的残差相对照。根据 Frisch–Waugh–Lovell 定理，穿过点云的直线斜率恰好等于多元回归系数，而在 x 轴上远离中心的点正是驱动该系数的观测值。
 
-      模型是基于 `sm.datasets.statecrime` 中美国 50 个州 + 哥伦比亚特区的暴力犯罪回归，用 **statsmodels** `smf.ols()` 拟合。残差由每个坐标轴各一次辅助 OLS 拟合计算；每个子图报告 β 及其 t 值和 p 值。
+      背景设定为 Tengia、Wandschneider、Warin 与 Wunnava (2011, *African Finance Journal*) 关于南部非洲贸易的扩展引力模型研究。数据为说明用途而**模拟**生成，并非论文的数据或结果，且与残差诊断示例使用同一生成程序：n = 210 个有向国家对，涉及 15 个非洲经济体，其中 10 个为 SADC 成员。用 **statsmodels** 的 `smf.ols()` 以出口额的对数对出口国和进口国 GDP 的对数、距离的对数、共同边界以及双方同为 SADC 成员进行回归。每条坐标轴的残差由一次辅助 OLS 拟合求得；每个子图报告 β 及其 t 值和 p 值。
   survival/kaplan-meier:
     title: "Kaplan–Meier 生存曲线"
-    summary: "政治领导人在任多久：民主政体与非民主政体对比——附置信带、删失标记、log-rank 检验和风险人数表的生存曲线。"
+    summary: "专利从申请到授权的时间：国内与国外申请人对比，附 log-rank 检验和风险数表。"
     description: |
-      Kaplan–Meier 估计量将随访时间——有的以事件结束，有的被删失——转换为一条阶梯曲线，表示“存活”超过每个时间点的概率。阴影带为逐点 95% 置信区间，短竖线标记被删失的任期，虚线从 50% 处下落至各组的**中位生存时间**。下方的表格给出仍处于风险中的人数，据此可以判断每条曲线的尾部有多少数据支撑。
+      Kaplan–Meier 估计量将随访时间——有的以事件结束，有的被删失——转换为一条阶梯曲线，表示“存活”超过每个时间点的概率。阴影带为逐点 95% 置信区间，短竖线标记被删失的申请，虚线从 50% 处下落至各组的**中位生存时间**。下方的表格给出仍处于风险中的数量，据此可以判断每条曲线的尾部有多少数据支撑。
 
-      数据为 **lifelines** 自带的 Cheibub、Gandhi 和 Vreeland 的 Democracy and Dictatorship 数据集（`lifelines.datasets.load_dd`）：1946–2008 年间 202 个国家政府首脑的 1,808 段任期，以年计。事件为离任；未观察到离任的任期——例如数据结束时仍在继续的任期——作删失处理。民主政体领导人达到中位任期的速度是非民主政体领导人的两倍。横轴截止于 30 年；没有任何民主政体的任期超过 23 年。曲线来自 `KaplanMeierFitter`，比较来自 `logrank_test`。
+      背景为 Vorreuther 和 Warin (2021, *Data in Brief*)，一个关于中国制药业专利关联度与授权速度的数据集。此处数据为说明用途的**模拟数据**，并非论文的数据或结果：400 件医药专利申请，以自申请起的月数计时；事件为授权，观察结束时仍在审查中的申请作删失处理。曲线来自 `KaplanMeierFitter`，比较来自 `logrank_test`。
   survival/cox-hazard-ratios:
-    title: Cox 风险比
-    summary: Cox 比例风险模型的森林图，附 HR、95% 置信区间和 p 值。
+    title: "Cox 风险比"
+    summary: "专利授权时间 Cox 模型的森林图，附 HR、95% CI 和 p 值。"
     description: |
-      Cox 比例风险模型估计每个协变量使事件的瞬时风险变为原来的多少倍。每一行展示一个**风险比**（HR）及其 95% 置信区间，采用对数刻度，使风险减半与加倍到 HR = 1 参考线的距离相等。右侧表格重复列出这些数字，与正式发表的森林图一致。
+      Cox 比例风险模型估计每个协变量使事件的瞬时风险变为原来的多少倍——这里的“风险”是获得授权的机会，因此风险比大于 1 意味着授权**更快**。每一行展示一个**风险比**（HR）及其 95% 置信区间，采用对数刻度，使减半与加倍到 HR = 1 参考线的距离相等。右侧表格重复列出这些数字，与正式发表的森林图一致。
 
-      数据为 Rossi 再犯研究（`lifelines.datasets.load_rossi`）：432 名获释囚犯被随访一年，事件为再次被捕。模型用 `lifelines.CoxPHFitter` 拟合；副标题报告一致性指数（C 指数）以及整个模型的似然比检验。
+      背景为 Vorreuther 和 Warin (2021, *Data in Brief*)，一个关于中国制药业专利关联度与授权速度的数据集。此处数据为说明用途的**模拟数据**，并非论文的数据或结果：400 件医药专利申请，以月为单位从申请追踪至授权，协变量为权利要求数量、申请人类型，以及该申请与申请人既有专利之间的 Jaccard 关联度。模型用 `lifelines.CoxPHFitter` 拟合；副标题报告一致性指数和整个模型的似然比检验。
   survival/cumulative-hazard:
     title: "累积风险"
-    summary: "四种政治体制下离任的 Nelson–Aalen 累积风险，附 95% 置信带。"
+    summary: "四组市场中新药上市的 Nelson–Aalen 累积风险，附 95% 置信带。"
     description: |
       累积风险 H(t) 将事件的瞬时风险随时间累加；它是“迄今为止累积的风险”，并通过 S(t) = exp(−H(t)) 与生存函数相联系。与生存曲线不同，它不以 1 为上界，其**斜率**就是风险本身——直线意味着风险恒定，向上弯曲的曲线则意味着风险随时间增长。
 
-      数据为 **lifelines** 自带的 Cheibub、Gandhi 和 Vreeland 的 Democracy and Dictatorship 数据集（`lifelines.datasets.load_dd`）：1946–2008 年间政府首脑的在任年数，取四种最主要的体制类型（1,808 段任期中的 1,478 段；混合民主制和君主制未纳入）。曲线来自 `lifelines.NelsonAalenFitter`，副标题报告四种体制之间的 log-rank 检验（`multivariate_logrank_test`）。民主体制的曲线上升陡峭，总统制曲线呈大台阶式上升——这是固定任期和任期限制留下的印记；而独裁体制的曲线低且近乎直线，即风险较低且大致恒定。横轴截止于十年，此后仍处于风险中的总统寥寥无几。
+      背景为 Hadengue、de Marcellis-Warin 和 Warin (2015, *Management international*)，研究制药行业的逆向创新与逆向技术转移。此处数据为说明用途的**模拟数据**，并非论文的数据或结果：400 个药品–市场组合，以年计量从药品在全球首次获批到在某一市场上市的时间，分为四组市场。观察结束时尚未上市的药品作删失处理。曲线来自 `lifelines.NelsonAalenFitter`，副标题报告四组之间的 log-rank 检验（`multivariate_logrank_test`）。横轴截止于 6 年，此后上市最快的几组中仍处于风险中的药品太少。
   survival/adjusted-survival:
-    title: 调整后的生存曲线
-    summary: Cox 模型针对不同年龄预测的生存曲线，其他协变量固定在均值。
+    title: "调整后的生存曲线"
+    summary: "Cox 模型预测的四种关联度水平下的专利授权时间，其他协变量取均值。"
     description: |
-      风险比难以直观感受，生存曲线则不然。这里使用拟合好的 Cox 比例风险模型，为仅在年龄上不同的假想个体**预测**完整的生存曲线，其他所有协变量都固定在样本均值。曲线之间的纵向差距，就是年龄效应换算成保持未被捕概率后的结果。
+      风险比难以直观感受，生存曲线则不然。这里使用拟合好的 Cox 比例风险模型，为仅在与申请人既有专利的关联度上不同的假想申请**预测**完整曲线，其他所有协变量都固定在样本均值。曲线之间的横向差距，就是关联度效应换算成等待授权月数后的结果。
 
-      数据为 Rossi 再犯研究（`lifelines.datasets.load_rossi`）。模型用 `lifelines.CoxPHFitter` 基于全部七个协变量拟合，曲线来自 `predict_survival_function()`；整个样本观测到的 Kaplan–Meier 曲线以灰色绘制作为参照。
+      背景为 Vorreuther 和 Warin (2021, *Data in Brief*)，一个关于中国制药业专利关联度与授权速度的数据集。此处数据为说明用途的**模拟数据**，并非论文的数据或结果：400 件医药专利申请，关联度以 0 到 1 之间的 Jaccard 相似度衡量。模型用 `lifelines.CoxPHFitter` 基于全部四个协变量拟合，曲线来自 `predict_survival_function()`；整个样本观测到的 Kaplan–Meier 曲线以灰色绘出，作为参照。
   time-series/stl-decomposition:
     title: "STL 分解"
-    summary: "将月度工业营业额序列分解为趋势、季节和残余成分，并以堆叠面板展示。"
+    summary: "将月度制造业销售额分解为趋势、季节和残余成分。"
     description: |
       STL（基于 Loess 的季节–趋势分解）将序列写成**观测值 = 趋势 + 季节 + 残余**。各面板共用时间轴，但纵轴刻度各自独立，因此每个面板左侧的灰色竖条——在数据单位上长度完全相同——显示了每个成分的真实大小：竖条短，说明该成分占主导；竖条长，说明该成分较小。
 
-      数据为 Eurostat 发布的欧元区电气设备制造业月度营业额指数（2010 = 100），1995 年 1 月至 2016 年 5 月，经工作日调整但**未**经季节调整——共 257 个月，随 **statsmodels** 提供（`statsmodels.datasets.elec_equip`）。趋势显示了 2008–09 年工业活动的崩塌；季节成分显示了 8 月停工和季度末的高峰。分解使用 `statsmodels.tsa.seasonal.STL`，周期为 12 个月并采用稳健拟合；副标题给出按 Wang、Smith 和 Hyndman（2006）定义的趋势强度和季节强度。
+      背景为 Warin (2024, *Technology Innovations in Statistics Education*)，介绍如何在统计学课程中使用加拿大统计局的开放经济数据，月度制造业销售额是典型的教学序列。此处数据为说明用途的**模拟数据**，并非加拿大统计局的数字：一条类似制造业销售额的序列，单位为十亿元，2005 年 1 月至 2023 年 12 月（228 个月），由含两次下滑（2009 年和 2020 年春）的趋势、固定的月度模式和噪声构成。同一条模拟序列用于 STL、SARIMA 和季节子序列三个示例。分解使用 `statsmodels.tsa.seasonal.STL`，周期 12 个月，采用稳健拟合；副标题按 Wang、Smith 和 Hyndman (2006) 的定义给出趋势强度和季节性强度。
   time-series/acf-pacf:
     title: "ACF 与 PACF"
-    summary: "美国季度失业率的自相关与偏自相关，以棒棒糖图展示并附 95% 显著性带。"
+    summary: "某主权债券相对德国国债（Bund）的月度利差的 ACF 与 PACF，附 95% 显著性带。"
     description: |
-      自相关函数（ACF）衡量序列与其自身 k 步之前的值的相关程度；偏自相关函数（PACF）则在剔除中间较短滞后的影响后做同样的衡量。超出灰色带（±1.96/√n）的竖线大于白噪声所能产生的水平。两个面板结合起来可提示合适的模型：这里 ACF 在数年间缓慢衰减——今天失业率高，明年失业率也高——而 PACF 在**两个滞后**之后截尾，这正是 AR(2) 过程的特征。
+      自相关函数（ACF）衡量序列与其自身 k 步之前的值的相关程度；偏自相关函数（PACF）则在剔除中间较短滞后的影响后做同样的衡量。超出灰色带（±1.96/√n）的竖线大于白噪声所能产生的水平。两个面板结合起来可提示合适的模型：这里 ACF 在许多个月间缓慢衰减——本月利差大，之后一段时间利差也大——而 PACF 在**两个滞后**之后截尾，这正是 AR(2) 过程的特征。
 
-      数据为美国平民失业率，1959 年第 1 季度至 2009 年第 3 季度的季度数据（203 个季度），取自 **statsmodels** 自带的宏观经济数据集（`sm.datasets.macrodata`，列 `unemp`）。相关系数来自 `statsmodels.tsa.stattools.acf` 和 `pacf`，副标题报告无自相关的 Ljung–Box 检验。
+      背景为 Warin 和 Stojkov (2023, *Entropy*)，研究欧洲主权债券收益率差异。此处数据为说明用途的**模拟数据**，并非论文的数据或结果：某一欧元区国家 10 年期国债相对德国国债的利差，单位为百分点，2003 年 1 月至 2022 年 12 月的月度数据（n = 240），按 AR(2) 过程生成。相关系数来自 `statsmodels.tsa.stattools.acf` 和 `pacf`，副标题报告无自相关的 Ljung–Box 检验。
   time-series/arima-forecast:
     title: "SARIMA 预测"
-    summary: "工业营业额的季节性 ARIMA 预测，附 80% 和 95% 预测区间，并与留出数据对照。"
+    summary: "月度制造业销售额的季节性 ARIMA 预测，附 80% 和 95% 区间，并与留出数据对比。"
     description: |
       只有附带不确定性，预测才是诚实的。深色扇形为 80% 预测区间，浅色扇形为 95% 区间；两者都随预测期延长而变宽。最后两年数据在拟合时被**留出**，因此圆点显示的是实际发生的情况，副标题报告样本外 RMSE，以及这些月份中有多少落在 95% 区间之内。
 
-      数据为 Eurostat 发布的欧元区电气设备制造业月度营业额指数（2010 = 100），1995 年 1 月至 2016 年 5 月，经工作日调整但未经季节调整（`statsmodels.datasets.elec_equip`，随 **statsmodels** 提供）。模型用截至 2014 年 5 月的数据拟合，预测 2014 年 6 月至 2016 年 5 月。模型为季节性 ARIMA(1,1,1)(0,1,1)₁₂——经典的“航空”结构——用 `statsmodels.tsa.statespace.SARIMAX` 拟合；区间来自 `get_forecast().conf_int()`。所有留出月份都落在 95% 区间之内，但预测平均低于实际值。
+      背景为 Warin (2024, *Technology Innovations in Statistics Education*)，介绍如何在统计学课程中使用加拿大统计局的开放经济数据，月度制造业销售额是典型的教学序列。此处数据为说明用途的**模拟数据**，并非加拿大统计局的数字：一条类似制造业销售额的序列，单位为十亿元，2005 年 1 月至 2023 年 12 月（228 个月），由含两次下滑（2009 年和 2020 年春）的趋势、固定的月度模式和噪声构成。同一条模拟序列用于 STL、SARIMA 和季节子序列三个示例。模型基于 2005–2021 年数据拟合，预测 2022–2023 年的 24 个月。它是季节性 ARIMA(1,1,1)(0,1,1)₁₂——经典的“航空”结构——用 `statsmodels.tsa.statespace.SARIMAX` 拟合；区间来自 `get_forecast().conf_int()`。
   time-series/seasonal-subseries:
     title: "季节子序列图"
-    summary: "各日历月份的工业营业额在历年中的变化，以月均值作为参照。"
+    summary: "每个日历月份的制造业销售额在各年间的变化，附该月均值。"
     description: |
       季节子序列图（又称月份图）将月度序列切分为十二条迷你时间序列，每个日历月份一条，各自贯穿所有年份。水平横条为该月的均值，因此从一根横条到下一根横条即可读出**季节形态**，而每个面板内的折线则显示该月份在不同年份间是在漂移还是在波动。
 
-      数据为 Eurostat 发布的欧元区电气设备制造业月度营业额指数（2010 = 100），未经季节调整，涵盖 1995–2015 年共 21 个完整年份（`statsmodels.datasets.elec_equip`，随 **statsmodels** 提供）。每年 8 月工厂夏季停工时营业额下降，并在每个季度末回升。副标题报告以月份为因素的营业额单因素方差分析（`scipy.stats.f_oneway`）以及 η²，即总变异中由季节解释的比例——这里比例不高，因为各面板内的长期趋势解释了其余变异的大部分。2009 年经济衰退被突出显示。
+      背景为 Warin (2024, *Technology Innovations in Statistics Education*)，介绍如何在统计学课程中使用加拿大统计局的开放经济数据，月度制造业销售额是典型的教学序列。此处数据为说明用途的**模拟数据**，并非加拿大统计局的数字：一条类似制造业销售额的序列，单位为十亿元，2005 年 1 月至 2023 年 12 月（228 个月），由含两次下滑（2009 年和 2020 年春）的趋势、固定的月度模式和噪声构成。同一条模拟序列用于 STL、SARIMA 和季节子序列三个示例。副标题报告销售额对月份的单因素方差分析（`scipy.stats.f_oneway`）及 η²，即季节所解释的总变异比例；其余变异大多来自各面板内的长期趋势。2020 年的下滑被突出显示。
   multivariate/pca-biplot:
     title: "PCA 双标图"
-    summary: "美国各州及其社会指标在前两个主成分上的位置。"
+    summary: "欧洲国家在制度与经济指标上的位置，突出显示西巴尔干国家。"
     description: |
       双标图在同一个主成分平面上叠加两样东西：**得分**（每个观测一个点，按组着色，并为每组绘制 68% 正态椭圆）和**载荷**（每个变量一支箭头）。指向相同方向的箭头表示变量正相关；箭头越长，对所示两个主成分的贡献越大；各组位于其取值较高的变量一侧。
 
-      数据为 **statsmodels** `statecrime` 数据集中的美国 50 个州和哥伦比亚特区（2009 年数据）：每 10 万人暴力犯罪率和谋杀率、高中毕业生比例、贫困线以下人口比例、单亲家庭比例、白人比例和城市人口比例。各州按美国人口普查局的区域着色，并标注了最极端的 6 个州。变量经标准化后，由 `sklearn.decomposition.PCA` 计算得分、载荷以及标注在各坐标轴上的方差占比。
+      背景为 Stojkov 和 Warin (2025)《Western Balkans and the Future of Europe》（Springer）：33 个欧洲国家——14 个西欧 EU 成员国、13 个较新的中东欧成员国和 6 个西巴尔干候选国（标注国名）——由六项指标描述：法治、人均 GDP、失业率、人口外迁、贸易开放度和公共债务。数据由 `numpy`（固定种子）基于两个潜在因子**模拟**，仅作示例，*并非*该书的数据或结果。变量经标准化后，由 `sklearn.decomposition.PCA` 计算得分、载荷以及标注在各坐标轴上的方差占比。
   multivariate/scree-plot:
     title: "碎石图"
-    summary: "描述加州 303 个学区需要几个维度？各主成分的方差及平行分析截断值。"
+    summary: "300 种职业的数字技能需要几个维度来描述？各主成分方差与平行分析临界线。"
     description: |
       值得保留多少个主成分？柱形表示每个主成分承载的方差占比，橙色线为累计占比。灰色虚线是 **Horn 平行分析**：在同样规模、互不相关的随机数据上计算出的特征值的第 95 百分位数。只有超过这一噪声下限的主成分才会被保留（蓝色）；点线标出较早的 Kaiser 准则（特征值 > 1）。
 
-      数据为 **statsmodels** `star98` 数据集中的 303 个加州学区（1998 年 Standardized Testing and Reporting 项目）：12 项学区特征——低收入学生比例，亚裔、黑人和西班牙裔学生比例，少数族裔教师比例，教师平均教龄和平均薪资，生均支出，生师比，修读大学预备课程的学生比例，特许学校比例和全年制学校比例——均经过标准化。相关矩阵的特征值（即 PCA 方差）由 `numpy.linalg.eigvalsh` 计算；平行分析为 500 次固定种子的模拟。注意，此处平行分析保留的主成分少于 Kaiser 准则。
+      背景为 Aubert、Bourdeau、Warin、Schneider 和 Sénegas (2026)，“Digital skills assessment in jobs in Canada”（*Journal for Labour Market Research*）：300 种职业，每种按 10 项数字技能指标评分（办公软件、数据录入、网络搜索、电子邮件、在线协作、社交媒体、内容创作、数据分析、编程、网络安全）。评分由 `numpy`（固定种子）基于三个潜在技能维度和一个较弱的第四维度**模拟**，仅作示例，*并非*该论文的数据或结果。相关矩阵的特征值由 `numpy.linalg.eigvalsh` 计算；平行分析基于 500 次固定种子的模拟。与常见情形一样，平行分析比 Kaiser 准则更严格：较弱的第四维度满足 λ > 1，却未超过噪声下限。
   multivariate/silhouette-clusters:
     title: "k-means 轮廓图"
-    summary: "美国各州是否分成截然不同的社会类型？k-means 聚类及其轮廓宽度。"
+    summary: "各产业能否按增长联动性分成聚类？k-means 聚类及其轮廓宽度。"
     description: |
       轮廓宽度比较每个观测与其所属簇的接近程度和与最近的其他簇的接近程度：接近 1 表示归属恰当，接近 0 表示处于边界，为负则可能被错分。簇数 k 取平均轮廓宽度最大的值（尝试 2 到 8）。左图在前两个主成分上展示各簇；右图将每个簇内的轮廓宽度排序，虚线为总体平均值。
 
-      数据为 **statsmodels** `statecrime` 数据集中的美国 50 个州（2009 年数据），用 7 项标准化指标描述：暴力犯罪率和谋杀率、高中毕业生比例、贫困人口比例、单亲家庭比例、白人比例和城市人口比例。哥伦比亚特区被排除在外：它过于极端，k-means 会单独为它分出一个簇。得到的两个簇大致对应犯罪和贫困较低的类型与犯罪和贫困较高的类型，但按照 Kaufman 和 Rousseeuw 的经验法则（0.26–0.50），约 0.35 的平均轮廓宽度只是一种**弱**结构：各州更像一个连续体，而非彼此分离的类型。计算由 `sklearn` 的 `KMeans`、`silhouette_score` 和 `silhouette_samples` 完成；`PCA` 仅用于绘制各簇。
+      背景为 Chaffa 和 Warin (2026)，“Identifying industrial clusters through growth co-movement with unsupervised learning methods”（*GeoJournal*）：90 个产业，每个由 5 项标准化的联动特征描述——其产出增长与全国 GDP、美国需求、大宗商品价格和住房开工的相关系数，以及其增长波动率。数据由 `numpy`（固定种子）围绕三种类型（国内周期型、出口导向型、资源型）**模拟**，仅作示例，*并非*该论文的数据或结果。按 Kaufman 和 Rousseeuw 的经验法则，平均宽度接近 0.5 处于“弱结构”与“合理结构”的分界。计算由 `sklearn` 的 `KMeans`、`silhouette_score` 和 `silhouette_samples` 完成；`PCA` 仅用于绘制聚类。
   multivariate/clustered-heatmap:
     title: "聚类热图"
-    summary: "美国各州社会指标的 z 分数热图，带行列树状图和人口普查区域色条。"
+    summary: "24 份政党竞选纲领之间的 Jaccard 相似度，附树状图和政党家族色条。"
     description: |
-      每一行是一个观测，每一列是一个变量，每个单元格是其 z 分数（低于该变量均值为蓝色，高于为红色）。行和列按**层次聚类**（基于欧氏距离的 Ward 连接法）重新排序，树状图展示合并过程。左侧色条给出每一行的已知分组，一眼就能看出无监督的聚类树是否重新发现了它——以及哪些变量主导了划分。
+      每一行和每一列都是一份文档，每个单元格是两份文档之间的相似度（颜色越深越相似）。行和列按**层次聚类**（基于距离 1 − 相似度的平均连接法）重新排序，树状图展示合并过程。色条给出已知分组——行为政党家族，列为选举年份——从而一眼看出无监督的聚类树重新发现的是哪种分组。
 
-      数据为 **statsmodels** `statecrime` 数据集中的美国 50 个州和哥伦比亚特区（2009 年数据）：每 10 万人暴力犯罪率和谋杀率、高中毕业生比例、贫困人口比例、单亲家庭比例、白人比例和城市人口比例。色条为美国人口普查局的区域划分。`seaborn.clustermap` 完成聚类和绘图；`scipy.cluster.hierarchy` 将行聚类树切成四个簇，计算其与四个区域之间的调整兰德指数：地理位置只能部分解释哪些州彼此相似。
+      背景为 Sanger 和 Warin (2019) 发表于 *Data in Brief* 的数据集，即欧洲政党竞选纲领之间的 Jaccard 相似度指数：此处为同一国家的 24 份纲领——六个政党家族 × 四次选举。相似度由 `numpy`（固定种子）**模拟**：同一政党内部较高，随两次选举间隔增加而下降，另加同一选举年共同议题的小幅效应。它们*并非*该数据集的数值。`scipy.cluster.hierarchy.linkage` 构建聚类树，`seaborn.clustermap` 绘图，`fcluster` 将树切成六个聚类，以计算其与政党家族之间的调整兰德指数。标签已包含家族和年份，因此色条无需图例。
   inference-uncertainty/bootstrap-distribution:
-    title: 自助法分布
-    summary: 重抽样得到的相关系数，附百分位数法和 BCa 95% 置信区间。
+    title: "自助法分布"
+    summary: "20 种产品的在线卖家数量与价格离散度——重抽样相关系数及百分位数和 BCa 95% 置信区间。"
     description: |
-      自助法（Bootstrap）在从数据中有放回抽取的数千个样本上重新估计统计量；这些估计值的离散程度即为其抽样不确定性。直方图是相关系数的自助法分布，橙色线是在完整样本中观测到的值。上方绘有两个 95% 区间：简单的**百分位数**区间，以及 **BCa**（偏差校正加速）区间——后者会发生偏移，以校正此处可见的偏差和偏度，因为该分布远非对称。
+      自助法（Bootstrap）在从数据中有放回抽取的数千个样本上重新估计统计量；这些估计值的离散程度即为其抽样不确定性。直方图是相关系数的自助法分布，橙色线是在完整样本中观测到的值。上方绘有两个 95% 区间：简单的**百分位数**区间，以及 **BCa**（偏差校正加速）区间——后者会发生偏移，以校正此处可见的偏差和偏度：只有 20 种产品时，该分布远非对称。
 
-      数据为 **statsmodels** `statecrime` 数据集中的美国 50 个州 + 哥伦比亚特区：单亲家庭占比与暴力犯罪率。`scipy.stats.bootstrap`（配对，9,999 次重抽样）给出两种区间。
+      背景为 Leiter 和 Warin (2012)，“Homogenous goods markets: An empirical study of price dispersion on the internet”（*International Journal of Economics and Business Research*）：对 20 种同质产品中的每一种，取在线卖家数量和价格离散度（标价的变异系数，%）。数据由 `numpy`（固定种子）**模拟**，仅作示例，*并非*该论文的数据或结果。`scipy.stats.bootstrap`（配对，9,999 次重抽样）给出两个区间。
   inference-uncertainty/confidence-intervals:
     title: "95% 置信区间的含义"
-    summary: "从 944 名 ANES 受访者中抽取 30 人，重复调查 100 次；未覆盖真值的平均年龄 95% 置信区间以红色显示。"
+    summary: "从 2,000 家企业中抽取 30 家、重复 100 次调查；未覆盖平均气候风险得分的 95% 置信区间以红色显示。"
     description: |
-      “95% 置信”是*方法*的性质，而不是某一个区间的性质。这里把 1996 年美国全国选举研究（**statsmodels** `anes96`）的 944 名受访者视为整个总体，因此他们的平均年龄就是已知的真值。同样的小型调查——随机、不放回地抽取 30 名受访者——重复 100 次，每条水平线是围绕样本平均年龄得到的 95% t 区间。其中约 95 个区间覆盖真实均值（虚线）；未覆盖的少数几个以红色绘制。区间宽度也各不相同，因为每个样本都要估计自己的标准差。
+      “95% 置信”是*方法*的性质，而不是某一个区间的性质。这里 2,000 家企业构成的总体完全已知，因此其平均得分就是已知的真值。同样的小型调查——随机、不放回地抽取 30 家企业——重复 100 次，每条水平线是围绕样本均值得到的 95% t 区间。其中约 95 个区间覆盖真实均值（虚线）；未覆盖的少数几个以红色绘制。区间宽度也各不相同，因为每个样本都要估计自己的标准差。
 
-      抽样使用固定种子的 `numpy`，区间由 `scipy.stats.t.interval` 计算。年龄分布右偏（19 至 91 岁），仅凭偶然，一轮 100 次调查的覆盖率就可能比 95% 高出或低出几个百分点。
+      背景为 Kouloukoui、de Marcellis-Warin、Armellini、Warin 和 Andrade Torres (2021)，*Journal of Cleaner Production*，研究碳密集型行业企业如何感知自身面临的气候风险。感知得分（0–100，右偏）的总体由 `numpy`（固定种子）**模拟**，仅作示例，*并非*该论文的数据或结果。区间使用 `scipy.stats.t.interval`。由于得分分布偏斜，均值较低的样本往往离散程度也较小，因此未覆盖的区间大多落在真实均值之下；此外，一轮 100 次调查仅因偶然就可能比 95% 高或低几个百分点。
   inference-uncertainty/power-curve:
     title: 统计功效曲线
     summary: 小、中、大效应下双样本 t 检验的统计功效随样本量的变化。
@@ -439,11 +439,11 @@ examples:
       使用 `statsmodels.stats.power.TTestIndPower` 计算：`.power()` 绘制曲线，`.solve_power()` 求所需 n（双侧 α = .05，各组样本量相等）。
   inference-uncertainty/bland-altman:
     title: "Bland–Altman 图"
-    summary: "两位编码员对政党竞选纲领左右立场的定位是否一致？偏差与 95% 一致性界限。"
+    summary: "IPCC 情景段落的 AI 辅助评分与专家评分是否一致？偏差与 95% 一致性界限。"
     description: |
       当两种仪器——或两位编码员——测量同一事物时，高相关并不能说明它们是否**一致**。Bland–Altman 图以两种方法之差为纵轴、两者均值为横轴。中间的线是平均差（系统偏差），外侧两条线是 95% **一致性界限**（偏差 ± 1.96 SD），大多数分歧落在其中。阴影带是这三条线的 95% 置信区间，使用 Bland 和 Altman (1986) 的标准误；点云若呈现斜率，则提示存在比例偏差。
 
-      数据由 `numpy`（固定种子）**模拟**，模仿内容分析中的经典检验：两位受过训练的编码员分别将同样 80 份政党竞选纲领定位在 0–10 的左右量表上，编码员 B 被设定为比编码员 A 平均偏右约 0.4 分。偏差和区间使用 `scipy.stats.t`；斜率检验是 **statsmodels** 的 OLS 拟合。
+      背景为 Bisson 和 Warin (2026)，“AI-assisted longitudinal comparison of scenario knowledge representation in IPCC synthesis reports”（*PLOS Climate*）：IPCC 综合报告中 90 个有关情景的段落，分别由人类专家和 AI 辅助流程按 0–10 分评分。评分由 `numpy`（固定种子）**模拟**，AI 被设定为平均高出约 0.3 分且噪声略大；*并非*该论文的数据或结果。偏差和区间使用 `scipy.stats.t`；斜率检验是 **statsmodels** 的 OLS 拟合。
   inference-uncertainty/meta-analysis-forest:
     title: "元分析森林图"
     summary: "教师期望能否提高学生的智商？19 项“皮格马利翁”实验、随机效应合并估计菱形与异质性统计量。"
@@ -460,69 +460,69 @@ examples:
       数据为 Raudenbush (1984) 的 19 项教师期望（“皮格马利翁”）实验：学生智商的标准化均值差及其抽样方差，按 R 包 **metafor** 中 `dat.raudenbush1985` 公布的数值录入。精度最低的研究报告了最大的效应，Egger 截距处于显著性边缘。不对称并不能证明存在发表偏倚：这里的小型研究大多是教师认识学生一周或更短时间的研究，而 Raudenbush 证明这种情况确实会产生更大的效应。Egger 检验是 **statsmodels** 的 OLS 拟合。
   machine-learning/confusion-matrix:
     title: "带指标的混淆矩阵"
-    summary: "逻辑回归能多好地预测谁在 1996 年投票给多尔——样本外混淆矩阵，显示计数与行内占比，并为主要指标给出自助法区间。"
+    summary: "分类器把推文归入环境、社会和治理主题的准确程度——样本外 3 × 3 混淆矩阵，并为各项指标给出自助法区间。"
     description: |
-      混淆矩阵将真实类别与预测类别交叉列出。每个格子显示计数及其在真实类别（行）中的占比，因此对角线可直接读作灵敏度和特异度。预测为 **样本外（out-of-fold）** 预测：在 10 折交叉验证中，每个观测都由一个从未见过它的模型来预测——这正是矩阵在新数据上的样子。
+      混淆矩阵将真实类别与预测类别交叉列出。每个格子显示计数及其在真实类别（行）中的占比，因此对角线可直接读作各类别的召回率，而非对角线格子显示模型混淆了哪些类别。预测为 **样本外（out-of-fold）** 预测：在 10 折交叉验证中，每个观测都由一个从未见过它的模型来预测——这正是矩阵在新数据上的样子。
 
-      右侧面板给出准确率、精确率、召回率、F1 和马修斯相关系数（MCC），每项都附有 95% 自助法区间：单个数字掩盖了换一个样本时它会变动多少。数据为 **statsmodels** 自带的 1996 年美国全国选举研究（ANES）中投票给克林顿或多尔的 944 名受访者（`sm.datasets.anes96`）。模型根据政党认同、左右自我定位、年龄、教育程度、收入、收看电视新闻的天数以及居住地人口（对数）预测是否投票给多尔。模型为标准化的逻辑回归；预测来自 `cross_val_predict`，指标来自 `sklearn.metrics`。
+      本例以 Kouloukoui、de Marcellis-Warin、Gomes 和 Warin（2023，*Journal of Cleaner Production*）的研究为背景，该研究用自然语言处理描绘 Twitter 上关于环境、社会和治理（ESG）话题的讨论。数据为说明用途而 **模拟**，*并非* 论文的数据或结果：n = 900 条推文，每条用六个小型主题词表（每个 ESG 支柱两个）中的词频来描述，并有意让社会与治理词汇相互重叠。模型为标准化的多项逻辑回归；预测来自 `cross_val_predict`，指标（精确率、召回率和 F1 的宏平均、准确率、MCC，均附 95% 自助法区间）来自 `sklearn.metrics`。
   machine-learning/precision-recall:
     title: "精确率–召回率曲线"
-    summary: "两个分类器预测哪些已婚女性报告有婚外情的样本外精确率–召回率曲线，附平均精确率与无技能基线。"
+    summary: "两个分类器预测哪些 Facebook 用户会分享 COVID-19 假新闻的样本外精确率–召回率曲线，附平均精确率与无技能基线。"
     description: |
       当正类是少数类时，ROC 曲线可能看起来很出色，而许多警报却是误报。精确率–召回率曲线回答的是实际操作中的问题：如果我想找出这一比例的正例（**召回率**），我的警报中有多少是对的（**精确率**）？每个点对应一个判定阈值。虚线是无技能基线——即正类的患病率——每条曲线下的面积由 **平均精确率**（AP）概括。
 
-      数据为 Fair（1978）分析的 1974 年《*Redbook*》杂志调查中的 6,366 名已婚女性，由 **statsmodels** 提供（`sm.datasets.fair`）。结果变量为是否报告有过婚外情——一个少数类，约占三分之一。预测变量为她对婚姻的评分、年龄、结婚年数、子女数、宗教虔诚度、教育程度以及她本人和丈夫的职业。得分为 5 折交叉验证的样本外概率（`cross_val_predict(method="predict_proba")`）；曲线和 AP 来自 `precision_recall_curve` 与 `average_precision_score`。标记点表示每条曲线上默认的 0.5 阈值。这里逻辑回归对女性的排序优于随机森林（AP 更高），但在 0.5 阈值下，它只标出了约三分之一报告有婚外情的女性。
+      本例以 Melchior、Warin 和 Oliveira（2025，*Technological Forecasting and Social Change*）的研究为背景，该研究采用混合方法考察 Facebook 上与 COVID-19 相关的假新闻分享。数据为说明用途而 **模拟**，*并非* 论文的数据或结果：n = 3,000 名用户，其中约八分之一分享过假新闻，用年龄、每天使用 Facebook 的时长、加入的 COVID-19 群组数、对主流媒体的信任、对阴谋论的相信程度以及分享过假新闻的朋友占比来描述。分数为 5 折交叉验证得到的样本外概率（`cross_val_predict(method="predict_proba")`）；曲线和 AP 来自 `precision_recall_curve` 与 `average_precision_score`。标记表示每条曲线上默认的 0.5 阈值：在类别稀少时，它只能识别出少数分享者。
   machine-learning/learning-curve:
     title: "学习曲线"
-    summary: "随训练集增大的训练准确率与交叉验证准确率，比较两个预测哪些已婚女性报告有婚外情的模型。"
+    summary: "随着训练集增大，两个预测哪些 Facebook 用户会分享 COVID-19 假新闻的模型的训练准确率与交叉验证准确率。"
     description: |
       在收集更多数据之前，学习曲线回答两个问题：模型是否 **过拟合**（训练得分与交叉验证得分差距大），还是 **欠拟合**（两个得分都低且接近）？更多观测是否还有帮助（验证曲线是否仍在上升）？线条为重复交叉验证各折的均值；条带为 ±1 个标准差，其宽度显示换一种划分时估计会变动多少。
 
-      在同一任务上比较两个模型：一棵会记住训练集的深决策树，以及一个标准化的逻辑回归。数据为 Fair（1978）分析的 1974 年《*Redbook*》杂志调查中的 6,366 名已婚女性，由 **statsmodels** 提供（`sm.datasets.fair`）；结果变量为是否报告有过婚外情（约三分之一），由婚姻评分、年龄、结婚年数、子女、宗教虔诚度、教育程度和职业预测。曲线来自 `sklearn.model_selection.learning_curve`，采用 5 × 2 重复分层划分。结论令人清醒：决策树的交叉验证准确率始终低于多数类基线，而逻辑回归的两条曲线平坦且重合——增加受访者没有帮助，更好的预测变量才有用。
+      在同一任务上比较两个模型：一棵会记住训练集的深决策树，以及一个标准化的逻辑回归。本例以 Melchior、Warin 和 Oliveira（2025，*Technological Forecasting and Social Change*）的研究为背景，该研究采用混合方法考察 Facebook 上与 COVID-19 相关的假新闻分享。数据为说明用途而 **模拟**，*并非* 论文的数据或结果：n = 3,000 名用户，其中约八分之一分享过假新闻，用年龄、使用 Facebook 的时间、加入的 COVID-19 群组、对主流媒体的信任、阴谋论信念以及分享过假新闻的朋友占比来描述。曲线来自 `sklearn.model_selection.learning_curve`，采用 5 × 2 重复分层划分。虚线为多数类基线：类别稀少时，准确率必须对照它来解读；这里逻辑回归仅勉强超过它——增加用户无济于事，更好的预测变量才有用。
   machine-learning/model-comparison:
     title: "交叉验证模型比较"
-    summary: "六个模型预测加利福尼亚州学区数学成绩的逐折 R²，附均值与校正后的 95% 区间。"
+    summary: "六个模型预测生产批次废料率的逐折 R²，附均值与校正后的 95% 区间。"
     description: |
       “模型 B 得 0.47，模型 A 得 0.46”——在不知道得分随划分变动多少之前，这句话毫无意义。这里每个模型都在 **相同** 的 10 × 5 重复折上评估；每个点是一折，大标记为均值，横条为其 95% 区间。各折得分并不独立——训练集相互重叠——因此区间采用 **Nadeau–Bengio 校正** 方差，而不是过窄的朴素标准误。
 
-      数据为 **statsmodels** 自带的 1998 年 STAR 考试中加利福尼亚州 303 个学区（`sm.datasets.star98`）：结果变量为数学成绩高于全国中位数的学生占比，由学区的十项特征预测（低收入学生占比、族裔构成、教师教龄与薪酬、生均支出、师生比、大学预备课程选修率、全年制学校占比）。得分为样本外 R²。得分来自使用 `RepeatedKFold` 的 `cross_val_score`；线性模型在 `Pipeline` 中做了标准化。这里普通线性回归与树集成模型表现相当：当关系接近可加时，灵活性并无益处。
+      本例以 Warin、d'Anglade 和 de Marcellis-Warin（2025，*International Journal of Sustainable Engineering*）的研究为背景，该研究结合 k-means 聚类与数据科学来减少制造业的废料。数据为说明用途而 **模拟**，*并非* 论文的数据或结果：n = 600 个生产批次，其废料率（报废材料的 %）以非线性方式取决于机器速度、温度和操作员经验，也取决于材料等级，以及湿度与距上次维护天数之间的交互作用；批次大小没有影响。后面五张图使用同一批模拟批次。分数来自配合 `RepeatedKFold` 的 `cross_val_score`；线性模型在 `Pipeline` 中做了标准化。由于效应是弯曲且相互作用的，树集成模型大幅领先于线性模型。
   machine-learning/permutation-importance:
     title: "置换重要性"
-    summary: "随机森林预测数学成绩时依赖哪些学区特征——逐个打乱每项特征时测试集 R² 的下降。"
+    summary: "随机森林在预测批次废料率时依赖哪些工艺特征——逐一打乱各特征时测试集 R² 的下降。"
     description: |
       置换重要性提出一个简单且与模型无关的问题：打乱某个特征、切断它与结果的联系后，模型在 **留出** 数据上的预测会变差多少？下降越大，说明模型越依赖该特征。打乱是随机的，因此每个特征重复 50 次；箱体显示离散程度，圆点为均值。箱体跨越零的特征对该模型没有可用的信号。
 
-      与树模型内置的基于不纯度的重要性不同，置换重要性在测试数据上计算，可在不同类型的模型之间比较，且不会偏向取值较多的特征。它衡量的是 **模型** 用到了什么，而非因果效应；相关的特征会分摊（甚至相互掩盖）各自的重要性。数据为 **statsmodels** 自带的 1998 年 STAR 考试中加利福尼亚州 303 个学区（`sm.datasets.star98`）；结果变量为数学成绩高于全国中位数的学生占比，由学区的十项特征预测（贫困、族裔构成、教师、支出、班级规模、大学预备课程）。模型为随机森林；重要性来自 `sklearn.inspection.permutation_importance`。这里低收入学生占比占据主导，一旦知道它，教师薪酬、支出和班级规模就不再提供任何信息——这是关于模型预测的陈述，并不证明资源无关紧要。
+      与树模型内置的基于不纯度的重要性不同，置换重要性在测试数据上计算，可在不同类型的模型之间比较，也不会偏向取值众多的特征。它衡量的是 **模型** 用了什么，而不是因果效应。本例以 Warin、d'Anglade 和 de Marcellis-Warin（2025，*International Journal of Sustainable Engineering*）的研究为背景，该研究结合 k-means 聚类与数据科学来减少制造业的废料。数据为说明用途而 **模拟**，*并非* 论文的数据或结果：n = 600 个生产批次（与模型比较图相同），其中 180 个留出，共有七个工艺特征，其中批次大小被设定为没有任何影响。模型为随机森林；重要性来自 `sklearn.inspection.permutation_importance`。
   machine-learning/partial-dependence:
     title: "带 ICE 曲线的部分依赖图"
-    summary: "预测的数学成绩如何随贫困程度和生均支出变化——平均值（PDP）叠加在每个学区一条的个体曲线（ICE）之上。"
+    summary: "批次的预测废料率如何随机器速度和距上次维护的天数变化——每个批次一条曲线（ICE）之上的平均值（PDP）。"
     description: |
       部分依赖图（PDP）显示：在其他特征保持观测值不变的情况下，当某一个特征变化时，模型的预测平均如何变化。平均值背后是 **个体条件期望**（ICE）曲线——每个观测一条。ICE 曲线相互平行，说明效应对每个人都相同；曲线发散或交叉，则揭示了被平均值掩盖的 **交互作用**。ICE 曲线在左端对齐（中心化），以便比较形状而非水平；底部的刻度标出数据实际所在之处，在其他地方模型是在外推。
 
-      数据为 **statsmodels** 自带的 1998 年 STAR 考试中加利福尼亚州 303 个学区（`sm.datasets.star98`）；结果变量为数学成绩高于全国中位数的学生占比，由学区的十项特征预测。两个面板形成对比：随低收入学生占比上升，预测急剧下降；随生均支出变化，预测几乎不动。模型为梯度提升回归，曲线来自 `sklearn.inspection.partial_dependence(kind="both")`。PDP 描述的是模型，而不是世界：只有模型本身具有因果性时，它才具有因果含义。
+      本例以 Warin、d'Anglade 和 de Marcellis-Warin（2025，*International Journal of Sustainable Engineering*）的研究为背景，该研究结合 k-means 聚类与数据科学来减少制造业的废料。数据为说明用途而 **模拟**，*并非* 论文的数据或结果：使用与模型比较图相同的 n = 600 个生产批次。左图显示阈值效应：低速时废料平稳，高速时急剧上升，所有批次的曲线几乎平行。右图为距上次维护的天数，由于其效应被设定为依赖于湿度，ICE 曲线呈扇形散开。模型为梯度提升回归，曲线来自 `sklearn.inspection.partial_dependence(kind="both")`。PDP 描述的是模型而非世界：只有模型是因果的，它才是因果的。
   machine-learning/shap-beeswarm:
     title: "SHAP 汇总图（蜂群图）"
-    summary: "每个学区在每项特征上的 SHAP 值，按特征取值着色，并给出平均 |SHAP| 重要性。"
+    summary: "每个生产批次在每项工艺特征上的 SHAP 值，按特征取值着色，并给出平均 |SHAP| 重要性。"
     description: |
       SHAP（SHapley Additive exPlanations；Lundberg 与 Lee，2017）将每个预测分解为可加的贡献，每个特征一份，使得 **基准值 + 贡献之和 = 预测值**。这些贡献是合作博弈论中的 Shapley 值：在特征加入的所有可能顺序上，每个特征的平均边际效应。
 
-      蜂群图为每个学区的每个特征画一个点。位置是 SHAP 值——该特征把这个学区的预测推高或拉低了多少——颜色是该特征本身的取值，从低（蓝）到高（红）。特征按平均 |SHAP| 排序，并在右侧标出作为全局重要性。右红左蓝、界线分明，表示单调效应；颜色混杂则提示非线性或交互作用。
+      蜂群图为每个批次和每个特征画一个点。位置是 SHAP 值——该特征把这个批次的预测废料率推高或拉低了多少——颜色是该特征本身的取值，从低（蓝）到高（红）。特征按平均 |SHAP| 排序，并在右侧标出作为全局重要性。红色在右、蓝色在左的清晰分离意味着单调效应；颜色混杂则提示非线性（如效应呈 U 形的温度）或交互作用。
 
-      数据为 **statsmodels** 自带的 1998 年 STAR 考试中加利福尼亚州 303 个学区（`sm.datasets.star98`）；结果变量为数学成绩高于全国中位数的学生占比（以百分点计），由学区的十项特征预测。模型为梯度提升回归，树模型的精确 SHAP 值来自 `shap.TreeExplainer`。为与图库风格一致，图形用 Matplotlib 绘制；`shap.plots.beeswarm` 一行代码即可得到类似视图。
+      本例以 Warin、d'Anglade 和 de Marcellis-Warin（2025，*International Journal of Sustainable Engineering*）的研究为背景，该研究结合 k-means 聚类与数据科学来减少制造业的废料。数据为说明用途而 **模拟**，*并非* 论文的数据或结果：与模型比较图相同的 n = 600 个生产批次，废料率以百分点表示。模型为梯度提升回归，树模型的精确 SHAP 值来自 `shap.TreeExplainer`。图形用 Matplotlib 绘制，以与图库风格一致；`shap.plots.beeswarm` 一行代码即可给出类似的视图。
   machine-learning/shap-dependence:
     title: "SHAP 依赖图"
-    summary: "低收入学生占比如何影响每个学区预测的数学成绩，按其最强交互特征着色，并附平滑趋势线。"
+    summary: "距上次维护的天数如何进入每个批次的预测废料率，按最强的交互伙伴着色，并附平滑趋势。"
     description: |
-      SHAP 依赖图聚焦于单个特征。每个点是一个学区：横轴为该特征的取值，纵轴为其 SHAP 值——它对这个学区预测的贡献。趋势线（LOWESS 平滑）接近部分依赖曲线，但其周围的点云同样有信息量：在低收入学生占比相同的情况下，由于与其他特征的 **交互作用**，不同学区的贡献并不相同。
+      SHAP 依赖图聚焦于单个特征。每个点是一个生产批次：横轴为该特征的取值，纵轴为其 SHAP 值——它对这个批次预测废料率的贡献。趋势线（LOWESS 平滑）接近部分依赖曲线，但其周围的点云同样有信息量：在距上次维护天数相同的情况下，由于与其他特征的 **交互作用**，不同批次的贡献并不相同。
 
-      颜色表示最能解释这种纵向离散的特征，这里选取与低收入学生占比的 SHAP **交互** 值平均最大的那个特征（`shap.TreeExplainer.shap_interaction_values`）。这里它是西班牙裔学生占比，而它本身与贫困高度相关（r ≈ 0.7），因此颜色渐变在一定程度上反映的是这种相关性，而非交互作用。数据为 **statsmodels** 自带的 1998 年 STAR 考试中加利福尼亚州 303 个学区（`sm.datasets.star98`）；结果变量为数学成绩高于全国中位数的学生占比，由学区的十项特征预测。模型为梯度提升回归；平滑来自 `statsmodels.nonparametric.lowess`。
+      颜色显示最能解释这种纵向离散的特征，这里选取的是与距上次维护天数的 SHAP **交互** 值平均最大的特征（`shap.TreeExplainer.shap_interaction_values`）。本例以 Warin、d'Anglade 和 de Marcellis-Warin（2025，*International Journal of Sustainable Engineering*）的研究为背景，该研究结合 k-means 聚类与数据科学来减少制造业的废料。数据为说明用途而 **模拟**，*并非* 论文的数据或结果：与模型比较图相同的 n = 600 个生产批次，设定为车间潮湿时，磨损的机器会产生更多废料。模型为梯度提升回归；平滑来自 `statsmodels.nonparametric.lowess`。
   machine-learning/shap-waterfall:
     title: "单个预测的 SHAP 瀑布图"
-    summary: "每项特征如何把一个困难学区的预测数学成绩从平均值推到模型的输出。"
+    summary: "每项工艺特征如何把一个高废料批次的预测废料率从平均值推到模型的输出。"
     description: |
-      全局图形描述的是模型；瀑布图解释的是 **一个** 预测。它从基准值——模型在数据上的平均预测——出发，按从大到小的顺序依次加上每个特征的 SHAP 值，直到得到这个学区的预测值。红色条把预测推高，蓝色条把预测拉低；最小的若干贡献合并为一条，以保持图形清晰。由于 SHAP 值可加，各条之和总是恰好等于基准值与预测值之差。
+      全局图形描述的是模型；瀑布图解释的是 **一个** 预测。它从基准值——模型在数据上的平均预测——出发，按从大到小的顺序依次加上每个特征的 SHAP 值，直到得到这个批次的预测值。红色条把预测推高，蓝色条把预测拉低；最小的若干贡献合并为一条，以保持图形清晰。由于 SHAP 值可加，各条之和总是恰好等于基准值与预测值之差。
 
-      当需要解释单个个案时——一个被列为扶持对象的学区、一笔贷款、一份福利申请——就该展示这张图。它解释的是 **模型** 做了什么，而不是结果为何发生。数据为 **statsmodels** 自带的 1998 年 STAR 考试中加利福尼亚州 303 个学区（`sm.datasets.star98`）；结果变量为数学成绩高于全国中位数的学生占比，由学区的十项特征预测。模型为梯度提升回归；SHAP 值来自 `shap.TreeExplainer`。所示学区为困难个案（预测值低于基准值 20 个百分点以上），之所以选择它，是因为其解释同时包含正反两个方向的作用。
+      当需要解释单个个案时——一个被质检标记的批次、一笔贷款、一份福利申请——就该展示这张图。它解释的是 **模型** 做了什么，而不是结果为何发生。本例以 Warin、d'Anglade 和 de Marcellis-Warin（2025，*International Journal of Sustainable Engineering*）的研究为背景，该研究结合 k-means 聚类与数据科学来减少制造业的废料。数据为说明用途而 **模拟**，*并非* 论文的数据或结果：与模型比较图相同的 n = 600 个生产批次。模型为梯度提升回归；SHAP 值来自 `shap.TreeExplainer`。所示批次为高废料个案（预测值高于基准值 4 个百分点以上），之所以选择它，是因为其解释同时包含正反两个方向的作用。
   spatial-data/spatial-weights:
     title: "带空间权重的分级统计地图"
     summary: "一个变量的地图，上面叠加邻接网络——这是所有空间统计赖以成立的结构。"
@@ -582,3 +582,81 @@ sources:
     topics: [模拟数据]
   guerry:
     topics: [犯罪, 识字率, 自杀, 道德统计, 法国, 19世纪, 省]
+  sanger2019:
+    topics: [政党纲领, 政党, 文本相似度, Jaccard指数, 欧洲, 选举]
+  dmw2025aitweets:
+    topics: [人工智能, Twitter, 社交媒体, 情感, 公众舆论]
+  stojkov2026ca:
+    topics: [经常账户, 国际收支, OECD, 宏观经济学, 外部失衡]
+  pastoriza2022:
+    topics: [体育, 高尔夫, 运动员表现, 新闻发布会, 文本分析]
+  warin2021corona:
+    topics: [冠状病毒, COVID-19, 文献计量学, 引用, 科学出版物, 公共卫生]
+  kouloukoui2021:
+    topics: [气候风险, 风险感知, 企业信息披露, 碳密集型行业, 气候变化]
+  warin2025waste:
+    topics: [制造业, 工业废物, 可持续性, 生产线, 运营, k均值]
+  warin2025who:
+    topics: [世界卫生组织, 社交媒体, X, Twitter, 互动, COVID-19, 合法性]
+  dmw2022manip:
+    topics: [人工智能, 消费者, 操纵, 数字素养, 伦理, 平台]
+  sanger2020ecb:
+    topics: [欧洲中央银行, 央行沟通, 演讲, 自然语言处理, 货币政策]
+  melchior2026survey:
+    topics: [假新闻, 错误信息, Facebook, COVID-19, 问卷调查, 社交媒体]
+  sanger2018quebec:
+    topics: [选举, 魁北克, 政党, Twitter, 情感, 加拿大]
+  stojkov2023refugee:
+    topics: [难民, 移民, Twitter, 话语, 欧洲, 框架]
+  kouloukoui2025climate:
+    topics: [气候转型计划, 企业信息披露, 净零排放, 企业, 气候变化]
+  kouloukoui2023esg:
+    topics: [ESG, 环境, 社会, 治理, Twitter, 自然语言处理, 文本分类]
+  stojkov2019trilemma:
+    topics: [蒙代尔三元悖论, 汇率, 资本流动性, 货币政策独立性, 国际金融]
+  janicki2009:
+    topics: [最优货币区, 贸易一体化, 经济周期, 货币联盟, 欧元]
+  hadengue2014:
+    topics: [经济趋同, 专业化, 新兴经济体, 巴西, 中国, 印度, 增长]
+  dedinec2026:
+    topics: [经济发展, 发展指标, 能源, 可持续性, 国家]
+  stojkov2024growth:
+    topics: [经济增长, 欧洲一体化, 制度, 新兴欧洲, 转型经济体]
+  blakely2012:
+    topics: [移民, 移民意向, 网络, 欧洲, 劳动力流动]
+  stojkov2018fdi:
+    topics: [外国直接投资, 欧盟, 入盟, 公信力, 转型经济体]
+  kouloukoui2025ai:
+    topics: [人工智能, 公众舆论, 风险感知, 问卷调查, 社交媒体]
+  stojkov2021credit:
+    topics: [资本流动, 国内信贷, 汇率制度, 蒙代尔三元悖论, 国际金融]
+  troadec2015:
+    topics: [研究与开发, 研发投资, 企业, 创新, 加拿大]
+  tengia2011:
+    topics: [国际贸易, 引力模型, 区域一体化, 南部非洲, SADC]
+  warin2021banks:
+    topics: [银行业, 对外债权, 金融危机, 金融监管, 国际金融]
+  marty2025collusion:
+    topics: [算法定价, 共谋, 反垄断, 竞争政策, 数字市场]
+  zarea2026:
+    topics: [供应链, 韧性, 中断风险, 数字化, 企业]
+  vorreuther2021:
+    topics: [专利, 创新, 医药, 中国, 专利授权时间]
+  hadengue2015:
+    topics: [逆向创新, 医药, 新兴市场, 中国, 技术转移]
+  warin2024statcan:
+    topics: [加拿大统计局, 开放数据, 制造业销售额, 月度序列, 加拿大, 教学]
+  warin2023entropy:
+    topics: [主权债券, 收益率利差, 欧元区, 金融市场, 熵]
+  stojkov2025balkans:
+    topics: [西巴尔干, 欧盟, 扩大, 制度, 趋同, 欧洲]
+  aubert2026:
+    topics: [数字技能, 职业, 劳动力市场, 就业, 加拿大]
+  chaffa2026:
+    topics: [产业集群, 区域经济学, 产业, 无监督学习, 聚类]
+  leiter2012:
+    topics: [在线价格, 价格离散, 电子商务, 竞争, 同质商品]
+  bisson2026:
+    topics: [IPCC, 气候情景, 人工智能, 文本编码, 评分者间一致性]
+  melchior2025fake:
+    topics: [假新闻, 错误信息, Facebook, COVID-19, 分类, 社交媒体]

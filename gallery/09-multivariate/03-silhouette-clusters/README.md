@@ -1,6 +1,6 @@
 # Silhouette plot for k-means
 
-> Do US states fall into distinct social profiles? k-means clusters next to their silhouette widths.
+> Do industries fall into clusters of growth co-movement? k-means clusters next to their silhouette widths.
 
 ![Silhouette plot for k-means](plot.png)
 
@@ -12,36 +12,43 @@ The left panel shows the clusters on the first two principal components; the
 right panel sorts the silhouette widths within each cluster, with the dashed
 line at the overall average.
 
-Data are the 50 US states from the **statsmodels** `statecrime` dataset (2009
-figures), described by 7 standardised indicators: violent-crime and murder
-rates, % high-school graduates, % in poverty, % single-parent households,
-% white and % urban. The District of Columbia is left out: it is so extreme
-that k-means would give it a cluster of its own. The two clusters found are
-roughly a lower-crime, lower-poverty profile and a higher-crime,
-higher-poverty one, but an average silhouette around 0.35 is a **weak**
-structure by Kaufman & Rousseeuw's rule of thumb (0.26–0.50): states form a
-continuum more than separate types. `KMeans`, `silhouette_score` and
-`silhouette_samples` from `sklearn` do the work; `PCA` is only used to draw
-the clusters.
+The setting is Chaffa & Warin (2026), "Identifying industrial clusters through
+growth co-movement with unsupervised learning methods" (*GeoJournal*): 90
+industries, each described by 5 standardised co-movement features — the
+correlation of its output growth with national GDP, US demand, commodity
+prices and housing starts, and its growth volatility. The data are
+**simulated** with `numpy` (seeded) around three profiles (domestic cycle,
+export-oriented, resource-based) for illustration; they are *not* the paper's
+data or results. An average width near 0.5 sits at the border between a
+weak and a reasonable structure by Kaufman & Rousseeuw's rule of thumb.
+`KMeans`, `silhouette_score` and `silhouette_samples` from
+`sklearn` do the work; `PCA` is only used to draw the clusters.
 
 **R equivalent:** `factoextra::fviz_silhouette()`  
-**Libraries:** Matplotlib, NumPy, statsmodels, scikit-learn
+**Libraries:** Matplotlib, NumPy, scikit-learn
 
-**Data:** U.S. Census Bureau. Statistical Abstract of the United States, state tables for 2009 (crime rates from the FBI Uniform Crime Reporting program). https://www.statsmodels.org/stable/datasets/generated/statecrime.html — Compiled for statsmodels (sm.datasets.statecrime); public domain. See the statsmodels page for each variable's table and footnotes.
+**Data:** Simulated data with a fixed random seed, created for this example. — No real respondents, documents or measurements: the numbers only illustrate how the chart and its statistics work.
+
+**Data:** Chaffa, L., & Warin, T. (2026). Identifying industrial clusters through growth co-movement with unsupervised learning methods. GeoJournal, 91(1), 16. https://doi.org/10.1007/s10708-025-11564-6 — The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results.
 
 
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
-import statsmodels.api as sm
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 from sklearn.metrics import silhouette_samples, silhouette_score
 from sklearn.preprocessing import StandardScaler
 
-# 7 social indicators of the 50 US states (DC, an extreme outlier, is left out)
-df = sm.datasets.statecrime.load_pandas().data.drop("District of Columbia")
-X = StandardScaler().fit_transform(df)
+# Simulated data, set in the context of Chaffa & Warin (2026) [chaffa2026]
+# 90 industries x 5 growth co-movement features around three profiles
+rng = np.random.default_rng(91)
+centres = np.array([[0.7, 0.2, 0.0, 0.6, 0.04],    # domestic cycle
+                    [0.4, 0.7, 0.1, 0.1, 0.06],    # export-oriented
+                    [0.2, 0.3, 0.7, 0.0, 0.10]])   # resource-based
+profile = rng.choice(3, 90, p=[0.45, 0.33, 0.22])
+X = StandardScaler().fit_transform(centres[profile] + rng.normal(0, [0.15, 0.15, 0.15, 0.15, 0.02],
+                                                                 (90, 5)))
 
 # Choose k by the average silhouette width
 fits = {k: KMeans(k, n_init=20, random_state=1).fit(X) for k in range(2, 9)}
@@ -82,11 +89,11 @@ ax2.set_ylim(-0.18, max(sil) + 0.08)
 ax2.set_ylabel("Silhouette width")
 ax2.spines["bottom"].set_visible(False)
 
-ax1.set_title(f"Silhouette picks k = {k} state profiles, but they are only weakly separated",
+ax1.set_title(f"Silhouette picks k = {k} co-movement clusters of industries",
               pad=26)
 ax1.text(0, 1.02, "Average silhouette for k = 2…8: " + ", ".join(f"{v:.2f}" for v in avg.values())
-         + f" · {(sil < 0).sum()} states misplaced (width < 0) · n = {len(X)} states, "
-         f"{X.shape[1]} standardised indicators", transform=ax1.transAxes, fontsize=9.5,
+         + f" · {(sil < 0).sum()} industries with width < 0 · n = {len(X)} industries (simulated), "
+         f"{X.shape[1]} features", transform=ax1.transAxes, fontsize=9.5,
          color="#6E6E73", in_layout=False)
 plt.show()
 ```

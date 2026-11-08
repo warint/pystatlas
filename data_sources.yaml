@@ -104,7 +104,7 @@ raudenbush:
 
 simulation:
   label: "Simulated data"
-  match: 'Simulated (survey|coding)'
+  match: 'Simulated (survey|coding|data)'
   cite: "Simulated data with a fixed random seed, created for this example."
   url: ""
   note: "No real respondents, documents or measurements: the numbers only illustrate how the chart and its statistics work."
@@ -117,3 +117,321 @@ guerry:
   url: https://doi.org/10.1214/07-STS241
   note: "Prepared by the Center for Spatial Data Science (University of Chicago) from the R package Guerry (Friendly and Dray), provided “as is”. Fetched once and cached by libpysal (examples.load_example(\"Guerry\")). Variables come from Guerry's tables as translated by Whitt and Reinking (2002)."
   topics: [crime, literacy, suicide, moral statistics, France, nineteenth century, départements]
+
+# ---------------------------------------------------------------------------
+# Thierry Warin's papers. Each chart below is set in the context of one of them.
+# The chart's code carries the key in brackets (e.g. "[sanger2019]"); when its
+# numbers are simulated the code also says "Simulated data", which adds the
+# `simulation` notice above. Real values are typed in only from a published table.
+
+sanger2019:
+  label: "Sanger & Warin (2019), similarity of European party manifestos"
+  match: '\[sanger2019\]'
+  cite: "Sanger, W., & Warin, T. (2019). Dataset of Jaccard similarity indices from 1,597 European political manifestos across 27 countries (1945–2017). Data in Brief, 24, 103907."
+  url: https://doi.org/10.1016/j.dib.2019.103907
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [party manifestos, political parties, text similarity, Jaccard index, Europe, elections]
+
+dmw2025aitweets:
+  label: "de Marcellis-Warin, Kouloukoui & Warin (2025), AI-related tweets"
+  match: '\[dmw2025aitweets\]'
+  cite: "de Marcellis-Warin, N., Kouloukoui, D., & Warin, T. (2025). A large-scale dataset of AI-related tweets: Structure and descriptive statistics. Data in Brief, 62, 111960."
+  url: https://doi.org/10.1016/j.dib.2025.111960
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [artificial intelligence, Twitter, social media, sentiment, public opinion]
+
+stojkov2026ca:
+  label: "Stojkov, Warin & Kjosevski (2026), current accounts of OECD countries"
+  match: '\[stojkov2026ca\]'
+  cite: "Stojkov, A., Warin, T., & Kjosevski, J. (2026). Beyond the balance: An intertemporal perspective on the current accounts of OECD countries. Acta Oeconomica, 76(3), 402–429."
+  url: https://doi.org/10.1556/032.2026.00539
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [current account, balance of payments, OECD, macroeconomics, external imbalances]
+
+pastoriza2022:
+  label: "Pastoriza Rivas & Warin (2022), Tiger Woods press conferences and performance"
+  match: '\[pastoriza2022\]'
+  cite: "Pastoriza Rivas, D., & Warin, T. (2022). Dataset of two decades of Tiger Woods press conferences and tournament performance. Data in Brief, 41, 107955."
+  url: https://doi.org/10.1016/j.dib.2022.107955
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [sport, golf, athlete performance, press conferences, text analysis]
+
+warin2021corona:
+  label: "Warin (2021), global research on coronaviruses"
+  match: '\[warin2021corona\]'
+  cite: "Warin, T. (2021). Global research on coronaviruses: Metadata-based analysis for public health policies. JMIR Medical Informatics, 9(11), e31510."
+  url: https://doi.org/10.2196/31510
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [coronavirus, COVID-19, bibliometrics, citations, scientific publications, public health]
+
+kouloukoui2021:
+  label: "Kouloukoui et al. (2021), perceived exposure to climate risks"
+  match: '\[kouloukoui2021\]'
+  cite: "Kouloukoui, D., de Marcellis-Warin, N., Armellini, F., Warin, T., & Andrade Torres, E. (2021). Factors influencing the perception of exposure to climate risks: Evidence from the world's largest carbon-intensive industries. Journal of Cleaner Production, 306, 127160."
+  url: https://doi.org/10.1016/j.jclepro.2021.127160
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [climate risk, risk perception, corporate disclosure, carbon-intensive industries, climate change]
+
+warin2025waste:
+  label: "Warin, d'Anglade & de Marcellis-Warin (2025), data science for waste reduction in manufacturing"
+  match: '\[warin2025waste\]'
+  cite: "Warin, T., d'Anglade, P. M., & de Marcellis-Warin, N. (2025). Optimising industrial efficiency: Integrating K-means clustering and data science for sustainable manufacturing and waste reduction. International Journal of Sustainable Engineering, 18(1), 2527300."
+  url: https://doi.org/10.1080/19397038.2025.2527300
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [manufacturing, industrial waste, sustainability, production lines, operations, k-means]
+
+warin2025who:
+  label: "Warin, Melchior & de Marcellis-Warin (2025), public engagement with the WHO on X"
+  match: '\[warin2025who\]'
+  cite: "Warin, T., Melchior, C., & de Marcellis-Warin, N. (2025). Social media metrics and popular legitimacy: Content analysis of pre- and post-COVID-19 public engagement with the WHO on X. Journal of Medical Internet Research, 27, e69959."
+  url: https://doi.org/10.2196/69959
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [World Health Organization, social media, X, Twitter, engagement, COVID-19, legitimacy]
+
+dmw2022manip:
+  label: "de Marcellis-Warin et al. (2022), AI and consumer manipulation"
+  match: '\[dmw2022manip\]'
+  cite: "de Marcellis-Warin, N., Marty, F., Thelisson, E., & Warin, T. (2022). Artificial intelligence and consumer manipulations: From consumer's counter algorithms to firm's self-regulation tools. AI and Ethics, 2(2), 259–268."
+  url: https://doi.org/10.1007/s43681-022-00149-5
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [artificial intelligence, consumers, manipulation, digital literacy, ethics, platforms]
+
+sanger2020ecb:
+  label: "Sanger & Warin (2020), the speeches of the ECB's presidents"
+  match: '\[sanger2020ecb\]'
+  cite: "Sanger, W., & Warin, T. (2020). The speeches of the European Central Bank's presidents: An NLP study. Global Economy Journal, 20(2), 2050009."
+  url: https://doi.org/10.1142/s2194565920500098
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [European Central Bank, central bank communication, speeches, natural language processing, monetary policy]
+
+melchior2026survey:
+  label: "Melchior, Warin & Oliveira (2026), survey on COVID-19 fake-news sharing"
+  match: '\[melchior2026survey\]'
+  cite: "Melchior, C., Warin, T., & Oliveira, M. (2026). Survey data on COVID-19-related fake-news sharing on Facebook. Data in Brief, 65, 112533."
+  url: https://doi.org/10.1016/j.dib.2026.112533
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [fake news, misinformation, Facebook, COVID-19, survey, social media]
+
+sanger2018quebec:
+  label: "Sanger & Warin (2018), the 2014 Québec election on Twitter"
+  match: '\[sanger2018quebec\]'
+  cite: "Sanger, W., & Warin, T. (2018). The public's perception of political parties during the 2014 Québec election on Twitter. Canadian Journal of Communication, 43(2), 245–263."
+  url: https://doi.org/10.22230/cjc.2018v43n2a3251
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [elections, Québec, political parties, Twitter, sentiment, Canada]
+
+stojkov2023refugee:
+  label: "Stojkov & Warin (2023), the refugee crisis on Twitter"
+  match: '\[stojkov2023refugee\]'
+  cite: "Stojkov, A., & Warin, T. (2023). Discursive dynamics and local contexts on Twitter: The refugee crisis in Europe. Discourse & Communication, 17(3), 354–380."
+  url: https://doi.org/10.1177/17504813231155739
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [refugees, migration, Twitter, discourse, Europe, framing]
+
+kouloukoui2025climate:
+  label: "Kouloukoui, de Marcellis-Warin & Warin (2025), corporate climate transition plans"
+  match: '\[kouloukoui2025climate\]'
+  cite: "Kouloukoui, D., de Marcellis-Warin, N., & Warin, T. (2025). Barriers, opportunities and best practices for corporate climate transition plans: A literature review. Climate, 13(5), 88."
+  url: https://doi.org/10.3390/cli13050088
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [climate transition plans, corporate disclosure, net zero, firms, climate change]
+
+kouloukoui2023esg:
+  label: "Kouloukoui et al. (2023), global conversations on ESG topics"
+  match: '\[kouloukoui2023esg\]'
+  cite: "Kouloukoui, D., de Marcellis-Warin, N., Gomes, S. M. S., & Warin, T. (2023). Mapping global conversations on twitter about environmental, social, and governance topics through natural language processing. Journal of Cleaner Production, 414, 137369."
+  url: https://doi.org/10.1016/j.jclepro.2023.137369
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [ESG, environment, social, governance, Twitter, natural language processing, text classification]
+
+stojkov2019trilemma:
+  label: "Stojkov & Warin (2019), the Mundellian trilemma dataset"
+  match: '\[stojkov2019trilemma\]'
+  cite: "Stojkov, A., & Warin, T. (2019). Navigating through the Mundellian trilemma: A dataset of four decades. Data in Brief, 27, 104677."
+  url: https://doi.org/10.1016/j.dib.2019.104677
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [Mundellian trilemma, exchange rates, capital mobility, monetary independence, international finance]
+
+janicki2009:
+  label: "Janicki, Warin & Wunnava (2009), endogenous optimum currency areas"
+  match: '\[janicki2009\]'
+  cite: "Janicki, H., Warin, T., & Wunnava, P. (2009). Testing Mundell's intuition of endogenous OCA theory. Review of International Economics, 17(1), 74–86."
+  url: https://doi.org/10.1111/j.1467-9396.2008.00802.x
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [optimum currency area, trade integration, business cycles, monetary union, euro]
+
+hadengue2014:
+  label: "Hadengue & Warin (2014), specialisation and convergence in Brazil, China and India"
+  match: '\[hadengue2014\]'
+  cite: "Hadengue, M., & Warin, T. (2014). Patterns of specialization and (un)conditional convergence: The cases of Brazil, China and India. Management international, 18, 123–141."
+  url: https://doi.org/10.7202/1027869ar
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [economic convergence, specialisation, emerging economies, Brazil, China, India, growth]
+
+dedinec2026:
+  label: "Dedinec, Stojkov, Warin & Kocarev (2026), the development compression trap"
+  match: '\[dedinec2026\]'
+  cite: "Dedinec, A., Stojkov, A., Warin, T., & Kocarev, L. (2026). The development compression trap: A framework for understanding uneven development trajectories. Journal of Sustainable Development of Energy, Water and Environment Systems, 15(1)."
+  url: ""
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [economic development, development indicators, energy, sustainability, countries]
+
+stojkov2024growth:
+  label: "Stojkov, Veljanovski & Warin (2024), European integration and growth in emerging Europe"
+  match: '\[stojkov2024growth\]'
+  cite: "Stojkov, A., Veljanovski, M., & Warin, T. (2024). European integration and economic growth in emerging Europe: The role of institutions and policy factors. Post-Communist Economies, 36(7), 778–800."
+  url: https://doi.org/10.1080/14631377.2024.2376974
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [economic growth, European integration, institutions, emerging Europe, transition economies]
+
+blakely2012:
+  label: "Blakely & Warin (2012), the decision to migrate in Europe"
+  match: '\[blakely2012\]'
+  cite: "Blakely, A., & Warin, T. (2012). Choice or mimetism in the decision to migrate? A European illustration. Global Economy Journal, 12(2)."
+  url: https://doi.org/10.1515/1524-5861.1818
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [migration, intention to migrate, networks, Europe, labour mobility]
+
+stojkov2018fdi:
+  label: "Stojkov & Warin (2018), EU membership and FDI"
+  match: '\[stojkov2018fdi\]'
+  cite: "Stojkov, A., & Warin, T. (2018). EU membership and FDI: Is there an endogenous credibility effect? Journal of East-West Business, 24, 144–169."
+  url: https://doi.org/10.1080/10669868.2018.1431579
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [foreign direct investment, European Union, accession, credibility, transition economies]
+
+kouloukoui2025ai:
+  label: "Kouloukoui, de Marcellis-Warin & Warin (2025), public perceptions of AI"
+  match: '\[kouloukoui2025ai\]'
+  cite: "Kouloukoui, D., de Marcellis-Warin, N., & Warin, T. (2025). Balancing risks and benefits: Public perceptions of AI through traditional surveys and social media analysis. AI & Society, 40(6), 4919–4942."
+  url: https://doi.org/10.1007/s00146-025-02232-x
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [artificial intelligence, public opinion, risk perception, survey, social media]
+
+stojkov2021credit:
+  label: "Stojkov & Warin (2021), foreign capital and domestic funding conditions"
+  match: '\[stojkov2021credit\]'
+  cite: "Stojkov, A., & Warin, T. (2021). Foreign capital and domestic funding conditions: A Mundellian trilemma perspective. Global Economy Journal, 21, 2150008."
+  url: https://doi.org/10.1142/s2194565921500081
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [capital flows, domestic credit, exchange-rate regimes, Mundellian trilemma, international finance]
+
+troadec2015:
+  label: "Troadec & Warin (2015), Canadian firms in global R&D"
+  match: '\[troadec2015\]'
+  cite: "Troadec, A., & Warin, T. (2015). La place des entreprises canadiennes dans la R-D mondiale. In B. Sinclair-Desgagné, A. Van Assche & T. Warin (Eds.), L'économie du Québec 2015 : contexte et enjeux internationaux (ch. 4, pp. 109–125). Presses internationales Polytechnique."
+  url: ""
+  note: "The example is set in the context of this chapter; unless its description says otherwise, the numbers are simulated and are not the chapter's data or results."
+  topics: [research and development, R&D investment, firms, innovation, Canada]
+
+tengia2011:
+  label: "Tengia, Wandschneider, Warin & Wunnava (2011), Southern African trade integration"
+  match: '\[tengia2011\]'
+  cite: "Tengia, O., Wandschneider, K., Warin, T., & Wunnava, P. (2011). Southern African economic integration: Evidence from an augmented gravity model. African Finance Journal, 13(1)."
+  url: ""
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [international trade, gravity model, regional integration, Southern Africa, SADC]
+
+warin2021banks:
+  label: "Warin & Stojkov (2021), banks' foreign claims after the 2008 crisis"
+  match: '\[warin2021banks\]'
+  cite: "Warin, T., & Stojkov, A. (2021). Banks' foreign claims in the aftermath of the 2008 crisis: Institutional response, financial efficiency, and integration of cross-border banking in the euro area. Journal of Risk and Financial Management, 14(2), 61."
+  url: https://doi.org/10.3390/jrfm14020061
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [banking, foreign claims, financial crisis, financial regulation, international finance]
+
+marty2025collusion:
+  label: "Marty & Warin (2025), algorithmic collusion and antitrust"
+  match: '\[marty2025collusion\]'
+  cite: "Marty, F., & Warin, T. (2025). Deciphering algorithmic collusion: Insights from bandit algorithms and implications for antitrust enforcement. Journal of Economy and Technology, 3, 34–43."
+  url: https://doi.org/10.1016/j.ject.2024.10.001
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [algorithmic pricing, collusion, antitrust, competition policy, digital markets]
+
+zarea2026:
+  label: "Zarea et al. (2026), supply-chain resilience and digitalisation"
+  match: '\[zarea2026\]'
+  cite: "Zarea, H., Moghaddamzadeh, H., Moradi, M., Hassani, A., Warin, T., & Stojkov, A. (2026). Risk-driven capability development in global supply chain resilience: Implications for digitalization. Journal of Information Technology Management, 82–107."
+  url: https://jitm.ut.ac.ir/article_108005.html
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [supply chains, resilience, disruption risk, digitalisation, firms]
+
+vorreuther2021:
+  label: "Vorreuther & Warin (2021), patent velocity in China's pharmaceutical industry"
+  match: '\[vorreuther2021\]'
+  cite: "Vorreuther, C. M., & Warin, T. (2021). Patent relatedness and velocity in the Chinese pharmaceutical industry: A dataset of Jaccard similarities. Data in Brief, 35, 106814."
+  url: https://doi.org/10.1016/j.dib.2021.106814
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [patents, innovation, pharmaceuticals, China, patent grant time]
+
+hadengue2015:
+  label: "Hadengue, de Marcellis-Warin & Warin (2015), reverse innovation in pharmaceuticals"
+  match: '\[hadengue2015\]'
+  cite: "Hadengue, M., de Marcellis-Warin, N., & Warin, T. (2015). Reverse innovation and reverse technology transfer: From made in China to discovered in China in the pharmaceutical sector. Management international, 19(4), 49–69."
+  url: https://doi.org/10.7202/1043076ar
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [reverse innovation, pharmaceuticals, emerging markets, China, technology transfer]
+
+warin2024statcan:
+  label: "Warin (2024), Statistics Canada's open economic data for teaching"
+  match: '\[warin2024statcan\]'
+  cite: "Warin, T. (2024). Access Statistics Canada's open economic data for statistics and data science courses. Technology Innovations in Statistics Education, 15(1)."
+  url: https://doi.org/10.5070/t5.1868
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not Statistics Canada's figures."
+  topics: [Statistics Canada, open data, manufacturing sales, monthly series, Canada, teaching]
+
+warin2023entropy:
+  label: "Warin & Stojkov (2023), sovereign bond yield differentials in Europe"
+  match: '\[warin2023entropy\]'
+  cite: "Warin, T., & Stojkov, A. (2023). Sovereign bond yield differentials across Europe: A structural entropy perspective. Entropy, 25(4), 630."
+  url: https://doi.org/10.3390/e25040630
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [sovereign bonds, yield spreads, euro area, financial markets, entropy]
+
+stojkov2025balkans:
+  label: "Stojkov & Warin (2025), the Western Balkans and the future of Europe"
+  match: '\[stojkov2025balkans\]'
+  cite: "Stojkov, A., & Warin, T. (2025). Western Balkans and the future of Europe. Springer."
+  url: https://doi.org/10.1007/978-3-031-86465-0
+  note: "The example is set in the context of this book; unless its description says otherwise, the numbers are simulated and are not the book's data or results."
+  topics: [Western Balkans, European Union, enlargement, institutions, convergence, Europe]
+
+aubert2026:
+  label: "Aubert et al. (2026), digital skills in Canadian jobs"
+  match: '\[aubert2026\]'
+  cite: "Aubert, B., Bourdeau, S., Warin, T., Schneider, J., & Sénegas, T. (2026). Digital skills assessment in jobs in Canada. Journal for Labour Market Research, 60(1), 18."
+  url: https://doi.org/10.1186/s12651-026-00440-6
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [digital skills, occupations, labour market, jobs, Canada]
+
+chaffa2026:
+  label: "Chaffa & Warin (2026), industrial clusters from growth co-movement"
+  match: '\[chaffa2026\]'
+  cite: "Chaffa, L., & Warin, T. (2026). Identifying industrial clusters through growth co-movement with unsupervised learning methods. GeoJournal, 91(1), 16."
+  url: https://doi.org/10.1007/s10708-025-11564-6
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [industrial clusters, regional economics, industries, unsupervised learning, clustering]
+
+leiter2012:
+  label: "Leiter & Warin (2012), price dispersion on the internet"
+  match: '\[leiter2012\]'
+  cite: "Leiter, D., & Warin, T. (2012). Homogenous goods markets: An empirical study of price dispersion on the internet. International Journal of Economics and Business Research, 4(5), 514."
+  url: https://doi.org/10.1504/ijebr.2012.048776
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [online prices, price dispersion, e-commerce, competition, homogeneous goods]
+
+bisson2026:
+  label: "Bisson & Warin (2026), AI-assisted reading of IPCC synthesis reports"
+  match: '\[bisson2026\]'
+  cite: "Bisson, C., & Warin, T. (2026). AI-assisted longitudinal comparison of scenario knowledge representation in IPCC synthesis reports. PLOS Climate, 5(7), e0000965."
+  url: https://doi.org/10.1371/journal.pclm.0000965
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [IPCC, climate scenarios, artificial intelligence, text coding, inter-rater agreement]
+
+melchior2025fake:
+  label: "Melchior, Warin & Oliveira (2025), COVID-19 fake-news sharing on Facebook"
+  match: '\[melchior2025fake\]'
+  cite: "Melchior, C., Warin, T., & Oliveira, M. (2025). An investigation of the COVID-19-related fake news sharing on Facebook using a mixed methods approach. Technological Forecasting and Social Change, 213, 123969."
+  url: https://doi.org/10.1016/j.techfore.2024.123969
+  note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
+  topics: [fake news, misinformation, Facebook, COVID-19, classification, social media]

@@ -11,28 +11,49 @@ roughly normal (points on the line)? **Scale–location**: is the spread constan
 sits beyond the dashed Cook's distance contours? The three most extreme
 observations are labelled in each panel, and formal tests sit in the subtitle.
 
-The model is the violent-crime regression on the 50 US states + DC from
-`sm.datasets.statecrime`. Everything comes from `get_influence()` in
+The setting is Tengia, Wandschneider, Warin & Wunnava (2011, *African Finance
+Journal*): an augmented gravity model of Southern African trade. The data are
+**simulated** for illustration — they are not the paper's data or results:
+n = 210 directed pairs among 15 African economies, 10 of them SADC members. Log
+exports are regressed on the log GDPs of exporter and importer, log distance, a
+common border and joint SADC membership; the errors are drawn with heavy tails,
+which the Q–Q panel picks up. Everything comes from `get_influence()` in
 **statsmodels**, plus `lowess()` for the smoothers, `het_breuschpagan()` and
 `scipy.stats.shapiro()`.
 
 **R equivalent:** `plot(lm) / performance::check_model()`  
-**Libraries:** Matplotlib, NumPy, statsmodels, SciPy
+**Libraries:** Matplotlib, NumPy, pandas, statsmodels, SciPy
 
-**Data:** U.S. Census Bureau. Statistical Abstract of the United States, state tables for 2009 (crime rates from the FBI Uniform Crime Reporting program). https://www.statsmodels.org/stable/datasets/generated/statecrime.html — Compiled for statsmodels (sm.datasets.statecrime); public domain. See the statsmodels page for each variable's table and footnotes.
+**Data:** Simulated data with a fixed random seed, created for this example. — No real respondents, documents or measurements: the numbers only illustrate how the chart and its statistics work.
+
+**Data:** Tengia, O., Wandschneider, K., Warin, T., & Wunnava, P. (2011). Southern African economic integration: Evidence from an augmented gravity model. African Finance Journal, 13(1). — The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results.
 
 
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
-import statsmodels.api as sm
+import pandas as pd
 import statsmodels.formula.api as smf
 from scipy import stats
 from statsmodels.nonparametric.smoothers_lowess import lowess
 from statsmodels.stats.diagnostic import het_breuschpagan
+# Simulated data, set in the context of Tengia, Wandschneider, Warin & Wunnava (2011) [tengia2011]
 
-df = sm.datasets.statecrime.load_pandas().data
-model = smf.ols("violent ~ poverty + single + urban + hs_grad + white", data=df).fit()
+# Data: 15 African economies (10 SADC members), all 210 directed trade pairs
+rng = np.random.default_rng(2011)
+codes = ["AGO", "BWA", "LSO", "MWI", "MOZ", "NAM", "ZAF", "SWZ", "ZMB", "ZWE",   # SADC
+         "KEN", "UGA", "ETH", "NGA", "GHA"]                                       # non-SADC
+gdp = rng.normal(23, 1.3, 15)                                    # log GDP (US$)
+xy = np.r_[rng.normal([0, -2000], 700, (10, 2)), rng.normal([0, 1500], 1500, (5, 2))]  # km
+o, d = np.nonzero(~np.eye(15, dtype=bool))                       # exporter, importer
+dist = np.hypot(*(xy[o] - xy[d]).T) + 200
+df = pd.DataFrame({"ln_gdp_o": gdp[o], "ln_gdp_d": gdp[d], "ln_dist": np.log(dist),
+                   "sadc": ((o < 10) & (d < 10)).astype(int), "border": (dist < 800).astype(int)},
+                  index=[f"{codes[a]}-{codes[b]}" for a, b in zip(o, d)])
+df["ln_trade"] = (-12 + 0.9 * df.ln_gdp_o + 0.8 * df.ln_gdp_d - 1.2 * df.ln_dist
+                  + 0.7 * df.sadc + 0.5 * df.border + rng.standard_t(4, len(df)))
+
+model = smf.ols("ln_trade ~ ln_gdp_o + ln_gdp_d + ln_dist + border + sadc", data=df).fit()
 infl = model.get_influence()
 fitted, resid = model.fittedvalues, model.resid
 std_r, lev, cook = infl.resid_studentized_internal, infl.hat_matrix_diag, infl.cooks_distance[0]
@@ -40,7 +61,7 @@ p = model.df_model + 1
 top = np.argsort(-np.abs(std_r))[:3]                # 3 largest standardised residuals
 
 fig, axes = plt.subplots(2, 2, figsize=(11, 7.6))
-kw = dict(s=22, color="#007AFF", alpha=0.7, lw=0, zorder=2)
+kw = dict(s=22, color="#007AFF", alpha=0.6, lw=0, zorder=2)
 smooth = dict(color="#FF3B30", lw=1.8)
 
 def label(ax, x, y, idx):
@@ -59,13 +80,13 @@ ax.axhline(0, color="#8E8E93", lw=1, ls="--")
 ax.scatter(fitted, resid, **kw)
 ax.plot(*lowess(resid, fitted, frac=1, it=0).T, **smooth)
 label(ax, fitted.values, resid.values, top)
-ax.set(title="Residuals vs fitted", xlabel="Fitted values", ylabel="Residuals")
+ax.set(title="Residuals vs fitted", xlabel="Fitted log exports", ylabel="Residuals")
 
 # 2. Normal Q-Q of standardised residuals
 ax = axes[0, 1]
 order = np.argsort(std_r)
 theo = stats.norm.ppf((np.arange(1, len(std_r) + 1) - 0.5) / len(std_r))
-ax.plot([-2.6, 2.6], [-2.6, 2.6], color="#8E8E93", lw=1, ls="--")
+ax.plot([-3, 3], [-3, 3], color="#8E8E93", lw=1, ls="--")
 ax.scatter(theo, std_r[order], **kw)
 rank = {i: k for k, i in enumerate(order)}
 label(ax, {i: theo[rank[i]] for i in top}, std_r, top)
@@ -77,7 +98,7 @@ root = np.sqrt(np.abs(std_r))
 ax.scatter(fitted, root, **kw)
 ax.plot(*lowess(root, fitted, frac=1, it=0).T, **smooth)
 label(ax, fitted.values, np.abs(root), top)
-ax.set(title="Scale–location", xlabel="Fitted values", ylabel="√|standardised residuals|")
+ax.set(title="Scale–location", xlabel="Fitted log exports", ylabel="√|standardised residuals|")
 
 # 4. Residuals vs leverage with Cook's distance contours
 ax = axes[1, 1]
@@ -85,14 +106,16 @@ ax.axhline(0, color="#8E8E93", lw=1, ls="--")
 ax.scatter(lev, std_r, **kw)
 ax.plot(*lowess(std_r, lev, frac=1, it=0).T, **smooth)
 ylim = (std_r.min() - 0.6, std_r.max() + 0.8)
-h = np.linspace(0.01, 0.95, 300)
-for D in (0.5, 1):
+xmax = lev.max() * 1.15
+h = np.linspace(0.002, xmax, 300)
+for D in (0.05, 0.1):
     r = np.sqrt(D * p * (1 - h) / h)
     ax.plot(h, r, color="#FF9500", lw=1, ls="--"); ax.plot(h, -r, color="#FF9500", lw=1, ls="--")
-    sign = 1 if D == 1 else -1                       # label D = 1 above, D = 0.5 below
-    ax.text(0.87, sign * np.sqrt(D * p * 0.13 / 0.87), f"D = {D}", color="#FF9500", fontsize=8.5,
+    sign = 1 if D == 0.1 else -1                     # label D = 0.1 above, D = 0.05 below
+    hl = 0.92 * xmax
+    ax.text(hl, sign * np.sqrt(D * p * (1 - hl) / hl), f"D = {D}", color="#FF9500", fontsize=8.5,
             ha="center", va="center", bbox=dict(boxstyle="round,pad=0.15", fc="white", ec="none"))
-ax.set_ylim(*ylim); ax.set_xlim(0, 0.95)
+ax.set_ylim(*ylim); ax.set_xlim(0, xmax)
 label(ax, lev, std_r, np.argsort(-cook)[:3])
 ax.set(title="Residuals vs leverage", xlabel="Leverage (hat values)", ylabel="Standardised residuals")
 for a in axes.flat:
@@ -100,11 +123,12 @@ for a in axes.flat:
 
 bp = het_breuschpagan(resid, model.model.exog)
 sw = stats.shapiro(resid)
-fig.text(0.01, 1.065, "Normal residuals, but variance and a few states deserve a closer look",
+fmt_p = lambda q: "p < .001" if q < .001 else f"p = {q:.3f}"
+fig.text(0.01, 1.065, "Linear and homoscedastic, but the residual tails are heavier than normal",
          fontsize=15, fontweight="semibold", va="bottom")
-fig.text(0.01, 1.02, f"OLS violent crime ~ 5 predictors · n = {int(model.nobs)} · Shapiro–Wilk "
-         f"W = {sw.statistic:.3f}, p = {sw.pvalue:.3f} · Breusch–Pagan χ²({p - 1:.0f}) = "
-         f"{bp[0]:.1f}, p = {bp[1]:.3f} · max Cook's D = {cook.max():.2f} ({df.index[cook.argmax()]})",
+fig.text(0.01, 1.02, f"OLS gravity model · n = {int(model.nobs)} pairs (simulated) · Shapiro–Wilk "
+         f"W = {sw.statistic:.3f}, {fmt_p(sw.pvalue)} · Breusch–Pagan χ²({p - 1:.0f}) = "
+         f"{bp[0]:.1f}, {fmt_p(bp[1])} · max Cook's D = {cook.max():.2f} ({df.index[cook.argmax()]})",
          fontsize=9.5, color="#6E6E73", va="bottom")
 plt.show()
 ```

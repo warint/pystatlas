@@ -1,44 +1,46 @@
 """
 title: Correlogram with clustering
-summary: Corrplot-style circles sized and coloured by r for 13 school-district indicators, ordered by hierarchical clustering.
+summary: Corrplot-style circles sized and coloured by r for 12 development indicators, ordered by hierarchical clustering.
 r: corrplot::corrplot(order = "hclust", addrect = 3)
-tags: [correlation, correlogram, hierarchical clustering, heatmap, corrplot, education]
+tags: [correlation, correlogram, hierarchical clustering, heatmap, corrplot, development]
 description: |
   The Python counterpart of `corrplot(method = "circle", order = "hclust")`. Each
   circle's **area** grows with |*r*| and its colour gives the sign, so strong
   correlations pop out and weak ones fade. The variables are reordered by
   **hierarchical clustering** (complete linkage on the distance 1 − *r*), which
   pulls positively correlated variables into blocks along the diagonal; the boxes
-  outline the three clusters, like `addrect = 3`. Here low-income, Hispanic pupils
-  and minority teachers form one block, and math results correlate negatively with
-  all three.
+  outline the three clusters, like `addrect = 3`.
 
-  Data are 13 indicators for the 303 California school districts of the STAR98
-  test bundled with **statsmodels** (`sm.datasets.star98`): math results (share
-  of pupils above the national median), pupil composition (low-income, Hispanic,
-  Black and Asian pupils), teachers (minority share, experience, salary), resources
-  (spending per pupil, pupil–teacher ratio) and school organisation (college-prep
-  courses, charter and year-round schools). The ordering comes from
+  The setting is Dedinec, Stojkov, Warin & Kocarev (2026, *Journal of Sustainable
+  Development of Energy, Water and Environment Systems*) on uneven development
+  trajectories. The data are **simulated** for illustration and are *not* the
+  paper's data or results: 150 countries scored on 12 indicators of income,
+  energy, emissions, health, education and economic structure, generated from
+  three correlated latent factors so that blocks appear. The ordering comes from
   `scipy.cluster.hierarchy.linkage` and `leaves_list`, the boxes from `fcluster`.
 """
 import matplotlib.pyplot as plt
 import numpy as np
-import statsmodels.api as sm
+import pandas as pd
 from matplotlib.patches import Circle, Rectangle
 from scipy.cluster.hierarchy import fcluster, leaves_list, linkage
 from scipy.spatial.distance import squareform
 
-# Data: 13 indicators for 303 California school districts (STAR98, bundled with statsmodels)
-df = sm.datasets.star98.load_pandas().data
-df["MATH"] = 100 * df.NABOVE / (df.NABOVE + df.NBELOW)
-labels = {"MATH": "Math above median", "LOWINC": "Low-income pupils",
-          "PERHISP": "Hispanic pupils", "PERBLACK": "Black pupils",
-          "PERASIAN": "Asian pupils", "PERMINTE": "Minority teachers",
-          "AVYRSEXP": "Teacher experience", "AVSALK": "Teacher salary",
-          "PERSPENK": "Spending per pupil", "PTRATIO": "Pupil–teacher ratio",
-          "PCTAF": "College-prep courses", "PCTCHRT": "Charter schools",
-          "PCTYRRND": "Year-round schools"}
-df = df[list(labels)].rename(columns=labels)
+# Simulated data, set in the context of Dedinec, Stojkov, Warin & Kocarev (2026) [dedinec2026]
+
+# Simulated countries: 12 indicators driven by three correlated latent factors
+rng = np.random.default_rng(2026)
+n = 150
+income = rng.normal(0, 1, n)
+human = 0.35 * income + 0.94 * rng.normal(0, 1, n)
+green = -0.5 * income + 0.85 * rng.normal(0, 1, n)
+loads = {"GDP per head (log)": (income, .9), "Energy use per head": (income, .8),
+         "CO₂ per head": (income, .75), "Urban population": (income, .65),
+         "Internet users": (income, .7), "Life expectancy": (human, .85),
+         "Years of schooling": (human, .8), "Electricity access": (human, .7),
+         "Child survival": (human, .8), "Renewables share": (green, .8),
+         "Agriculture (% GDP)": (green, .7), "Forest cover": (green, .55)}
+df = pd.DataFrame({k: w * f + np.sqrt(1 - w**2) * rng.normal(0, 1, n) for k, (f, w) in loads.items()})
 corr = df.corr()
 
 # Hierarchical clustering on the distance 1 - r, then reorder the matrix
@@ -82,8 +84,8 @@ cb = fig.colorbar(plt.cm.ScalarMappable(norm=norm, cmap=cmap), ax=ax, shrink=0.6
                   ticks=[-1, -0.5, 0, 0.5, 1])
 cb.set_label("Pearson r", color="#3A3A3C")
 cb.outline.set_visible(False)
-r_pov = corr.loc["Math above median", "Low-income pupils"]
-ax.set_title(f"Math results run against the poverty block (r = {r_pov:.2f} with low income)", pad=26)
-ax.text(0, 1.02, f"Pearson r · n = {len(df)} school districts · complete-linkage clustering on 1 − r · "
+r_ge = corr.loc["GDP per head (log)", "Energy use per head"]
+ax.set_title(f"Income, energy and emissions form one block (r = {r_ge:.2f}, GDP–energy)", pad=26)
+ax.text(0, 1.02, f"Pearson r · n = {len(df)} countries (simulated) · complete linkage clustering on 1 − r · "
         "circle area grows with |r|", transform=ax.transAxes, fontsize=9.5, color="#6E6E73")
 plt.show()

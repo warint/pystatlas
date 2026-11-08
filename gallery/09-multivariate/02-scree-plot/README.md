@@ -1,6 +1,6 @@
 # Scree plot
 
-> How many dimensions describe 303 California school districts? Variance per component and a parallel-analysis cut-off.
+> How many dimensions describe digital skills in 300 occupations? Variance per component and a parallel-analysis cut-off.
 
 ![Scree plot](plot.png)
 
@@ -11,30 +11,38 @@ same eigenvalues computed on random, uncorrelated data of the same size. A
 component is retained (blue) only if it beats that noise floor; the dotted
 line marks the older Kaiser rule (eigenvalue > 1).
 
-Data are 303 California school districts from the **statsmodels** `star98`
-dataset (1998 Standardized Testing and Reporting programme): 12 district
-characteristics — % low-income pupils, % Asian, Black and Hispanic pupils,
-% minority teachers, teachers' average experience and salary, per-pupil
-spending, pupil–teacher ratio, % taking college-prep courses, % charter and
-% year-round schools — each standardised. Eigenvalues of the correlation
-matrix (the PCA variances) come from `numpy.linalg.eigvalsh`; the parallel
-analysis is 500 seeded simulations. Note that parallel analysis keeps fewer
-components than the Kaiser rule here.
+The setting is Aubert, Bourdeau, Warin, Schneider & Sénegas (2026), "Digital
+skills assessment in jobs in Canada" (*Journal for Labour Market Research*):
+300 occupations, each scored on 10 digital-skill indicators (office software,
+data entry, web search, e-mail, online collaboration, social media, content
+creation, data analysis, programming, cybersecurity). The scores are
+**simulated** with `numpy` (seeded) from three latent skill dimensions plus a
+weak fourth one, for illustration; they are *not* the paper's data or results.
+Eigenvalues of the correlation matrix come from `numpy.linalg.eigvalsh`; the
+parallel analysis is 500 seeded simulations. As often, parallel analysis
+is stricter than the Kaiser rule: the weak fourth dimension passes λ > 1 but
+not the noise floor.
 
 **R equivalent:** `factoextra::fviz_eig()`  
-**Libraries:** Matplotlib, NumPy, statsmodels, scikit-learn
+**Libraries:** Matplotlib, NumPy, scikit-learn
 
-**Data:** Gill, J. (2001). Generalized Linear Models: A Unified Approach (Quantitative Applications in the Social Sciences, No. 134). Sage. https://www.statsmodels.org/stable/datasets/generated/star98.html — Original data from the California Department of Education's Standardized Testing and Reporting (STAR) program, 1998. Subset distributed with statsmodels (sm.datasets.star98) with the author's permission.
+**Data:** Simulated data with a fixed random seed, created for this example. — No real respondents, documents or measurements: the numbers only illustrate how the chart and its statistics work.
+
+**Data:** Aubert, B., Bourdeau, S., Warin, T., Schneider, J., & Sénegas, T. (2026). Digital skills assessment in jobs in Canada. Journal for Labour Market Research, 60(1), 18. https://doi.org/10.1186/s12651-026-00440-6 — The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results.
 
 
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
-import statsmodels.api as sm
 from sklearn.preprocessing import StandardScaler
 
-# PCA on 12 standardised characteristics of California school districts
-X = StandardScaler().fit_transform(sm.datasets.star98.load_pandas().data.loc[:, "LOWINC":"PCTYRRND"])
+# Simulated data, set in the context of Aubert et al. (2026) [aubert2026]
+# 300 occupations x 10 digital-skill scores driven by 3 latent skills (+ a weak 4th)
+rng = np.random.default_rng(2026)
+F = rng.normal(size=(300, 4))  # basic office, communication, advanced technical, weak niche
+L = np.array([[.8, 0, 0, 0], [.75, 0, 0, 0], [.6, .3, 0, 0], [.5, .5, 0, 0], [.2, .7, .1, .5],
+              [0, .75, 0, 0], [0, .6, .3, -.5], [.2, 0, .75, 0], [0, 0, .8, 0], [0, .1, .6, .5]])
+X = StandardScaler().fit_transform(F @ L.T + rng.normal(0, 0.55, (300, 10)))
 n, p = X.shape
 eig = np.sort(np.linalg.eigvalsh(np.corrcoef(X.T)))[::-1]  # PCA eigenvalues
 pct = 100 * eig / eig.sum()
@@ -69,8 +77,8 @@ ax.set_ylim(0, 105)
 ax.set_ylabel("Variance explained (%)")
 ax.set_title(f"Parallel analysis retains {keep.sum()} of {p} components; Kaiser would keep "
              f"{(eig > 1).sum()}", pad=26)
-ax.text(0, 1.02, f"PCA of {p} standardised district variables · n = {n} districts · λ = "
-        f"{', '.join(f'{e:.2f}' for e in eig[:4])}, … · Horn's PA: 500 simulations",
+ax.text(0, 1.02, f"PCA of {p} skill scores · n = {n} occupations (simulated) · λ = "
+        f"{', '.join(f'{e:.2f}' for e in eig[:4])}, … · PA: 500 simulations",
         transform=ax.transAxes, fontsize=9.5, color="#6E6E73")
 plt.show()
 ```
