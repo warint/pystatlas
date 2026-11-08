@@ -118,4 +118,4 @@ plt.show()
 
 **PyStatlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/spatial-data/spatial-correlogram/) · [← Spatial data](../README.md)
 
-**Cite:** Warin, T. (2026). Spatial correlogram. In PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences. https://warint.github.io/pystatlas/spatial-data/spatial-correlogram/
+**Cite:** Warin, T. (2026). Spatial correlogram. In PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences (Version 1.1.0) [Computer software]. https://warint.github.io/pystatlas/spatial-data/spatial-correlogram/

@@ -45,6 +45,7 @@ DOCS = ROOT / "docs"
 SITE_SRC = ROOT / "site_src"
 STYLE = ROOT / "pystatlas.mplstyle"
 CONFIG = yaml.safe_load((ROOT / "statlas.yaml").read_text())
+VERSION = yaml.safe_load((ROOT / "CITATION.cff").read_text())["version"]
 DATA_SOURCES = yaml.safe_load((ROOT / "data_sources.yaml").read_text())
 import hashlib
 ASSET_V = hashlib.md5(b"".join(f.read_bytes() for f in sorted((ROOT / "site_src").iterdir()))).hexdigest()[:8]
@@ -456,8 +457,8 @@ def card(ex: "Example", home: str, root: str) -> str:
 def cite_text(ex: "Example | None" = None) -> str:
     y, site = CONFIG["year"], CONFIG["site_url"]
     if ex:
-        return f"Warin, T. ({y}). {ex.title}. In PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences. {site}{ex.url}"
-    return f"Warin, T. ({y}). PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences. {site}"
+        return f"Warin, T. ({y}). {ex.title}. In PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences (Version {VERSION}) [Computer software]. {site}{ex.url}"
+    return f"Warin, T. ({y}). PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences (Version {VERSION}) [Computer software]. {site}"
 
 
 def bibtex() -> str:
@@ -465,6 +466,7 @@ def bibtex() -> str:
   author       = {{Warin, Thierry}},
   title        = {{PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences}},
   year         = {{{CONFIG['year']}}},
+  version      = {{{VERSION}}},
   howpublished = {{\\url{{{CONFIG['site_url']}}}}},
   note         = {{Source code: {CONFIG['repo_url']}}}
 }}"""
@@ -802,7 +804,8 @@ f"""# {c.title}
     tpl = (ROOT / "README.template.md").read_text()
     (ROOT / "README.md").write_text(tpl.replace("{{FAMILIES}}", fam).replace("{{N}}", str(n))
                                     .replace("{{SITE}}", site).replace("{{K}}", str(len(cats)))
-                                    .replace("{{PAPERS}}", pap))
+                                    .replace("{{PAPERS}}", pap)
+                                    .replace("{{VERSION}}", VERSION))
 
 
 # --------------------------------------------------------------------------- main

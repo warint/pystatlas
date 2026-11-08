@@ -95,4 +95,4 @@ plt.show()
 
 **PyStatlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/time-series/seasonal-subseries/) · [← Time series](../README.md)
 
-**Cite:** Warin, T. (2026). Seasonal subseries plot. In PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences. https://warint.github.io/pystatlas/time-series/seasonal-subseries/
+**Cite:** Warin, T. (2026). Seasonal subseries plot. In PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences (Version 1.1.0) [Computer software]. https://warint.github.io/pystatlas/time-series/seasonal-subseries/

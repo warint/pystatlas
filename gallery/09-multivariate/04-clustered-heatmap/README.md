@@ -87,4 +87,4 @@ plt.show()
 
 **PyStatlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/multivariate/clustered-heatmap/) · [← Multivariate & clustering](../README.md)
 
-**Cite:** Warin, T. (2026). Clustered heatmap. In PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences. https://warint.github.io/pystatlas/multivariate/clustered-heatmap/
+**Cite:** Warin, T. (2026). Clustered heatmap. In PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences (Version 1.1.0) [Computer software]. https://warint.github.io/pystatlas/multivariate/clustered-heatmap/

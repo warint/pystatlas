@@ -104,4 +104,4 @@ plt.show()
 
 **PyStatlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/spatial-data/lisa-cluster-map/) · [← Spatial data](../README.md)
 
-**Cite:** Warin, T. (2026). LISA cluster map (local autocorrelation). In PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences. https://warint.github.io/pystatlas/spatial-data/lisa-cluster-map/
+**Cite:** Warin, T. (2026). LISA cluster map (local autocorrelation). In PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences (Version 1.1.0) [Computer software]. https://warint.github.io/pystatlas/spatial-data/lisa-cluster-map/
