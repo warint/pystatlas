@@ -788,10 +788,21 @@ f"""# {c.title}
         f"| [<img src=\"gallery/{c.folder.name}/{c.examples[0].folder.name}/plot.png\" width=\"220\">](gallery/{c.folder.name}/) | **[{c.title}](gallery/{c.folder.name}/)** — {c.summary}<br><sub>"
         + " · ".join(f"[{e.title}](gallery/{c.folder.name}/{e.folder.name}/)" for e in c.examples) + "</sub> |"
         for c in cats if c.examples)
+    # One row per paper (data sources matched by a "[key]" tag), charts in gallery order
+    papers = {}
+    for c in cats:
+        for e in c.examples:
+            for k in sources_of(e):
+                if DATA_SOURCES[k]["match"].startswith("\\["):
+                    papers.setdefault(k, []).append(f"[{e.title}](gallery/{c.folder.name}/{e.folder.name}/)")
+    ref = lambda d: f"[{d['label']}]({d['url']})" if d.get("url") else d["label"]
+    pap = "| Reference | Charts set in it |\n|:--|:--|\n" + "\n".join(
+        f"| {ref(DATA_SOURCES[k])} | {' · '.join(v)} |" for k, v in papers.items())
     n = sum(len(c.examples) for c in cats)
     tpl = (ROOT / "README.template.md").read_text()
     (ROOT / "README.md").write_text(tpl.replace("{{FAMILIES}}", fam).replace("{{N}}", str(n))
-                                    .replace("{{SITE}}", site).replace("{{K}}", str(len(cats))))
+                                    .replace("{{SITE}}", site).replace("{{K}}", str(len(cats)))
+                                    .replace("{{PAPERS}}", pap))
 
 
 # --------------------------------------------------------------------------- main

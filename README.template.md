@@ -15,7 +15,11 @@
 
 ---
 
-PyStatlas is a curated atlas of **statistical** charts for Python: coefficient plots, odds‑ratio forests, Likert scales, Kaplan–Meier curves with risk tables, regression diagnostics, Bland–Altman, meta‑analysis forests and more. Each chart is a single, self‑contained script built on **NumPy, pandas, Matplotlib, seaborn, SciPy, statsmodels, scikit‑learn and lifelines** — no downloads, no hidden helpers.
+PyStatlas is a curated atlas of **statistical** charts for Python: coefficient plots, odds‑ratio forests, Likert scales, Kaplan–Meier curves with risk tables, regression diagnostics, SHAP explanations, spatial autocorrelation maps, meta‑analysis forests and more. Each chart is a single, self‑contained script built on **NumPy, pandas, Matplotlib, seaborn, SciPy, statsmodels, scikit‑learn, lifelines, SHAP, GeoPandas, Shapely, libpysal and esda** — no downloads, no hidden helpers.
+
+### The examples are set in published research
+
+Nearly every chart takes its setting from one of Thierry Warin's papers — party manifestos, central-bank speeches, fake news on Facebook, patent grants in China's pharmaceutical industry, the Mundellian trilemma, waste reduction in manufacturing — and the spatial charts from the CIRANO GVCdtLab's digital twin of the Great Lakes–St. Lawrence corridor. The data are **small seeded simulations**, just large enough to show the method: they are labelled as simulated on every figure and are **not** the papers' data or results. The full reference is printed under each chart. The exceptions: the power curve uses no data, and the meta-analysis and funnel plots use real data — a published table by Raudenbush (1984), typed in.
 
 ## The repository *is* the gallery
 
@@ -37,6 +41,10 @@ Browse the folders right here on GitHub, or visit the [website]({{SITE}}).
 | | |
 |:--|:--|
 {{FAMILIES}}
+
+## Research behind the examples
+
+{{PAPERS}}
 
 ## Use a chart
 
