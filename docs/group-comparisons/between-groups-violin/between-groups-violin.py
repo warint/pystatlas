@@ -71,8 +71,7 @@ ax.set_xticks(range(k), [f"{g}\n(n = {len(d)} firms)" for g, d in zip(groups, da
 ax.set_ylabel("Perceived climate-risk exposure\n(score, 0–100)")
 ax.set_ylim(top=top + 4 + len(pairs) * step + 2)
 ax.set_yticks(range(20, 101, 20))
-ax.set_title(f"Oil and gas firms perceive the most climate-risk exposure "
-             f"({data[0].mean():.0f} vs {data[-1].mean():.0f} for utilities)", pad=26)
+ax.set_title("Three industries compared: Welch's ANOVA with Holm-adjusted pairwise tests", pad=26)
 ax.text(0, 1.02, f"n = {n} firms (simulated) · Welch's F({res.df_num:.0f}, {res.df_denom:.1f}) = "
         f"{res.statistic:.1f}, p = {res.pvalue:.1e}, ω² = {omega2:.2f} · pairwise: Welch t, Holm",
         transform=ax.transAxes, fontsize=9.5, color="#6E6E73")

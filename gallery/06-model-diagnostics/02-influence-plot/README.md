@@ -95,7 +95,7 @@ ax.set_ylim(rstud.min() - 0.8, rstud.max() + 1.2)
 ax.set_xlim(0, lev.max() * 1.15)
 ax.set_xlabel("Leverage (hat value)")
 ax.set_ylabel("Studentized residual")
-ax.set_title("Financial centres stand out in a cross-country model of bank claims", pad=26)
+ax.set_title(f"{flag.sum()} countries cross the Cook's D > 4/n line in a simulated model of bank claims", pad=26)
 
 # Bonferroni outlier test on the largest |studentized residual|
 k = np.argmax(np.abs(rstud))

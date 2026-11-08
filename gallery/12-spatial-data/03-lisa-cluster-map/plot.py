@@ -85,8 +85,7 @@ for name, lon, lat, dx, dy in [("Duluth", -92.1, 46.8, -0.6, -0.9), ("Detroit", 
                 bbox=dict(boxstyle="round,pad=0.2", fc="white", ec="#C7C7CC", lw=0.6),
                 arrowprops=dict(arrowstyle="-", color="#3A3A3C", lw=0.8))
 ax.set_axis_off()
-ax.set_title(f"Exposure clusters at the Seaway, Detroit and Lake Superior ({counts[1]} high–high), "
-             f"not in the estuary ({counts[3]} low–low)", pad=26)
+ax.set_title(f"Local Moran's I finds {counts[1]} high–high and {counts[3]} low–low zones on the simulated map", pad=26)
 ax.text(0, 1.02, f"Local Moran's I, 999 permutations, pseudo p < 0.05, no multiple-testing correction · "
         f"queen weights · n = {w.n} zones (simulated)", transform=ax.transAxes, fontsize=9.5, color="#6E6E73")
 plt.show()

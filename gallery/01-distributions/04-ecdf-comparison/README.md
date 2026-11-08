@@ -68,8 +68,7 @@ ax.set_yticks(np.linspace(0, 1, 5), [f"{v:.0%}" for v in np.linspace(0, 1, 5)])
 ax.set_xlabel("Round score relative to par (strokes; lower is better)")
 ax.set_ylabel("Cumulative share of rounds")
 ax.legend(loc="lower right")
-ax.set_title(f"Scores drift up after 2009: {y_gap[0]:.0%} of rounds at {x_gap:+.0f} or better "
-             f"before, {y_gap[1]:.0%} after", pad=26)
+ax.set_title(f"The KS statistic is the widest vertical gap between the two ECDFs: D = {ks.statistic:.2f}", pad=26)
 ax.text(0, 1.02, f"n = {len(allx)} rounds (simulated) · two-sample Kolmogorov–Smirnov "
         f"D = {ks.statistic:.3f}, p = {ks.pvalue:.1e}", transform=ax.transAxes,
         fontsize=9.5, color="#6E6E73")

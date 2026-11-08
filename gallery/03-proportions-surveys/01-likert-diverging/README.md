@@ -78,7 +78,7 @@ ax.set_xticks(range(-60, 61, 20), [f"{abs(t)}%" for t in range(-60, 61, 20)])
 ax.grid(axis="x"); ax.grid(axis="y", visible=False)
 ax.legend(ncols=5, loc="upper center", bbox_to_anchor=(0.5, -0.08), fontsize=9,
           handlelength=1, columnspacing=1.2)
-ax.set_title("Most say they check sources; few trust COVID-19 news on Facebook", pad=26)
+ax.set_title("Six statements on COVID-19 news, sorted by total agreement", pad=26)
 ax.text(0, 1.02, f"n = {len(answers)} respondents (simulated) · Friedman χ²({answers.shape[1] - 1}) = "
         f"{fr.statistic:.0f}, p < .001 · bar labels in %", transform=ax.transAxes,
         fontsize=9.5, color="#6E6E73")

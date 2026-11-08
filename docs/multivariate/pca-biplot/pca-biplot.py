@@ -83,7 +83,7 @@ ax.set_ylabel(f"PC2 ({var[1]:.1f}% of variance)")
 ax.grid(False)
 ax.set_aspect("equal", adjustable="datalim")
 ax.legend(loc="lower right", markerscale=1.5, handletextpad=0.3)
-ax.set_title("The Western Balkans sit at the low-institution end of PC1", pad=26)
+ax.set_title("Countries on the first two components, with a 68% ellipse per group", pad=26)
 ax.text(0, 1.02, f"PCA on {X.shape[1]} standardised indicators · n = {len(X)} countries (simulated) · "
         f"PC1 + PC2 = {var.sum():.1f}% of variance · 68% ellipses",
         transform=ax.transAxes, fontsize=9.5, color="#6E6E73")

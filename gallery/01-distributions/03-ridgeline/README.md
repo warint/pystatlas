@@ -82,8 +82,7 @@ ax.set_xlim(grid[0], grid[-1])
 ax.grid(axis="x"); ax.grid(axis="y", visible=False)
 ax.spines["left"].set_visible(False)
 ax.set_xlabel(f"Current-account balance (% of GDP), one value per year, {years[0]}–{years[-1]}")
-ax.set_title(f"{(medians > 0).sum()} of {len(medians)} countries run a surplus in the median "
-             f"year, from {medians.iloc[0]:+.1f}% to {medians.iloc[-1]:+.1f}% of GDP", pad=26)
+ax.set_title("One ridge per country, sorted by its median current account (simulated)", pad=26)
 ax.text(0, 1.02, f"n = {ca.size} country-years (simulated) · "
         f"Friedman χ²({ca.shape[1] - 1}) = {chi2:.0f}, p = {p:.1e}, Kendall's W = {W:.2f}"
         " · tick = median", transform=ax.transAxes, fontsize=9.5, color="#6E6E73")

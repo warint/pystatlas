@@ -66,7 +66,7 @@ ax.legend(loc="upper right")
 dom, fgn = groups["Domestic"], groups["Foreign"]
 lr = logrank_test(dom.months, fgn.months, dom.granted, fgn.granted)
 p_txt = "p < .001" if lr.p_value < 0.001 else f"p = {lr.p_value:.3f}"
-ax.set_title("Foreign applicants' patents are granted sooner than domestic ones", pad=26)
+ax.set_title("Time to grant for two applicant groups, with a log-rank test", pad=26)
 ax.text(0, 1.02, f"Log-rank χ²(1) = {lr.test_statistic:.1f}, {p_txt}  ·  Kaplan–Meier with 95% CI  ·  "
         f"n = {n} applications (simulated), {df.granted.sum()} grants", transform=ax.transAxes,
         fontsize=9.5, color="#6E6E73")

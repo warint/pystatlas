@@ -61,7 +61,7 @@ p_txt = "p < .001" if lr.p_value < 0.001 else f"p = {lr.p_value:.3f}"
 ax.legend(loc="upper left")
 ax.set(xlabel="Years since first approval anywhere", ylabel="Cumulative hazard of launch  H(t)",
        xlim=(0, 6), xticks=range(7), ylim=(0, None))
-ax.set_title("Simulated launch risk builds up fastest in the US, slowest in China", pad=26)
+ax.set_title("Nelson–Aalen cumulative hazard of launch for four market groups", pad=26)
 ax.text(0, 1.02, f"Nelson–Aalen with 95% CI  ·  log-rank χ²({lr.degrees_of_freedom}) = "
         f"{lr.test_statistic:.1f}, {p_txt}  ·  n = {len(df)} drug–market pairs (simulated), "
         f"{df.launched.sum()} launches", transform=ax.transAxes, fontsize=9.5, color="#6E6E73")

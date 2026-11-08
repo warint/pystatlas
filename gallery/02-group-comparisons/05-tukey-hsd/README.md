@@ -71,7 +71,7 @@ ax.set_ylim(-0.6, len(res) - 0.4)
 ax.set_xlim(right=res.high.max() + 6)
 ax.grid(axis="x"); ax.grid(axis="y", visible=False)
 ax.set_xlabel("Difference in mean share on price stability (percentage points), Tukey 95% CI")
-ax.set_title("Duisenberg and Trichet stress price stability more than Draghi and Lagarde", pad=26)
+ax.set_title("Tukey intervals for every pair of presidents in a simulated speech sample", pad=26)
 ax.text(0, 1.02, f"n = {n} speeches (simulated) · one-way ANOVA F({k - 1}, {n - k}) = {F:.1f}, "
         f"p = {p:.1e}, η² = {eta2:.2f} · {res.reject.sum()} of {len(res)} pairs differ",
         transform=ax.transAxes, fontsize=9.5, color="#6E6E73")

@@ -84,7 +84,7 @@ ax2.spines[["left"]].set_visible(False); ax2.spines["right"].set_visible(True)
 ax2.set_ylabel("Mean difference (log10 engagements)")
 ax2.grid(False)
 
-ax.set_title(f"WHO posts draw about {10 ** delta:.1f} times more engagement after COVID-19 began",
+ax.set_title(f"Post minus pre: a mean difference of {delta:+.2f} on the log10 scale, with its bootstrap CI",
              pad=26)
 ax.text(0, 1.02, f"n = {len(df)} posts (simulated) · BCa bootstrap 95% CI [{lo:.2f}, {hi:.2f}] · "
         f"Welch's t({t.df:.1f}) = {t.statistic:.2f}, p = {t.pvalue:.1e}",

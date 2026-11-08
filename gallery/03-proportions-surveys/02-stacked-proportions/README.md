@@ -66,7 +66,7 @@ ax.grid(False)
 ax.spines["left"].set_visible(False)
 ax.legend(ncols=3, loc="lower left", bbox_to_anchor=(0, 1.0), fontsize=9.5,
           handlelength=1, borderaxespad=0.3)
-ax.set_title("Tweet sentiment differs by party: most negative for the PQ", pad=46)
+ax.set_title("Sentiment shares by party, with a χ² test of independence", pad=46)
 p_txt = "p < .001" if p < 0.001 else f"p = {p:.3f}"
 ax.text(0, 1.105, f"Pearson χ²({dof}) = {chi2:.1f}, {p_txt}, Cramér's V = {v:.2f} · "
         f"n = {table.to_numpy().sum():,} tweets (simulated)", transform=ax.transAxes,
