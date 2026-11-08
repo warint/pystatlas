@@ -21,7 +21,8 @@ ui:
   hero_2: Beautifully Pythonic.
   by: By
   part_of: part of
-  search_placeholder: Search charts, methods, data sources, papers or authors — try “recidivism” or “Guerry”
+  search_placeholder: Search charts, methods, data sources, papers or authors — try “fake news” or “Great
+    Lakes”
   m_key: Keyword
   m_data: Data
   m_topic: Data topics
@@ -74,9 +75,9 @@ ui:
   principles_h: Principles
   principle_1: '<strong>Self‑contained.</strong> Every script runs as is. Most examples are set in the
     context of one of the author''s published papers, cited under the chart, and run on a small seeded
-    simulation — just enough data to show the method, never the paper''s data or results. A few use real
-    data: a published meta-analysis table typed in, and Guerry''s map of France, which the spatial examples
-    fetch once through libpysal and then use from the cached copy.'
+    simulation — just enough data to show the method, never the paper''s data or results. The spatial
+    examples draw a schematic map of the Great Lakes–St. Lawrence corridor, built in the script itself.
+    The meta-analysis and funnel plots use real data: a published table, typed in.'
   principle_2: '<strong>Statistics first.</strong> Each chart carries the numbers that matter: estimates,
     intervals, test statistics, effect sizes.'
   principle_3: <strong>Folder = page.</strong> The repository tree mirrors the site. Every example lives
@@ -123,7 +124,8 @@ categories:
   spatial-data:
     title: Spatial data
     summary: Is a value higher where its neighbours' values are higher? Spatial weights, global and local
-      spatial autocorrelation, and how far clusters reach — on Guerry's 1830s France.
+      spatial autocorrelation, and how far clusters reach — along a schematic Great Lakes–St. Lawrence
+      corridor.
   distributions:
     title: Distributions
     summary: 'See the shape of your data: histograms, densities, ridgelines, ECDFs and Q–Q plots.'
@@ -536,17 +538,19 @@ examples:
       networks and can change the results, so the network is worth looking at.
 
 
-      Data are André-Michel Guerry''s *Essay on the Moral Statistics of France*
+      Data are **simulated**, set in the context of the GVCdtLab, CIRANO''s digital twin
 
-      (1833): 85 départements around 1830, as prepared by the Center for Spatial
+      of the Great Lakes–St. Lawrence trade and transport corridor: 276 hexagonal
 
-      Data Science and loaded with **libpysal** (`examples.load_example("Guerry")`,
+      zones laid along a schematic waterway from Duluth and Chicago to the Gulf of
 
-      fetched once and cached). The variable is the percentage of military
+      St. Lawrence, each with a 0–100 index of how exposed its shipping is to low
 
-      conscripts who could read and write. Weights come from
+      water levels. Neither the zones nor the values are the lab''s data or results.
 
-      `libpysal.weights.Queen`; the map is drawn with **GeoPandas**.'
+      Weights come from `libpysal.weights.Queen`; the zones are built with
+
+      **Shapely** and drawn with **GeoPandas**.'
   spatial-data/moran-scatterplot:
     title: Moran scatterplot (global autocorrelation)
     summary: Each area against the average of its neighbours, with Moran's I, its permutation test and
@@ -574,11 +578,20 @@ examples:
 
       distribution under spatial randomness; the pseudo p-value is the share of
 
-      shuffles at least as extreme as the observed I. Data are Guerry''s (1833)
+      shuffles at least as extreme as the observed I.
 
-      literacy rates for 85 French départements, loaded with **libpysal**;
 
-      weights are queen contiguity and the statistic comes from `esda.Moran`.'
+      Data are **simulated**, set in the context of the GVCdtLab, CIRANO''s digital twin
+
+      of the Great Lakes–St. Lawrence trade and transport corridor: 276 hexagonal
+
+      zones along a schematic waterway from Duluth and Chicago to the Gulf of
+
+      St. Lawrence, each with a 0–100 index of how exposed its shipping is to low
+
+      water levels. Neither the zones nor the values are the lab''s data or results.
+
+      Weights are queen contiguity and the statistic comes from `esda.Moran`.'
   spatial-data/lisa-cluster-map:
     title: LISA cluster map (local autocorrelation)
     summary: Where the clusters and spatial outliers are — local Moran's I for each area, mapped with
@@ -598,17 +611,26 @@ examples:
       spatial outliers. Everything else is grey.
 
 
-      Two cautions come with every LISA map. The 85 tests are not independent and
+      Two cautions come with every LISA map. The tests are not independent and are
 
-      are not corrected for multiple comparisons, so a few significant areas are
+      not corrected for multiple comparisons, so a few significant areas are
 
       expected by chance alone; and a significant area marks the *core* of a
 
-      cluster, which usually extends to its neighbours. Data are Guerry''s (1833)
+      cluster, which usually extends to its neighbours.
 
-      literacy rates for 85 départements, loaded with **libpysal**; the statistic
 
-      comes from `esda.Moran_Local` and the map from **GeoPandas**.'
+      Data are **simulated**, set in the context of the GVCdtLab, CIRANO''s digital twin
+
+      of the Great Lakes–St. Lawrence trade and transport corridor: 276 hexagonal
+
+      zones along a schematic waterway from Duluth and Chicago to the Gulf of
+
+      St. Lawrence, each with a 0–100 index of how exposed its shipping is to low
+
+      water levels. Neither the zones nor the values are the lab''s data or results.
+
+      The statistic comes from `esda.Moran_Local` and the map from **GeoPandas**.'
   spatial-data/spatial-correlogram:
     title: Spatial correlogram
     summary: Moran's I at increasing neighbour orders, with a permutation envelope — how far spatial clustering
@@ -623,26 +645,37 @@ examples:
 
       be and still resemble each other, and whether distant areas become
 
-      *opposites* — negative I — as they do when a country is split into two
+      *opposites* — negative I — as they do when a region is split into two large
 
-      large regions. It is the spatial counterpart of the autocorrelation function
+      blocks. It is the spatial counterpart of the autocorrelation function of a
 
-      of a time series.
+      time series.
 
 
       The grey band is the 95% range of I under spatial randomness, from 999
 
       permutations at each order; points outside it are unlikely under no spatial
 
-      structure. Two variables from Guerry''s (1833) moral statistics of 85
+      structure. Two variables are compared: exposure to low water, which follows
 
-      départements are compared: literacy, and population per crime against
+      long stretches of the waterway, and the share of manufacturing jobs exposed
 
-      persons (higher means fewer crimes). Weights are higher-order queen
+      to trade, which clusters tightly around a few industrial cities.
 
-      contiguity from `libpysal.weights.higher_order`, row-standardised; I comes
 
-      from `esda.Moran`.'
+      Data are **simulated**, set in the context of the GVCdtLab, CIRANO''s digital twin
+
+      of the Great Lakes–St. Lawrence trade and transport corridor: 276 hexagonal
+
+      zones along a schematic waterway from Duluth and Chicago to the Gulf of
+
+      St. Lawrence, each with a 0–100 index of how exposed its shipping is to low
+
+      water levels. Neither the zones nor the values are the lab''s data or results.
+
+      Weights are higher-order queen contiguity from
+
+      `libpysal.weights.higher_order`, row-standardised; I comes from `esda.Moran`.'
   distributions/histogram-density:
     title: Histogram with density
     summary: Histogram, kernel density and fitted normal curve, with shape statistics.

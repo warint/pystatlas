@@ -53,7 +53,7 @@ LIB_NAMES = {
     "numpy": "NumPy", "pandas": "pandas", "matplotlib": "Matplotlib",
     "seaborn": "seaborn", "scipy": "SciPy", "statsmodels": "statsmodels",
     "sklearn": "scikit-learn", "lifelines": "lifelines", "shap": "SHAP",
-    "geopandas": "GeoPandas", "libpysal": "libpysal", "esda": "esda",
+    "geopandas": "GeoPandas", "libpysal": "libpysal", "esda": "esda", "shapely": "Shapely",
 }
 
 RUNNER = r"""

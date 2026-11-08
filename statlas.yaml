@@ -26,6 +26,7 @@ thanks:
     GeoPandas: https://geopandas.org
     libpysal: https://pysal.org/libpysal/
     esda: https://pysal.org/esda/
+    Shapely: https://shapely.readthedocs.io
   datasets:
     - name: "All data sources, with full references — see “Data sources” below"
       url: "#data"

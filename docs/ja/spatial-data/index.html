@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>空間データ · PyStatlas</title>
-<meta name="description" content="近隣の値が高いところでは、その値も高いのか。空間重み、大域的・局所的な空間自己相関、そしてクラスターの広がりを、1830 年代のゲリーのフランスで示します。">
+<meta name="description" content="ある値は、近隣の値が高い場所ほど高いか？空間重み、大域的・局所的な空間的自己相関、クラスターの広がりを、模式的な五大湖・セントローレンス回廊で示します。">
 <meta name="author" content="Thierry Warin">
 <link rel="author" href="https://www.warin.ca">
 <meta name="citation_title" content="PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences">
@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="x-default" href="https://warint.github.io/pystatlas/spatial-data/">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences", "url": "https://warint.github.io/pystatlas/ja/spatial-data/", "inLanguage": "ja", "datePublished": "2026", "license": "https://opensource.org/licenses/MIT", "author": {"@type": "Person", "name": "Thierry Warin", "url": "https://www.warin.ca"}, "isPartOf": {"@type": "WebSite", "name": "PyStatlas", "url": "https://warint.github.io/pystatlas/"}}</script>
 <meta property="og:title" content="空間データ · PyStatlas">
-<meta property="og:description" content="近隣の値が高いところでは、その値も高いのか。空間重み、大域的・局所的な空間自己相関、そしてクラスターの広がりを、1830 年代のゲリーのフランスで示します。">
+<meta property="og:description" content="ある値は、近隣の値が高い場所ほど高いか？空間重み、大域的・局所的な空間的自己相関、クラスターの広がりを、模式的な五大湖・セントローレンス回廊で示します。">
 <meta property="og:locale" content="ja">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
@@ -51,17 +51,17 @@
 <main>
 <section class="hero hero-sm"><div class="wrap">
 <div class="crumbs"><a href="../index.html">ギャラリー</a><span>/</span>空間データ</div>
-<h1>空間データ</h1><p class="lede">近隣の値が高いところでは、その値も高いのか。空間重み、大域的・局所的な空間自己相関、そしてクラスターの広がりを、1830 年代のゲリーのフランスで示します。</p></div></section>
-<section class="wrap section"><div class="grid"><a class="card" href="../spatial-data/spatial-weights/" data-cat="spatial-data" data-id="spatial-data/spatial-weights/" data-k="空間重み付きコロプレス図 1 つの変数の地図に近隣ネットワークを重ねた図。あらゆる空間統計の土台となる構造です。 choropleth with spatial weights a map of one variable with the neighbour network drawn on top — the structure every spatial statistic relies on. spdep::poly2nb() + plot(nb, coords) 空間データ spatial data spatial weights contiguity queen choropleth neighbours guerry literacy geopandas matplotlib numpy libpysal">
+<h1>空間データ</h1><p class="lede">ある値は、近隣の値が高い場所ほど高いか？空間重み、大域的・局所的な空間的自己相関、クラスターの広がりを、模式的な五大湖・セントローレンス回廊で示します。</p></div></section>
+<section class="wrap section"><div class="grid"><a class="card" href="../spatial-data/spatial-weights/" data-cat="spatial-data" data-id="spatial-data/spatial-weights/" data-k="空間重み付きコロプレス図 1 つの変数の地図に近隣ネットワークを重ねた図。あらゆる空間統計の土台となる構造です。 choropleth with spatial weights a map of one variable with the neighbour network drawn on top — the structure every spatial statistic relies on. spdep::poly2nb() + plot(nb, coords) 空間データ spatial data spatial weights contiguity queen choropleth neighbours great lakes geopandas matplotlib numpy libpysal shapely">
   <div class="card-img"><img src="../../spatial-data/spatial-weights/thumb.webp" alt="空間重み付きコロプレス図" loading="lazy" width="720" height="450"></div>
   <div class="card-body"><span class="kicker">空間データ</span><h3>空間重み付きコロプレス図</h3><p>1 つの変数の地図に近隣ネットワークを重ねた図。あらゆる空間統計の土台となる構造です。</p><span class="card-r">spdep::poly2nb() + plot(nb, coords)</span></div>
-</a><a class="card" href="../spatial-data/moran-scatterplot/" data-cat="spatial-data" data-id="spatial-data/moran-scatterplot/" data-k="モラン散布図（大域的自己相関） 各地域をその近隣の平均と比べ、モランの i、並べ替え検定、参照分布を添えます。 moran scatterplot (global autocorrelation) each area against the average of its neighbours, with moran&#x27;s i, its permutation test and the reference distribution. spdep::moran.plot() + spdep::moran.mc() 空間データ spatial data spatial autocorrelation moran&#x27;s i global permutation test spatial lag guerry literacy geopandas matplotlib numpy esda libpysal">
+</a><a class="card" href="../spatial-data/moran-scatterplot/" data-cat="spatial-data" data-id="spatial-data/moran-scatterplot/" data-k="モラン散布図（大域的自己相関） 各地域をその近隣の平均と比べ、モランの i、並べ替え検定、参照分布を添えます。 moran scatterplot (global autocorrelation) each area against the average of its neighbours, with moran&#x27;s i, its permutation test and the reference distribution. spdep::moran.plot() + spdep::moran.mc() 空間データ spatial data spatial autocorrelation moran&#x27;s i global permutation test spatial lag great lakes geopandas matplotlib numpy esda libpysal shapely">
   <div class="card-img"><img src="../../spatial-data/moran-scatterplot/thumb.webp" alt="モラン散布図（大域的自己相関）" loading="lazy" width="720" height="450"></div>
   <div class="card-body"><span class="kicker">空間データ</span><h3>モラン散布図（大域的自己相関）</h3><p>各地域をその近隣の平均と比べ、モランの I、並べ替え検定、参照分布を添えます。</p><span class="card-r">spdep::moran.plot() + spdep::moran.mc()</span></div>
-</a><a class="card" href="../spatial-data/lisa-cluster-map/" data-cat="spatial-data" data-id="spatial-data/lisa-cluster-map/" data-k="lisa クラスター地図（局所的自己相関） クラスターと空間的外れ値がどこにあるか。各地域の局所モラン i を、並べ替えによる有意性とともに地図に示します。 lisa cluster map (local autocorrelation) where the clusters and spatial outliers are — local moran&#x27;s i for each area, mapped with its permutation significance. spdep::localmoran_perm() / rgeoda::local_moran() 空間データ spatial data spatial autocorrelation lisa local moran hot spots clusters permutation test guerry literacy geopandas matplotlib numpy esda libpysal">
+</a><a class="card" href="../spatial-data/lisa-cluster-map/" data-cat="spatial-data" data-id="spatial-data/lisa-cluster-map/" data-k="lisa クラスター地図（局所的自己相関） クラスターと空間的外れ値がどこにあるか。各地域の局所モラン i を、並べ替えによる有意性とともに地図に示します。 lisa cluster map (local autocorrelation) where the clusters and spatial outliers are — local moran&#x27;s i for each area, mapped with its permutation significance. spdep::localmoran_perm() / rgeoda::local_moran() 空間データ spatial data spatial autocorrelation lisa local moran hot spots clusters permutation test great lakes geopandas matplotlib numpy esda libpysal shapely">
   <div class="card-img"><img src="../../spatial-data/lisa-cluster-map/thumb.webp" alt="LISA クラスター地図（局所的自己相関）" loading="lazy" width="720" height="450"></div>
   <div class="card-body"><span class="kicker">空間データ</span><h3>LISA クラスター地図（局所的自己相関）</h3><p>クラスターと空間的外れ値がどこにあるか。各地域の局所モラン I を、並べ替えによる有意性とともに地図に示します。</p><span class="card-r">spdep::localmoran_perm() / rgeoda::local_moran()</span></div>
-</a><a class="card" href="../spatial-data/spatial-correlogram/" data-cat="spatial-data" data-id="spatial-data/spatial-correlogram/" data-k="空間コレログラム 近隣の次数を広げながらモランの i を求め、並べ替えによる包絡線を添えます。空間的なクラスターがどこまで及ぶかを示します。 spatial correlogram moran&#x27;s i at increasing neighbour orders, with a permutation envelope — how far spatial clustering reaches. spdep::sp.correlogram(method = &quot;i&quot;) 空間データ spatial data spatial autocorrelation correlogram moran&#x27;s i higher-order neighbours spatial scale guerry geopandas matplotlib numpy esda libpysal">
+</a><a class="card" href="../spatial-data/spatial-correlogram/" data-cat="spatial-data" data-id="spatial-data/spatial-correlogram/" data-k="空間コレログラム 近隣の次数を広げながらモランの i を求め、並べ替えによる包絡線を添えます。空間的なクラスターがどこまで及ぶかを示します。 spatial correlogram moran&#x27;s i at increasing neighbour orders, with a permutation envelope — how far spatial clustering reaches. spdep::sp.correlogram(method = &quot;i&quot;) 空間データ spatial data spatial autocorrelation correlogram moran&#x27;s i higher-order neighbours spatial scale great lakes geopandas matplotlib numpy esda libpysal shapely">
   <div class="card-img"><img src="../../spatial-data/spatial-correlogram/thumb.webp" alt="空間コレログラム" loading="lazy" width="720" height="450"></div>
   <div class="card-body"><span class="kicker">空間データ</span><h3>空間コレログラム</h3><p>近隣の次数を広げながらモランの I を求め、並べ替えによる包絡線を添えます。空間的なクラスターがどこまで及ぶかを示します。</p><span class="card-r">spdep::sp.correlogram(method = &quot;I&quot;)</span></div>
 </a></div></section>

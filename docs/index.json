@@ -145,8 +145,7 @@
    "queen",
    "choropleth",
    "neighbours",
-   "Guerry",
-   "literacy"
+   "Great Lakes"
   ],
   "url": "spatial-data/spatial-weights/"
  },
@@ -161,8 +160,7 @@
    "global",
    "permutation test",
    "spatial lag",
-   "Guerry",
-   "literacy"
+   "Great Lakes"
   ],
   "url": "spatial-data/moran-scatterplot/"
  },
@@ -178,8 +176,7 @@
    "hot spots",
    "clusters",
    "permutation test",
-   "Guerry",
-   "literacy"
+   "Great Lakes"
   ],
   "url": "spatial-data/lisa-cluster-map/"
  },
@@ -194,7 +191,7 @@
    "Moran's I",
    "higher-order neighbours",
    "spatial scale",
-   "Guerry"
+   "Great Lakes"
   ],
   "url": "spatial-data/spatial-correlogram/"
  },

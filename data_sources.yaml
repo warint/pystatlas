@@ -435,3 +435,11 @@ melchior2025fake:
   url: https://doi.org/10.1016/j.techfore.2024.123969
   note: "The example is set in the context of this paper; unless its description says otherwise, the numbers are simulated and are not the paper's data or results."
   topics: [fake news, misinformation, Facebook, COVID-19, classification, social media]
+
+gvcdtlab:
+  label: "CIRANO GVCdtLab, digital twin of the Great Lakes–St. Lawrence corridor"
+  match: '\[gvcdtlab\]'
+  cite: "CIRANO. GVCdtLab: Digital twin of the Great Lakes–St. Lawrence trade and transport corridor (researcher in charge: T. Warin). Supported by Transport Canada's National Trade Corridors Fund; research on hydrological change, maritime traffic and trade funded by the Fonds de recherche du Québec."
+  url: https://cirano.qc.ca/en/research/pole/Transport
+  note: "The examples are set in the context of the lab's work; the hexagonal zones form a schematic map of the corridor and the values are simulated — they are not the lab's data, geography or results."
+  topics: [Great Lakes, St. Lawrence, trade corridor, maritime transport, shipping, water levels, digital twin, Canada, United States]
