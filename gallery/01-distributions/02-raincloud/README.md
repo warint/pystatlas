@@ -53,7 +53,7 @@ for i, (d, c) in enumerate(zip(data, palette)):
     ax.fill_between(grid, i, i + 0.55 * dens / dens.max(), color=c, alpha=0.3, lw=0)
     ax.plot(grid, i + 0.55 * dens / dens.max(), color=c, lw=1.4)
     # Box: median and quartiles just under the cloud
-    ax.boxplot(d, positions=[i - 0.1], widths=0.09, vert=False, showfliers=False,
+    ax.boxplot(d, positions=[i - 0.1], widths=0.09, orientation="horizontal", showfliers=False,
                patch_artist=True, boxprops=dict(facecolor="white", edgecolor="#3A3A3C", lw=1),
                medianprops=dict(color=c, lw=2.2), whiskerprops=dict(color="#3A3A3C"),
                capprops=dict(visible=False))

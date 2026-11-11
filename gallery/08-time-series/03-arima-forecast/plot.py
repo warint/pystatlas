@@ -46,7 +46,7 @@ fc = fit.get_forecast(h)
 mean, ci95, ci80 = fc.predicted_mean, fc.conf_int(alpha=0.05), fc.conf_int(alpha=0.20)
 
 rmse = np.sqrt(((test - mean) ** 2).mean())
-bias = (test - mean).mean()                       # > 0: actuals above the forecast
+mae = (test - mean).abs().mean()                  # mean absolute error
 covered = ((test >= ci95.iloc[:, 0]) & (test <= ci95.iloc[:, 1])).sum()
 
 fig, ax = plt.subplots(figsize=(9, 5))
@@ -68,7 +68,7 @@ ax.text(test.index[0], 0.97, "  forecast origin", transform=ax.get_xaxis_transfo
 ax.set(ylabel="Manufacturing sales (billions of dollars)", xlim=(hist.index[0], test.index[-1]))
 ax.legend(loc="upper left", ncols=3)
 ax.set_ylim(top=mean.max() + 12)
-ax.set_title(f"A seasonal ARIMA tracks sales two years ahead, off by {abs(bias):.1f} bn on average", pad=26)
+ax.set_title(f"A seasonal ARIMA tracks sales two years ahead, off by {mae:.1f} bn on average", pad=26)
 ax.text(0, 1.02, f"SARIMA(1,1,1)(0,1,1)₁₂ · AIC = {fit.aic:.0f} · RMSE = {rmse:.2f} bn over {h} held-out "
         f"months (simulated) · {covered}/{h} actuals inside the 95% PI",
         transform=ax.transAxes, fontsize=9.5, color="#6E6E73")

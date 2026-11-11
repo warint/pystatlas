@@ -76,6 +76,7 @@ g["exposure"] = exposure.clip(0, 100).round(1)
 y = g["exposure"].to_numpy()
 
 # Moran's I with row-standardised queen weights (w above) and 999 permutations
+np.random.seed(1)                            # esda draws its permutations from NumPy's global generator
 mi = Moran(y, w, permutations=999)
 z = (y - y.mean()) / y.std()
 lag = weights.lag_spatial(w, z)              # average of the neighbours' z-scores

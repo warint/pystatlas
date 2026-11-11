@@ -47,7 +47,8 @@ labels = {"ln_gdp_o": "Exporter log GDP", "ln_gdp_d": "Importer log GDP",
           "sadc": "Both in SADC (0/1)"}
 full = smf.ols("ln_trade ~ " + " + ".join(predictors), data=df).fit()
 
-fig, axes = plt.subplots(2, 3, figsize=(11, 7))
+fig, axes = plt.subplots(2, 3, figsize=(11, 7.75), layout="constrained")
+fig.get_layout_engine().set(rect=(0, 0, 1, 0.903))   # keep the top of the figure for the title and subtitle
 for ax, x in zip(axes.flat, predictors):
     others = " + ".join(p for p in predictors if p != x)
     ey = smf.ols(f"ln_trade ~ {others}", data=df).fit().resid     # y | others
@@ -83,9 +84,9 @@ axes.flat[-1].text(0.05, 0.5, "How to read\n\nEach slope is the coefficient of t
                    "the slope most.", transform=axes.flat[-1].transAxes, va="center",
                    fontsize=10, color="#6E6E73", linespacing=1.5)
 
-fig.text(0.01, 1.065, "Net of the other terms, GDPs, distance and SADC membership shape trade",
+fig.text(0.01, 0.962, "Net of the other terms, GDPs, distance and SADC membership shape trade",
          fontsize=15, fontweight="semibold", va="bottom")
-fig.text(0.01, 1.02, f"OLS log exports ~ 5 predictors · n = {int(full.nobs)} pairs (simulated) · "
+fig.text(0.01, 0.921, f"OLS log exports ~ 5 predictors · n = {int(full.nobs)} pairs (simulated) · "
          f"R² = {full.rsquared:.2f} · F({full.df_model:.0f}, {full.df_resid:.0f}) = "
          f"{full.fvalue:.1f}, p < .001", fontsize=9.5, color="#6E6E73", va="bottom")
 plt.show()

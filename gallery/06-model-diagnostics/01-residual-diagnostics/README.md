@@ -60,7 +60,8 @@ std_r, lev, cook = infl.resid_studentized_internal, infl.hat_matrix_diag, infl.c
 p = model.df_model + 1
 top = np.argsort(-np.abs(std_r))[:3]                # 3 largest standardised residuals
 
-fig, axes = plt.subplots(2, 2, figsize=(11, 7.6))
+fig, axes = plt.subplots(2, 2, figsize=(11, 8.4), layout="constrained")
+fig.get_layout_engine().set(rect=(0, 0, 1, 0.905))   # keep the top of the figure for the title and subtitle
 kw = dict(s=22, color="#007AFF", alpha=0.6, lw=0, zorder=2)
 smooth = dict(color="#FF3B30", lw=1.8)
 
@@ -124,9 +125,9 @@ for a in axes.flat:
 bp = het_breuschpagan(resid, model.model.exog)
 sw = stats.shapiro(resid)
 fmt_p = lambda q: "p < .001" if q < .001 else f"p = {q:.3f}"
-fig.text(0.01, 1.065, "Linear and homoscedastic, but the residual tails are heavier than normal",
+fig.text(0.01, 0.964, "Linear and homoscedastic, but the residual tails are heavier than normal",
          fontsize=15, fontweight="semibold", va="bottom")
-fig.text(0.01, 1.02, f"OLS gravity model · n = {int(model.nobs)} pairs (simulated) · Shapiro–Wilk "
+fig.text(0.01, 0.923, f"OLS gravity model · n = {int(model.nobs)} pairs (simulated) · Shapiro–Wilk "
          f"W = {sw.statistic:.3f}, {fmt_p(sw.pvalue)} · Breusch–Pagan χ²({p - 1:.0f}) = "
          f"{bp[0]:.1f}, {fmt_p(bp[1])} · max Cook's D = {cook.max():.2f} ({df.index[cook.argmax()]})",
          fontsize=9.5, color="#6E6E73", va="bottom")

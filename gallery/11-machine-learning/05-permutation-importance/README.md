@@ -67,7 +67,7 @@ fig, ax = plt.subplots(figsize=(8, 5.2))
 for i, j in enumerate(order):
     v = imp.importances[j]
     c = "#007AFF" if np.percentile(v, 2.5) > 0 else "#8E8E93"
-    ax.boxplot(v, positions=[i], widths=0.5, vert=False, showfliers=False, patch_artist=True,
+    ax.boxplot(v, positions=[i], widths=0.5, orientation="horizontal", showfliers=False, patch_artist=True,
                boxprops=dict(facecolor=c, alpha=0.25, edgecolor=c), medianprops=dict(color=c, lw=1.5),
                whiskerprops=dict(color=c), capprops=dict(visible=False))
     ax.scatter(v.mean(), i, s=40, color=c, zorder=3, edgecolor="white", lw=1)

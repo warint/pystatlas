@@ -53,12 +53,14 @@ with plt.rc_context({"figure.constrained_layout.use": False}):
                        mask=np.eye(24, dtype=bool),
                        row_colors=pd.Series(fam, index=labels, name="Family").map(fam_pal),
                        col_colors=pd.Series(yr, index=labels, name="Election").map(yr_pal),
-                       xticklabels=True, yticklabels=True, figsize=(9, 9.5),
+                       xticklabels=True, yticklabels=True, figsize=(9, 10.1),
                        dendrogram_ratio=(0.13, 0.11), colors_ratio=0.025,
                        cbar_pos=(0.02, 0.875, 0.025, 0.09),
                        cbar_kws=dict(label="Jaccard", ticks=[0.05, 0.2, 0.35]),
                        tree_kws=dict(colors="#8E8E93", linewidths=0.8))
 
+g.figure.subplots_adjust(top=0.93)                 # keep the top of the figure for the title and subtitle
+g.ax_cbar.set_position((0.02, 0.823, 0.025, 0.085))  # colour bar back in the top-left corner
 g.ax_heatmap.set(xlabel="", ylabel="")
 g.ax_heatmap.tick_params(axis="both", length=0, labelsize=8)
 g.ax_heatmap.set_xticklabels(g.ax_heatmap.get_xticklabels(), rotation=50, ha="right")
@@ -66,9 +68,9 @@ g.ax_row_colors.set_xticks([])
 g.ax_col_colors.tick_params(axis="y", length=0, labelsize=8.5)
 g.ax_cbar.tick_params(labelsize=8.5)
 g.ax_cbar.yaxis.label.set_size(9)
-g.figure.text(0.02, 1.04, "Manifestos cluster by party family rather than by election year",
+g.figure.text(0.02, 0.978, "Manifestos cluster by party family rather than by election year",
               fontsize=13, fontweight="semibold", color="#1D1D1F")
-g.figure.text(0.02, 1.01, f"Average linkage on 1 − Jaccard · n = {len(S)} manifestos (simulated), "
+g.figure.text(0.02, 0.95, f"Average linkage on 1 − Jaccard · n = {len(S)} manifestos (simulated), "
               f"6 families × 4 elections · 6-cluster cut vs family: ARI = {ari:.2f}",
               fontsize=9.5, color="#6E6E73")
 plt.show()

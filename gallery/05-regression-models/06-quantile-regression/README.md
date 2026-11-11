@@ -51,7 +51,9 @@ qr = np.array(rows)
 ols = smf.ols("log_rd ~ log_sales", df).fit()
 ols_lo, ols_hi = ols.conf_int().loc["log_sales"]
 
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11, 5), gridspec_kw=dict(width_ratios=[1, 1.25]))
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11, 5.65), layout="constrained",
+                               gridspec_kw=dict(width_ratios=[1, 1.25]))
+fig.get_layout_engine().set(rect=(0, 0, 1, 0.885))   # keep the top of the figure for the title and subtitle
 
 # Left: data with selected quantile lines and the OLS line
 ax1.scatter(df.log_sales, df.log_rd, s=14, color="#8E8E93", alpha=0.5, lw=0)
@@ -78,9 +80,9 @@ ax2.legend(loc="upper left")
 ax2.set_title("Sales elasticity by quantile", fontsize=12)
 
 slope = dict(zip(np.round(qr[:, 0], 2), qr[:, 2]))
-fig.text(0.01, 1.07, "Sales matter more for R&D at the top of the distribution",
+fig.text(0.01, 0.947, "Sales matter more for R&D at the top of the distribution",
          fontsize=15, fontweight="semibold", va="bottom")
-fig.text(0.01, 1.02, f"n = {len(df)} firms (simulated) · elasticity at τ = .10: {slope[0.1]:.2f}, "
+fig.text(0.01, 0.903, f"n = {len(df)} firms (simulated) · elasticity at τ = .10: {slope[0.1]:.2f}, "
          f"τ = .50: {slope[0.5]:.2f}, τ = .90: {slope[0.9]:.2f} · OLS: {ols.params['log_sales']:.2f} "
          f"[{ols_lo:.2f}, {ols_hi:.2f}]", fontsize=9.5, color="#6E6E73", va="bottom")
 plt.show()

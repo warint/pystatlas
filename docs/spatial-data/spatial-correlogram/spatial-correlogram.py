@@ -75,6 +75,7 @@ variables = {"exposure": ("Exposure to low water", "#007AFF"),
 w1 = weights.Queen.from_dataframe(g, use_index=False)
 orders = range(1, 11)
 res = {v: [] for v in variables}
+np.random.seed(1)                            # esda draws its permutations from NumPy's global generator
 for o in orders:
     wk = weights.higher_order(w1, o, silence_warnings=True)    # exactly o steps away
     wk.transform = "r"
@@ -97,7 +98,10 @@ ax.set_ylabel("Moran's I")
 ax.grid(axis="x")
 ax.legend(loc="upper right")
 
-reach = {v: max(o for o, (I, lo, hi, p) in zip(orders, res[v]) if I > hi) for v in variables}
+def reach_of(v):                             # length of the unbroken run of orders above the envelope
+    above = [I > hi for I, lo, hi, p in res[v]]
+    return above.index(False) if False in above else len(above)
+reach = {v: reach_of(v) for v in variables}
 ax.set_title(f"Low-water exposure clusters up to {reach['exposure']} steps away, "
              f"manufacturing only {reach['manuf']}", pad=26)
 ax.text(0, 1.02, "Circled: outside the 95% permutation envelope · 999 permutations per order · "

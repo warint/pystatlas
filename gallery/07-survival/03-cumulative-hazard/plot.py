@@ -41,7 +41,7 @@ fig, ax = plt.subplots(figsize=(8, 5))
 for g, c in zip(rates, colors):
     d = df[df.market == g]
     naf = NelsonAalenFitter().fit(d.years, d.launched, label=g)
-    H, ci = naf.cumulative_hazard_[g].loc[:6], naf.confidence_interval_.loc[:6]
+    H, ci = naf.cumulative_hazard_[g].loc[:6].copy(), naf.confidence_interval_.loc[:6].copy()
     H.loc[6], ci.loc[6] = H.iloc[-1], ci.iloc[-1]
     ax.step(H.index, H, where="post", color=c, lw=2, label=f"{g}  (n = {len(d)}, {d.launched.sum()} launches)")
     ax.fill_between(ci.index, ci.iloc[:, 0], ci.iloc[:, 1], step="post", color=c, alpha=0.13, lw=0)

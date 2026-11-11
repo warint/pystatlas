@@ -55,7 +55,7 @@ cols = df.columns[:4]
 palette = ["#007AFF", "#FF9500", "#34C759"]
 stars = lambda p: "***" if p < .001 else "**" if p < .01 else "*" if p < .05 else ""
 
-fig, axes = plt.subplots(4, 4, figsize=(9.5, 8.6), sharex="col")
+fig, axes = plt.subplots(4, 4, figsize=(9.5, 8.6), sharex="col", layout="constrained")
 lims = {c: (df[c].min() - 0.05 * np.ptp(df[c]), df[c].max() + 0.05 * np.ptp(df[c])) for c in cols}
 fig.get_layout_engine().set(rect=(0, 0, 1, 0.92), w_pad=0.04, h_pad=0.04)
 for i, yv in enumerate(cols):

@@ -56,7 +56,7 @@ v = np.sqrt(chi2 / (n * (min(obs.shape) - 1)))
 
 fig, ax = plt.subplots(figsize=(9, 5))
 norm = TwoSlopeNorm(0, vmin=-6, vmax=6)
-im = ax.imshow(std_resid, cmap="RdBu_r", norm=norm, aspect="auto")
+im = ax.imshow(std_resid, cmap="RdBu", norm=norm, aspect="auto")
 for i in range(obs.shape[0]):
     for j in range(obs.shape[1]):
         strong = abs(std_resid[i, j]) >= 2

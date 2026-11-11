@@ -40,7 +40,8 @@ model = smf.ols("credit ~ inflows * flex", data=df).fit()
 b, V = model.params, model.cov_params()
 t_crit = stats.t.ppf(0.975, model.df_resid)
 
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11, 5))
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11, 5.65), layout="constrained")
+fig.get_layout_engine().set(rect=(0, 0, 1, 0.885))   # keep the top of the figure for the title and subtitle
 
 # Left: simple slopes of inflows at flexibility = mean − 1 SD, mean, mean + 1 SD
 ax1.scatter(df.inflows, df.credit, s=12, color="#C7C7CC", alpha=0.6, lw=0)
@@ -86,9 +87,9 @@ ax2.set_title(f"Significantly positive below {jns[0]:.2f} ({share:.0%} of countr
 # Figure title and statistical subtitle above both panels
 p_int = model.pvalues["inflows:flex"]
 p_txt = "p < .001" if p_int < 0.001 else f"p = {p_int:.3f}"
-fig.text(0.01, 1.07, "Capital inflows feed credit growth under pegs, much less under floats",
+fig.text(0.01, 0.947, "Capital inflows feed credit growth under pegs, much less under floats",
          fontsize=15, fontweight="semibold", va="bottom")
-fig.text(0.01, 1.02, f"OLS · n = {int(model.nobs)} country-years (simulated) · inflows × flexibility: "
+fig.text(0.01, 0.903, f"OLS · n = {int(model.nobs)} country-years (simulated) · inflows × flexibility: "
          f"β = {b['inflows:flex']:.2f}, t({model.df_resid:.0f}) = {model.tvalues['inflows:flex']:.2f}, "
          f"{p_txt} · R² = {model.rsquared:.2f} · bands = 95% CI",
          fontsize=9.5, color="#6E6E73", va="bottom")

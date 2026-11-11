@@ -65,7 +65,7 @@ exposure = (35 + 30 * bump(-74.8, 45.0, 1.6) + 22 * bump(-82.7, 42.7, 1.2) + 20 
 exposure[np.argmin(np.hypot(xy[:, 0] + 66.0, xy[:, 1] - 49.0))] = 75        # outlier harbour
 g["exposure"] = exposure.clip(0, 100).round(1)
 
-lisa = Moran_Local(g["exposure"].to_numpy(), w, permutations=999, seed=1)
+lisa = Moran_Local(g["exposure"].to_numpy(), w, permutations=999, seed=1, alternative="two-sided")
 
 # Quadrants: 1 high–high, 2 low–high, 3 low–low, 4 high–low; grey if not significant
 labels = {1: "High–high cluster", 3: "Low–low cluster", 2: "Low–high outlier", 4: "High–low outlier"}
@@ -86,6 +86,6 @@ for name, lon, lat, dx, dy in [("Duluth", -92.1, 46.8, -0.6, -0.9), ("Detroit", 
                 arrowprops=dict(arrowstyle="-", color="#3A3A3C", lw=0.8))
 ax.set_axis_off()
 ax.set_title(f"Local Moran's I finds {counts[1]} high–high and {counts[3]} low–low zones on the simulated map", pad=26)
-ax.text(0, 1.02, f"Local Moran's I, 999 permutations, pseudo p < 0.05, no multiple-testing correction · "
+ax.text(0, 1.02, f"Local Moran's I, 999 permutations, two-sided pseudo p < 0.05, no multiple-testing correction · "
         f"queen weights · n = {w.n} zones (simulated)", transform=ax.transAxes, fontsize=9.5, color="#6E6E73")
 plt.show()

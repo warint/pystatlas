@@ -62,7 +62,8 @@ model = GradientBoostingRegressor(learning_rate=0.05, n_estimators=300, max_dept
                                   subsample=0.8, random_state=0).fit(X, y)
 
 # Exact SHAP values for tree ensembles
-sv = shap.TreeExplainer(model).shap_values(X)          # shape: (batches, features)
+explainer = shap.TreeExplainer(model)
+sv = explainer.shap_values(X)                           # shape: (batches, features)
 importance = np.abs(sv).mean(axis=0)
 order = np.argsort(importance)                          # least important at the bottom
 
@@ -95,7 +96,7 @@ j = order[-1]
 ax.set_title(f"{names[X.columns[j]].split(' (')[0]} moves predicted waste from {sv[:, j].min():+.1f} "
              f"to {sv[:, j].max():+.1f} points", pad=26)
 ax.text(0, 1.02, f"Gradient boosting · exact tree SHAP · n = {n} batches (simulated) · "
-        f"base value {model.predict(X).mean():.1f}%", transform=ax.transAxes, fontsize=9.5,
+        f"base value {float(np.ravel(explainer.expected_value)[0]):.1f}%", transform=ax.transAxes, fontsize=9.5,
         color="#6E6E73")
 plt.show()
 ```

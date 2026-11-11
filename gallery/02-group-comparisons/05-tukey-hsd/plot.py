@@ -40,7 +40,10 @@ F, p = stats.f_oneway(*[g.share for _, g in df.groupby("president")])
 k, n = len(names), len(df)
 eta2 = F * (k - 1) / (F * (k - 1) + n - k)
 tukey = pairwise_tukeyhsd(df.share, df.president)
-res = pd.DataFrame(tukey._results_table.data[1:], columns=tukey._results_table.data[0])
+g1, g2 = np.triu_indices(k, 1)                    # pairs in the order statsmodels reports them
+res = pd.DataFrame({"group1": g1, "group2": g2, "meandiff": tukey.meandiffs,
+                    "lower": tukey.confint[:, 0], "upper": tukey.confint[:, 1],
+                    "p-adj": tukey.pvalues, "reject": tukey.reject})
 # statsmodels reports group2 − group1; flip to read "group1 − group2"
 res = res.assign(diff=-res.meandiff, low=-res.upper, high=-res.lower,
                  label=[f"{names[a]} − {names[b]}" for a, b in zip(res.group1, res.group2)])
