@@ -37,7 +37,7 @@ import yaml
 from PIL import Image
 from pygments import highlight
 from pygments.formatters import HtmlFormatter
-from pygments.lexers import PythonLexer
+from pygments.lexers import PythonLexer, SLexer
 
 ROOT = Path(__file__).resolve().parent
 GALLERY = ROOT / "gallery"
@@ -94,6 +94,7 @@ class Example:
     code: str
     libs: list[str]
     sub: str = ""          # optional subcategory key (see _category.yaml → subcategories)
+    r_code: str = ""       # optional R version of the example (plot.R next to plot.py)
 
     @property
     def url(self) -> str:  # relative to docs root
@@ -137,12 +138,14 @@ def parse_example(cat: Category, folder: Path) -> Example:
         if name and name not in libs:
             libs.append(name)
     order, slug = split_prefix(folder.name)
+    r_file = folder / "plot.R"
+    r_code = r_file.read_text(encoding="utf-8").strip("\n") + "\n" if r_file.exists() else ""
     return Example(
         category=cat, folder=folder, slug=slug, order=order,
         title=meta["title"], summary=meta.get("summary", ""),
         description=(meta.get("description") or "").strip(),
         r=meta.get("r", ""), tags=list(meta.get("tags", [])),
-        code=code, libs=libs, sub=meta.get("subcategory", ""),
+        code=code, libs=libs, sub=meta.get("subcategory", ""), r_code=r_code,
     )
 
 
@@ -197,6 +200,10 @@ FORMATTER = HtmlFormatter(nowrap=True)
 
 def highlight_py(code: str) -> str:
     return highlight(code, PythonLexer(), FORMATTER)
+
+
+def highlight_r(code: str) -> str:
+    return highlight(code, SLexer(), FORMATTER)
 
 
 # --------------------------------------------------------------------------- i18n
@@ -503,6 +510,8 @@ def build_site(cats: list["Category"]) -> None:
             out.mkdir(parents=True, exist_ok=True)
             shutil.copy(ex.png, out / "plot.png")
             shutil.copy(ex.folder / "plot.py", out / f"{ex.slug}.py")
+            if ex.r_code:
+                shutil.copy(ex.folder / "plot.R", out / f"{ex.slug}.R")
             make_thumb(ex.png, out / "thumb.webp")
 
     for lang in LANGS:
@@ -622,6 +631,16 @@ def example_page(ex: "Example", prev_ex: "Example | None", next_ex: "Example | N
     nav += f'<a class="next" href="{home}{next_ex.url}"><small>{esc(t("next"))}</small>{esc(etitle(next_ex))}</a>' if next_ex else "<span></span>"
     nav += "</div>"
     lines = ex.code.count("\n")
+    py_name = f"{ex.slug}.py · {t('n_lines', n=lines)}"
+    r_toggle = r_pre = ""       # examples with a plot.R get a button that swaps the code shown
+    fname_swap = dl_swap = ""
+    if ex.r_code:
+        r_name = f"{ex.slug}.R · {t('n_lines', n=ex.r_code.count(chr(10)))}"
+        fname_swap = f' data-py="{esc(py_name)}" data-r="{esc(r_name)}"'
+        dl_swap = f' data-py="{asset}{ex.slug}.py" data-r="{asset}{ex.slug}.R"'
+        r_toggle = (f'\n        <button class="btn ghost" data-code-toggle data-py="{esc(t("r_code"))}" '
+                    f'data-r="{esc(t("python_code"))}">{esc(t("r_code"))}</button>')
+        r_pre = f'\n    <pre class="code" data-lang="r" hidden><code>{highlight_r(ex.r_code)}</code></pre>'
     note = f'<p class="note">{esc(t("code_note"))}</p>' if LANG != "en" else ""
     hint = t("hint", style_link=f'<a href="{home}style.html">{esc(t("style_link"))}</a>',
              code='<code>plt.style.use("pystatlas.mplstyle")</code>')
@@ -636,14 +655,14 @@ def example_page(ex: "Example", prev_ex: "Example | None", next_ex: "Example | N
   </div>
   <section class="code-card" id="code">
     <div class="code-bar">
-      <span class="fname">{ex.slug}.py · {esc(t('n_lines', n=lines))}</span>
+      <span class="fname"{fname_swap}>{esc(py_name)}</span>
       <div class="code-actions">
-        <a class="btn ghost" href="{asset}{ex.slug}.py" download>{esc(t('download'))}</a>
-        <a class="btn ghost" href="{gh}">GitHub</a>
+        <a class="btn ghost" href="{asset}{ex.slug}.py" download{dl_swap}>{esc(t('download'))}</a>
+        <a class="btn ghost" href="{gh}">GitHub</a>{r_toggle}
         <button class="btn copy" data-copy>{esc(t('copy_code'))}</button>
       </div>
     </div>
-    <pre class="code"><code>{highlight_py(ex.code)}</code></pre>
+    <pre class="code" data-lang="py"><code>{highlight_py(ex.code)}</code></pre>{r_pre}
   </section>
   <p class="hint">{hint}</p>
   {data_block(ex)}

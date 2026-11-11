@@ -31,6 +31,8 @@ ui:
   n_lines: "{n} lines"
   download: Download
   copy_code: Copy code
+  r_code: R code
+  python_code: Python code
   copy: Copy
   copied: Copied ✓
   copy_bibtex: Copy BibTeX

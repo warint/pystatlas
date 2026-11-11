@@ -29,6 +29,8 @@ ui:
   n_lines: "{n} lignes"
   download: "Télécharger"
   copy_code: "Copier le code"
+  r_code: "Code R"
+  python_code: "Code Python"
   copy: "Copier"
   copied: "Copié ✓"
   copy_bibtex: "Copier le BibTeX"

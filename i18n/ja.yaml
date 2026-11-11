@@ -30,6 +30,8 @@ ui:
   n_lines: "{n} 行"
   download: ダウンロード
   copy_code: コードをコピー
+  r_code: Rコード
+  python_code: Pythonコード
   copy: コピー
   copied: コピーしました ✓
   copy_bibtex: BibTeX をコピー

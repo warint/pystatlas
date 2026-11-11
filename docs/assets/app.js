@@ -198,7 +198,7 @@
   // Copy code
   document.querySelectorAll("[data-copy]").forEach((btn) => {
     btn.addEventListener("click", async () => {
-      const text = btn.closest(".code-card").querySelector("pre").innerText;
+      const text = btn.closest(".code-card").querySelector("pre:not([hidden])").innerText;
       try { await navigator.clipboard.writeText(text); } catch (e) {
         const ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta);
         ta.select(); document.execCommand("copy"); ta.remove();
@@ -206,6 +206,20 @@
       const old = btn.textContent;
       btn.textContent = document.documentElement.dataset.copied || "Copied ✓"; btn.classList.add("done");
       setTimeout(() => { btn.textContent = old; btn.classList.remove("done"); }, 1600);
+    });
+  });
+
+  // Switch the code card between the Python and the R version
+  document.querySelectorAll("[data-code-toggle]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const card = btn.closest(".code-card");
+      const toR = card.dataset.lang !== "r";
+      card.dataset.lang = toR ? "r" : "py";
+      card.querySelectorAll("pre.code").forEach((pre) => { pre.hidden = (pre.dataset.lang === "r") !== toR; });
+      card.querySelectorAll("[data-py][data-r]").forEach((el) => {
+        const v = toR ? el.dataset.r : el.dataset.py;
+        if (el.hasAttribute("href")) el.setAttribute("href", v); else el.textContent = v;
+      });
     });
   });
 
