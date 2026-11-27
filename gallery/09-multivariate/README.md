@@ -9,4 +9,4 @@ PCA biplots, scree plots, clustering and heatmaps for high-dimensional data.
 | [<img src="03-silhouette-clusters/plot.png" width="260">](03-silhouette-clusters/) | **[Silhouette plot for k-means](03-silhouette-clusters/)**<br>Do industries fall into clusters of growth co-movement? k-means clusters next to their silhouette widths.<br>`factoextra::fviz_silhouette()` |
 | [<img src="04-clustered-heatmap/plot.png" width="260">](04-clustered-heatmap/) | **[Clustered heatmap](04-clustered-heatmap/)**<br>Jaccard similarity between 24 party manifestos, with dendrograms and party-family colour bars.<br>`pheatmap::pheatmap() / ComplexHeatmap::Heatmap()` |
 
-[← All families](../../README.md) · [Browse on the website](https://warint.github.io/pystatlas/multivariate/)
+[← All families](../../README.md) · [Browse on the website](https://warin.ca/pystatlas/multivariate/)

@@ -101,6 +101,6 @@ plt.show()
 
 ---
 
-**PyStatlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warint.github.io/pystatlas/survival/cox-hazard-ratios/) · [← Survival analysis](../README.md)
+**PyStatlas** by [Thierry Warin](https://www.warin.ca) · [View on the website →](https://warin.ca/pystatlas/survival/cox-hazard-ratios/) · [← Survival analysis](../README.md)
 
-**Cite:** Warin, T. (2026). Cox hazard ratios. In PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences (Version 1.1.0) [Computer software]. https://warint.github.io/pystatlas/survival/cox-hazard-ratios/
+**Cite:** Warin, T. (2026). Cox hazard ratios. In PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences (Version 1.1.0) [Computer software]. https://warin.ca/pystatlas/survival/cox-hazard-ratios/

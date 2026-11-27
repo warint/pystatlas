@@ -8,8 +8,8 @@
 61 charts · 12 families · copy‑paste Python code · inspired by the R Graph Gallery, <code>ggstats</code> and <code>ggstatsplot</code>.</p>
 
 <p align="center">
-  <a href="https://warint.github.io/pystatlas/"><b>Browse the gallery →</b></a><br>
-  <a href="https://warint.github.io/pystatlas/">English</a> · <a href="https://warint.github.io/pystatlas/fr/">Français</a> · <a href="https://warint.github.io/pystatlas/ja/">日本語</a> · <a href="https://warint.github.io/pystatlas/zh/">中文</a><br>
+  <a href="https://warin.ca/pystatlas/"><b>Browse the gallery →</b></a><br>
+  <a href="https://warin.ca/pystatlas/">English</a> · <a href="https://warin.ca/pystatlas/fr/">Français</a> · <a href="https://warin.ca/pystatlas/ja/">日本語</a> · <a href="https://warin.ca/pystatlas/zh/">中文</a><br>
   Created by <a href="https://www.warin.ca"><b>Thierry Warin</b></a> · <a href="https://www.warin.ca">www.warin.ca</a>
 </p>
 
@@ -34,7 +34,7 @@ gallery/
       README.md           browsable on GitHub
 ```
 
-Browse the folders right here on GitHub, or visit the [website](https://warint.github.io/pystatlas/).
+Browse the folders right here on GitHub, or visit the [website](https://warin.ca/pystatlas/).
 
 ## Families
 

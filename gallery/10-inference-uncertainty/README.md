@@ -11,4 +11,4 @@ Bootstrap, confidence intervals, power, agreement and meta-analysis forest plots
 | [<img src="05-meta-analysis-forest/plot.png" width="260">](05-meta-analysis-forest/) | **[Meta-analysis forest plot](05-meta-analysis-forest/)**<br>Do teacher expectations raise pupils' IQ? 19 "Pygmalion" experiments, a random-effects pooled diamond and heterogeneity statistics.<br>`meta::forest() / metafor::forest()` |
 | [<img src="06-funnel-plot/plot.png" width="260">](06-funnel-plot/) | **[Funnel plot](06-funnel-plot/)**<br>Are small "Pygmalion" studies more optimistic? 19 teacher-expectancy effects against their standard error, with a pseudo 95% funnel and Egger's test.<br>`metafor::funnel() + metafor::regtest()` |
 
-[← All families](../../README.md) · [Browse on the website](https://warint.github.io/pystatlas/inference-uncertainty/)
+[← All families](../../README.md) · [Browse on the website](https://warin.ca/pystatlas/inference-uncertainty/)

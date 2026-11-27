@@ -14,4 +14,4 @@ How well does a model predict on new data, and why? Out-of-fold evaluation, lear
 | [<img src="08-shap-dependence/plot.png" width="260">](08-shap-dependence/) | **[SHAP dependence plot](08-shap-dependence/)**<br>How days since maintenance feed into each batch's predicted waste rate, coloured by its strongest interaction partner, with a smooth trend.<br>`shapviz::sv_dependence()` |
 | [<img src="09-shap-waterfall/plot.png" width="260">](09-shap-waterfall/) | **[SHAP waterfall for one prediction](09-shap-waterfall/)**<br>How each process feature moves one high-waste batch's predicted waste rate from the average to the model's output.<br>`shapviz::sv_waterfall()` |
 
-[← All families](../../README.md) · [Browse on the website](https://warint.github.io/pystatlas/machine-learning/)
+[← All families](../../README.md) · [Browse on the website](https://warin.ca/pystatlas/machine-learning/)

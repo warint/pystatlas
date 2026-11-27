@@ -9,4 +9,4 @@ Kaplan–Meier curves with risk tables, cumulative hazards and Cox model hazard 
 | [<img src="03-cumulative-hazard/plot.png" width="260">](03-cumulative-hazard/) | **[Cumulative hazard](03-cumulative-hazard/)**<br>Nelson–Aalen cumulative hazard of a drug's launch, with 95% bands, in four market groups.<br>`survminer::ggsurvplot(fun = "cumhaz")` |
 | [<img src="04-adjusted-survival/plot.png" width="260">](04-adjusted-survival/) | **[Adjusted survival curves](04-adjusted-survival/)**<br>Cox-predicted time to patent grant at four levels of relatedness, other covariates at their mean.<br>`survminer::ggadjustedcurves()` |
 
-[← All families](../../README.md) · [Browse on the website](https://warint.github.io/pystatlas/survival/)
+[← All families](../../README.md) · [Browse on the website](https://warin.ca/pystatlas/survival/)

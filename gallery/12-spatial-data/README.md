@@ -9,4 +9,4 @@ Is a value higher where its neighbours' values are higher? Spatial weights, glob
 | [<img src="03-lisa-cluster-map/plot.png" width="260">](03-lisa-cluster-map/) | **[LISA cluster map (local autocorrelation)](03-lisa-cluster-map/)**<br>Where the clusters and spatial outliers are — local Moran's I for each area, mapped with its permutation significance.<br>`spdep::localmoran_perm() / rgeoda::local_moran()` |
 | [<img src="04-spatial-correlogram/plot.png" width="260">](04-spatial-correlogram/) | **[Spatial correlogram](04-spatial-correlogram/)**<br>Moran's I at increasing neighbour orders, with a permutation envelope — how far spatial clustering reaches.<br>`spdep::sp.correlogram(method = "I")` |
 
-[← All families](../../README.md) · [Browse on the website](https://warint.github.io/pystatlas/spatial-data/)
+[← All families](../../README.md) · [Browse on the website](https://warin.ca/pystatlas/spatial-data/)
