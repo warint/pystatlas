@@ -69,7 +69,7 @@ The website in `docs/` is served by GitHub Pages.
 
 If PyStatlas helped your research, teaching or work, please cite it:
 
-> Warin, T. (2026). *PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences* (Version {{VERSION}}) [Computer software]. https://warint.github.io/pystatlas/
+> Warin, T. (2026). *PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences* (Version {{VERSION}}) [Computer software]. https://warin.ca/pystatlas/
 
 ```bibtex
 @misc{warin2026statlas,
@@ -77,7 +77,7 @@ If PyStatlas helped your research, teaching or work, please cite it:
   title        = {PyStatlas: A Python Gallery of Statistical Graphics for the Social Sciences},
   year         = {2026},
   version      = {{{VERSION}}},
-  howpublished = {\url{https://warint.github.io/pystatlas/}},
+  howpublished = {\url{https://warin.ca/pystatlas/}},
   note         = {Source code: https://github.com/warint/pystatlas}
 }
 ```
